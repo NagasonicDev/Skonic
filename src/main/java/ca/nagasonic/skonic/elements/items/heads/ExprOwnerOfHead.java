@@ -14,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprOwnerOfHead extends SimpleExpression<Player> {
     static {
-        Skript.registerExpression(ExprOwnerOfHead.class, Player.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprOwnerOfHead.class,
+                Player.class,
+                ExpressionType.COMBINED,
                 "owner of %itemstack%");
     }
 

@@ -13,7 +13,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprNameOfCitizen extends SimpleExpression<String> {
     static {
-        Skript.registerExpression(ExprNameOfCitizen.class, String.class, ExpressionType.COMBINED, "[the] name of citizen %number%");
+        Skript.registerExpression(ExprNameOfCitizen.class,
+                String.class,
+                ExpressionType.COMBINED,
+                "[the] name of citizen %number%");
     }
 
     private Expression<Number> id;

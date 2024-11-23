@@ -9,7 +9,6 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,7 +21,8 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 public class EffDeleteCitizen extends Effect {
     static {
-        Skript.registerEffect(EffDeleteCitizen.class, "delete citizen %number%");
+        Skript.registerEffect(EffDeleteCitizen.class,
+                "delete citizen %number%");
     }
 
     private Expression<Number> id;

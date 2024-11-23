@@ -7,7 +7,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprCitizenEntity extends SimplePropertyExpression<NPC, Entity> {
     static {
-        register(ExprCitizenEntity.class, Entity.class, "(citizen|npc) entity", "npc");
+        register(ExprCitizenEntity.class,
+                Entity.class,
+                "(citizen|npc) entity",
+                "%npc%");
     }
 
 

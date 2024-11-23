@@ -16,7 +16,9 @@ import java.util.UUID;
 
 public class ExprHeadFromUUID extends SimpleExpression<ItemStack> {
     static {
-        Skript.registerExpression(ExprHeadFromUUID.class, ItemStack.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprHeadFromUUID.class,
+                ItemStack.class,
+                ExpressionType.COMBINED,
                 "(head|skull) from uuid %string%");
     }
     private Expression<String> uuid;

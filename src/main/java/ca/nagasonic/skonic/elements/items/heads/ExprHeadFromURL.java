@@ -14,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
     static {
-        Skript.registerExpression(ExprHeadFromURL.class, ItemStack.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprHeadFromURL.class,
+                ItemStack.class,
+                ExpressionType.COMBINED,
                 "(head|skull) from url %string%");
     }
     private Expression<String> url;

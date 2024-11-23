@@ -10,7 +10,6 @@ import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +23,8 @@ import java.util.logging.Level;
 @Examples("")
 public class EffChangeCitizenSkinName extends Effect {
     static {
-        Skript.registerEffect(EffChangeCitizenSkinName.class, "(set|change) (citizen|npc) %number% skin to %string%");
+        Skript.registerEffect(EffChangeCitizenSkinName.class,
+                "(set|change) (citizen|npc) %number% skin to %string%");
     }
 
     private Expression<Number> id;

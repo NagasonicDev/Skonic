@@ -14,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
     static {
-        Skript.registerExpression(ExprHeadFromPlayer.class, ItemStack.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprHeadFromPlayer.class,
+                ItemStack.class,
+                ExpressionType.COMBINED,
                 "(head|skull) from %player%",
                 "%player%['s] (head|skull)");
     }
@@ -39,7 +41,7 @@ public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
 
     @Override
     public Class<? extends ItemStack> getReturnType() {
-        return null;
+        return ItemStack.class;
     }
 
     @Override

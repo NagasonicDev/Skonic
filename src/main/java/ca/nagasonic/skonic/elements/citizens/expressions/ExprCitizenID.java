@@ -12,7 +12,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprCitizenID extends SimpleExpression<Number> {
     static {
-        Skript.registerExpression(ExprCitizenID.class, Number.class, ExpressionType.COMBINED, "%npc%['s] id");
+        Skript.registerExpression(ExprCitizenID.class,
+                Number.class,
+                ExpressionType.COMBINED,
+                "%npc%['s] id");
     }
     private Expression<NPC> npc;
 

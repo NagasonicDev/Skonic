@@ -22,7 +22,7 @@ public class Types {
                 .description("Represents a Citizens NPC.")
                 .examples("last spawned npc", "delete last spawned npc")
                 .since("1.0.0")
-                .parser(new Parser<NPC>() {
+                .parser(new Parser<>() {
                     @SuppressWarnings("NullableProblems")
                     @Override
                     public boolean canParse(ParseContext context) {
@@ -61,11 +61,7 @@ public class Types {
                 }));
         Classes.registerClass(new ClassInfo<>(Skin.class, "skin")
                 .user("skin?")
-                .name("Skin")
-                .description("Represents a skin.")
-                .examples("player's skin")
-                .since("1.0.1")
-                .parser(new Parser<Skin>() {
+                .parser(new Parser<>() {
                     @SuppressWarnings("NullableProblems")
                     @Override
                     public boolean canParse(ParseContext context) {
@@ -79,24 +75,6 @@ public class Types {
                     @Override
                     public String toVariableNameString(Skin skin) {
                         return "skin:" + skin.toString();
-                    }
-                })
-                .changer(new Changer<Skin>() {
-                    @SuppressWarnings("NullableProblems")
-                    @Override
-                    public @Nullable Class<?>[] acceptChange(ChangeMode mode) {
-                        if (mode == ChangeMode.DELETE) return CollectionUtils.array();
-                        return null;
-                    }
-
-                    @SuppressWarnings("NullableProblems")
-                    @Override
-                    public void change(Skin[] what, @Nullable Object[] delta, ChangeMode mode) {
-                        if (mode == ChangeMode.DELETE){
-                            for (Skin skin : what){
-                                ;
-                            }
-                        }
                     }
                 }));
 

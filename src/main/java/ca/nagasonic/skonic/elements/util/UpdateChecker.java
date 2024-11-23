@@ -68,7 +68,7 @@ public class UpdateChecker implements Listener {
 
         Bukkit.getScheduler().runTaskLater(this.plugin, () -> updateVersion.thenApply(version -> {
             Util.sendColMsg(player, "&7[&9Skonic&7] update available: &a" + version);
-            Util.sendColMsg(player, "&7[&9Skonic&7] download at &bhttps://github.com/ShaneBeee/SkBee/releases");
+            Util.sendColMsg(player, "&7[&9Skonic&7] download at &bhttps://github.com/NagasonicDev/Skonic/releases");
             return true;
         }), 30);
     }

@@ -1,4 +1,6 @@
 name: Skonic
 version: '${project.version}'
 main: ca.nagasonic.skonic.Skonic
-api-version: '1.18'
+api-version: '1.19'
+softdepend:
+  - Citizens

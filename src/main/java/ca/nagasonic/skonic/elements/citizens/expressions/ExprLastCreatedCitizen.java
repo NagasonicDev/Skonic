@@ -13,7 +13,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     static {
-        Skript.registerExpression(ExprLastCreatedCitizen.class, NPC.class, ExpressionType.SIMPLE,
+        Skript.registerExpression(ExprLastCreatedCitizen.class,
+                NPC.class,
+                ExpressionType.SIMPLE,
                 "last (spawned|created) (npc|citizen)");
     }
 

@@ -29,7 +29,8 @@ import java.util.logging.Level;
 public class EffChangeCitizenSkinURL extends Effect {
 
     static {
-        Skript.registerEffect(EffChangeCitizenSkinURL.class, "(change|set) (citizen|npc) %number% skin to url %string%");
+        Skript.registerEffect(EffChangeCitizenSkinURL.class,
+                "(change|set) (citizen|npc) %number% skin to url %string%");
     }
 
     private Expression<Number> id;

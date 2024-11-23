@@ -14,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExprHeadFromName extends SimpleExpression<ItemStack> {
     static {
-        Skript.registerExpression(ExprHeadFromName.class, ItemStack.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprHeadFromName.class,
+                ItemStack.class,
+                ExpressionType.COMBINED,
                 "(head|skull) from name %string%");
     }
     private Expression<String> name;
