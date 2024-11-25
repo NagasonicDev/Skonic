@@ -19,10 +19,16 @@ More will come out in later versions. If you wish to make suggestions go to http
 - Delete a citizen.
 - Despawn/Respawn a citizen. (Citizen must already be created)
 - Expression for the last created citizen.
-- Name of a citizen.
+- Name of a citizen. (Cannot be set via expression)
+- Change Name of Citizen (Effect)
 
-# Other:
-- Expression to make an itemstack glowing. (Enchanted)
+# Skins:
+- Download player's skin.
+- Get player's skin
+- Get signature of player's skin
+- Get value of player's skin
+- Get a skin from UUID
+- Get Skin with value and signature
 
 [![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=Skonic)
 [![Get on skUnity](https://docs.skunity.com/skunity/library/Docs/Assets/assets/images/buttons/v2/get-the-syntax-white.png)](https://docs.skunity.com/syntax/search/addon:Skonic)
