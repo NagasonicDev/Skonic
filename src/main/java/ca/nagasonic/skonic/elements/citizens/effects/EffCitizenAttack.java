@@ -23,9 +23,11 @@ import java.util.logging.Level;
 public class EffCitizenAttack extends Effect {
     static {
         Skript.registerEffect(EffCitizenAttack.class,
-                "make (citizen|npc) %number% (attack|fight) %entity%");
+                "make (citizen|npc) %number% (attack|fight) %entity%",
+                "stop (citizen|npc) %number% from (attacking|fighting) %entity%");
     }
 
+    private int patterns;
     private Expression<Number> id;
     private Expression<Entity> victim;
 
@@ -36,7 +38,13 @@ public class EffCitizenAttack extends Effect {
             NPC npc = CitizensAPI.getNPCRegistry().getById(id.getSingle(e).intValue());
             //Check if there is a citizen with the ID
             if (npc != null){
-                npc.getNavigator().setTarget(victim.getSingle(e), true);
+                if (patterns == 0){
+                    npc.getNavigator().setTarget(victim.getSingle(e), true);
+                }else if (patterns == 1){
+                    npc.getNavigator().setPaused(true);
+                }else{
+                    Skonic.log(Level.SEVERE, "Pattern was entered incorrectly.");
+                }
             }else Skonic.log(Level.SEVERE, "There is no npc with ID " + id.getSingle(e));
         }else Skonic.log(Level.SEVERE, "The Specified ID is null");
 
@@ -49,6 +57,7 @@ public class EffCitizenAttack extends Effect {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
+        patterns = matchedPattern;
         id = (Expression<Number>) exprs[0];
         victim = (Expression<Entity>) exprs[1];
         return true;

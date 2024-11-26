@@ -23,7 +23,9 @@ public class ExprCitizenID extends SimpleExpression<Number> {
     protected @Nullable Number[] get(Event e) {
         if (npc != null && npc.getSingle(e) != null){
             if ((Integer) npc.getSingle(e).getId() == null) return null;
-            return new Number[]{npc.getSingle(e).getId()};
+            return new Number[]{
+                    npc.getSingle(e).getId()
+            };
         }else return null;
     }
 

@@ -16,7 +16,7 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
         Skript.registerExpression(ExprLastCreatedCitizen.class,
                 NPC.class,
                 ExpressionType.SIMPLE,
-                "last (spawned|created) (npc|citizen)");
+                "last (spawned|created) (citizen|npc)");
     }
 
     @SuppressWarnings("NullableProblems")

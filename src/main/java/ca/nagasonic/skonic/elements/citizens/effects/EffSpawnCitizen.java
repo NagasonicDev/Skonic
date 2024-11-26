@@ -34,7 +34,7 @@ public class EffSpawnCitizen extends Effect {
 
     static {
         Skript.registerEffect(EffSpawnCitizen.class,
-                "(spawn|create) [a[n]] [%-entitydata%] citizen [named %string%] [at|%direction%] %location%");
+                "(spawn|create) [a[n]] [%-entitydata%] (citizen|npc) [named %string%] [at|%direction%] %location%");
     }
 
     private Expression<String> name;
@@ -72,7 +72,7 @@ public class EffSpawnCitizen extends Effect {
         }
         String citizenName = (this.name != null && this.name.getSingle(evt) != null) ? this.name.getSingle(evt) : "";
         Location location = this.location.getSingle(evt);
-        NPC npc = CitizensAPI.getNPCRegistry().createNPC(CitizenType, name.getSingle(evt), location);
+        NPC npc = CitizensAPI.getNPCRegistry().createNPC(CitizenType, citizenName, location);
         lastSpawnedNPC = npc;
     }
 

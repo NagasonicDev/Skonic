@@ -1,4 +1,4 @@
-package ca.nagasonic.skonic.elements;
+package ca.nagasonic.skonic.classes;
 
 import ca.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.Changer;
@@ -22,7 +22,7 @@ public class Types {
                 .description("Represents a Citizens NPC.")
                 .examples("last spawned npc", "delete last spawned npc")
                 .since("1.0.0")
-                .parser(new Parser<>() {
+                .parser(new Parser<NPC>() {
                     @SuppressWarnings("NullableProblems")
                     @Override
                     public boolean canParse(ParseContext context) {

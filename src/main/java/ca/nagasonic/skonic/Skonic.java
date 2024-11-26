@@ -1,8 +1,11 @@
 package ca.nagasonic.skonic;
 
 import ca.nagasonic.skonic.elements.util.SkinUtils;
+import ca.nagasonic.skonic.elements.util.UpdateChecker;
+import ca.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import ch.njol.skript.util.Version;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
@@ -17,9 +20,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,31 +36,36 @@ public final class Skonic extends JavaPlugin implements Listener {
     static final int[] EARLIEST_VERSION = new int[]{1, 19};
     private static Skonic instance;
     private static Logger logger;
-    private static SkriptAddon addon;
-    private PluginManager pm;
+    public static String path;
+    private AddonLoader addonLoader = null;
 
     @Override
     public void onEnable() {
+        long start = System.currentTimeMillis();
         instance = this;
         logger = getLogger();
-        addon = Skript.registerAddon(this);
-        try {
-            if (Bukkit.getServer().getPluginManager().isPluginEnabled("Citizens")){
-                addon.loadClasses("ca.nagasonic.skonic.elements.citizens");
-            }
-            addon.loadClasses("ca.nagasonic.skonic.elements.items");
-            addon.loadClasses("ca.nagasonic.skonic.elements.skins");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        path = this.getDataFolder().getPath();
+        PluginManager pm = Bukkit.getPluginManager();
+
+        this.addonLoader = new AddonLoader(this);
+        if (!addonLoader.canLoadPlugin()){
+            pm.disablePlugin(this);
+            return;
         }
-        info("Skonic has been enabled");
+
+        String version = getDescription().getVersion();
+        if (version.contains("dev")) {
+            Util.log("&eThis is a DEV build, things may not work as expected, please report any bugs on GitHub");
+            Util.log("&ehttps://github.com/Nagasonic/Skonic/issues");
+        }
+        new UpdateChecker(this);
+        Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
         Metrics metrics = new Metrics(this, 20479);
-        this.pm = getPluginManager();
         ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.NAMED_ENTITY_SPAWN) {
             @Override
             public void onPacketSending(PacketEvent event) {
                 UUID uuid = event.getPacket().getUUIDs().readSafely(0);
-                WrappedGameProfile profile = (WrappedGameProfile) getEffectiveProfile(Bukkit.getServer().getPlayer(uuid));
+                WrappedGameProfile profile = (WrappedGameProfile) getEffectiveProfile(Objects.requireNonNull(Bukkit.getServer().getPlayer(uuid)));
                 event.getPacket().getUUIDs().write(0, profile.getUUID());
             }
         });
@@ -112,4 +122,6 @@ public final class Skonic extends JavaPlugin implements Listener {
     public static void log(Level level, String message){
         logger.log(level, message);
     }
+
+    public static String getPath(){ return path; }
 }

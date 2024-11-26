@@ -16,7 +16,7 @@ public class ExprNameOfCitizen extends SimpleExpression<String> {
         Skript.registerExpression(ExprNameOfCitizen.class,
                 String.class,
                 ExpressionType.COMBINED,
-                "[the] name of citizen %number%");
+                "[the] name of (citizen|npc) %number%");
     }
 
     private Expression<Number> id;

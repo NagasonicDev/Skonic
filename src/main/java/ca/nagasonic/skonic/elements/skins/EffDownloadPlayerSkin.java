@@ -25,35 +25,42 @@ public class EffDownloadPlayerSkin extends Effect {
                 "(download|save) %player%['s] skin");
     }
 
-    private Expression<Player> player;
+    private Expression<Player> playerExpr;
 
     @Override
     protected void execute(Event e) {
-        if (player == null || player.getSingle(e) == null) Skonic.getInstance().getLogger().log(Level.SEVERE, "The specified player is null.");
-        PlayerProfile profile = player.getSingle(e).getPlayerProfile();
-        if (profile == null) Skonic.getInstance().getLogger().log(Level.SEVERE, "The player does not have a profile, please check if the player entered is correct.");
-        URL url = profile.getTextures().getSkin();
-        if (url == null) Skonic.getInstance().getLogger().log(Level.SEVERE, "The player does not have a skin url. Aborting...");
-        File file = new File(Skonic.getInstance().getDataFolder().getPath() + "/skins/" + player.getSingle(e).getName() + "/", "skins_" + player.getSingle(e).getName() + "_" + fromDate(getDate()).replaceAll(" ", "") + ".png");
-        if (!file.exists()){
-            file.mkdirs();
+        Player player = playerExpr.getSingle(e);
+        if (playerExpr == null || player == null){
+            Skonic.log(Level.SEVERE, "The given player is null, please retry.");
+            return;
         }
+        PlayerProfile profile = player.getPlayerProfile();
+        if (profile == null) {
+            Skonic.log(Level.SEVERE, "The player does not have a profile, please check if the player entered is correct.");
+            return;
+        }
+        URL url = profile.getTextures().getSkin();
+        if (url == null) {
+            Skonic.log(Level.SEVERE, "The player does not have a skin url. Aborting...");
+            return;
+        }
+        File file = new File(Skonic.getPath() + "/skins/" + player.getName() + "/", "skins_" + player.getName() + "_" + fromDate(getDate()).replaceAll(" ", "") + ".png");
         try {
             FileUtils.copyURLToFile(url, file);
         } catch (IOException ex) {
-            Skonic.getInstance().getLogger().log(Level.SEVERE, "There was an error when retrieving the skin from the player's url.");
+            Skonic.log(Level.SEVERE, "There was an error when retrieving the skin from the player's url.");
             throw new RuntimeException(ex);
         }
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "download skin from " + player.getSingle(e).toString();
+        return "download skin from " + playerExpr.toString(e, debug);
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        player = (Expression<Player>) exprs[0];
+        playerExpr = (Expression<Player>) exprs[0];
         return true;
     }
 }
