@@ -5,6 +5,7 @@ Skonic currently has three main areas of expertise:
 - Citizens
 - Player Heads
 - Skins
+
 More will come out in later versions. If you wish to make suggestions go to https://github.com/NagasonicDev/Skonic/pulls and create a request.
 
 # Player Heads:
