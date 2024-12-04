@@ -7,7 +7,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.event.Event;
@@ -21,40 +20,44 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("")
+@DocumentationId("citizen.skin.name")
 public class EffChangeCitizenSkinName extends Effect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,
-                "(set|change) (citizen|npc) %number% skin to %string%");
+                "(set|change) %npcs%['s] skin to %string%",
+                "(set|change) skin of %npcs% to %string%");
     }
 
-    private Expression<Number> id;
+    private Expression<NPC> npcExpr;
     private Expression<String> name;
 
     @Override
     protected void execute(Event e) {
         //Check if the ID is null
-        if (id.getSingle(e) != null) {
-            NPC npc = CitizensAPI.getNPCRegistry().getById(id.getSingle(e).intValue());
+        NPC[] npcs = npcExpr.getArray(e);
+        if (npcs != null) {
             //Check if there is a citizen with the ID
-            if (npc != null){
-                SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                trait.setShouldUpdateSkins(true);
-                //Check if the name is null
-                if (name.getSingle(e) != null){
-                    trait.setSkinName(name.getSingle(e));
-                }else Skonic.log(Level.SEVERE, "The specified name is null.");
-            }else Skonic.log(Level.SEVERE, "There is no citizen with ID " + id.getSingle(e).toString());
-        }else Skonic.log(Level.SEVERE, "Specified ID is null");
+            for (NPC npc : npcs){
+                if (npc != null){
+                    SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                    trait.setShouldUpdateSkins(true);
+                    //Check if the name is null
+                    if (name.getSingle(e) != null){
+                        trait.setSkinName(name.getSingle(e));
+                    }else Skonic.log(Level.SEVERE, "The specified name is null.");
+                }else Skonic.log(Level.SEVERE, "There is no citizen " + npc.toString());
+            }
+        }else Skonic.log(Level.SEVERE, "Specified NPCs are null");
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "change skin of citizen with id " + id.getSingle(e) + " to name " + name.getSingle(e);
+        return "change skin of citizen with id " + npcExpr.toString(e, debug) + " to name " + name.toString(e, debug);
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        id = (Expression<Number>) exprs[0];
+        npcExpr = (Expression<NPC>) exprs[0];
         name = (Expression<String>) exprs[1];
         return true;
     }

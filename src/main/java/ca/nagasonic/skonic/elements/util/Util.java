@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -144,5 +146,17 @@ public class Util {
     public static String fromDate(Date date){
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
         return format.format(date);
+    }
+
+    public static boolean isURL(String url){
+        boolean c = false;
+        try {
+            URL Url = new URL(url);
+            c = true;
+        } catch (MalformedURLException ex) {
+            Skript.error("Specified 'URL' is not a valid URL");
+            throw new RuntimeException(ex);
+        }
+        return c;
     }
 }

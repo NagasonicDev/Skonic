@@ -1,6 +1,7 @@
 package ca.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +14,12 @@ import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Despawn/Respawn Citizen")
+@Description("Despawn or respawn a citizen.")
+@RequiredPlugins("Citizens")
+@Since("1.0.5")
+@Examples("")
+@DocumentationId("citizen.despawn")
 public class EffDespawnCitizen extends Effect {
     static {
         Skript.registerEffect(EffDespawnCitizen.class,
@@ -38,7 +45,7 @@ public class EffDespawnCitizen extends Effect {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "despawn " + npcs.getArray(e).toString();
+        return "despawn " + npcs.toString(e, debug);
     }
 
     @Override

@@ -2,6 +2,7 @@ package ca.nagasonic.skonic.elements.items.heads;
 
 import ca.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +13,11 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Head from URL")
+@Description("Gets a head by URL")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("head.fromurl")
 public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromURL.class,
@@ -56,6 +62,6 @@ public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
     @Override
     @NotNull
     public String toString(@Nullable Event event, boolean debug) {
-        return "head from url " + url.getSingle(event);
+        return "head from url " + url.toString(event, debug);
     }
 }

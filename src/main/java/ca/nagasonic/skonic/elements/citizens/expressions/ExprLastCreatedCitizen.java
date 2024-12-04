@@ -2,6 +2,7 @@ package ca.nagasonic.skonic.elements.citizens.expressions;
 
 import ca.nagasonic.skonic.elements.citizens.effects.EffSpawnCitizen;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -11,6 +12,13 @@ import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Last Created Citizen")
+@Description("The last created citizen." +
+        "Only applicable if the citizen is created via this addon. Will not save when server restarts.")
+@RequiredPlugins("Citizens")
+@Since("1.0.5")
+@Examples("")
+@DocumentationId("citizen.last")
 public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprLastCreatedCitizen.class,

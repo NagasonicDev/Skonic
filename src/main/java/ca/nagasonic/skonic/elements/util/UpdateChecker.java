@@ -37,8 +37,8 @@ public class UpdateChecker implements Listener {
                 if (!player.hasPermission("skonic.update.check")) return;
 
                 Bukkit.getScheduler().runTaskLater(UpdateChecker.this.plugin, () -> getUpdateVersion(true).thenApply(version -> {
-                    Util.sendColMsg(player, "&7[&9Skonic&7] update available: &a" + version);
-                    Util.sendColMsg(player, "&7[&9Skonic&7] download at &bhttps://github.com/NagasonicDev/Skonic/releases");
+                    Util.sendColMsg(player, "&7[&9Skonic&7] Update available: &a" + version);
+                    Util.sendColMsg(player, "&7[&9Skonic&7] Download at &bhttps://github.com/NagasonicDev/Skonic/releases");
                     return true;
                 }), 30);
             }

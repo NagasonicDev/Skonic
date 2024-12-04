@@ -1,6 +1,7 @@
 package ca.nagasonic.skonic.elements.skins;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -9,20 +10,28 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Skin With")
+@Description("Used to create a skin.")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("skin.with")
 public class ExprSkinWith extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinWith.class, Skin.class, ExpressionType.COMBINED,
                 "skin with value %string% and signature %string%");
     }
 
-    private Expression<String> value;
-    private Expression<String> signature;
+    private Expression<String> valueExpr;
+    private Expression<String> signatureExpr;
 
     @Override
     protected @Nullable Skin[] get(Event e) {
-        if (value == null || value.getSingle(e) == null || signature == null || signature.getSingle(e) == null) return null;
-        return new Skin[]{new Skin(value.getSingle(e), signature.getSingle(e))};
+        String value = valueExpr.getSingle(e);
+        String signature = signatureExpr.getSingle(e);
+        if (value == null || signature == null) return null;
+        return new Skin[]{new Skin(value, signature)};
     }
+
 
     @Override
     public boolean isSingle() {
@@ -36,13 +45,13 @@ public class ExprSkinWith extends SimpleExpression<Skin> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "skin with value " + value.getSingle(e) + "and signature " + signature.getSingle(e);
+        return "skin with value " + valueExpr.toString(e, debug) + "and signature " + signatureExpr.toString(e, debug);
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        value = (Expression<String>) exprs[0];
-        signature = (Expression<String>) exprs[1];
+        valueExpr = (Expression<String>) exprs[0];
+        signatureExpr = (Expression<String>) exprs[1];
         return true;
     }
 }

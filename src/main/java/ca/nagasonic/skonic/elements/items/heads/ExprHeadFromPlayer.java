@@ -2,6 +2,7 @@ package ca.nagasonic.skonic.elements.items.heads;
 
 import ca.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +13,11 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Head from Player")
+@Description("Gets a head by player")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("head.player")
 public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromPlayer.class,
@@ -36,7 +42,7 @@ public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
 
     @Override
     public boolean isSingle() {
-        return false;
+        return true;
     }
 
     @Override
@@ -46,7 +52,7 @@ public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "head of " + player.getSingle(e).toString();
+        return "head of " + player.toString(e, debug);
     }
 
     @Override

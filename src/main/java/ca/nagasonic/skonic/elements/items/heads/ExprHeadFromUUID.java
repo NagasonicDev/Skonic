@@ -2,6 +2,7 @@ package ca.nagasonic.skonic.elements.items.heads;
 
 import ca.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -14,6 +15,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+@Name("Head from UUID")
+@Description("Gets a head by player UUID")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("head.uuid")
 public class ExprHeadFromUUID extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromUUID.class,
@@ -58,6 +64,6 @@ public class ExprHeadFromUUID extends SimpleExpression<ItemStack> {
     @Override
     @NotNull
     public String toString(@Nullable Event event, boolean debug) {
-        return "head from uuid " + uuid.getSingle(event);
+        return "head from uuid " + uuid.toString(event, debug);
     }
 }

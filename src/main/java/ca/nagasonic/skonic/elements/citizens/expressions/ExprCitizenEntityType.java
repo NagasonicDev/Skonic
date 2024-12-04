@@ -1,22 +1,29 @@
 package ca.nagasonic.skonic.elements.citizens.expressions;
 
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Entity Type")
+@Description("Get the entity type of a citizen")
+@RequiredPlugins("Citizens")
+@Since("1.0.5")
+@Examples("")
+@DocumentationId("citizen.entitytype")
 public class ExprCitizenEntityType extends SimplePropertyExpression<NPC, EntityType> {
     static {
         register(ExprCitizenEntityType.class,
                 EntityType.class,
-                "(citizen|npc) entity type",
+                "entity type",
                 "npc");
     }
 
 
     @Override
     protected String getPropertyName() {
-        return "citizen entity type";
+        return "entity type";
     }
 
     @Override

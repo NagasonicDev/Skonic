@@ -22,6 +22,7 @@ public class Types {
                 .description("Represents a Citizens NPC.")
                 .examples("last spawned npc", "delete last spawned npc")
                 .since("1.0.0")
+                .documentationId("npc")
                 .parser(new Parser<NPC>() {
                     @SuppressWarnings("NullableProblems")
                     @Override
@@ -61,6 +62,10 @@ public class Types {
                 }));
         Classes.registerClass(new ClassInfo<>(Skin.class, "skin")
                 .user("skin?")
+                .description("Represents a Skin.")
+                .examples("player's skin")
+                .since("1.0.2")
+                .documentationId("skin")
                 .parser(new Parser<>() {
                     @SuppressWarnings("NullableProblems")
                     @Override

@@ -61,7 +61,7 @@ public final class Skonic extends JavaPlugin implements Listener {
         new UpdateChecker(this);
         Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
         Metrics metrics = new Metrics(this, 20479);
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.NAMED_ENTITY_SPAWN) {
+        /*ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.NAMED_ENTITY_SPAWN) {
             @Override
             public void onPacketSending(PacketEvent event) {
                 UUID uuid = event.getPacket().getUUIDs().readSafely(0);
@@ -106,6 +106,8 @@ public final class Skonic extends JavaPlugin implements Listener {
         });
 
         getPluginManager().registerEvents(this, this);
+
+        */
     }
 
     @Override

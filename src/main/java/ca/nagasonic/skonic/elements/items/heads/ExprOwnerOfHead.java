@@ -1,6 +1,7 @@
 package ca.nagasonic.skonic.elements.items.heads;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +13,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Owner of Head")
+@Description("Gets the owner of a player head." +
+        "Will only work if the head is from a player.")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("head.owner")
 public class ExprOwnerOfHead extends SimpleExpression<Player> {
     static {
         Skript.registerExpression(ExprOwnerOfHead.class,
@@ -50,7 +57,7 @@ public class ExprOwnerOfHead extends SimpleExpression<Player> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "owner of " + item.getSingle(e).toString();
+        return "owner of " + item.toString(e, debug);
     }
 
     @Override

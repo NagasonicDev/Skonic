@@ -1,6 +1,7 @@
 package ca.nagasonic.skonic.elements.skins;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -9,7 +10,11 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-
+@Name("Skin from UUID")
+@Description("Gets a skin from player's uuid.")
+@Since("1.0.4")
+@Examples("")
+@DocumentationId("skin.uuid")
 public class ExprSkinFromUUID extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinFromUUID.class, Skin.class, ExpressionType.COMBINED,
@@ -36,7 +41,7 @@ public class ExprSkinFromUUID extends SimpleExpression<Skin> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "skin from uuid " + uuidString.getSingle(e);
+        return "skin from uuid " + uuidString.toString(e, debug);
     }
 
     @Override

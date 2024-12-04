@@ -1,5 +1,7 @@
 package ca.nagasonic.skonic.elements.util;
 
+import ca.nagasonic.skonic.Skonic;
+import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -11,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class HeadUtils {
     @Deprecated
@@ -69,12 +72,11 @@ public class HeadUtils {
     }
     public static ItemStack headWithUrl(ItemStack item, String url) {
         PlayerProfile profile = getProfile(url);
-        System.out.println(profile.getTextures().getSkin().toString());
-        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        Skonic.info(profile.getTextures().getSkin().toString());
+        SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setOwnerProfile(profile); // Set the owning player of the head to the player profile
-        head.setItemMeta(meta);
-        return head;
+        item.setItemMeta(meta);
+        return item;
     }
 
     public static ItemStack headFromBase64(String base64) {
@@ -123,4 +125,27 @@ public class HeadUtils {
         }
     }
 
+    public static String getValue(ItemStack head){
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        PlayerProfile profile = meta.getOwnerProfile();
+        String url = profile.getTextures().getSkin().toString();
+        JsonObject data = null;
+        try {
+            data = SkinUtils.generateFromURL(url, false);
+        } catch (ExecutionException ex) {
+            throw new RuntimeException(ex);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+        JsonObject texture = data.get("texture").getAsJsonObject();
+        String value = texture.get("value").getAsString();
+        return value;
+    }
+
+    public static URL getURL(ItemStack head){
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+        PlayerProfile profile = meta.getOwnerProfile();
+        URL url = profile.getTextures().getSkin();
+        return url;
+    }
 }

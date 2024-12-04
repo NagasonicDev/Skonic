@@ -1,4 +1,4 @@
-package ca.nagasonic.skonic.elements.citizens.expressions;
+package ca.nagasonic.skonic.elements.skins;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
@@ -7,34 +7,28 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Citizen Name")
-@Description("Get the name of a citizen")
-@RequiredPlugins("Citizens")
-@Since("1.0.5")
+@Name("Skin Signature")
+@Description("Gets the signature of a skin.")
+@Since("1.0.7")
 @Examples("")
-@DocumentationId("citizen.name")
-public class ExprNameOfCitizen extends SimpleExpression<String> {
+@DocumentationId("skin.signature")
+public class ExprSkinSignature extends SimpleExpression<String> {
     static {
-        Skript.registerExpression(ExprNameOfCitizen.class,
-                String.class,
-                ExpressionType.COMBINED,
-                "[the] name of %npc%");
+        Skript.registerExpression(ExprSkinSignature.class, String.class, ExpressionType.COMBINED,
+                "signature of %skin%",
+                "%skin%['s] signature");
     }
 
-    private Expression<NPC> npcExpr;
+    private Expression<Skin> skinExpr;
 
     @Override
     protected @Nullable String[] get(Event e) {
-        NPC npc = npcExpr.getSingle(e);
-        if (npcExpr != null){
-            if (npc != null){
-                return new String[]{npc.getName()};
-            }else return null;
-        }else return null;
+        Skin skin = skinExpr.getSingle(e);
+        if (skin == null || skin.signature == null) return null;
+        return new String[]{skin.signature};
     }
 
     @Override
@@ -49,12 +43,12 @@ public class ExprNameOfCitizen extends SimpleExpression<String> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "name of citizen with id " + npcExpr.toString(e, debug);
+        return "signature of " + skinExpr.toString(e, debug);
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        npcExpr = (Expression<NPC>) exprs[0];
+        skinExpr = (Expression<Skin>) exprs[0];
         return true;
     }
 }
