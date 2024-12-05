@@ -62,6 +62,7 @@ public class Types {
                 }));
         Classes.registerClass(new ClassInfo<>(Skin.class, "skin")
                 .user("skin?")
+                .name("Skin")
                 .description("Represents a Skin.")
                 .examples("player's skin")
                 .since("1.0.2")

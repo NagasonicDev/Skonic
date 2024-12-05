@@ -2,6 +2,7 @@ package ca.nagasonic.skonic.elements.skins;
 
 import ca.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +13,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
+@Name("URL In Value")
+@Description("Retrieves the url within a skin value")
+@Since("1.0.7")
+@Examples("")
+@DocumentationId("skin.urlinvalue")
 
 public class ExprURLInValue extends SimpleExpression<String> {
     static {
