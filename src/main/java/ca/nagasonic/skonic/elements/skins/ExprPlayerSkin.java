@@ -1,17 +1,8 @@
 package ca.nagasonic.skonic.elements.skins;
 
-import ca.nagasonic.skonic.elements.citizens.expressions.ExprCitizenEntityType;
-import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.util.Kleenean;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Player's Skin")
@@ -42,6 +33,7 @@ public class ExprPlayerSkin extends SimplePropertyExpression<Player, Skin> {
     public @Nullable Skin convert(Player player) {
         if (player == null) return null;
         Skin skin = Skin.fromURL("https://sessionserver.mojang.com/session/minecraft/profile/" + player.getUniqueId() + "?unsigned=false");
+        if (skin == null) return null;
         return skin;
     }
 }

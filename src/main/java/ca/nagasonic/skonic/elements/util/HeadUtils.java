@@ -8,12 +8,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
+import org.json.JSONObject;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 
 public class HeadUtils {
     @Deprecated
@@ -90,9 +93,14 @@ public class HeadUtils {
 
     public static URL getUrlFromBase64(String base64) throws MalformedURLException {
         String decoded = new String(Base64.getDecoder().decode(base64));
-        // We simply remove the "beginning" and "ending" part of the JSON, so we're left with only the URL. You could use a proper
-        // JSON parser for this, but that's not worth it. The String will always start exactly with this stuff anyway
-        return new URL(decoded.substring("{\"textures\":{\"SKIN\":{\"url\":\"".length(), decoded.length() - "\"}}}".length()));
+        JSONObject jsonObject = new JSONObject(decoded);
+
+        // Extract the "textures" JSONObject
+        JSONObject textures = jsonObject.getJSONObject("textures");
+
+        // Extract the "SKIN" JSONObject and then the "url"
+        String url = textures.getJSONObject("SKIN").getString("url");
+        return new URL(url);
     }
 
     public static ItemStack headWithBase64(ItemStack item, String base64) throws MalformedURLException {

@@ -34,6 +34,7 @@ public class ExprOwnerOfHead extends SimpleExpression<Player> {
         if (item != null && item.getSingle(e) != null){
             SkullMeta meta = (SkullMeta) item.getSingle(e).getItemMeta();
             if (meta != null){
+                if (meta.getOwningPlayer() == null) return null;
                 Player player = meta.getOwningPlayer().getPlayer();
                 if (player != null){
                     return new Player[]{player};

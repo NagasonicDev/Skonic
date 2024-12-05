@@ -13,14 +13,14 @@ import org.jetbrains.annotations.Nullable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ExprURLInValue extends SimpleExpression<URL> {
+public class ExprURLInValue extends SimpleExpression<String> {
     static {
-        Skript.registerExpression(ExprURLInValue.class, URL.class, ExpressionType.SIMPLE,
+        Skript.registerExpression(ExprURLInValue.class, String.class, ExpressionType.COMBINED,
                 "[skin] url within value %string%");
     }
     private Expression<String> stringExpr;
     @Override
-    protected @Nullable URL[] get(Event e) {
+    protected @Nullable String[] get(Event e) {
         String urlString = stringExpr.getSingle(e);
         if (urlString == null) return null;
         URL url = null;
@@ -29,7 +29,7 @@ public class ExprURLInValue extends SimpleExpression<URL> {
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }
-        return new URL[]{url};
+        return new String[]{url.toString()};
     }
 
     @Override
@@ -38,8 +38,8 @@ public class ExprURLInValue extends SimpleExpression<URL> {
     }
 
     @Override
-    public Class<? extends URL> getReturnType() {
-        return URL.class;
+    public Class<? extends String> getReturnType() {
+        return String.class;
     }
 
     @Override
@@ -49,6 +49,7 @@ public class ExprURLInValue extends SimpleExpression<URL> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return false;
+        stringExpr = (Expression<String>) exprs[0];
+        return true;
     }
 }

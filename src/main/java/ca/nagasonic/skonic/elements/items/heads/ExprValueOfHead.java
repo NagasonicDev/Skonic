@@ -1,7 +1,6 @@
 package ca.nagasonic.skonic.elements.items.heads;
 
 import ca.nagasonic.skonic.elements.util.HeadUtils;
-import ca.nagasonic.skonic.elements.util.SkinUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
@@ -9,15 +8,10 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.profile.PlayerProfile;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.concurrent.ExecutionException;
 
 @Name("Value of Head")
 @Description("Gets the value of a head")

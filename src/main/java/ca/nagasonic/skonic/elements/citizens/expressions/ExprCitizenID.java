@@ -19,7 +19,7 @@ public class ExprCitizenID extends SimplePropertyExpression<NPC, Number> {
     }
     @Override
     protected String getPropertyName() {
-        return "citizen id";
+        return "id";
     }
 
     @Override
