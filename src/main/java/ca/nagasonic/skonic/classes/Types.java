@@ -6,9 +6,13 @@ import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.util.EnumUtils;
 import ch.njol.util.coll.CollectionUtils;
+import net.citizensnpcs.api.event.DespawnReason;
+import net.citizensnpcs.api.event.SpawnReason;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.Entity;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.skriptlang.skript.lang.converter.Converters;
@@ -60,6 +64,68 @@ public class Types {
                         }
                     }
                 }));
+        EnumUtils<SpawnReason> SPAWN_REASON_ENUM = new EnumUtils<>(SpawnReason.class, "spawnreasons");
+        Classes.registerClass(new ClassInfo<>(SpawnReason.class, "npcspawnreason")
+                .user("npc ?spawn ?reasons?")
+                .name("Citizens Spawn Reason")
+                .description("Represents the reasons a Citizen will spawn.")
+                .usage(SPAWN_REASON_ENUM.getAllNames())
+                .examples("if event-npcspawnreason = chunk load:")
+                .since("1.1")
+                .parser(new Parser<SpawnReason>() {
+
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public @Nullable SpawnReason parse(String string, ParseContext context) {
+                        return SPAWN_REASON_ENUM.parse(string);
+                    }
+
+                    @Override
+                    @NotNull
+                    public String toString(SpawnReason spawnReason, int flags) {
+                        return SPAWN_REASON_ENUM.toString(spawnReason, flags);
+                    }
+
+                    @Override
+                    @NotNull
+                    public String toVariableNameString(SpawnReason spawnReason) {
+                        return "npcspawnreason:" + toString(spawnReason, 0);
+                    }
+                }));
+
+        EnumUtils<DespawnReason> DESPAWN_REASON_ENUM = new EnumUtils<>(DespawnReason.class, "despawnreasons");
+        Classes.registerClass(new ClassInfo<>(DespawnReason.class, "npcdespawnreason")
+                .user("npc ?despawn ?reasons?")
+                .name("Citizens Despawn Reason")
+                .description("Represents the reasons a Citizen will despawn.")
+                .user(DESPAWN_REASON_ENUM.getAllNames())
+                .examples("if event-npcdespawnreason = chunk unload:")
+                .since("1.1")
+                .parser(new Parser<DespawnReason>() {
+
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public @Nullable DespawnReason parse(String s, ParseContext context) {
+                        return DESPAWN_REASON_ENUM.parse(s);
+                    }
+
+                    @Override
+                    @NotNull
+                    public String toString(DespawnReason despawnReason, int flags) {
+                        return DESPAWN_REASON_ENUM.toString(despawnReason, flags);
+                    }
+
+                    @Override
+                    @NotNull
+                    public String toVariableNameString(DespawnReason despawnReason) {
+                        return "npcdespawnreason:" + toString(despawnReason, 0);
+                    }
+                }));
+
+        // CONVERTERS
+        // Enables any Skript effect/expression that works for entities
+        Converters.registerConverter(NPC.class, Entity.class, NPC::getEntity);
+
         Classes.registerClass(new ClassInfo<>(Skin.class, "skin")
                 .user("skin?")
                 .name("Skin")
