@@ -1,7 +1,6 @@
 package ca.nagasonic.skonic.elements.util;
 
 import ca.nagasonic.skonic.Skonic;
-import ca.nagasonic.skonic.elements.skins.Skin;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
@@ -13,7 +12,6 @@ import com.google.common.io.CharStreams;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,16 +22,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import net.citizensnpcs.api.util.Messaging;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.profile.PlayerProfile;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class SkinUtils {
     public static JsonObject generateFromURL(String url, boolean slim) throws InterruptedException, ExecutionException {
@@ -179,8 +173,4 @@ public class SkinUtils {
         }
     }
 
-    public static boolean setSkin(GameProfile profile, Skin skin) {
-        profile.getProperties().put("textures", new Property("textures", skin.value, skin.signature));
-        return true;
-    }
 }
