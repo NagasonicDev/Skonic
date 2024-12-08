@@ -16,6 +16,9 @@ import org.jetbrains.annotations.Nullable;
 @Examples("")
 @DocumentationId("citizen.name")
 public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
+    static {
+        register(ExprNameOfCitizen.class, String.class, "name", "npcs");
+    }
     @Override
     public @Nullable String convert(NPC npc) {
         return npc.getName();
@@ -31,7 +34,7 @@ public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
     @SuppressWarnings({"NullableProblems", "ConstantValue"})
     @Override
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        if (delta != null && delta[0] instanceof Boolean) {
+        if (delta != null && delta[0] instanceof String) {
             String name = (String) delta[0];
             for (NPC npc : getExpr().getArray(event)) {
                 npc.setName(name);
