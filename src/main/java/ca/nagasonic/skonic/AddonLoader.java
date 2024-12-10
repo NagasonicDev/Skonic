@@ -4,35 +4,11 @@ import ca.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
-import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.CitizensPlugin;
-import net.citizensnpcs.api.LocationLookup;
-import net.citizensnpcs.api.NMSHelper;
-import net.citizensnpcs.api.ai.speech.SpeechFactory;
-import net.citizensnpcs.api.command.CommandManager;
-import net.citizensnpcs.api.npc.NPCDataStore;
-import net.citizensnpcs.api.npc.NPCRegistry;
-import net.citizensnpcs.api.npc.NPCSelector;
-import net.citizensnpcs.api.trait.TraitFactory;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.generator.BiomeProvider;
-import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.PluginManager;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * @hidden

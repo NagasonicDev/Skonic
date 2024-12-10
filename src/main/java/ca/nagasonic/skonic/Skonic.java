@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 import static ca.nagasonic.skonic.elements.util.SkinUtils.getEffectiveProfile;
 import static org.bukkit.Bukkit.getPluginManager;
 
-public final class Skonic extends JavaPlugin implements Listener {
+public final class Skonic extends JavaPlugin {
     static final int[] EARLIEST_VERSION = new int[]{1, 19};
     private static Skonic instance;
     private static Logger logger;
@@ -66,6 +66,7 @@ public final class Skonic extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        Util.logLoading("&eDisabling Skonic v%s", getDescription().getVersion());
     }
 
     public static Skonic getInstance(){ return instance; }

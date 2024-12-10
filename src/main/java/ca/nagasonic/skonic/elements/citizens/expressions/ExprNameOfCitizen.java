@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @DocumentationId("citizen.name")
 public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
     static {
-        register(ExprNameOfCitizen.class, String.class, "name", "npcs");
+        register(ExprNameOfCitizen.class, String.class, "(citizen|npc) name", "npcs");
     }
     @Override
     public @Nullable String convert(NPC npc) {
@@ -38,6 +39,9 @@ public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
             String name = (String) delta[0];
             for (NPC npc : getExpr().getArray(event)) {
                 npc.setName(name);
+                Location loc = npc.getEntity().getLocation();
+                npc.despawn();
+                npc.spawn(loc);
             }
         }
     }

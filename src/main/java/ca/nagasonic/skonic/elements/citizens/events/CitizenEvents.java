@@ -7,7 +7,9 @@ import ch.njol.skript.util.Getter;
 import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -23,7 +25,7 @@ public class CitizenEvents {
                 .requiredPlugins("Citizens");
         Skript.registerEvent("Citizen Left Click", SimpleEvent.class, NPCLeftClickEvent.class,
                 "(citizen|npc) left click")
-                .description("Called when a Citizens NPC is left clicked by a player.")
+                .description("Called when a Citizens NPC is left clicked by a player.", "Only is called if NPC is not vulnerable.")
                 .since("1.1")
                 .documentationID("citizen.event.leftclick")
                 .requiredPlugins("Citizens");
@@ -75,6 +77,25 @@ public class CitizenEvents {
                 .since("1.1")
                 .documentationID("citizen.event.death")
                 .requiredPlugins("Citizens");
+        Skript.registerEvent("Citizen Damage", SimpleEvent.class, NPCDamageEvent.class,
+                "(citizen|npc) damage")
+                .description("Called when a Citizens NPC is damaged", "Does not include damage by entity or damage by block, use their respective events for that.")
+                .since("1.1")
+                .documentationID("citizen.event.damage")
+                .requiredPlugins("Citizens");
+        Skript.registerEvent("Citizen Damage by Entity", SimpleEvent.class, NPCDamageByEntityEvent.class,
+                "(citizen|npc) damage by [an] entity")
+                .description("Called when a Citizens NPC is damaged by an entity.")
+                .since("1.1")
+                .documentationID("citizen.event.damagebyentity")
+                .requiredPlugins("Citizens");
+        Skript.registerEvent("Citizen Damage by Block", SimpleEvent.class, NPCDamageByBlockEvent.class,
+                "(citizen|npc) damage by [a] block")
+                .description("Called when a Citizens NPC is damaged by a block.", "Example: Lava, Fire")
+                .since("1.1")
+                .documentationID("citizen.event.damagebyblock")
+                .requiredPlugins("Citizens");
+
 
         //event-npc in all NPC events.
         EventValues.registerEventValue(NPCEvent.class, NPC.class, new Getter<NPC, NPCEvent>() {
@@ -146,6 +167,38 @@ public class CitizenEvents {
             public @Nullable EntityDamageEvent.DamageCause get(NPCDeathEvent event) {
                 EntityDeathEvent devent = event.getEvent();
                 return devent.getEntity().getLastDamageCause().getCause();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-damagecause in citizen damage events
+        EventValues.registerEventValue(NPCDamageEvent.class, EntityDamageEvent.DamageCause.class, new Getter<EntityDamageEvent.DamageCause, NPCDamageEvent>() {
+            @Override
+            public @Nullable EntityDamageEvent.DamageCause get(NPCDamageEvent event) {
+                return event.getCause();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-damage in citizen damage events
+        EventValues.registerEventValue(NPCDamageEvent.class, Double.class, new Getter<Double, NPCDamageEvent>() {
+            @Override
+            public @Nullable Double get(NPCDamageEvent event) {
+                return event.getDamage();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-entity in citizen damage by entity events
+        EventValues.registerEventValue(NPCDamageByEntityEvent.class, Entity.class, new Getter<Entity, NPCDamageByEntityEvent>() {
+            @Override
+            public @Nullable Entity get(NPCDamageByEntityEvent event) {
+                return event.getDamager();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-block in citizen damage by block events
+        EventValues.registerEventValue(NPCDamageByBlockEvent.class, Block.class, new Getter<Block, NPCDamageByBlockEvent>() {
+            @Override
+            public @Nullable Block get(NPCDamageByBlockEvent event) {
+                return event.getDamager();
             }
         }, EventValues.TIME_NOW);
     }

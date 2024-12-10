@@ -8,7 +8,6 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.DropsTrait;
 import net.citizensnpcs.trait.LookClose;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
@@ -48,11 +47,8 @@ public class ExprLookClose extends SimplePropertyExpression<NPC, Boolean> {
         if (delta != null && delta[0] instanceof Boolean) {
             Boolean look = (Boolean) delta[0];
             for (NPC npc : getExpr().getArray(event)) {
-                if (look == true){
-                    npc.addTrait(LookClose.class);
-                }else{
-                    npc.removeTrait(LookClose.class);
-                }
+                LookClose close = npc.getOrAddTrait(LookClose.class);
+                close.lookClose(look);
             }
         }
     }

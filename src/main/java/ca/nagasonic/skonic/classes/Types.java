@@ -3,6 +3,7 @@ package ca.nagasonic.skonic.classes;
 import ca.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
+import ch.njol.skript.classes.EnumSerializer;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
@@ -68,7 +69,7 @@ public class Types {
                 .user("npc ?spawn ?reasons?")
                 .name("Citizens Spawn Reason")
                 .description("Represents the reasons a Citizen will spawn.")
-                .usage(SPAWN_REASON_ENUM.getAllNames())
+                .usage(SPAWN_REASON_ENUM.getAllNames().replace("spawnreasons.", ""))
                 .examples("if event-npcspawnreason = chunk load:")
                 .since("1.1")
                 .documentationId("npcspawnreason")
@@ -91,14 +92,15 @@ public class Types {
                     public String toVariableNameString(SpawnReason spawnReason) {
                         return "npcspawnreason:" + toString(spawnReason, 0);
                     }
-                }));
+                })
+                .serializer(new EnumSerializer<>(SpawnReason.class)));
 
         EnumUtils<DespawnReason> DESPAWN_REASON_ENUM = new EnumUtils<>(DespawnReason.class, "npcdespawnreasons");
         Classes.registerClass(new ClassInfo<>(DespawnReason.class, "npcdespawnreason")
                 .user("npc ?despawn ?reasons?")
                 .name("Citizens Despawn Reason")
                 .description("Represents the reasons a Citizen will despawn.")
-                .user(DESPAWN_REASON_ENUM.getAllNames())
+                .usage(DESPAWN_REASON_ENUM.getAllNames().replace("despawnreasons.", ""))
                 .examples("if event-npcdespawnreason = chunk unload:")
                 .since("1.1")
                 .documentationId("npcdespawnreason")
@@ -121,7 +123,8 @@ public class Types {
                     public String toVariableNameString(DespawnReason despawnReason) {
                         return "npcdespawnreason:" + toString(despawnReason, 0);
                     }
-                }));
+                })
+                .serializer(new EnumSerializer<>(DespawnReason.class)));
 
         // CONVERTERS
         // Enables any Skript effect/expression that works for entities
