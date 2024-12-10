@@ -35,7 +35,7 @@ public class CondCitizenIsVulnerable extends Condition {
             Skonic.log(Level.SEVERE, "NPC is null");
             return false;
         }
-        return npc.isProtected();
+        return !npc.isProtected();
     }
 
     @Override

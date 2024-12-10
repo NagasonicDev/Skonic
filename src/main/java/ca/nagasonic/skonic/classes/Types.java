@@ -63,7 +63,7 @@ public class Types {
                         }
                     }
                 }));
-        EnumUtils<SpawnReason> SPAWN_REASON_ENUM = new EnumUtils<>(SpawnReason.class, "spawnreasons");
+        EnumUtils<SpawnReason> SPAWN_REASON_ENUM = new EnumUtils<>(SpawnReason.class, "npcspawnreasons");
         Classes.registerClass(new ClassInfo<>(SpawnReason.class, "npcspawnreason")
                 .user("npc ?spawn ?reasons?")
                 .name("Citizens Spawn Reason")
@@ -71,6 +71,7 @@ public class Types {
                 .usage(SPAWN_REASON_ENUM.getAllNames())
                 .examples("if event-npcspawnreason = chunk load:")
                 .since("1.1")
+                .documentationId("npcspawnreason")
                 .parser(new Parser<SpawnReason>() {
 
                     @SuppressWarnings("NullableProblems")
@@ -92,7 +93,7 @@ public class Types {
                     }
                 }));
 
-        EnumUtils<DespawnReason> DESPAWN_REASON_ENUM = new EnumUtils<>(DespawnReason.class, "despawnreasons");
+        EnumUtils<DespawnReason> DESPAWN_REASON_ENUM = new EnumUtils<>(DespawnReason.class, "npcdespawnreasons");
         Classes.registerClass(new ClassInfo<>(DespawnReason.class, "npcdespawnreason")
                 .user("npc ?despawn ?reasons?")
                 .name("Citizens Despawn Reason")
@@ -100,6 +101,7 @@ public class Types {
                 .user(DESPAWN_REASON_ENUM.getAllNames())
                 .examples("if event-npcdespawnreason = chunk unload:")
                 .since("1.1")
+                .documentationId("npcdespawnreason")
                 .parser(new Parser<DespawnReason>() {
 
                     @SuppressWarnings("NullableProblems")
@@ -148,8 +150,5 @@ public class Types {
                         return "skin:" + skin.toString();
                     }
                 }));
-
-
-        Converters.registerConverter(NPC.class, Entity.class, NPC::getEntity);
     }
 }

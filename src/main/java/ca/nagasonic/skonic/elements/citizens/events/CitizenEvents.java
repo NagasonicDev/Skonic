@@ -7,8 +7,10 @@ import ch.njol.skript.util.Getter;
 import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class CitizenEvents {
@@ -33,9 +35,21 @@ public class CitizenEvents {
                 .requiredPlugins("Citizens");
         Skript.registerEvent("Citizen Create", SimpleEvent.class, NPCCreateEvent.class,
                 "(citizen|npc) create")
-                .description("Called when a Citizens NPC is created.")
+                .description("Called when a Citizens NPC is created by the server or an external service (Such as this plugin).")
                 .since("1.1")
                 .documentationID("citizen.event.create")
+                .requiredPlugins("Citizens");
+        Skript.registerEvent("Citizen Create by Player", SimpleEvent.class, PlayerCreateNPCEvent.class,
+                "(citizen|npc) create by [a] player")
+                .description("Called when a Citizens NPC is created by a player.")
+                .since("1.1")
+                .documentationID("citizen.event.createplayer")
+                .requiredPlugins("Citizens");
+        Skript.registerEvent("Citizen Create by CommandSender", SimpleEvent.class, CommandSenderCreateNPCEvent.class,
+                "(citizen|npc) create by [a] command [sender]")
+                .description("Called when a Citizens NPC is created via a command.")
+                .since("1.1")
+                .documentationID("citizen.event.createcommand")
                 .requiredPlugins("Citizens");
         Skript.registerEvent("Citizen Spawn", SimpleEvent.class, NPCSpawnEvent.class,
                 "(citizen|npc) spawn")
@@ -62,6 +76,7 @@ public class CitizenEvents {
                 .documentationID("citizen.event.death")
                 .requiredPlugins("Citizens");
 
+        //event-npc in all NPC events.
         EventValues.registerEventValue(NPCEvent.class, NPC.class, new Getter<NPC, NPCEvent>() {
             @Override
             public @Nullable NPC get(NPCEvent event) {
@@ -69,6 +84,7 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-player in click events
         EventValues.registerEventValue(NPCClickEvent.class, Player.class, new Getter<Player, NPCClickEvent>() {
             @Override
             public @Nullable Player get(NPCClickEvent event) {
@@ -76,6 +92,23 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-player in Player create NPC events
+        EventValues.registerEventValue(PlayerCreateNPCEvent.class, Player.class, new Getter<Player, PlayerCreateNPCEvent>() {
+            @Override
+            public @Nullable Player get(PlayerCreateNPCEvent event) {
+                return event.getCreator();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-commandsender in Command Sender create NPC events
+        EventValues.registerEventValue(CommandSenderCreateNPCEvent.class, CommandSender.class, new Getter<CommandSender, CommandSenderCreateNPCEvent>() {
+            @Override
+            public @Nullable CommandSender get(CommandSenderCreateNPCEvent event) {
+                return event.getCreator();
+            }
+        }, EventValues.TIME_NOW);
+
+        //event-location in npc spawn events
         EventValues.registerEventValue(NPCSpawnEvent.class, Location.class, new Getter<Location, NPCSpawnEvent>() {
             @Override
             public @Nullable Location get(NPCSpawnEvent event) {
@@ -83,6 +116,7 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-spawnreason in npc spawn events
         EventValues.registerEventValue(NPCSpawnEvent.class, SpawnReason.class, new Getter<SpawnReason, NPCSpawnEvent>() {
             @Override
             public @Nullable SpawnReason get(NPCSpawnEvent event) {
@@ -90,6 +124,7 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-despawnreason in npc despawn events
         EventValues.registerEventValue(NPCDespawnEvent.class, DespawnReason.class, new Getter<DespawnReason, NPCDespawnEvent>() {
             @Override
             public @Nullable DespawnReason get(NPCDespawnEvent event) {
@@ -97,6 +132,7 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-player in citizen death events
         EventValues.registerEventValue(NPCDeathEvent.class, Player.class, new Getter<Player, NPCDeathEvent>() {
             @Override
             public @Nullable Player get(NPCDeathEvent event) {
@@ -104,10 +140,12 @@ public class CitizenEvents {
             }
         }, EventValues.TIME_NOW);
 
+        //event-damagecause in citizen death events
         EventValues.registerEventValue(NPCDeathEvent.class, EntityDamageEvent.DamageCause.class, new Getter<EntityDamageEvent.DamageCause, NPCDeathEvent>() {
             @Override
             public @Nullable EntityDamageEvent.DamageCause get(NPCDeathEvent event) {
-                return event.getEvent().getEntity().getLastDamageCause().getCause();
+                EntityDeathEvent devent = event.getEvent();
+                return devent.getEntity().getLastDamageCause().getCause();
             }
         }, EventValues.TIME_NOW);
     }

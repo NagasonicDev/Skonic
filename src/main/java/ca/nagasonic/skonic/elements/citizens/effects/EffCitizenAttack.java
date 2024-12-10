@@ -1,6 +1,7 @@
 package ca.nagasonic.skonic.elements.citizens.effects;
 
 import ca.nagasonic.skonic.Skonic;
+import ca.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
@@ -41,9 +42,14 @@ public class EffCitizenAttack extends Effect {
                 //Check if there is a citizen with the ID
                 if (npc != null){
                     if (patterns == 0){
-                        npc.getNavigator().setTarget(victim.getSingle(e), true);
+                        if (npc.isSpawned()){
+                            npc.getNavigator().setTarget(victim.getSingle(e), true);
+                            Util.log("Made npc: " + npc.toString() + "attack player");
+                        }
                     }else if (patterns == 1){
-                        npc.getNavigator().setPaused(true);
+                        if (npc.isSpawned()){
+                            npc.getNavigator().setPaused(true);
+                        }
                     }else{
                         Skonic.log(Level.SEVERE, "Pattern was entered incorrectly.");
                     }

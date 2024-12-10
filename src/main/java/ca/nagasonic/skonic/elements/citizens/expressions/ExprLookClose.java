@@ -8,6 +8,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.DropsTrait;
 import net.citizensnpcs.trait.LookClose;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;

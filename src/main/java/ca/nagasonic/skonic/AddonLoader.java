@@ -90,7 +90,7 @@ public class AddonLoader {
 
     private void loadSkriptElements() {
         this.addon = Skript.registerAddon(this.plugin);
-
+        addon.setLanguageFileDirectory("lang");
         loadCitizenElements();
         loadHeadElements();
         loadSkinElements();

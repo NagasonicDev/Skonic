@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Vulnerability")
-@Description("Whether a Citizen can be attacked or not.")
+@Description({"Whether a Citizen can be attacked or not.", "Being Vulnerable also makes them collidable."})
 @Since("1.1")
 @RequiredPlugins("Citizens")
 @Examples("")
@@ -37,7 +37,7 @@ public class ExprVulnerable extends SimplePropertyExpression<NPC, Boolean> {
         if (delta != null && delta[0] instanceof Boolean) {
             Boolean vulnerable = (Boolean) delta[0];
             for (NPC npc : getExpr().getArray(event)) {
-                npc.setProtected(vulnerable);
+                npc.setProtected(!vulnerable);
             }
         }
     }

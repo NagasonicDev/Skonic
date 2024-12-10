@@ -61,53 +61,6 @@ public final class Skonic extends JavaPlugin implements Listener {
         new UpdateChecker(this);
         Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
         Metrics metrics = new Metrics(this, 20479);
-        /*ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.NAMED_ENTITY_SPAWN) {
-            @Override
-            public void onPacketSending(PacketEvent event) {
-                UUID uuid = event.getPacket().getUUIDs().readSafely(0);
-                WrappedGameProfile profile = (WrappedGameProfile) getEffectiveProfile(Objects.requireNonNull(Bukkit.getServer().getPlayer(uuid)));
-                event.getPacket().getUUIDs().write(0, profile.getUUID());
-            }
-        });
-
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.PLAYER_INFO) {
-            @Override
-            public void onPacketSending(PacketEvent event) {
-                List<PlayerInfoData> dataList = event.getPacket().getPlayerInfoDataLists().readSafely(0);
-                for (int i = 0; i < dataList.size(); i++) {
-                    PlayerInfoData data = dataList.get(i);
-                    if (data == null) return;
-                    Player player = Bukkit.getServer().getPlayer(data.getProfile().getUUID());
-                    if (player == null) continue;
-                    WrappedGameProfile profile = (WrappedGameProfile) SkinUtils.getEffectiveProfile(player);
-                    WrappedGameProfile wrappedProfile = event.getPlayer().equals(player) ?
-                            new WrappedGameProfile(player.getUniqueId(), profile.getName()) :
-                            new WrappedGameProfile(profile.getId(), profile.getName());
-
-                    for (WrappedSignedProperty property : profile.getProperties().values()) {
-                        wrappedProfile.getProperties().put(
-                                property.getName(),
-                                new WrappedSignedProperty(
-                                        property.getName(),
-                                        property.getValue(),
-                                        property.getSignature()
-                                )
-                        );
-                    }
-                    dataList.set(i, new PlayerInfoData(
-                            wrappedProfile,
-                            data.getLatency(),
-                            data.getGameMode(),
-                            WrappedChatComponent.fromText(wrappedProfile.getName())
-                    ));
-                }
-                event.getPacket().getPlayerInfoDataLists().write(0, dataList);
-            }
-        });
-
-        getPluginManager().registerEvents(this, this);
-
-        */
     }
 
     @Override
