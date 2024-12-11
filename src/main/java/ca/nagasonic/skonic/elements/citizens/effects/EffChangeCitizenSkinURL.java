@@ -27,7 +27,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("")
-@DocumentationId("citizen.skin.url")
+@DocumentationId("12491")
 public class EffChangeCitizenSkinURL extends Effect {
 
     static {

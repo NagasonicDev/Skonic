@@ -26,7 +26,7 @@ public class Types {
                 .description("Represents a Citizens NPC.")
                 .examples("last spawned npc", "delete last spawned npc")
                 .since("1.0.0")
-                .documentationId("npc")
+                .documentationId("12518")
                 .parser(new Parser<NPC>() {
                     @SuppressWarnings("NullableProblems")
                     @Override
@@ -72,7 +72,7 @@ public class Types {
                 .usage(SPAWN_REASON_ENUM.getAllNames().replace("spawnreasons.", ""))
                 .examples("if event-npcspawnreason = chunk load:")
                 .since("1.1")
-                .documentationId("npcspawnreason")
+                .documentationId("12519")
                 .parser(new Parser<SpawnReason>() {
 
                     @SuppressWarnings("NullableProblems")
@@ -103,7 +103,7 @@ public class Types {
                 .usage(DESPAWN_REASON_ENUM.getAllNames().replace("despawnreasons.", ""))
                 .examples("if event-npcdespawnreason = chunk unload:")
                 .since("1.1")
-                .documentationId("npcdespawnreason")
+                .documentationId("12517")
                 .parser(new Parser<DespawnReason>() {
 
                     @SuppressWarnings("NullableProblems")
@@ -136,7 +136,7 @@ public class Types {
                 .description("Represents a Skin.")
                 .examples("player's skin")
                 .since("1.0.2")
-                .documentationId("skin")
+                .documentationId("12520")
                 .parser(new Parser<>() {
                     @SuppressWarnings("NullableProblems")
                     @Override

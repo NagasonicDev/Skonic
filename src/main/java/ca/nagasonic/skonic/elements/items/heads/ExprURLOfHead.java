@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the URL of a head")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("head.url")
+@DocumentationId("12515")
 public class ExprURLOfHead extends SimpleExpression<String> {
     static {
         Skript.registerExpression(ExprURLOfHead.class,

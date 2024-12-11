@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("citizen.all")
+@DocumentationId("12493")
 public class ExprAllCitizens extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprAllCitizens.class, NPC.class, ExpressionType.SIMPLE,

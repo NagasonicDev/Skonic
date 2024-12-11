@@ -21,7 +21,7 @@ import java.util.logging.Level;
 @Since("1.0.0")
 @Examples("")
 @RequiredPlugins("Citizens")
-@DocumentationId("citizen.attack")
+@DocumentationId("12484")
 public class EffCitizenAttack extends Effect {
     static {
         Skript.registerEffect(EffCitizenAttack.class,

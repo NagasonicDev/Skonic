@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("")
-@DocumentationId("citizen.entitytype")
+@DocumentationId("12494")
 public class ExprCitizenEntityType extends SimplePropertyExpression<NPC, EntityType> {
     static {
         register(ExprCitizenEntityType.class, EntityType.class, "(citizen|npc) entity type", "npcs");

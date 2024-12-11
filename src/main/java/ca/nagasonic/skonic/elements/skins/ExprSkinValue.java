@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the texture value of a skin")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("skin.value")
+@DocumentationId("12510")
 public class ExprSkinValue extends SimpleExpression<String> {
     static {
         Skript.registerExpression(ExprSkinValue.class, String.class, ExpressionType.COMBINED,

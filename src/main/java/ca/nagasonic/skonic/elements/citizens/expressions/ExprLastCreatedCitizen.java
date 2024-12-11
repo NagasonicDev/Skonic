@@ -8,6 +8,7 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("")
-@DocumentationId("citizen.last")
+@DocumentationId("12506")
 public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprLastCreatedCitizen.class,

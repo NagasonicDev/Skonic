@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by player")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("head.player")
+@DocumentationId("12501")
 public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromPlayer.class,

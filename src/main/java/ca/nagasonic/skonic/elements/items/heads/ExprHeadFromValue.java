@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by value.")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("head.fromvalue")
+@DocumentationId("12505")
 public class ExprHeadFromValue extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromValue.class,

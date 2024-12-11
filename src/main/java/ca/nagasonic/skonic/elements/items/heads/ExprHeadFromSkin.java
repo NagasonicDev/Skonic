@@ -20,7 +20,7 @@ import java.util.logging.Level;
 @Description("Gets a head by skin.")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("head.skin")
+@DocumentationId("12502")
 public class ExprHeadFromSkin extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromSkin.class,

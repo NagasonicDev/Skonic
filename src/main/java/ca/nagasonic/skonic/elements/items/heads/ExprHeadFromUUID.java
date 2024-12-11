@@ -19,7 +19,7 @@ import java.util.UUID;
 @Description("Gets a head by player UUID")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("head.uuid")
+@DocumentationId("12504")
 public class ExprHeadFromUUID extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromUUID.class,

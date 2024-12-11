@@ -28,7 +28,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples("")
 @Since("1.0.0")
-@DocumentationId("citizen.spawn")
+@DocumentationId("12492")
 public class EffSpawnCitizen extends Effect {
 
     public static NPC lastSpawnedNPC;

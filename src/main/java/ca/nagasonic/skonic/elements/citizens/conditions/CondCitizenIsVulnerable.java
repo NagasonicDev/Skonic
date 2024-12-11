@@ -18,7 +18,7 @@ import java.util.logging.Level;
 @Examples("")
 @Since("1.1")
 @RequiredPlugins("Citizens")
-@DocumentationId("citizen.isvulnerable")
+@DocumentationId("12483")
 public class CondCitizenIsVulnerable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsVulnerable.class, "%npc% is vulnerable");

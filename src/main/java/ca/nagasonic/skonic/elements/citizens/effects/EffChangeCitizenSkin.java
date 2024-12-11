@@ -22,7 +22,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("citizen.skin.skin")
+@DocumentationId("12490")
 public class EffChangeCitizenSkin extends Effect {
 
     static {

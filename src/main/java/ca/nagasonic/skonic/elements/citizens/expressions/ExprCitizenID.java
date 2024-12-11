@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("")
-@DocumentationId("citizen.id")
+@DocumentationId("12495")
 public class ExprCitizenID extends SimplePropertyExpression<NPC, Number> {
     static {
         register(ExprCitizenID.class, Number.class,

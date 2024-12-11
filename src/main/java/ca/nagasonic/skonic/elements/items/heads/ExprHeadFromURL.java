@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by URL")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("head.fromurl")
+@DocumentationId("12503")
 public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromURL.class,

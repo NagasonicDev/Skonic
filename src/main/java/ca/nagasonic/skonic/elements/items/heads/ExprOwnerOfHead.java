@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
         "Will only work if the head is from a player.")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("head.owner")
+@DocumentationId("12507")
 public class ExprOwnerOfHead extends SimpleExpression<Player> {
     static {
         Skript.registerExpression(ExprOwnerOfHead.class,

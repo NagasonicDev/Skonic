@@ -23,7 +23,7 @@ import static ca.nagasonic.skonic.elements.util.Util.getDate;
 @Description("Downloads a skin")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("skin.download")
+@DocumentationId("12488")
 public class EffDownloadPlayerSkin extends Effect {
     static {
         Skript.registerEffect(EffDownloadPlayerSkin.class,

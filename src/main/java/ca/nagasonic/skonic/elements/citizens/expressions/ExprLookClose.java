@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Description({"The look close trait of the citizen.", "Whether the citizen should or should not look at the closest player."})
 @Examples("")
 @Since("1.1")
-@DocumentationId("citizen.look")
+@DocumentationId("12496")
 @RequiredPlugins("Citizens")
 public class ExprLookClose extends SimplePropertyExpression<NPC, Boolean> {
     static {

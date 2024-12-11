@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Used to create a skin.")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("skin.with")
+@DocumentationId("12511")
 public class ExprSkinWith extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinWith.class, Skin.class, ExpressionType.COMBINED,

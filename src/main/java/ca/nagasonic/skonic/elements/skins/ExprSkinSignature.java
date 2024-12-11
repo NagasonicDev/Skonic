@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the signature of a skin.")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("skin.signature")
+@DocumentationId("12509")
 public class ExprSkinSignature extends SimpleExpression<String> {
     static {
         Skript.registerExpression(ExprSkinSignature.class, String.class, ExpressionType.COMBINED,

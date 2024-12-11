@@ -18,83 +18,95 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("unused")
 public class CitizenEvents extends SimpleEvent {
     static {
-        Skript.registerEvent("Citizen Click", SimpleEvent.class, NPCClickEvent.class,
+        Skript.registerEvent("Citizen Click", CitizenEvents.class, NPCClickEvent.class,
                         "(citizen|npc) click")
                 .description("Called when a Citizens NPC is clicked by a player.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
-
-        Skript.registerEvent("Citizen Left Click", SimpleEvent.class, NPCLeftClickEvent.class,
+                .requiredPlugins("Citizens")
+                .documentationID("12469");
+        Skript.registerEvent("Citizen Left Click", CitizenEvents.class, NPCLeftClickEvent.class,
                         "(citizen|npc) left click")
                 .description("Called when a Citizens NPC is left clicked by a player.", "Only is called if NPC is not vulnerable.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12478");
 
-        Skript.registerEvent("Citizen Right Click", SimpleEvent.class, NPCRightClickEvent.class,
+        Skript.registerEvent("Citizen Right Click", CitizenEvents.class, NPCRightClickEvent.class,
                         "(citizen|npc) right click")
                 .description("Called when a Citizens NPC is right clicked by a player")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12480");
 
-        Skript.registerEvent("Citizen Create", SimpleEvent.class, NPCCreateEvent.class,
+        Skript.registerEvent("Citizen Create", CitizenEvents.class, NPCCreateEvent.class,
                         "(citizen|npc) create")
                 .description("Called when a Citizens NPC is created by the server or an external service (Such as this plugin).")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12470");
 
-        Skript.registerEvent("Citizen Create by Player", SimpleEvent.class, PlayerCreateNPCEvent.class,
+        Skript.registerEvent("Citizen Create by Player", CitizenEvents.class, PlayerCreateNPCEvent.class,
                         "(citizen|npc) create by [a] player")
                 .description("Called when a Citizens NPC is created by a player.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12472");
 
-        Skript.registerEvent("Citizen Create by CommandSender", SimpleEvent.class, CommandSenderCreateNPCEvent.class,
+        Skript.registerEvent("Citizen Create by CommandSender", CitizenEvents.class, CommandSenderCreateNPCEvent.class,
                         "(citizen|npc) create by [a] command [sender]")
                 .description("Called when a Citizens NPC is created via a command.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12471");
 
-        Skript.registerEvent("Citizen Spawn", SimpleEvent.class, NPCSpawnEvent.class,
+        Skript.registerEvent("Citizen Spawn", CitizenEvents.class, NPCSpawnEvent.class,
                         "(citizen|npc) spawn")
                 .description("Called when a Citizens NPC is spawned.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12481");
 
-        Skript.registerEvent("Citizen Despawn", SimpleEvent.class, NPCDespawnEvent.class,
+        Skript.registerEvent("Citizen Despawn", CitizenEvents.class, NPCDespawnEvent.class,
                         "(citizen|npc) despawn")
                 .description("Called when a Citizens NPC despawns.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12477");
 
-        Skript.registerEvent("Citizen Remove", SimpleEvent.class, NPCRemoveEvent.class,
+        Skript.registerEvent("Citizen Remove", CitizenEvents.class, NPCRemoveEvent.class,
                         "(citizen|npc) (delete|remove)")
                 .description("Called when a Citizens NPC is removed.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12479");
 
-        Skript.registerEvent("Citizen Death", SimpleEvent.class, NPCDeathEvent.class,
+        Skript.registerEvent("Citizen Death", CitizenEvents.class, NPCDeathEvent.class,
                         "(citizen|npc) death")
                 .description("Called when a Citizens NPC dies.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12476");
 
-        Skript.registerEvent("Citizen Damage", SimpleEvent.class, NPCDamageEvent.class,
+        Skript.registerEvent("Citizen Damage", CitizenEvents.class, NPCDamageEvent.class,
                         "(citizen|npc) damage")
                 .description("Called when a Citizens NPC is damaged", "Does not include damage by entity or damage by block, use their respective events for that.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12473");
 
-        Skript.registerEvent("Citizen Damage by Entity", SimpleEvent.class, NPCDamageByEntityEvent.class,
+        Skript.registerEvent("Citizen Damage by Entity", CitizenEvents.class, NPCDamageByEntityEvent.class,
                         "(citizen|npc) damage by [an] entity")
                 .description("Called when a Citizens NPC is damaged by an entity.")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12475");
 
-        Skript.registerEvent("Citizen Damage by Block", SimpleEvent.class, NPCDamageByBlockEvent.class,
+        Skript.registerEvent("Citizen Damage by Block", CitizenEvents.class, NPCDamageByBlockEvent.class,
                         "(citizen|npc) damage by [a] block")
                 .description("Called when a Citizens NPC is damaged by a block.", "Example: Lava, Fire")
                 .since("1.1")
-                .requiredPlugins("Citizens");
+                .requiredPlugins("Citizens")
+                .documentationID("12474");
 
 
         //event-npc in all NPC events.

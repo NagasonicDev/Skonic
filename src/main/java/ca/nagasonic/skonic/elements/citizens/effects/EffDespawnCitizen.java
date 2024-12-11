@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("")
-@DocumentationId("citizen.despawn")
+@DocumentationId("12487")
 public class EffDespawnCitizen extends Effect {
     static {
         Skript.registerEffect(EffDespawnCitizen.class,

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.1")
 @RequiredPlugins("Citizens")
 @Examples("")
-@DocumentationId("citizen.vulnerable")
+@DocumentationId("12498")
 public class ExprVulnerable extends SimplePropertyExpression<NPC, Boolean> {
     static {
         register(ExprVulnerable.class, Boolean.class, "vulnerability", "npcs");

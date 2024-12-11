@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("")
 @Since("1.0.7")
-@DocumentationId("citizen.isnavigating")
+@DocumentationId("12482")
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,

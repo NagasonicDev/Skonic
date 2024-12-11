@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("")
-@DocumentationId("citizen.name")
+@DocumentationId("12497")
 public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
     static {
         register(ExprNameOfCitizen.class, String.class, "(citizen|npc) name", "npcs");

@@ -4,6 +4,7 @@ types:
     npc: npc¦s @an
     npcspawnreason: npc spawn reason¦s @an
     npcdespawnreason: npc despawn reason¦s @an
+    skin: skin¦s @a
 
 npcspawnreasons:
     chunk_load: chunk load

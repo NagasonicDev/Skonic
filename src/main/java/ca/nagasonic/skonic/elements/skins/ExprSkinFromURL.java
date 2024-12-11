@@ -21,7 +21,7 @@ import java.util.logging.Level;
         "URL must link directly to an image.")
 @Since("1.0.3")
 @Examples("")
-@DocumentationId("skin.url")
+@DocumentationId("12512")
 public class ExprSkinFromURL extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinFromURL.class, Skin.class, ExpressionType.COMBINED,

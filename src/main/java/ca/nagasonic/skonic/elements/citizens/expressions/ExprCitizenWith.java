@@ -20,7 +20,7 @@ import java.util.logging.Level;
 @Examples("")
 @Since("1.0.7")
 @RequiredPlugins("Citizens")
-@DocumentationId("citizen.with")
+@DocumentationId("12499")
 public class ExprCitizenWith extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprCitizenWith.class, NPC.class, ExpressionType.COMBINED,

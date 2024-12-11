@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
         "Cannot be set, to set, use 'Change Player Skin' effect.")
 @Since("1.0.4")
 @Examples("")
-@DocumentationId("skin.player")
+@DocumentationId("12508")
 public class ExprPlayerSkin extends SimplePropertyExpression<Player, Skin> {
     static {
         register(ExprPlayerSkin.class,

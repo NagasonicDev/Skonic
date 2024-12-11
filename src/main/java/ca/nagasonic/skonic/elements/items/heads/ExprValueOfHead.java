@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the value of a head")
 @Since("1.0.7")
 @Examples("")
-@DocumentationId("head.value")
+@DocumentationId("12516")
 public class ExprValueOfHead extends SimpleExpression<String> {
     static {
         Skript.registerExpression(ExprValueOfHead.class,

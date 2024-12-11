@@ -66,7 +66,7 @@ public final class Skonic extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Util.logLoading("&eDisabling Skonic v%s", getDescription().getVersion());
+        Util.logLoading("&eDisabled Skonic v%s", getDescription().getVersion());
     }
 
     public static Skonic getInstance(){ return instance; }
