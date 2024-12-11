@@ -79,6 +79,7 @@ public class AddonLoader {
                 this.addon.loadClasses("ca.nagasonic.skonic.elements.citizens");
                 Util.logLoading("&6Citizen elements &ahave successfully loaded");
             } catch (IOException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }else{
