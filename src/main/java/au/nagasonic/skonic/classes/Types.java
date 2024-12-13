@@ -9,7 +9,6 @@ import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.EnumUtils;
 import ch.njol.util.coll.CollectionUtils;
-import me.arcaniax.hdb.enums.CategoryEnum;
 import net.citizensnpcs.api.event.DespawnReason;
 import net.citizensnpcs.api.event.SpawnReason;
 import net.citizensnpcs.api.npc.NPC;
