@@ -5,4 +5,3 @@ api-version: '1.19'
 depend: [Skript]
 softdepend:
   - Citizens
-  - HeadDB
