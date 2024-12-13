@@ -1,17 +1,10 @@
 package au.nagasonic.skonic.elements.items.heads;
 
-import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.util.Kleenean;
+import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.Material;
-import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.profile.PlayerProfile;
 import org.jetbrains.annotations.Nullable;
 
 @Name("URL of Head")
@@ -19,45 +12,30 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.7")
 @Examples("broadcast url of {_head}")
 @DocumentationId("12515")
-public class ExprURLOfHead extends SimpleExpression<String> {
+public class ExprURLOfHead extends SimplePropertyExpression<ItemStack, String> {
     static {
-        Skript.registerExpression(ExprURLOfHead.class,
-                String.class,
-                ExpressionType.COMBINED,
-                "url of %itemstack%",
-                "%itemstack%'s url");
-    }
-    private Expression<ItemStack> headExpr;
-    @Override
-    protected @Nullable String[] get(Event e) {
-        ItemStack head = headExpr.getSingle(e);
-        if (head != null && head.getType() == Material.PLAYER_HEAD){
-            SkullMeta meta = (SkullMeta) head.getItemMeta();
-            PlayerProfile profile = meta.getOwnerProfile();
-            String url = profile.getTextures().getSkin().toString();
-            return new String[]{url};
-        }
-        return new String[0];
+        register(ExprURLOfHead.class, String.class,
+                "url",
+                "itemstack");
     }
 
     @Override
-    public boolean isSingle() {
-        return true;
+    public @Nullable String convert(ItemStack from) {
+        if (from != null && from.getType() == Material.PLAYER_HEAD){
+            SkullMeta meta = (SkullMeta) from.getItemMeta();
+            String url = meta.getOwnerProfile().getTextures().getSkin().toString();
+            return url;
+        }
+        return null;
+    }
+
+    @Override
+    protected String getPropertyName() {
+        return "url of head";
     }
 
     @Override
     public Class<? extends String> getReturnType() {
         return String.class;
-    }
-
-    @Override
-    public String toString(@Nullable Event e, boolean b) {
-        return "Url of head " + headExpr.toString(e, b);
-    }
-
-    @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        headExpr = (Expression<ItemStack>) exprs[0];
-        return true;
     }
 }

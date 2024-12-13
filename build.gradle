@@ -65,3 +65,7 @@ processResources {
         expand props
     }
 }
+
+shadowJar {
+    archiveFileName = project.name + "-" + project.version + ".jar"
+}
