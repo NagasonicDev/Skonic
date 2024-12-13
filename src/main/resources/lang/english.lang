@@ -1,0 +1,25 @@
+version: @version@
+
+types:
+    npc: npc¦s @an
+    npcspawnreason: npc spawn reason¦s @an
+    npcdespawnreason: npc despawn reason¦s @an
+    skin: skin¦s @a
+    category: categor¦y¦ies @a
+
+npcspawnreasons:
+    chunk_load: chunk load
+    command: command
+    create: create
+    plugin: plugin
+    respawn: respawn
+    timed_respawn: timed respawn
+
+npcdespawnreasons:
+    chunk_unload: chunk unload
+    death: death
+    pending_respawn: pending respawn
+    plugin: plugin
+    reload: reload
+    removal: removal
+    world_unload: world unload
