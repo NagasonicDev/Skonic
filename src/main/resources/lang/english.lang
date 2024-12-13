@@ -5,6 +5,7 @@ types:
     npcspawnreason: npc spawn reason¦s @an
     npcdespawnreason: npc despawn reason¦s @an
     skin: skin¦s @a
+    category: categor¦y¦ies @a
 
 npcspawnreasons:
     chunk_load: chunk load
@@ -22,3 +23,18 @@ npcdespawnreasons:
     reload: reload
     removal: removal
     world_unload: world unload
+
+categories:
+    alphabet: alphabet
+    animals: animals
+    blocks: blocks
+    decoration: decoration
+    food_drinks: food drinks
+    humans: humans
+    humanoid: humanoid
+    miscellaneous: miscellaneous
+    monstaers: monsters
+    plants: plants
+    custom: custom
+    online_players: online players
+    disabled: disabled

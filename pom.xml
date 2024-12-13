@@ -6,7 +6,7 @@
 
     <groupId>ca.nagasonic</groupId>
     <artifactId>Skonic</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>Skonic</name>
@@ -103,8 +103,9 @@
         <dependency>
             <groupId>net.citizensnpcs</groupId>
             <artifactId>citizens-main</artifactId>
-            <version>2.0.30-SNAPSHOT</version>
-            <scope>provided</scope>
+            <version>2.0.37-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
