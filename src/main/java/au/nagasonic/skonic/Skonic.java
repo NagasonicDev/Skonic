@@ -2,7 +2,6 @@ package au.nagasonic.skonic;
 
 import au.nagasonic.skonic.elements.util.UpdateChecker;
 import au.nagasonic.skonic.elements.util.Util;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -16,7 +15,6 @@ public final class Skonic extends JavaPlugin {
     private static Skonic instance;
     private static Logger logger;
     public static String path;
-    private static HeadDatabaseAPI api;
     private AddonLoader addonLoader = null;
 
     @Override
@@ -31,9 +29,6 @@ public final class Skonic extends JavaPlugin {
         if (!addonLoader.canLoadPlugin()){
             pm.disablePlugin(this);
             return;
-        }
-        if (pm.isPluginEnabled("HeadDB")){
-            api = new HeadDatabaseAPI();
         }
 
         String version = getDescription().getVersion();
@@ -63,6 +58,4 @@ public final class Skonic extends JavaPlugin {
     }
 
     public static String getPath(){ return path; }
-
-    public static HeadDatabaseAPI getHeadDB(){ return api; }
 }
