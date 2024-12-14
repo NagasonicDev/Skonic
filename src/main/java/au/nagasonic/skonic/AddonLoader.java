@@ -76,7 +76,7 @@ public class AddonLoader {
     private void loadCitizenElements() {
         if (pluginManager.isPluginEnabled("Citizens")){
             try {
-                this.addon.loadClasses("ca.nagasonic.skonic.elements.citizens");
+                this.addon.loadClasses("au.nagasonic.skonic.elements.citizens");
                 Util.logLoading("&6Citizen elements &ahave successfully loaded");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -89,7 +89,7 @@ public class AddonLoader {
 
     private void loadHeadElements(){
         try {
-            this.addon.loadClasses("ca.nagasonic.skonic.elements.items.heads");
+            this.addon.loadClasses("au.nagasonic.skonic.elements.items.heads");
             Util.logLoading("&6Head elements &ahave successfully loaded");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +98,7 @@ public class AddonLoader {
 
     private void loadSkinElements(){
         try {
-            this.addon.loadClasses("ca.nagasonic.skonic.elements.skins");
+            this.addon.loadClasses("au.nagasonic.skonic.elements.skins");
             Util.logLoading("&6Skin elements &ahave successfully loaded");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -107,7 +107,7 @@ public class AddonLoader {
 
     private void loadClasses(){
         try {
-            this.addon.loadClasses("ca.nagasonic.skonic.classes");
+            this.addon.loadClasses("au.nagasonic.skonic.classes");
             Util.logLoading("&aLoaded all Class Types successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);

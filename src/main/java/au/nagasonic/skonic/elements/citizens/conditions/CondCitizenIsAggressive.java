@@ -21,25 +21,37 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsAggressive extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsAggressive.class,
-                "%npc% [is] aggressive");
+                "%npcs% (is|are) aggressive",
+                "%npcs% (is(n't| not)|are(n't| not)) aggressive");
     }
     private Expression<NPC> npcExpr;
+    private int pattern;
     @Override
     public boolean check(Event e) {
-        NPC npc = npcExpr.getSingle(e);
-        if (npc == null) return false;
-
-        return npc.data().get(NPC.Metadata.AGGRESSIVE);
+        NPC[] npcs = npcExpr.getArray(e);
+        for (NPC npc : npcs){
+            if (npc != null){
+                if (pattern == 0){
+                    if (npc.data().has(NPC.Metadata.AGGRESSIVE) == false) return false;
+                    return true;
+                }else{
+                    if (npc.data().has(NPC.Metadata.AGGRESSIVE) == true) return false;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean b) {
-        return "Citizen " + npcExpr.toString(e, b) + " is aggressive.";
+        return "Citizen " + npcExpr.toString(e, b) + " aren't aggressive.";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
+        this.pattern = pattern;
         return true;
     }
 }

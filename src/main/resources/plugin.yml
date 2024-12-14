@@ -1,6 +1,6 @@
 name: Skonic
 version: @version@
-main: ca.nagasonic.skonic.Skonic
+main: au.nagasonic.skonic.Skonic
 api-version: '1.19'
 depend: [Skript]
 softdepend:

@@ -1,0 +1,14 @@
+test "CondCitizenIsAggressive":
+    create citizen named "test1" at spawn
+    set {_npc::1} to last spawned citizen
+    make {_npc::1} aggressive
+    create citizen named "test2" at spawn
+    set {_npc::2} to last spawned citizen
+    make {_npc::2} aggressive
+    assert {_npc::1} is aggressive
+    assert {_npc::1} and {_npc::2} are aggressive
+    make {_npc::1} passive
+    assert {_npc::1} and {_npc::2} are aggressive
+    assert {_npc::1} and {_npc::2} aren't aggressive
+    make {_npc::2} passive
+    assert {_npc::1} and {_npc::2} are not aggressive

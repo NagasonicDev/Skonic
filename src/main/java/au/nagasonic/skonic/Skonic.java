@@ -2,11 +2,14 @@ package au.nagasonic.skonic;
 
 import au.nagasonic.skonic.elements.util.UpdateChecker;
 import au.nagasonic.skonic.elements.util.Util;
-import org.bstats.bukkit.Metrics;
+import ch.njol.skript.Skript;
+import ch.njol.skript.util.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +33,6 @@ public final class Skonic extends JavaPlugin {
             pm.disablePlugin(this);
             return;
         }
-
         String version = getDescription().getVersion();
         if (version.contains("dev")) {
             Util.log("&eThis is a DEV build, things may not work as expected, please report any bugs on GitHub");
@@ -39,6 +41,17 @@ public final class Skonic extends JavaPlugin {
         new UpdateChecker(this);
         Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
         Metrics metrics = new Metrics(this, 20479);
+        metrics.addCustomChart(new Metrics.DrilldownPie("skript_version", () -> {
+            Map<String, Map<String, Integer>> map = new HashMap<>();
+
+            Version skriptVersion = Skript.getVersion();
+            Map<String, Integer> entry = new HashMap<>();
+            entry.put(skriptVersion.toString(), 1);
+
+            map.put(skriptVersion.getMajor()+"."+skriptVersion.getMinor()+"."+skriptVersion.getRevision(), entry);
+
+            return map;
+        }));
     }
 
     @Override

@@ -20,14 +20,26 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,
-                "%npc% [is] navigating");
+                "%npcs% (is|are) navigating",
+                "%npcs% (is(n't| not)|are(n't| not)) navigating");
     }
     private Expression<NPC> npcExpr;
+    private int pattern;
     @Override
     public boolean check(Event e) {
-        NPC npc = npcExpr.getSingle(e);
-        if (npc == null) return false;
-        return npc.getNavigator().isNavigating();
+        NPC[] npcs = npcExpr.getArray(e);
+        for (NPC npc : npcs){
+            if (npc != null){
+                if (pattern == 0){
+                    if (npc.getNavigator().isNavigating() == false) return false;
+                    return true;
+                }else{
+                    if (npc.getNavigator().isNavigating() == true) return false;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -38,6 +50,7 @@ public class CondCitizenIsNavigating extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
+        this.pattern = pattern;
         return true;
     }
 }

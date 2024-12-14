@@ -24,10 +24,11 @@ import java.util.logging.Level;
 public class CondCitizenIsTargetable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsTargetable.class,
-                "%npc% [is] targetable",
-                "%npc% can be targeted");
+                "%npcs% (is|can be|are) target(able|ed)",
+                "%npcs% (is(n't| not)|are(n't| not)|can('t|not be)) target(able|ed)");
     }
     private Expression<NPC> npcExpr;
+    private int pattern;
     @Override
     public boolean check(Event event) {
         if (npcExpr == null) {
