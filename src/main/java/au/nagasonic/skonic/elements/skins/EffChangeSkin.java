@@ -24,7 +24,8 @@ import java.util.Set;
 public class EffChangeSkin extends Effect {
     static {
         Skript.registerEffect(EffChangeSkin.class,
-                "(change|set) %player%['s] skin to %skin%");
+                "(change|set) %player%['s] skin to %skin%",
+                "(change|set) skin of %player% to %skin%");
     }
     private Expression<Player> playerExpr;
     private Expression<Skin> skinExpr;

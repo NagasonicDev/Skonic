@@ -36,10 +36,10 @@ public final class Skonic extends JavaPlugin {
         String version = getDescription().getVersion();
         if (version.contains("dev")) {
             Util.log("&eThis is a DEV build, things may not work as expected, please report any bugs on GitHub");
-            Util.log("&ehttps://github.com/Nagasonic/Skonic/issues");
+            Util.log("&ehttps://github.com/NagasonicDev/Skonic/issues");
         }
         new UpdateChecker(this);
-        Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
+
         Metrics metrics = new Metrics(this, 20479);
         metrics.addCustomChart(new Metrics.DrilldownPie("skript_version", () -> {
             Map<String, Map<String, Integer>> map = new HashMap<>();
@@ -52,6 +52,7 @@ public final class Skonic extends JavaPlugin {
 
             return map;
         }));
+        Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
     }
 
     @Override
