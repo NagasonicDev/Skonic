@@ -8,6 +8,8 @@ Skonic currently has three main areas of expertise:
 
 More will come out in later versions. If you wish to make suggestions go to https://github.com/NagasonicDev/Skonic/pulls and create a request.
 
+[![SkonicDiscord](https://dabuttonfactory.com/button.png?t=Discord&f=Open+Sans-Bold&ts=26&tc=fff&tshs=1&tshc=000&hp=45&vp=20&c=11&bgt=unicolored&bgc=0078ef&be=1)](https://discord.gg/DvSzE9Qtst)
+
 # Player Heads:
 - Get a player head from value, name, url and uuid. (Player support coming out next update)
 - Get the owner of a player head. (Next Update)
