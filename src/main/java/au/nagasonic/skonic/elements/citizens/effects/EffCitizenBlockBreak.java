@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 
 @Name("Make Citizen Break Block")
-@Description({"Make a Citizens NPC break a block in a radius.", "Default is 1 block."})
+@Description({"Make a Citizens NPC break a block in a radius.", "No idea how radius works, but Citizens has it so I do too."})
 @Since("1.2")
 @RequiredPlugins("Citizens")
 @Examples("make citizen with id 2 break {_block} with radius 3")

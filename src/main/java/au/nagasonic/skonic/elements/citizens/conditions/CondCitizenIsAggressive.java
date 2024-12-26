@@ -7,7 +7,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.util.NMS;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
