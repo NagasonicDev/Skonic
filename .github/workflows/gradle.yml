@@ -35,7 +35,7 @@ jobs:
             path: extra-plugins/
             merge-multiple: true
         - name: Download a file
-          run: curl https://ci.citizensnpcs.co/job/Citizens2/lastSuccessfulBuild/artifact/*zip*/archive.zip -o extra-plugins/archive.zip
+          run: curl -o --output-dir extra-plugins https://ci.citizensnpcs.co/job/Citizens2/lastSuccessfulBuild/artifact/*zip*/archive.zip
         - name: Extract some files
           run: 7z x extra-plugins/archive.zip archive/dist/target/*.jar
         - name: Run tests
