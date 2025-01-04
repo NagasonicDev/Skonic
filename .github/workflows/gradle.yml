@@ -37,7 +37,7 @@ jobs:
         - name: Download a file
           run: curl https://ci.citizensnpcs.co/job/Citizens2/lastSuccessfulBuild/artifact/*zip*/archive.zip -o extra-plugins/archive.zip
         - name: Extract some files
-          run: 7z x extra-plugins/archive.zip -oextra-plugins/ archive/dist/target/
+          run: 7z x extra-plugins/archive.zip archive/dist/target
         - name: Run tests
           uses: SkriptLang/skript-test-action@v1.1
           with:
