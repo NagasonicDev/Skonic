@@ -28,7 +28,7 @@ public class EffCitizenPause extends Effect {
             NPC[] npcs = npcExpr.getArray(event);
             if (npcs != null){
                 for (NPC npc : npcs) {
-                    npc.getNavigator().setPaused(pause);
+                    npc.getNavigator().setPaused(!pause);
                 }
             }
 
@@ -43,7 +43,7 @@ public class EffCitizenPause extends Effect {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
-        pause = matchedPattern == 0 ^ parseResult.hasTag("not");
+        pause = parseResult.hasTag("not");
         return true;
     }
 }

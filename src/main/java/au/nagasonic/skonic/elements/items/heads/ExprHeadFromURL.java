@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by URL")
 @Since("1.0.4")
 @Examples("set {_melon} to head from url \"http://textures.minecraft.net/texture/9636dee806ba47a2c40e95b57a12f37de6c2e677f2160132a07e24eeffa6\"")
-@DocumentationId("12503")
 public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromURL.class,

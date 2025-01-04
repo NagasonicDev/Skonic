@@ -12,6 +12,8 @@ import ch.njol.skript.util.Direction;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.DropsTrait;
+import net.citizensnpcs.trait.EntityPoseTrait;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
@@ -28,7 +30,6 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples("spawn a zombie citizen named \"Undead\" at spawn")
 @Since("1.0.0")
-@DocumentationId("12492")
 public class EffSpawnCitizen extends Effect {
 
     public static NPC lastSpawnedNPC;

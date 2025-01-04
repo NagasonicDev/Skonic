@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.4, 1.0.5 (setting)")
 @Examples("set citizen entity type of last spawned entity to villager")
-@DocumentationId("12494")
 public class ExprCitizenEntityType extends SimplePropertyExpression<NPC, EntityType> {
     static {
         register(ExprCitizenEntityType.class, EntityType.class, "(citizen|npc) entity type", "npcs");

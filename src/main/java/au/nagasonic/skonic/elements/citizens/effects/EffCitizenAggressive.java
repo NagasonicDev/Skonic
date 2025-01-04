@@ -19,7 +19,6 @@ import java.util.logging.Level;
 @Since("1.1")
 @RequiredPlugins("Citizens")
 @Examples("make npc with id 1 aggressive")
-@DocumentationId("")
 public class EffCitizenAggressive extends Effect {
     static {
         Skript.registerEffect(EffCitizenAggressive.class,

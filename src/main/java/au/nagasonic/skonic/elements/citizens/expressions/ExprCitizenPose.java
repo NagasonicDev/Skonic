@@ -5,55 +5,53 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.Location;
+import net.citizensnpcs.trait.EntityPoseTrait;
+import net.citizensnpcs.trait.EntityPoseTrait.EntityPose;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Citizen Name")
-@Description("Get the name of a citizen")
+@Name("Citizen Pose")
+@Description("The pose of a Citizens NPC")
+@Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Since("1.0.5")
-@Examples("set citizen name of last created npc to \"Nagasonic\"")
-public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
+@Examples("set npc entity pose of last spawned citizen to crouching")
+public class ExprCitizenPose extends SimplePropertyExpression<NPC, EntityPose> {
     static {
-        register(ExprNameOfCitizen.class, String.class, "(citizen|npc) name", "npcs");
+        register(ExprCitizenPose.class, EntityPose.class, "(citizen|npc) [entity] pose", "npcs");
     }
     @Override
-    public @Nullable String convert(NPC npc) {
-        return npc.getName();
+    public @Nullable EntityPose convert(NPC npc) {
+        return npc.getOrAddTrait(EntityPoseTrait.class).getPose();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        if (mode == Changer.ChangeMode.SET) return CollectionUtils.array(String.class);
+        if (mode == Changer.ChangeMode.SET) return CollectionUtils.array(EntityPose.class);
         return null;
     }
 
     @SuppressWarnings({"NullableProblems", "ConstantValue"})
     @Override
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        if (delta != null && delta[0] instanceof String) {
-            String name = (String) delta[0];
+        if (delta != null && delta[0] instanceof EntityPose) {
+            EntityPose pose = (EntityPose) delta[0];
             for (NPC npc : getExpr().getArray(event)) {
-                npc.setName(name);
-                Location loc = npc.getEntity().getLocation();
-                npc.despawn();
-                npc.spawn(loc);
+                npc.getOrAddTrait(EntityPoseTrait.class).setPose(pose);
             }
         }
     }
 
     @Override
     @NotNull
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<? extends EntityPose> getReturnType() {
+        return EntityPose.class;
     }
 
     @Override
     @NotNull
     protected String getPropertyName() {
-        return "citizen name";
+        return "citizen entity pose";
     }
 }

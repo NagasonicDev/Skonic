@@ -20,7 +20,6 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to \"Nagasonic\"")
-@DocumentationId("12489")
 public class EffChangeCitizenSkinName extends Effect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by value.")
 @Since("1.0.4")
 @Examples("set {_cacti} to head from value \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY1ODViNDFjYTVhMWI0YWMyNmY1NTY3NjBlZDExMzA3Yzk0ZjhmOGExYWRlNjE1YmQxMmNlMDc0ZjQ3OTMifX19\"")
-@DocumentationId("12505")
 public class ExprHeadFromValue extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromValue.class,

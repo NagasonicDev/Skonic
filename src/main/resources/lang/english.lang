@@ -23,3 +23,23 @@ npcdespawnreasons:
     reload: reload
     removal: removal
     world_unload: world unload
+
+npcentityposes:
+    croaking: croaking
+    crouching: crouching
+    digging: digging
+    dying: dying
+    emerging: emerging
+    fall_flying: fall flying
+    inhaling: inhaling
+    long_jumping: long jumping
+    roaring: roaring
+    shooting: shooting
+    sitting: sitting
+    sleeping: sleeping
+    sliding: sliding
+    sniffing: sniffing
+    spin_attack: spin attack
+    standing: standing
+    swimming: swimming
+    using_tongue: using tongue

@@ -21,7 +21,6 @@ import java.util.logging.Level;
 @Description("Downloads a skin")
 @Since("1.0.4")
 @Examples({"on join:", "\tdownload player's skin"})
-@DocumentationId("12488")
 public class EffDownloadPlayerSkin extends Effect {
     static {
         Skript.registerEffect(EffDownloadPlayerSkin.class,

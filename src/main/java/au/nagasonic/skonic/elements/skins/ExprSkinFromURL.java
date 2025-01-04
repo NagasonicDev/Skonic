@@ -21,7 +21,6 @@ import java.util.logging.Level;
         "URL must link directly to an image.")
 @Since("1.0.3")
 @Examples("set {_cacti} to skin from url \"http://textures.minecraft.net/texture/2f585b41ca5a1b4ac26f556760ed11307c94f8f8a1ade615bd12ce074f4793\"")
-@DocumentationId("12512")
 public class ExprSkinFromURL extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinFromURL.class, Skin.class, ExpressionType.COMBINED,

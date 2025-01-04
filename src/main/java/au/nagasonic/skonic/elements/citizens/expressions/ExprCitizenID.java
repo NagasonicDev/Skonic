@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples({"broadcast all citizens", "loop all citizens:", "\tbroadcast id of loop-value"})
-@DocumentationId("12495")
 public class ExprCitizenID extends SimplePropertyExpression<NPC, Number> {
     static {
         register(ExprCitizenID.class, Number.class,

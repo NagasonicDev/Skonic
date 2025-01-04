@@ -20,7 +20,6 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples("make all npcs pathfind to player")
-@DocumentationId("12485")
 public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,

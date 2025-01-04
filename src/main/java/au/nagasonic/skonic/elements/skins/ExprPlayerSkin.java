@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
         "Cannot be set, to set, use 'Change Player Skin' effect.")
 @Since("1.0.4")
 @Examples({"on join:", "\tset {skins::%player's uuid%} to player's skin"})
-@DocumentationId("12508")
 public class ExprPlayerSkin extends SimplePropertyExpression<Player, Skin> {
     static {
         register(ExprPlayerSkin.class,

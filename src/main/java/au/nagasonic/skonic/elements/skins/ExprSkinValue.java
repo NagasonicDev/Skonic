@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the texture value of a skin")
 @Since("1.0.7")
 @Examples("broadcast value of player's skin")
-@DocumentationId("12510")
 public class ExprSkinValue extends SimplePropertyExpression<Skin, String> {
     static {
         register(ExprSkinValue.class, String.class, "[skin] value", "skin");

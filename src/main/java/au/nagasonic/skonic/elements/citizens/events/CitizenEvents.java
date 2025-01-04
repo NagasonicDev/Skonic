@@ -23,14 +23,12 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is clicked by a player.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12469")
                 .examples("on citizen click:", "\tsend \"You clicked %event-npc%\" to event-player");
         Skript.registerEvent("Citizen Left Click", CitizenEvents.class, NPCLeftClickEvent.class,
                         "(citizen|npc) left click")
                 .description("Called when a Citizens NPC is left clicked by a player.", "Only is called if NPC is not vulnerable.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12478")
                 .examples("on citizen left click:", "\tsend \"You left clicked %event-npc%\" to event-player");
 
         Skript.registerEvent("Citizen Right Click", CitizenEvents.class, NPCRightClickEvent.class,
@@ -38,7 +36,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is right clicked by a player")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12480")
                 .examples("on citizen right click:", "\tsend \"You right clicked %event-npc%\" to event-player");
 
         Skript.registerEvent("Citizen Create", CitizenEvents.class, NPCCreateEvent.class,
@@ -46,29 +43,25 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is created by the server or an external service (Such as this plugin).")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12470")
                 .examples("on citizen create:", "\tid of event-npc is 3", "\tbroadcast \"%event-npc% was created!\"");
 
         Skript.registerEvent("Citizen Create by Player", CitizenEvents.class, PlayerCreateNPCEvent.class,
                         "(citizen|npc) create by [a] player")
                 .description("Called when a Citizens NPC is created by a player.")
                 .since("1.1")
-                .requiredPlugins("Citizens")
-                .documentationID("12472");
+                .requiredPlugins("Citizens");
 
         Skript.registerEvent("Citizen Create by CommandSender", CitizenEvents.class, CommandSenderCreateNPCEvent.class,
                         "(citizen|npc) create by [a] command [sender]")
                 .description("Called when a Citizens NPC is created via a command.")
                 .since("1.1")
-                .requiredPlugins("Citizens")
-                .documentationID("12471");
+                .requiredPlugins("Citizens");
 
         Skript.registerEvent("Citizen Spawn", CitizenEvents.class, NPCSpawnEvent.class,
                         "(citizen|npc) spawn")
                 .description("Called when a Citizens NPC is spawned.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12481")
                 .examples("on citizen spawn:", "\tcancel event", "\tbroadcast \"You can't spawn a citizen at %event-location%\"");
 
         Skript.registerEvent("Citizen Despawn", CitizenEvents.class, NPCDespawnEvent.class,
@@ -76,7 +69,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC despawns.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12477")
                 .examples("on citizen despawn:", "\tevent-npc is npc with id 3", "\tcancel event");
 
         Skript.registerEvent("Citizen Remove", CitizenEvents.class, NPCRemoveEvent.class,
@@ -84,7 +76,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is removed.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12479")
                 .examples("on citizen remove:", "\tbroadcast \"%event-npc% was removed\"");
 
         Skript.registerEvent("Citizen Death", CitizenEvents.class, NPCDeathEvent.class,
@@ -92,7 +83,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC dies.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12476")
                 .examples("on citizen death:", "\tbroadcast \"%event-npc% died due to %event-damagecause%\"");
 
         Skript.registerEvent("Citizen Damage", CitizenEvents.class, NPCDamageEvent.class,
@@ -100,7 +90,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is damaged", "Does not include damage by entity or damage by block, use their respective events for that.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12473")
                 .examples("on citizen damage:", "\tbroadcast \"%event-npc% took %event-number% damage due to %event-damagecause%\"");
 
         Skript.registerEvent("Citizen Damage by Entity", CitizenEvents.class, NPCDamageByEntityEvent.class,
@@ -108,7 +97,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is damaged by an entity.")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12475")
                 .examples("on citizen damage by an entity:", "\tbroadcast \"%event-npc% took %event-number% damage by %event-entity%\"");
 
         Skript.registerEvent("Citizen Damage by Block", CitizenEvents.class, NPCDamageByBlockEvent.class,
@@ -116,7 +104,6 @@ public class CitizenEvents extends SimpleEvent {
                 .description("Called when a Citizens NPC is damaged by a block.", "Example: Lava, Fire")
                 .since("1.1")
                 .requiredPlugins("Citizens")
-                .documentationID("12474")
                 .examples("on citizen damage by block:", "\tbroadcast \"%event-npc% took %event-number% damage by %event-block\"");
 
 

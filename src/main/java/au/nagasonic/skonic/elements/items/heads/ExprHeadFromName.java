@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a head by player name")
 @Since("1.0.4")
 @Examples("set helmet of player to head from name \"%player's name%\"")
-@DocumentationId("12500")
 public class ExprHeadFromName extends SimpleExpression<ItemStack> {
     static {
         Skript.registerExpression(ExprHeadFromName.class,

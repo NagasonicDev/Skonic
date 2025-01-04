@@ -22,7 +22,6 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples({"set skin of last spawned npc to player's skin", "change npc with id 2's skin to player's skin"})
-@DocumentationId("12490")
 public class EffChangeCitizenSkin extends Effect {
 
     static {

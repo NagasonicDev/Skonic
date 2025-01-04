@@ -1,0 +1,58 @@
+package au.nagasonic.skonic.elements.citizens.expressions;
+
+import au.nagasonic.skonic.elements.citizens.Forcefield;
+import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
+import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import ch.njol.util.coll.CollectionUtils;
+import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.ForcefieldTrait;
+import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+@Name("Citizen Forcefield Strength")
+@Description("The strength of a forcefield")
+@Since("1.2.1")
+@RequiredPlugins("Citizens")
+@Examples("set forcefield strength of {_forcefield} to 4")
+public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield, Number> {
+    static {
+        register(ExprForcefieldStrength.class, Number.class, " forcefield strength", "npcforcefield");
+    }
+    @Override
+    public @Nullable Number convert(Forcefield forcefield) {
+        return forcefield.strength;
+    }
+
+    @SuppressWarnings("NullableProblems")
+    @Override
+    public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) return CollectionUtils.array(Number.class);
+        return null;
+    }
+
+    @SuppressWarnings({"NullableProblems", "ConstantValue"})
+    @Override
+    public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
+        if (delta != null && delta[0] instanceof Number) {
+            Number strength = (Number) delta[0];
+            Forcefield field = getExpr().getSingle(event);
+            if (field != null){
+                field.setStrength(strength.doubleValue());
+            }
+        }
+    }
+
+    @Override
+    @NotNull
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
+    }
+
+    @Override
+    @NotNull
+    protected String getPropertyName() {
+        return "forcefield strength";
+    }
+}

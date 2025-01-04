@@ -19,7 +19,6 @@ import java.util.logging.Level;
 @Examples({"make npc with id 2 targetable", "make npc with id 3 not targetable"})
 @Since("1.2")
 @RequiredPlugins("Citizens")
-@DocumentationId("")
 public class EffCitizenTargetable extends Effect {
     static {
         Skript.registerEffect(EffCitizenTargetable.class,

@@ -18,7 +18,6 @@ import java.net.URL;
 @Description("Retrieves the url within a skin value")
 @Since("1.0.7")
 @Examples("set {_skinurl} to skin url within value \"value of player's skin\"")
-@DocumentationId("12514")
 
 public class ExprURLInValue extends SimpleExpression<String> {
     static {

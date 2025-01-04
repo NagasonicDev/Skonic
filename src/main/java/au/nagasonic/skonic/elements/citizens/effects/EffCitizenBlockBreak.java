@@ -22,11 +22,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 
 @Name("Make Citizen Break Block")
-@Description({"Make a Citizens NPC break a block in a radius.", "No idea how radius works, but Citizens has it so I do too."})
+@Description({"Make a Citizens NPC break a block in a radius.", "No idea how radius works (or what it does), but Citizens has it so I do too."})
 @Since("1.2")
 @RequiredPlugins("Citizens")
 @Examples("make citizen with id 2 break {_block} with radius 3")
-@DocumentationId("")
 public class EffCitizenBlockBreak extends Effect {
     static {
         Skript.registerEffect(EffCitizenBlockBreak.class,

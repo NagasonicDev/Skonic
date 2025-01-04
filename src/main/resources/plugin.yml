@@ -1,5 +1,5 @@
 name: Skonic
-version: @version@
+version: '@version@'
 main: au.nagasonic.skonic.Skonic
 api-version: '1.19'
 depend: [Skript]

@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"if npc with id 1 is navigating:",
         "\tmake citizen npc with id 1 attack player"})
 @Since("1.0.7")
-@DocumentationId("12482")
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,

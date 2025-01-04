@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -158,5 +159,18 @@ public class Util {
             throw new RuntimeException(ex);
         }
         return c;
+    }
+    public static int[] getElementCount() {
+        int[] i = new int[5];
+
+        i[0] = Skript.getEvents().size();
+        i[1] = Skript.getEffects().size();
+        AtomicInteger exprs = new AtomicInteger();
+        Skript.getExpressions().forEachRemaining(e -> exprs.getAndIncrement());
+        i[2] = exprs.get();
+        i[3] = Skript.getConditions().size();
+        i[4] = Skript.getSections().size();
+
+        return i;
     }
 }

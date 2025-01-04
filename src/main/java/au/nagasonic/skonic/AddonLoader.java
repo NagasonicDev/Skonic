@@ -36,23 +36,11 @@ public class AddonLoader {
             Util.log("&cThis could mean SkBee is being forced to load before Skript.");
             return false;
         }
-        Version skriptVersion = Skript.getVersion();
-        if (skriptVersion.isSmallerThan(new Version(2, 7))) {
-            Util.log("&cDependency Skript outdated, plugin disabling.");
-            Util.log("&9Skonic &erequires Skript 2.7+ but found Skript " + skriptVersion);
-            return false;
-        }
+
         if (!Skript.isAcceptRegistrations()) {
             Util.log("&cSkript is no longer accepting registrations, addons can no longer be loaded!");
-            Plugin plugMan = Bukkit.getPluginManager().getPlugin("PlugMan");
-            if (plugMan != null && plugMan.isEnabled()) {
-                Util.log("&cIt appears you're running PlugMan. (Why....)");
-                Util.log("&cIf you're trying to reload/enable &9Skonic &cwith PlugMan.... yeah, you can't.... I guess that's too bad");
-                Util.log("&ePlease restart your server!");
-            } else {
-                Util.log("&cNo clue how this could happen.");
-                Util.log("&cSeems a plugin is delaying &9Skonic loading, which is after Skript stops accepting registrations.");
-            }
+            Util.log("&cNo clue how this could happen.");
+            Util.log("&cSeems a plugin is delaying &9Skonic loading, which is after Skript stops accepting registrations.");
             return false;
         }
         Version version = new Version(Skonic.EARLIEST_VERSION);
@@ -66,11 +54,25 @@ public class AddonLoader {
 
     private void loadSkriptElements() {
         this.addon = Skript.registerAddon(this.plugin);
-        addon.setLanguageFileDirectory("lang");
+        this.addon.setLanguageFileDirectory("lang");
+        int[] elementCountBefore = Util.getElementCount();
         loadCitizenElements();
         loadHeadElements();
         loadSkinElements();
         loadClasses();
+        int[] elementCountAfter = Util.getElementCount();
+        int[] finish = new int[elementCountBefore.length];
+        int total = 0;
+        for (int i = 0; i < elementCountBefore.length; i++) {
+            finish[i] = elementCountAfter[i] - elementCountBefore[i];
+            total += finish[i];
+        }
+        String[] elementNames = new String[]{"event", "effect", "expression", "condition", "section"};
+
+        Util.log("Loaded (%s) elements:", total);
+        for (int i = 0; i < finish.length; i++) {
+            Util.log(" - %s %s%s", finish[i], elementNames[i], finish[i] == 1 ? "" : "s");
+        }
     }
 
     private void loadCitizenElements() {

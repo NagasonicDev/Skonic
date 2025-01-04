@@ -21,7 +21,6 @@ import java.util.logging.Level;
 @Since("1.0.0")
 @Examples({"make npc all citizens attack player", "wait 5 seconds", "stop all citizens from attacking player"})
 @RequiredPlugins("Citizens")
-@DocumentationId("12484")
 public class EffCitizenAttack extends Effect {
     static {
         Skript.registerEffect(EffCitizenAttack.class,

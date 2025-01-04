@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"if npc with id 3 is aggressive:",
         "\tbroadcast \"Npc is Aggressive\""})
 @Since("1.2")
-@DocumentationId("")
 public class CondCitizenIsAggressive extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsAggressive.class,

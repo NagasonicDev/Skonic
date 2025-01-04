@@ -20,7 +20,6 @@ import java.util.logging.Level;
         "\t\tsend \"Please don't hit me.\" to event-player"})
 @Since("1.1")
 @RequiredPlugins("Citizens")
-@DocumentationId("12483")
 public class CondCitizenIsVulnerable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsVulnerable.class, "%npc% is vulnerable", "%npc% is protected");
@@ -41,9 +40,7 @@ public class CondCitizenIsVulnerable extends Condition {
         }
         if (pattern == 0){
             return !npc.isProtected();
-        }else{
-            return npc.isProtected();
-        }
+        }else{ return npc.isProtected(); }
     }
 
     @Override

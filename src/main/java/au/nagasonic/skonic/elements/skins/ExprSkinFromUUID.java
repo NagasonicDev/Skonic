@@ -14,7 +14,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets a skin from player's uuid.")
 @Since("1.0.4")
 @Examples("set {_skin} to skin from uuid \"%player's uuid%\"")
-@DocumentationId("12513")
 public class ExprSkinFromUUID extends SimpleExpression<Skin> {
     static {
         Skript.registerExpression(ExprSkinFromUUID.class, Skin.class, ExpressionType.COMBINED,

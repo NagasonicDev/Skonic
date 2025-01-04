@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the value of a head")
 @Since("1.0.7")
 @Examples("broadcast value of {_melon}")
-@DocumentationId("12516")
 public class ExprValueOfHead extends SimplePropertyExpression<ItemStack, String> {
     static {
         register(ExprValueOfHead.class, String.class,

@@ -21,7 +21,6 @@ import java.util.List;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples({"broadcast all citizens", "loop all citizens:", "\tbroadcast id of loop-value"})
-@DocumentationId("12493")
 public class ExprAllCitizens extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprAllCitizens.class, NPC.class, ExpressionType.SIMPLE,

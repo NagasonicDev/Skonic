@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the signature of a skin.")
 @Since("1.0.7")
 @Examples("broadcast signature of {_skin}")
-@DocumentationId("12509")
 public class ExprSkinSignature extends SimplePropertyExpression<Skin, String> {
     static {
         register(ExprSkinSignature.class, String.class, "[skin] signature", "skin");

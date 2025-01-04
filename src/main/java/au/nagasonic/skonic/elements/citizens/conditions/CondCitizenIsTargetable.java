@@ -20,7 +20,6 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples({"if last created npc can be targeted:",
         "\tmake last created npc not targetable"})
-@DocumentationId("")
 public class CondCitizenIsTargetable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsTargetable.class,

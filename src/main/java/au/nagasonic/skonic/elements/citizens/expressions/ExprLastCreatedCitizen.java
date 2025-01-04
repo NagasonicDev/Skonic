@@ -18,7 +18,6 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples({"spawn a zombie citizen named \"Undead\" at spawn", "set {_e} to last created npc"})
-@DocumentationId("12506")
 public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     static {
         Skript.registerExpression(ExprLastCreatedCitizen.class,

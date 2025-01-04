@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.classes;
 
+import au.nagasonic.skonic.elements.citizens.Forcefield;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
@@ -12,6 +13,7 @@ import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.event.DespawnReason;
 import net.citizensnpcs.api.event.SpawnReason;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.EntityPoseTrait.EntityPose;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +30,6 @@ public class Types {
                     .description("Represents a Citizens NPC.")
                     .examples("last spawned npc", "delete last spawned npc")
                     .since("1.0.0")
-                    .documentationId("12518")
                     .requiredPlugins("Citizens")
                     .parser(new Parser<NPC>() {
                         @SuppressWarnings("NullableProblems")
@@ -75,7 +76,6 @@ public class Types {
                     .usage(SPAWN_REASON_ENUM.getAllNames().replace("spawnreasons.", ""))
                     .examples("if event-npcspawnreason = chunk load:")
                     .since("1.1")
-                    .documentationId("12519")
                     .requiredPlugins("Citizens")
                     .parser(new Parser<SpawnReason>() {
 
@@ -108,7 +108,6 @@ public class Types {
                     .examples("if event-npcdespawnreason = chunk unload:")
                     .requiredPlugins("Citizens")
                     .since("1.1")
-                    .documentationId("12517")
                     .parser(new Parser<DespawnReason>() {
 
                         @SuppressWarnings("NullableProblems")
@@ -130,6 +129,58 @@ public class Types {
                         }
                     })
                     .serializer(new EnumSerializer<>(DespawnReason.class)));
+            EnumUtils<EntityPose> ENTITY_POSE_ENUM = new EnumUtils<>(EntityPose.class, "npcentityposes");
+            Classes.registerClass(new ClassInfo<>(EntityPose.class, "npcentitypose")
+                    .user("npc ?entity ?poses?")
+                    .name("Citizens Entity Pose")
+                    .description("Represents the 'pose' of a Citizens NPC.", "Essentially different animations, depending on the entity type of the NPC.")
+                    .usage(ENTITY_POSE_ENUM.getAllNames())
+                    .examples("if entity pose of {_npc} is crouch:")
+                    .requiredPlugins("Citizens")
+                    .since("1.2.1")
+                    .parser(new Parser<EntityPose>() {
+
+                        @SuppressWarnings("NullableProblems")
+                        @Override
+                        public @Nullable EntityPose parse(String s, ParseContext context) {
+                            return ENTITY_POSE_ENUM.parse(s);
+                        }
+                        @Override
+                        @NotNull
+                        public String toString(EntityPose o, int flags) {
+                            return ENTITY_POSE_ENUM.toString(o, flags);
+                        }
+
+                        @Override
+                        @NotNull
+                        public String toVariableNameString(EntityPose o) {
+                            return "npcentitypose:" + toString(o, 0);
+                        }
+                    })
+                    .serializer(new EnumSerializer<>(EntityPose.class)));
+            Classes.registerClass(new ClassInfo<>(Forcefield.class, "npcforcefield")
+                    .user("npcforcefield?")
+                    .name("Citizen Forcefield")
+                    .description("Represesnts a Citizens Forcefield")
+                    .examples("set {_force} to forcefield with 5 width with 3 height")
+                    .requiredPlugins("Citizens")
+                    .since("1.2.1")
+                    .parser(new Parser<Forcefield>() {
+                        @SuppressWarnings("NullableProblems")
+                        @Override
+                        public boolean canParse(ParseContext context) {
+                            return false;
+                        }
+                        @Override
+                        public String toString(Forcefield o, int flags) {
+                            return o.toString();
+                        }
+
+                        @Override
+                        public String toVariableNameString(Forcefield o) {
+                            return "npcforcefield:" + toString(o, 0);
+                        }
+                    }));
 
             // CONVERTERS
             // Enables any Skript effect/expression that works for entities
@@ -141,7 +192,6 @@ public class Types {
                 .description("Represents a Skin.")
                 .examples("player's skin")
                 .since("1.0.2")
-                .documentationId("12520")
                 .parser(new Parser<>() {
                     @SuppressWarnings("NullableProblems")
                     @Override

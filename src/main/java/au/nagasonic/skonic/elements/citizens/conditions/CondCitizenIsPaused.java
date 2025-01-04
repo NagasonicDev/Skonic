@@ -22,7 +22,7 @@ public class CondCitizenIsPaused extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsPaused.class,
                 "%npcs% (is|are) paused",
-                "%npc% (isn't|is not|aren't|are not) paused");
+                "%npcs% (isn't|is not|aren't|are not) paused");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

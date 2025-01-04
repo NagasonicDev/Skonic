@@ -18,7 +18,6 @@ import java.util.logging.Level;
 @Since("1.0.0")
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
-@DocumentationId("12486")
 public class EffDeleteCitizen extends Effect {
     static {
         Skript.registerEffect(EffDeleteCitizen.class,

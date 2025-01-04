@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 @Description("Gets the URL of a head")
 @Since("1.0.7")
 @Examples("broadcast url of {_head}")
-@DocumentationId("12515")
 public class ExprURLOfHead extends SimplePropertyExpression<ItemStack, String> {
     static {
         register(ExprURLOfHead.class, String.class,

@@ -6,7 +6,7 @@ plugins {
 
 group = 'au.nagasonic'
 
-version = "1.2"
+version = "1.2.1-b1"
 def latestJava = 21
 def oldestJava = 17
 
@@ -39,7 +39,7 @@ dependencies {
     //JSON
     implementation group: 'org.json', name: 'json', version: '20090211'
     //Skript
-    implementation 'com.github.SkriptLang:Skript:2.9.5'
+    implementation 'com.github.SkriptLang:Skript:2.10.0-pre1'
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO

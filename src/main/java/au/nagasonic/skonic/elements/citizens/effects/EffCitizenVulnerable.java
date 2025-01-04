@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"on citizen damage:", "\tmake event-npc invulnerable", "\twait 5 seconds", "\tmake event-npc protected"})
 @Since("1.2")
 @RequiredPlugins("Citizens")
-@DocumentationId("")
 public class EffCitizenVulnerable extends Effect {
     static {
         Skript.registerEffect(EffCitizenVulnerable.class,

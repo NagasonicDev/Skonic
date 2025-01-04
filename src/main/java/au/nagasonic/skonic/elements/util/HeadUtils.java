@@ -2,14 +2,13 @@ package au.nagasonic.skonic.elements.util;
 
 import au.nagasonic.skonic.Skonic;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 import java.net.MalformedURLException;
@@ -93,18 +92,12 @@ public class HeadUtils {
 
     public static URL getUrlFromBase64(String base64) throws MalformedURLException {
         String decoded = new String(Base64.getDecoder().decode(base64));
-        JSONObject jsonObject = null;
-        String url = null;
-        try {
-            jsonObject = new JSONObject(decoded);
-            // Extract the "textures" JSONObject
-            JSONObject textures = jsonObject.getJSONObject("textures");
+        JsonObject jsonObject = JsonParser.parseString(decoded).getAsJsonObject();
+        // Extract the "textures" JSONObject
+        JsonObject textures = jsonObject.get("textures").getAsJsonObject();
 
-            // Extract the "SKIN" JSONObject and then the "url"
-            url = textures.getJSONObject("SKIN").getString("url");
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+        // Extract the "SKIN" JSONObject and then the "url"
+        String url = textures.getAsJsonObject("SKIN").get("url").getAsString();
         return new URL(url);
     }
 

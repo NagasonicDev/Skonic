@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
         "Will only work if the head is from a player.")
 @Since("1.0.4")
 @Examples("broadcast owner of player's tool")
-@DocumentationId("12507")
 public class ExprOwnerOfHead extends SimplePropertyExpression<ItemStack, Player> {
     static {
         register(ExprOwnerOfHead.class, Player.class,

@@ -34,8 +34,8 @@ public final class Skonic extends JavaPlugin {
             return;
         }
         String version = getDescription().getVersion();
-        if (version.contains("dev")) {
-            Util.log("&eThis is a DEV build, things may not work as expected, please report any bugs on GitHub");
+        if (version.contains("b")) {
+            Util.log("&eThis is a Beta build, things may not work as expected, please report any bugs on GitHub");
             Util.log("&ehttps://github.com/NagasonicDev/Skonic/issues");
         }
         new UpdateChecker(this);
