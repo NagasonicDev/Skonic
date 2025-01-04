@@ -37,7 +37,7 @@ jobs:
         - name: Download a file
           run: wget https://ci.citizensnpcs.co/job/Citizens2/lastSuccessfulBuild/artifact/*zip*/archive.zip -P extra-plugins/
         - name: Extract some files
-          run: unzip extra-plugins/archive.zip archive/dist/target/*.jar
+          run: unzip extra-plugins/archive.zip archive/dist/target/*.jar -d extra-plugins
         - name: Run tests
           uses: SkriptLang/skript-test-action@v1.1
           with:
