@@ -4,6 +4,10 @@ import au.nagasonic.skonic.elements.citizens.Forcefield;
 import au.nagasonic.skonic.elements.citizens.events.CitizenForcefieldCreateEvent;
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.RequiredPlugins;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.SectionExpression;
 import ch.njol.skript.lang.*;
 import ch.njol.skript.registrations.EventValues;
@@ -15,6 +19,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@Name("Forcefield - Create")
+@Description("Expression to create a Citizens Forcefield. Default values are 1.")
+@Since("1.2.1")
+@RequiredPlugins("Citizens")
 public class ExprForcefield extends SectionExpression<Forcefield> {
     static {
         Skript.registerExpression(ExprForcefield.class, Forcefield.class, ExpressionType.COMBINED,
