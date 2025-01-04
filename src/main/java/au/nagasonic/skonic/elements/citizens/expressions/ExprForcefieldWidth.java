@@ -5,8 +5,6 @@ import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
-import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.ForcefieldTrait;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples("broadcast npc forcefield width of npc with id 3")
 public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Number> {
     static {
-        register(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
+        registerDefault(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(Forcefield forcefield) {

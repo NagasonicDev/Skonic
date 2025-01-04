@@ -1,11 +1,13 @@
 package au.nagasonic.skonic.classes;
 
 import au.nagasonic.skonic.elements.citizens.Forcefield;
+import au.nagasonic.skonic.elements.citizens.events.CitizenForcefieldCreateEvent;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.EnumSerializer;
 import ch.njol.skript.classes.Parser;
+import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.EnumUtils;
@@ -165,6 +167,7 @@ public class Types {
                     .examples("set {_force} to forcefield with 5 width with 3 height")
                     .requiredPlugins("Citizens")
                     .since("1.2.1")
+                    .defaultExpression(new EventValueExpression<>(Forcefield.class))
                     .parser(new Parser<Forcefield>() {
                         @SuppressWarnings("NullableProblems")
                         @Override

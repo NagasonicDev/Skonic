@@ -6,6 +6,7 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
 import ch.njol.skript.expressions.base.SectionExpression;
 import ch.njol.skript.lang.*;
+import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.variables.Variables;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
@@ -18,6 +19,7 @@ public class ExprForcefield extends SectionExpression<Forcefield> {
     static {
         Skript.registerExpression(ExprForcefield.class, Forcefield.class, ExpressionType.COMBINED,
                 "[a] forcefield [w:with width %number%] [h:with height %number%] [s:with strength %number%] [v:with vertical strength %number%]");
+        EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, Forcefield.class, CitizenForcefieldCreateEvent::getForcefield);
     }
     private Trigger trigger;
     private Expression<Number> widthExpr;
@@ -30,10 +32,10 @@ public class ExprForcefield extends SectionExpression<Forcefield> {
         if (node != null){
             trigger = loadCode(node, "create forcefield", null, CitizenForcefieldCreateEvent.class);
         }
-        widthExpr = result.hasTag("w") ? (Expression<Number>) exprs[0] : null;
-        heightExpr = result.hasTag("h") ? (Expression<Number>) exprs[1] : null;
-        strengthExpr = result.hasTag("s") ? (Expression<Number>) exprs[2] : null;
-        vertStrengthExpr = result.hasTag("v") ? (Expression<Number>) exprs[3] : null;
+        widthExpr = (Expression<Number>) exprs[0];
+        heightExpr = (Expression<Number>) exprs[1];
+        strengthExpr = (Expression<Number>) exprs[2];
+        vertStrengthExpr = (Expression<Number>) exprs[3];
         return true;
     }
 

@@ -5,8 +5,6 @@ import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
-import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.ForcefieldTrait;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples("set citizen forcefield vertical strength of all npcs to 10")
 public class ExprForcefieldVertStrength extends SimplePropertyExpression<Forcefield, Number> {
     static {
-        register(ExprForcefieldVertStrength.class, Number.class, "forcefield vertical strength", "npcforcefield");
+        registerDefault(ExprForcefieldVertStrength.class, Number.class, "forcefield vertical strength", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(Forcefield forcefield) {
