@@ -4,7 +4,6 @@ import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -59,7 +58,7 @@ public class AddonLoader {
         loadCitizenElements();
         loadHeadElements();
         loadSkinElements();
-        loadClasses();
+        loadOtherClasses();
         int[] elementCountAfter = Util.getElementCount();
         int[] finish = new int[elementCountBefore.length];
         int total = 0;
@@ -84,6 +83,7 @@ public class AddonLoader {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
+            loadCitizenClasses();
             loadForcefieldElements();
         }else{
             Util.logLoading("&6Citizen elements have been disabled: &cMissing Citizen Plugin");
@@ -102,8 +102,27 @@ public class AddonLoader {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
+            loadForcefieldClass();
         }
 
+    }
+
+    private void loadForcefieldClass() {
+        try {
+            this.addon.loadClasses("au.nagasonic.skonic.classes.forccefield");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadCitizenClasses() {
+        try {
+            this.addon.loadClasses("au.nagasonic.skonic.classes.citizens");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private void loadHeadElements(){
@@ -124,9 +143,9 @@ public class AddonLoader {
         }
     }
 
-    private void loadClasses(){
+    private void loadOtherClasses(){
         try {
-            this.addon.loadClasses("au.nagasonic.skonic.classes");
+            this.addon.loadClasses("au.nagasonic.skonic.classes.other");
             Util.logLoading("&aLoaded all Class Types successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);
