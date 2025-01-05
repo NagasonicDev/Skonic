@@ -84,9 +84,26 @@ public class AddonLoader {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
+            loadForcefieldElements();
         }else{
             Util.logLoading("&6Citizen elements have been disabled: &cMissing Citizen Plugin");
         }
+    }
+
+    private void loadForcefieldElements() {
+        Version skriptVersion = Skript.getVersion();
+        if (skriptVersion.isSmallerThan(new Version(2, 10, 0))){
+            Util.logLoading("&6Citizen Forcefield elements have been disabled: &cOutdated Skript Version: Requires at least 2.10.0");
+        }else{
+            try {
+                this.addon.loadClasses("au.nagasonic.skonic.elements.forcefield");
+                Util.logLoading("&6Citizen Forcefield elements &ahave successfully loaded");
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     private void loadHeadElements(){

@@ -1,6 +1,5 @@
-package au.nagasonic.skonic.elements.citizens.expressions;
+package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
@@ -9,18 +8,18 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Citizen Forcefield Height")
-@Description("The height of a forcefield.")
+@Name("Citizen Forcefield Strength")
+@Description("The strength of a forcefield")
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Examples("set npc with id 2's npc forcefield height to 3")
-public class ExprForcefieldHeight extends SimplePropertyExpression<Forcefield, Number> {
+@Examples("set forcefield strength of {_forcefield} to 4")
+public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield, Number> {
     static {
-        registerDefault(ExprForcefieldHeight.class, Number.class, "forcefield height", "npcforcefield");
+        registerDefault(ExprForcefieldStrength.class, Number.class, " forcefield strength", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(Forcefield forcefield) {
-        return forcefield.height;
+        return forcefield.strength;
     }
 
     @SuppressWarnings("NullableProblems")
@@ -34,10 +33,10 @@ public class ExprForcefieldHeight extends SimplePropertyExpression<Forcefield, N
     @Override
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number) {
-            Number height = (Number) delta[0];
+            Number strength = (Number) delta[0];
             Forcefield field = getExpr().getSingle(event);
             if (field != null){
-                field.setHeight(height.doubleValue());
+                field.setStrength(strength.doubleValue());
             }
         }
     }
@@ -51,6 +50,6 @@ public class ExprForcefieldHeight extends SimplePropertyExpression<Forcefield, N
     @Override
     @NotNull
     protected String getPropertyName() {
-        return "forcefield height";
+        return "forcefield strength";
     }
 }

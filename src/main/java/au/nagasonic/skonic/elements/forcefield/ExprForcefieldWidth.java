@@ -1,6 +1,5 @@
-package au.nagasonic.skonic.elements.citizens.expressions;
+package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
@@ -9,18 +8,18 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Citizen Forcefield Strength")
-@Description("The strength of a forcefield")
+@Name("Citizen Forcefield Width")
+@Description("The width of a Citizen NPC's forcefield.")
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Examples("set forcefield strength of {_forcefield} to 4")
-public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield, Number> {
+@Examples("broadcast npc forcefield width of npc with id 3")
+public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Number> {
     static {
-        registerDefault(ExprForcefieldStrength.class, Number.class, " forcefield strength", "npcforcefield");
+        registerDefault(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(Forcefield forcefield) {
-        return forcefield.strength;
+        return forcefield.width;
     }
 
     @SuppressWarnings("NullableProblems")
@@ -34,10 +33,10 @@ public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield,
     @Override
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number) {
-            Number strength = (Number) delta[0];
-            Forcefield field = getExpr().getSingle(event);
-            if (field != null){
-                field.setStrength(strength.doubleValue());
+            Number width = (Number) delta[0];
+            Forcefield forcefield = getExpr().getSingle(event);
+            if (forcefield != null){
+                forcefield.setWidth(width.doubleValue());
             }
         }
     }
@@ -51,6 +50,6 @@ public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield,
     @Override
     @NotNull
     protected String getPropertyName() {
-        return "forcefield strength";
+        return "citizen forcefield width";
     }
 }

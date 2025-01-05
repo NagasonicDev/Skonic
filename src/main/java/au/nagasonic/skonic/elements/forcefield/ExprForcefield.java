@@ -1,7 +1,5 @@
-package au.nagasonic.skonic.elements.citizens.expressions;
+package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
-import au.nagasonic.skonic.elements.citizens.events.CitizenForcefieldCreateEvent;
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
 import ch.njol.skript.doc.Description;

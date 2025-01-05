@@ -1,6 +1,6 @@
-package au.nagasonic.skonic.elements.citizens.events;
+package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
+import au.nagasonic.skonic.elements.forcefield.Forcefield;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

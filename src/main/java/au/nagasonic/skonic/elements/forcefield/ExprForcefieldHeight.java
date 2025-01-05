@@ -1,6 +1,5 @@
-package au.nagasonic.skonic.elements.citizens.expressions;
+package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
@@ -9,18 +8,18 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Citizen Forcefield Width")
-@Description("The width of a Citizen NPC's forcefield.")
+@Name("Citizen Forcefield Height")
+@Description("The height of a forcefield.")
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Examples("broadcast npc forcefield width of npc with id 3")
-public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Number> {
+@Examples("set npc with id 2's npc forcefield height to 3")
+public class ExprForcefieldHeight extends SimplePropertyExpression<Forcefield, Number> {
     static {
-        registerDefault(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
+        registerDefault(ExprForcefieldHeight.class, Number.class, "forcefield height", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(Forcefield forcefield) {
-        return forcefield.width;
+        return forcefield.height;
     }
 
     @SuppressWarnings("NullableProblems")
@@ -34,10 +33,10 @@ public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Nu
     @Override
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number) {
-            Number width = (Number) delta[0];
-            Forcefield forcefield = getExpr().getSingle(event);
-            if (forcefield != null){
-                forcefield.setWidth(width.doubleValue());
+            Number height = (Number) delta[0];
+            Forcefield field = getExpr().getSingle(event);
+            if (field != null){
+                field.setHeight(height.doubleValue());
             }
         }
     }
@@ -51,6 +50,6 @@ public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Nu
     @Override
     @NotNull
     protected String getPropertyName() {
-        return "citizen forcefield width";
+        return "forcefield height";
     }
 }

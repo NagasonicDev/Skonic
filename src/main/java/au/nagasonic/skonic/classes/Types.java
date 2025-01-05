@@ -1,7 +1,6 @@
 package au.nagasonic.skonic.classes;
 
-import au.nagasonic.skonic.elements.citizens.Forcefield;
-import au.nagasonic.skonic.elements.citizens.events.CitizenForcefieldCreateEvent;
+import au.nagasonic.skonic.elements.forcefield.Forcefield;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;

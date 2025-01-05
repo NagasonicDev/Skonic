@@ -1,4 +1,4 @@
-package au.nagasonic.skonic.elements.citizens;
+package au.nagasonic.skonic.elements.forcefield;
 
 import com.google.gson.JsonObject;
 import net.citizensnpcs.api.npc.NPC;
