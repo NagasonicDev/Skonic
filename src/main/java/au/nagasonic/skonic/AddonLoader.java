@@ -92,9 +92,7 @@ public class AddonLoader {
 
     private void loadForcefieldElements() {
         Version skriptVersion = Skript.getVersion();
-        if (skriptVersion.isSmallerThan(new Version(2, 10, 0))){
-            Util.logLoading("&6Citizen Forcefield elements have been disabled: &cOutdated Skript Version: Requires at least 2.10.0");
-        }else{
+        if (skriptVersion.isLargerThan(new Version(2, 9, 5))){
             try {
                 this.addon.loadClasses("au.nagasonic.skonic.elements.forcefield");
                 Util.logLoading("&6Citizen Forcefield elements &ahave successfully loaded");
@@ -103,6 +101,9 @@ public class AddonLoader {
                 throw new RuntimeException(e);
             }
             loadForcefieldClass();
+
+        }else{
+            Util.logLoading("&6Citizen Forcefield elements have been disabled: &cOutdated Skript Version: Requires at least 2.10.0");
         }
 
     }
