@@ -6,7 +6,7 @@ types:
     npcdespawnreason: npc despawn reason¦s @an
     skin: skin¦s @a
     npcentitypose: npc entity pose¦s @an
-    npcforcefield: npc forcefield¦s @a
+    npcforcefield: npc forcefield¦s @an
 
 npcspawnreasons:
     chunk_load: chunk load

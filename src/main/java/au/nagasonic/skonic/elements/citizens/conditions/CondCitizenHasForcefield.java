@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +11,11 @@ import net.citizensnpcs.trait.ForcefieldTrait;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Has Forcefield")
+@Description("Whether a Citizens NPC has a forcefield.")
+@Since("1.2.1-b1")
+@Examples("")
+@RequiredPlugins("Citizens")
 public class CondCitizenHasForcefield extends Condition {
     static {
         Skript.registerCondition(CondCitizenHasForcefield.class,

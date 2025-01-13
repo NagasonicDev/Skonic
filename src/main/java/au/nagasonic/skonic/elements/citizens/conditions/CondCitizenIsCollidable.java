@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +11,11 @@ import net.citizensnpcs.api.npc.NPC.Metadata;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Is Collidable")
+@Description("Whether a Citizens NPC is collidable. By entities or fluids.")
+@Examples("")
+@Since("1.2.1-b1")
+@RequiredPlugins("Citizens")
 public class CondCitizenIsCollidable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsCollidable.class,

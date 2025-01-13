@@ -3,6 +3,7 @@ package au.nagasonic.skonic.elements.util;
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.util.Version;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -38,7 +39,7 @@ public class UpdateChecker implements Listener {
 
                 Bukkit.getScheduler().runTaskLater(UpdateChecker.this.plugin, () -> getUpdateVersion(true).thenApply(version -> {
                     Util.sendColMsg(player, "&7[&9Skonic&7] Update available: &a" + version);
-                    Util.sendColMsg(player, "&7[&9Skonic&7] Download at &bhttps://github.com/NagasonicDev/Skonic/releases");
+                    Util.sendColMsg(player, "&7[&9Skonic&7] Download at &bhttps://modrinth.com/plugin/skonic/versions");
                     return true;
                 }), 30);
             }
@@ -51,7 +52,7 @@ public class UpdateChecker implements Listener {
             Util.logLoading("&cPlugin is not up to date!");
             Util.logLoading(" - Current version: &cv%s", this.pluginVersion);
             Util.logLoading(" - Available update: &av%s", version);
-            Util.logLoading(" - Download available at: https://github.com/NagasonicDev/Skonic/releases");
+            Util.logLoading(" - Download available at: https://modrinth.com/plugin/skonic/versions");
             return true;
         }).exceptionally(throwable -> {
             Util.logLoading("&aPlugin is up to date!");
@@ -81,12 +82,12 @@ public class UpdateChecker implements Listener {
         CompletableFuture<Version> future = new CompletableFuture<>();
         if (async) {
             Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
-                Version lastest = getLastestVersionFromGitHub();
+                Version lastest = getLastestVersionFromModrinth();
                 if (lastest == null) future.cancel(true);
                 future.complete(lastest);
             });
         } else {
-            Version latest = getLastestVersionFromGitHub();
+            Version latest = getLastestVersionFromModrinth();
             if (latest == null) future.cancel(true);
             future.complete(latest);
         }
@@ -94,12 +95,13 @@ public class UpdateChecker implements Listener {
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    private @Nullable Version getLastestVersionFromGitHub() {
+    private @Nullable Version getLastestVersionFromModrinth() {
         try {
-            URL url = new URL("https://api.github.com/repos/NagasonicDev/Skonic/releases/latest");
+            URL url = new URL("https://api.modrinth.com/v3/project/Skonic/version");
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            JsonObject jsonObject = new Gson().fromJson(reader, JsonObject.class);
-            String tag_name = jsonObject.get("tag_name").getAsString();
+            JsonArray jsonArray = new Gson().fromJson(reader, JsonArray.class);
+            JsonObject jsonObject = jsonArray.get(0).getAsJsonObject();
+            String tag_name = jsonObject.get("version_number").getAsString();
             return new Version(tag_name);
         } catch (IOException e) {
             e.printStackTrace();

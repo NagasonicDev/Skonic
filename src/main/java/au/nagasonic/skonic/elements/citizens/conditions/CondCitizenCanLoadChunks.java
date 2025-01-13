@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -9,6 +10,11 @@ import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Can Load Chunks")
+@Description("Whether a Citizens NPC can load chunks.")
+@Since("1.2.1-b1")
+@Examples("")
+@RequiredPlugins("Citizens")
 public class CondCitizenCanLoadChunks extends Condition {
     static {
         Skript.registerCondition(CondCitizenCanLoadChunks.class,

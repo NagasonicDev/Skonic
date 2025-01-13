@@ -10,7 +10,7 @@ import ch.njol.skript.registrations.Classes;
 public class ForcefieldType {
     static {
         Classes.registerClass(new ClassInfo<>(Forcefield.class, "npcforcefield")
-                .user("npcforcefield?")
+                .user("npc ?forcefield?")
                 .name("Citizen Forcefield")
                 .description("Represesnts a Citizens Forcefield")
                 .examples("set {_force} to forcefield with 5 width with 3 height")

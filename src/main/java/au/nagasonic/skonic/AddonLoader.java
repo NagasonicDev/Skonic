@@ -110,7 +110,7 @@ public class AddonLoader {
 
     private void loadForcefieldClass() {
         try {
-            this.addon.loadClasses("au.nagasonic.skonic.classes.forccefield");
+            this.addon.loadClasses("au.nagasonic.skonic.classes.forcefield");
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
