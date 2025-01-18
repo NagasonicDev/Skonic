@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Forcefield Vertical Strength")
 @Description("The vertical strength of a Citizen NPC's forcefield.")
-@Since("1.2.1")
+@Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples("set citizen forcefield vertical strength of all npcs to 10")
 public class ExprForcefieldVertStrength extends SimplePropertyExpression<Forcefield, Number> {

@@ -19,7 +19,7 @@ import java.util.List;
 
 @Name("Forcefield - Create")
 @Description("Expression to create a Citizens Forcefield. Default values are 1.")
-@Since("1.2.1")
+@Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 public class ExprForcefield extends SectionExpression<Forcefield> {
     static {

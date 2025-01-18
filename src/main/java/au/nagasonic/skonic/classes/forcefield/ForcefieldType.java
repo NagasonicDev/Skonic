@@ -10,12 +10,12 @@ import ch.njol.skript.registrations.Classes;
 public class ForcefieldType {
     static {
         Classes.registerClass(new ClassInfo<>(Forcefield.class, "npcforcefield")
-                .user("npc ?forcefield?")
+                .user("npc ?forcefields?")
                 .name("Citizen Forcefield")
                 .description("Represesnts a Citizens Forcefield")
                 .examples("set {_force} to forcefield with 5 width with 3 height")
                 .requiredPlugins("Citizens")
-                .since("1.2.1")
+                .since("1.2.1-b1")
                 .defaultExpression(new EventValueExpression<>(Forcefield.class))
                 .parser(new Parser<Forcefield>() {
                     @SuppressWarnings("NullableProblems")

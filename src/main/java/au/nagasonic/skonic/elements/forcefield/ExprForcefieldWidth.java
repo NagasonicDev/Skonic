@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Forcefield Width")
 @Description("The width of a Citizen NPC's forcefield.")
-@Since("1.2.1")
+@Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples("broadcast npc forcefield width of npc with id 3")
 public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Number> {

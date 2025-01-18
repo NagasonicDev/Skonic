@@ -32,7 +32,7 @@ public class SkinUtils {
                 HttpURLConnection con = (HttpURLConnection)target.openConnection();
                 con.setRequestMethod("POST");
                 con.setDoOutput(true);
-                con.setRequestProperty("User-Agent", "Skonic/1.0");
+                con.setRequestProperty("User-Agent", "Skonic/" + Skonic.getInstance().getDescription().getVersion());
                 con.setRequestProperty("Cache-Control", "no-cache");
                 con.setRequestProperty("Accept", "application/json");
                 con.setRequestProperty("Content-Type", "application/json");

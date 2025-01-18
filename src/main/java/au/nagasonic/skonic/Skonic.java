@@ -3,6 +3,7 @@ package au.nagasonic.skonic;
 import au.nagasonic.skonic.elements.util.UpdateChecker;
 import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -14,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class Skonic extends JavaPlugin {
-    static final int[] EARLIEST_VERSION = new int[]{1, 19};
+    static final int[] EARLIEST_VERSION = new int[]{1, 19, 4};
     private static Skonic instance;
     private static Logger logger;
     public static String path;

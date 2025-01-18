@@ -62,8 +62,7 @@ public class Skin {
             URL url = new URL(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             JsonObject textures = new JsonParser().parse(reader).getAsJsonObject().get("properties").getAsJsonArray().get(0).getAsJsonObject();
-            return fromJson(textures)
-                    ;
+            return fromJson(textures);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

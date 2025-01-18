@@ -5,8 +5,8 @@ plugins {
 }
 
 group = 'au.nagasonic'
+version = "1.2.1"
 
-version = "1.2.1-b3"
 def latestJava = 21
 def oldestJava = 17
 
@@ -26,7 +26,7 @@ repositories {
         url = "https://maven.citizensnpcs.co/repo"
     }
     maven {
-        url 'https://repo.skriptlang.org/releases'
+        url = 'https://repo.skriptlang.org/releases'
     }
     maven {
         url = uri("https://repo.papermc.io/repository/maven-public/")
@@ -36,10 +36,8 @@ repositories {
 dependencies {
     //Citizens
     implementation "net.citizensnpcs:citizens-main:2.0.37-SNAPSHOT"
-    //JSON
-    implementation group: 'org.json', name: 'json', version: '20090211'
     //Skript
-    implementation 'com.github.SkriptLang:Skript:2.10.0-pre1'
+    implementation "com.github.SkriptLang:Skript:2.10.0-pre1"
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO

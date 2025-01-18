@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Forcefield")
 @Description("Creates a forcefield around the NPCs with the specified width, height, strength and vertical strength.")
-@Since("1.2.1")
+@Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples({"make all npcs have a forcefield with 10 width and 5 height and with 6 strength and 6 vert strength",
 "wait 1 minute",

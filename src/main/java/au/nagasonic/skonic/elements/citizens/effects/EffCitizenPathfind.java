@@ -7,9 +7,13 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
+import org.bukkit.event.world.LootGenerateEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
@@ -23,7 +27,7 @@ import java.util.logging.Level;
 public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
-                "make %npcs% pathfind to %location%");
+                "make (citizen|npc) %npcs% pathfind to[wards] %location%");
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;
@@ -37,7 +41,7 @@ public class EffCitizenPathfind extends Effect {
                     npc.getNavigator().setTarget(loc);
                 }else Skonic.log(Level.SEVERE, "NPC cannot be null");
             }
-        }
+        }else Skonic.log(Level.SEVERE, "Location or NPCS cannot be null.");
     }
 
     @Override

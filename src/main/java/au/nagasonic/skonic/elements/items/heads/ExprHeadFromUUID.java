@@ -38,7 +38,7 @@ public class ExprHeadFromUUID extends SimpleExpression<ItemStack> {
     @SuppressWarnings("NullableProblems")
     @Override
     protected @Nullable ItemStack[] get(Event event) {
-        UUID uuid = UUID.fromString(this.uuid.getSingle(event));
+        String uuid = this.uuid.getSingle(event);
         if (uuid != null) {
             ItemStack item = HeadUtils.headFromUuid(uuid);
             if (item != null){

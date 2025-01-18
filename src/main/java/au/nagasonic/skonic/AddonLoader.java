@@ -57,6 +57,7 @@ public class AddonLoader {
         int[] elementCountBefore = Util.getElementCount();
         loadCitizenElements();
         loadHeadElements();
+        loadOtherItemElements();
         loadSkinElements();
         loadOtherClasses();
         int[] elementCountAfter = Util.getElementCount();
@@ -134,6 +135,16 @@ public class AddonLoader {
             throw new RuntimeException(e);
         }
     }
+
+    private void loadOtherItemElements(){
+        try {
+            this.addon.loadClasses("au.nagasonic.skonic.elements.items.other");
+            Util.logLoading("&6Other Item elements &ahave successfully loaded");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private void loadSkinElements(){
         try {

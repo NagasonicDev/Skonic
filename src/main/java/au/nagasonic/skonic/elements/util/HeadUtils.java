@@ -1,16 +1,23 @@
 package au.nagasonic.skonic.elements.util;
 
 import au.nagasonic.skonic.Skonic;
+import au.nagasonic.skonic.elements.skins.Skin;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.profile.PlayerProfile;
 import org.bukkit.profile.PlayerTextures;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
@@ -29,27 +36,33 @@ public class HeadUtils {
     public static ItemStack headWithName(ItemStack item, String name) {
         notNull(item, "item");
         notNull(name, "name");
-        SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwningPlayer(Bukkit.getOfflinePlayer(name));
-        item.setItemMeta(meta);
-        return item;
+        URL url = null;
+        try {
+            url = new URL("https://api.mojang.com/users/profiles/minecraft/" + name);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            JsonObject object = new Gson().fromJson(reader, JsonObject.class);
+            String id = object.get("id").getAsString();
+            Skin skin = Skin.fromURL("https://sessionserver.mojang.com/session/minecraft/profile/" + id + "?unsigned=false");
+            return headFromBase64(skin.value);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static ItemStack headFromUuid(UUID id) {
+    public static ItemStack headFromUuid(String id) {
         ItemStack item = getPlayerSkullItem();
 
         return headWithUuid(item, id);
     }
 
-    public static ItemStack headWithUuid(ItemStack item, UUID id) {
+    public static ItemStack headWithUuid(ItemStack item, String id) {
         notNull(item, "item");
         notNull(id, "id");
 
-        SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwningPlayer(Bukkit.getOfflinePlayer(id));
-        item.setItemMeta(meta);
-
-        return item;
+        Skin skin = Skin.fromURL("https://sessionserver.mojang.com/session/minecraft/profile/" + id + "?unsigned=false");
+        return headFromBase64(skin.value);
     }
 
     public static ItemStack headFromUrl(String url) {

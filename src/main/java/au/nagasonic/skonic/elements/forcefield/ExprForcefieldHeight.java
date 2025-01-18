@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Forcefield Height")
 @Description("The height of a forcefield.")
-@Since("1.2.1")
+@Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples("set npc with id 2's npc forcefield height to 3")
 public class ExprForcefieldHeight extends SimplePropertyExpression<Forcefield, Number> {
