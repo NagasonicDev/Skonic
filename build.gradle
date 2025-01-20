@@ -37,7 +37,7 @@ dependencies {
     //Citizens
     implementation "net.citizensnpcs:citizens-main:2.0.37-SNAPSHOT"
     //Skript
-    implementation "com.github.SkriptLang:Skript:2.10.0-pre1"
+    implementation "com.github.SkriptLang:Skript:2.10.0"
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO

@@ -3,7 +3,9 @@ package au.nagasonic.skonic.elements.items.other;
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
@@ -23,10 +25,12 @@ import java.util.Iterator;
 
 @Name("Smelted Form")
 @Description({"Returns the smelted form of an itemtype.", "If it cannot be smelted, it will return the same itemtype."})
+@Since("1.2.1")
+@Examples("give player the smelted form of raw iron")
 public class ExprSmelted extends SimplePropertyExpression<ItemType, ItemType> {
     static {
         Skript.registerExpression(ExprSmelted.class, ItemType.class, ExpressionType.PROPERTY,
-                "smelt[ed] [(result|form) of] %itemtypes%",
+                "[the] smelt[ed] [(result|form) of] %itemtypes%",
                 "%itemtypes%'[s] smelted [(result|form)]",
                 "%itemtypes% smelted");
     }

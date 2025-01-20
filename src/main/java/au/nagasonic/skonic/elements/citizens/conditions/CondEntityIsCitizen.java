@@ -4,6 +4,8 @@ import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.RequiredPlugins;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -16,6 +18,8 @@ import java.util.logging.Level;
 
 @Name("Entity Is a Citizen")
 @Description("Whether an entity is a Citizens NPC.")
+@Since("1.2.1-b2")
+@RequiredPlugins("Citizens")
 public class CondEntityIsCitizen extends Condition {
     static {
         Skript.registerCondition(CondEntityIsCitizen.class,
