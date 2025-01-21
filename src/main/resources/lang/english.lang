@@ -7,6 +7,7 @@ types:
     skin: skin¦s @a
     npcentitypose: npc entity pose¦s @an
     npcforcefield: npc forcefield¦s @an
+    chatcolor: chat color, chat colour, chat colours, chat colors
 
 npcspawnreasons:
     chunk_load: chunk load
@@ -44,3 +45,20 @@ npcentityposes:
     standing: standing
     swimming: swimming
     using_tongue: using tongue
+
+chatcolors:
+    aqua: aqua
+    black: black
+    blue: blue
+    dark_aqua: dark aqua
+    dark_blue: dark blue
+    dark_gray: dark gray
+    dark_green: dark green
+    dark_purple: dark purple
+    dark_red: dark red
+    gold: gold
+    gray: gray
+    green: green
+    light_purple: light purple
+    red: red
+    white: white

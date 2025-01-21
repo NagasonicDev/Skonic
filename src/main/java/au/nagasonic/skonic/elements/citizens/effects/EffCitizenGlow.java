@@ -39,6 +39,6 @@ public class EffCitizenGlow extends Effect {
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         this.npcsExpr = (Expression<NPC>) exprs[0];
         this.not = !parseResult.hasTag("stop");
-        return false;
+        return true;
     }
 }

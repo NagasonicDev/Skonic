@@ -5,6 +5,11 @@ import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.util.EnumUtils;
+import net.citizensnpcs.api.event.SpawnReason;
+import net.citizensnpcs.trait.EntityPoseTrait;
+import org.bukkit.ChatColor;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings({"unused", "deprecation"})
 public class Types {
@@ -29,6 +34,31 @@ public class Types {
                     @Override
                     public String toVariableNameString(Skin skin) {
                         return "skin: " + skin.toString();
+                    }
+                }));
+
+        EnumUtils<ChatColor> CHAT_COLOR_ENUM = new EnumUtils<>(ChatColor.class, "chatcolors");
+        Classes.registerClass(new ClassInfo<>(ChatColor.class, "chatcolor")
+                .user("chat ?colou?rs?")
+                .name("Chat Color")
+                .description("Represents a Chat Color, different from Skript's Color class.")
+                .usage(CHAT_COLOR_ENUM.getAllNames())
+                .examples("dark gray")
+                .since("1.2.2")
+                .parser(new Parser<ChatColor>() {
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public @Nullable ChatColor parse(String s, ParseContext context) {
+                        return CHAT_COLOR_ENUM.parse(s);
+                    }
+                    @Override
+                    public String toString(ChatColor o, int flags) {
+                        return CHAT_COLOR_ENUM.toString(o, flags);
+                    }
+
+                    @Override
+                    public String toVariableNameString(ChatColor o) {
+                        return "chat color: " + toString(o, 0);
                     }
                 }));
 
