@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.expressions;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
@@ -10,6 +11,11 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Glow Color")
+@Description("The glow color of a Citizens NPC, in the Chat Color class.")
+@Since("1.2.2")
+@RequiredPlugins("Citizens")
+@Examples("set the npc glow colour of all citizens to red")
 public class ExprCitizenGlowColor extends SimplePropertyExpression<NPC, ChatColor> {
     static {
         register(ExprCitizenGlowColor.class, ChatColor.class, "(citizen|npc) glow colo[u]r", "npcs");

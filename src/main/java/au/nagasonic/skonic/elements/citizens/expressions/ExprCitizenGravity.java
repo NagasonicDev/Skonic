@@ -1,16 +1,21 @@
 package au.nagasonic.skonic.elements.citizens.expressions;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.BoundingBoxTrait;
 import net.citizensnpcs.trait.Gravity;
-import net.citizensnpcs.trait.ScoreboardTrait;
-import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Gravity")
+@Description("Whether the Citizens NPC is affected by gravity")
+@RequiredPlugins("Citizens")
+@Since("1.2.2")
+@Examples("set the npc gravity of all npcs to true")
 public class ExprCitizenGravity extends SimplePropertyExpression<NPC, Boolean> {
     static {
         register(ExprCitizenGravity.class, Boolean.class, "(citizen|npc) gravity", "npcs");
