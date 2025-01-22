@@ -1,19 +1,18 @@
 package au.nagasonic.skonic.elements.forcefield;
 
-import au.nagasonic.skonic.elements.forcefield.Forcefield;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 public class CitizenForcefieldCreateEvent extends Event {
 
-    private final Forcefield forcefield;
+    private final NPCForcefield forcefield;
 
-    public CitizenForcefieldCreateEvent(Forcefield forcefield){
+    public CitizenForcefieldCreateEvent(NPCForcefield forcefield){
         this.forcefield = forcefield;
     }
 
-    public Forcefield getForcefield(){
+    public NPCForcefield getForcefield(){
         return forcefield;
     }
     @Override

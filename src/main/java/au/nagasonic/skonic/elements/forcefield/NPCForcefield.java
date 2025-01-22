@@ -4,10 +4,10 @@ import com.google.gson.JsonObject;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.ForcefieldTrait;
 
-public class Forcefield {
-    public double width,strength,height,vertStrength;
+public class NPCForcefield {
+    private double width,strength,height,vertStrength;
 
-    public Forcefield(double width, double height, double strength, double vertStrength){
+    public NPCForcefield(double width, double height, double strength, double vertStrength){
         this.width = width;
         this.height = height;
         this.strength = strength;
@@ -32,17 +32,25 @@ public class Forcefield {
         this.width = width;
     }
 
+    public double getWidth() { return this.width; }
+
     public void setHeight(double height) {
         this.height = height;
     }
+
+    public double getHeight() { return this.height; }
 
     public void setStrength(double strength){
         this.strength = strength;
     }
 
+    public double getStrength() { return this.strength; }
+
     public void setVertStrength(double vertStrength){
         this.vertStrength = vertStrength;
     }
+
+    public double getVertStrength() { return this.vertStrength; }
 
     public void setForcefield(NPC npc){
         ForcefieldTrait trait = npc.getOrAddTrait(ForcefieldTrait.class);

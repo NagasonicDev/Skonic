@@ -26,7 +26,7 @@ public class EffCitizenForcefield extends Effect {
                 "remove %npcs%['s] forcefield");
     }
     private Expression<NPC> npcExpr;
-    private Expression<Forcefield> forcefieldExpr;
+    private Expression<NPCForcefield> forcefieldExpr;
     private int pattern;
 
     @Override
@@ -36,7 +36,7 @@ public class EffCitizenForcefield extends Effect {
             for (NPC npc : npcs){
                 if (npc != null){
                     if (pattern == 0){
-                        Forcefield forcefield = this.forcefieldExpr.getSingle(event);
+                        NPCForcefield forcefield = this.forcefieldExpr.getSingle(event);
                         if (forcefield != null){
                             forcefield.setForcefield(npc);
                         }
@@ -58,7 +58,7 @@ public class EffCitizenForcefield extends Effect {
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         this.npcExpr = (Expression<NPC>) exprs[0];
         if (matchedPattern == 0){
-            this.forcefieldExpr = (Expression<Forcefield>) exprs[1];
+            this.forcefieldExpr = (Expression<NPCForcefield>) exprs[1];
         }
         this.pattern = matchedPattern;
         return true;

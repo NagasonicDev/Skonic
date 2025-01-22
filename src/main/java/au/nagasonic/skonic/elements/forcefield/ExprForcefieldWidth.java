@@ -13,13 +13,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples("broadcast npc forcefield width of npc with id 3")
-public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Number> {
+public class ExprForcefieldWidth extends SimplePropertyExpression<NPCForcefield, Number> {
     static {
         registerDefault(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
     }
     @Override
-    public @Nullable Number convert(Forcefield forcefield) {
-        return forcefield.width;
+    public @Nullable Number convert(NPCForcefield forcefield) {
+        return forcefield.getWidth();
     }
 
     @SuppressWarnings("NullableProblems")
@@ -34,7 +34,7 @@ public class ExprForcefieldWidth extends SimplePropertyExpression<Forcefield, Nu
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number) {
             Number width = (Number) delta[0];
-            Forcefield forcefield = getExpr().getSingle(event);
+            NPCForcefield forcefield = getExpr().getSingle(event);
             if (forcefield != null){
                 forcefield.setWidth(width.doubleValue());
             }

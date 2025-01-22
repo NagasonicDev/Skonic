@@ -21,11 +21,11 @@ import java.util.List;
 @Description("Expression to create a Citizens Forcefield. Default values are 1.")
 @Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
-public class ExprForcefield extends SectionExpression<Forcefield> {
+public class ExprForcefield extends SectionExpression<NPCForcefield> {
     static {
-        Skript.registerExpression(ExprForcefield.class, Forcefield.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprForcefield.class, NPCForcefield.class, ExpressionType.COMBINED,
                 "[a] forcefield [w:with width %number%] [h:with height %number%] [s:with strength %number%] [v:with vertical strength %number%]");
-        EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, Forcefield.class, CitizenForcefieldCreateEvent::getForcefield);
+        EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, NPCForcefield.class, CitizenForcefieldCreateEvent::getForcefield);
     }
     private Trigger trigger;
     private Expression<Number> widthExpr;
@@ -46,8 +46,8 @@ public class ExprForcefield extends SectionExpression<Forcefield> {
     }
 
     @Override
-    protected Forcefield @Nullable [] get(Event event) {
-        Forcefield forcefield = new Forcefield(
+    protected NPCForcefield @Nullable [] get(Event event) {
+        NPCForcefield forcefield = new NPCForcefield(
                 this.widthExpr.getSingle(event).doubleValue(),
                 this.heightExpr.getSingle(event).doubleValue(),
                 this.strengthExpr.getSingle(event).doubleValue(),
@@ -59,7 +59,7 @@ public class ExprForcefield extends SectionExpression<Forcefield> {
                     TriggerItem.walk(trigger, createEvent)
             );
         }
-        return new Forcefield[]{forcefield};
+        return new NPCForcefield[]{forcefield};
     }
 
     @Override
@@ -68,8 +68,8 @@ public class ExprForcefield extends SectionExpression<Forcefield> {
     }
 
     @Override
-    public Class<? extends Forcefield> getReturnType() {
-        return Forcefield.class;
+    public Class<? extends NPCForcefield> getReturnType() {
+        return NPCForcefield.class;
     }
 
     @Override

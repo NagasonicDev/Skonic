@@ -13,13 +13,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 @Examples("set forcefield strength of {_forcefield} to 4")
-public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield, Number> {
+public class ExprForcefieldStrength extends SimplePropertyExpression<NPCForcefield, Number> {
     static {
         registerDefault(ExprForcefieldStrength.class, Number.class, " forcefield strength", "npcforcefield");
     }
     @Override
-    public @Nullable Number convert(Forcefield forcefield) {
-        return forcefield.strength;
+    public @Nullable Number convert(NPCForcefield forcefield) {
+        return forcefield.getStrength();
     }
 
     @SuppressWarnings("NullableProblems")
@@ -34,7 +34,7 @@ public class ExprForcefieldStrength extends SimplePropertyExpression<Forcefield,
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number) {
             Number strength = (Number) delta[0];
-            Forcefield field = getExpr().getSingle(event);
+            NPCForcefield field = getExpr().getSingle(event);
             if (field != null){
                 field.setStrength(strength.doubleValue());
             }
