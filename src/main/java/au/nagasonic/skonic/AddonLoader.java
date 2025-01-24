@@ -84,8 +84,9 @@ public class AddonLoader {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-            loadCitizenClasses();
+            loadOtherCitizenClasses();
             loadForcefieldElements();
+            loadHitboxElements();
         }else{
             Util.logLoading("&6Citizen elements have been disabled: &cMissing Citizen Plugin");
         }
@@ -111,16 +112,41 @@ public class AddonLoader {
 
     private void loadForcefieldClass() {
         try {
-            this.addon.loadClasses("au.nagasonic.skonic.classes.forcefield");
+            this.addon.loadClasses("au.nagasonic.skonic.classes.citizens.forcefield");
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    private void loadCitizenClasses() {
+    private void loadHitboxElements() {
+        Version skriptVersion = Skript.getVersion();
+        if (skriptVersion.isLargerThan(new Version(2, 9, 5))) {
+            try {
+                this.addon.loadClasses("au.nagasonic.skonic.elements.hitbox");
+                Util.logLoading("&6Citizen Forcefield elements &ahave successfully loaded");
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+            loadHitboxClass();
+        }else {
+            Util.logLoading("&6Citizen Forcefield elements have been disabled: &cOutdated Skript Version: Requires at least 2.10.0");
+        }
+    }
+
+    private void loadHitboxClass() {
         try {
-            this.addon.loadClasses("au.nagasonic.skonic.classes.citizens");
+            this.addon.loadClasses("au.nagasonic.skonic.classes.citizens.hitbox");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadOtherCitizenClasses() {
+        try {
+            this.addon.loadClasses("au.nagasonic.skonic.classes.citizens.other");
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
