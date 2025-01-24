@@ -1,4 +1,4 @@
-package au.nagasonic.skonic.classes.forcefield;
+package au.nagasonic.skonic.classes.citizens.forcefield;
 
 import au.nagasonic.skonic.elements.forcefield.NPCForcefield;
 import ch.njol.skript.classes.ClassInfo;

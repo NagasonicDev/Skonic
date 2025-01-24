@@ -1,4 +1,4 @@
-package au.nagasonic.skonic.classes.citizens;
+package au.nagasonic.skonic.classes.citizens.other;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.classes.ClassInfo;
