@@ -20,7 +20,8 @@ public class CondCitizenIsAggressive extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsAggressive.class,
                 "%npcs% (is|are) aggressive",
-                "%npcs% (is(n't| not)|are(n't| not)) aggressive");
+                "%npcs% (is(n't| not)|are(n't| not)) aggressive",
+                "%npcs% (is|are) passive");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

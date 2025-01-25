@@ -8,6 +8,7 @@ test "citizen is aggressive":
     make {_npc::2} aggressive
     assert {_npc::1} and {_npc::2} are aggressive with "was wrong"
     make {_npc::1} passive
-    assert {_npc::1} and {_npc::2} are aggressive with "was wrong"
+    assert {_npc::1} and {_npc::2} are aggressive to fail with "was wrong"
+    assert {_npc::1} and {_npc::2} aren't aggressive to fail with "was wrong"
     make {_npc::2} passive
     assert {_npc::1} and {_npc::2} are not aggressive with "was wrong"
