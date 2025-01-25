@@ -33,9 +33,9 @@ public class CondCitizenIsCollidable extends Condition {
             if (npcs == null) return false;
             Metadata metadata = f == true ? Metadata.FLUID_PUSHABLE: Metadata.COLLIDABLE;
             if (pattern == 0){
-                if (npc.data().has(metadata) == false) return false;
+                if (npc.data().get(metadata, false) == false) return false;
             }else{
-                if (npc.data().has(metadata) == true) return false;
+                if (npc.data().get(metadata, true) == true) return false;
             }
         }
         return true;

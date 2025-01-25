@@ -30,9 +30,9 @@ public class CondCitizenCanLoadChunks extends Condition {
             for (NPC npc : npcs){
                 if (npc != null){
                     if (pattern == 0){
-                        if (npc.data().has(NPC.Metadata.KEEP_CHUNK_LOADED) == false) return false;
+                        if (npc.data().get(NPC.Metadata.KEEP_CHUNK_LOADED, false) == false) return false;
                     }else{
-                        if (npc.data().has(NPC.Metadata.KEEP_CHUNK_LOADED) == true) return false;
+                        if (npc.data().get(NPC.Metadata.KEEP_CHUNK_LOADED, false) == true) return false;
                     }
                 }
             }

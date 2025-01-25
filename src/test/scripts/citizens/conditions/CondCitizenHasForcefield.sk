@@ -2,10 +2,10 @@ test "citizen has forcefield":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
     set {_force} to forcefield:
-        width: 2
-        height: 2
-        strength: 1
-        vertical strength: 1
+        forcefield width: 2
+        forcefield height: 2
+        forcefield strength: 1
+        forcefield vertical strength: 1
     make {_npc::1} have {_force}
     assert {_npc::1} has forcefield with "was wrong"
     spawn citizen named "test2" at spawn of world "world"

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples("set forcefield strength of {_forcefield} to 4")
 public class ExprForcefieldStrength extends SimplePropertyExpression<NPCForcefield, Number> {
     static {
-        registerDefault(ExprForcefieldStrength.class, Number.class, " forcefield strength", "npcforcefield");
+        registerDefault(ExprForcefieldStrength.class, Number.class, "forcefield strength", "npcforcefield");
     }
     @Override
     public @Nullable Number convert(NPCForcefield forcefield) {
