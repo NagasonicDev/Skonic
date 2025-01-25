@@ -12,3 +12,4 @@ test "citizen is aggressive":
     assert {_npc::1} and {_npc::2} aren't aggressive to fail with "was wrong"
     make {_npc::2} passive
     assert {_npc::1} and {_npc::2} are not aggressive with "was wrong"
+    delete all citizens

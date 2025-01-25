@@ -15,30 +15,32 @@ import java.util.logging.Level;
 
 @Name("Delete Citizen")
 @Description("Destroy a citizen by id.")
-@Since("1.0.0")
+@Since("1.0.0, 1.2.2 (Multiple)")
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
 public class EffDeleteCitizen extends Effect {
     static {
         Skript.registerEffect(EffDeleteCitizen.class,
-                "delete %npc%");
+                "delete %npcs%");
     }
 
     private Expression<NPC> npcExpr;
 
     @Override
     protected void execute(Event e) {
-        NPC npc = npcExpr.getSingle(e);
-        if (npc != null){
-            if (npc.getOwningRegistry() != null){
-                npc.destroy();
-            }else Skonic.log(Level.SEVERE, "The citizen has no Owning Registry");
-        }else Skonic.log(Level.SEVERE, "There is no citizen " + npc.toString());
+        NPC[] npcs = npcExpr.getArray(e);
+        if (npcs != null){
+            for (NPC npc : npcs) {
+                if (npc.getOwningRegistry() != null){
+                    npc.destroy();
+                }else Skonic.log(Level.SEVERE, "The citizen has no Owning Registry");
+            }
+        }else Skonic.log(Level.SEVERE, "There is no citizen " + npcs.toString());
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "delete citizen " + npcExpr.toString(e, debug);
+        return "delete citizens " + npcExpr.toString(e, debug);
     }
 
     @Override
