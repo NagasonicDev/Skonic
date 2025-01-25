@@ -28,16 +28,18 @@ public class CondCitizenIsAggressive extends Condition {
     @Override
     public boolean check(Event e) {
         NPC[] npcs = npcExpr.getArray(e);
-        for (NPC npc : npcs){
-            if (npc != null){
-                if (pattern == 0){
-                    if (npc.data().get(NPC.Metadata.AGGRESSIVE, false) == false) return false;
-                    return true;
-                }else{
-                    if (npc.data().get(NPC.Metadata.AGGRESSIVE, true) == true) return false;
-                    return true;
+        if (npcs != null){
+            for (NPC npc : npcs){
+                if (npc != null){
+                    if (pattern == 0){
+                        if (npc.data().get(NPC.Metadata.AGGRESSIVE, false) == false) return false;
+                    }else{
+                        if (npc.data().get(NPC.Metadata.AGGRESSIVE, true) == true) return false;
+
+                    }
                 }
             }
+            return true;
         }
         return false;
     }
