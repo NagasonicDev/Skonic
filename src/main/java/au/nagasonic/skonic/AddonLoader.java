@@ -124,7 +124,7 @@ public class AddonLoader {
         if (skriptVersion.isLargerThan(new Version(2, 9, 5))) {
             try {
                 this.addon.loadClasses("au.nagasonic.skonic.elements.hitbox");
-                Util.logLoading("&6Citizen Forcefield elements &ahave successfully loaded");
+                Util.logLoading("&6Citizen Hitbox elements &ahave successfully loaded");
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
