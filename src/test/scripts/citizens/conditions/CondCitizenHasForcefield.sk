@@ -5,7 +5,6 @@ test "citizen has forcefield":
         forcefield width: 2
         forcefield height: 2
         forcefield strength: 1
-        forcefield vertical strength: 1
     make {_npc::1} have {_force}
     assert {_npc::1} has forcefield with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
