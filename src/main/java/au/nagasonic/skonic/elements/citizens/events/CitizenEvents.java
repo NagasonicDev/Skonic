@@ -37,7 +37,6 @@ public class CitizenEvents extends SimpleEvent {
                 .since("1.1")
                 .requiredPlugins("Citizens")
                 .examples("on citizen right click:", "\tsend \"You right clicked %event-npc%\" to event-player");
-
         Skript.registerEvent("Citizen Create", CitizenEvents.class, NPCCreateEvent.class,
                         "(citizen|npc) create")
                 .description("Called when a Citizens NPC is created by the server or an external service (Such as this plugin).")

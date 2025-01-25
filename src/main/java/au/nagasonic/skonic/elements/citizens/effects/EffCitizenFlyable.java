@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public class EffCitizenFlyable extends Effect {
     static {
         Skript.registerEffect(EffCitizenFlyable.class,
-                "make %npc% [not:not |un]flyable");
+                "make %npc% [not:not |not:un]flyable");
     }
     private Expression<NPC> npcExpr;
     private boolean not;

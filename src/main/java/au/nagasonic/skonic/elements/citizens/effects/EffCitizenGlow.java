@@ -20,8 +20,8 @@ import org.jetbrains.annotations.Nullable;
 public class EffCitizenGlow extends Effect {
     static {
         Skript.registerEffect(EffCitizenGlow.class,
-                "make %npcs% (start|:stop) glowing [c:with colo[u]r %chatcolor%]",
-                "(start|:stop) %npcs% [from] glowing [c:with colo[u]r %chatcolor%]");
+                "make %npcs% (start|:stop) glowing [c:[with colo[u]r] %chatcolor%]",
+                "(start|:stop) %npcs% [from] glowing [c:[with colo[u]r] %chatcolor%]");
     }
     private Expression<NPC> npcsExpr;
     private Expression<ChatColor> colorExpr;
