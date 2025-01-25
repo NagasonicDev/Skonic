@@ -24,7 +24,7 @@ public class CondEntityIsCitizen extends Condition {
     static {
         Skript.registerCondition(CondEntityIsCitizen.class,
                 "%livingentities% (is|are) [a[n]] (citizen|npc)[s]",
-                "%livingentities% (is(n't| not)|are(n't|not)) [a[n]]");
+                "%livingentities% (is(n't| not)|are(n't|not)) [a[n]] (citizen|npc)[s]");
     }
     private Expression<LivingEntity> entitiesExpr;
     private int pattern;

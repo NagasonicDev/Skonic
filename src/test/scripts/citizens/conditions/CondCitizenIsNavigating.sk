@@ -1,0 +1,15 @@
+test "citizen is navigating":
+    spawn citizen named "test1" at spawn of world "world"
+    set {_npc::1} to last spawned citizen
+    make npc {_npc::1} pathfind to the location (100, 100, 100) in world "world"
+    assert {_npc::1} is navigating with "was wrong"
+    spawn citizen named "test2" at spawn of world "world"
+    set {_npc::2} to last spawned citizen
+    make npc {_npc::1} pathfind to the location (100, 100, 100) in world "world"
+    assert {_npc::1} and {_npc::2} are navigating with "was wrong"
+    pause {_npc::1}
+    assert {_npc::1} and {_npc::2} are navigating to fail with "was wrong"
+    assert {_npc::1} and {_npc::2} aren't navigating to fail with "was wrong"
+    pause {_npc::2}
+    assert {_npc::1} and {_npc::2} are not navigating with "was wrong"
+    delete all citizens

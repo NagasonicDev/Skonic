@@ -1,0 +1,10 @@
+test "entity is a citizen":
+    spawn a zombie at spawn of world "world"
+    set {_zom} to last spawned entity
+    assert {_zom} is a citizen to fail with "was wrong"
+    spawn citizen named "test1" at spawn of world "world"
+    set {_npc::1} to last spawned citizen
+    assert {_zom} and {_npc::1} are citizens to fail with "was wrong"
+    assert {_npc::1} is an npc with "was wrong"
+    kill {_zom}
+    delete all citizens

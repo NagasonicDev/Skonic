@@ -8,6 +8,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.trait.TargetableTrait;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,7 +23,9 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 public class CondCitizenIsVulnerable extends Condition {
     static {
-        Skript.registerCondition(CondCitizenIsVulnerable.class, "%npc% is vulnerable", "%npc% is protected");
+        Skript.registerCondition(CondCitizenIsVulnerable.class,
+                "%npcs% (is|are) vulnerable",
+                "%npcs% (is|are) protected");
     }
     private Expression<NPC> npcExpr;
     private int pattern;
@@ -32,15 +35,20 @@ public class CondCitizenIsVulnerable extends Condition {
             Skonic.log(Level.SEVERE, "NPC is null");
             return false;
         }
-        NPC npc = npcExpr.getSingle(event);
-
-        if (npc == null) {
-            Skonic.log(Level.SEVERE, "NPC is null");
-            return false;
+        NPC[] npcs = npcExpr.getArray(event);
+        if (npcs != null) {
+            for (NPC npc : npcs) {
+                if (npc != null){
+                    if (pattern == 0) {
+                        if (!npc.isProtected() == false) return false;
+                    } else {
+                        if (!npc.isProtected() == true) return false;
+                    }
+                }
+            }
+            return true;
         }
-        if (pattern == 0){
-            return !npc.isProtected();
-        }else{ return npc.isProtected(); }
+        return false;
     }
 
     @Override
