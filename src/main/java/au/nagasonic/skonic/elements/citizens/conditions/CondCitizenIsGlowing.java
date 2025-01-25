@@ -14,31 +14,21 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsGlowing extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsGlowing.class,
-                "%npcs% (is|are) glowing [%-chatcolor%]",
-                "%npcs% (is(n't| not)|are(n't| not)) glowing [%-chatcolor%]");
+                "%npcs% (is|are) glowing",
+                "%npcs% (is(n't| not)|are(n't| not)) glowing");
     }
     private Expression<NPC> npcExpr;
-    private Expression<ChatColor> colorExpr;
     private int pattern;
     @Override
     public boolean check(Event event) {
         NPC[] npcs = npcExpr.getArray(event);
         if (npcs != null){
-            ChatColor color = colorExpr.getSingle(event);
             for (NPC npc : npcs){
                 if (npc != null){
-                    if (color != null){
-                        if (pattern == 0){
-                            if (npc.data().get(NPC.Metadata.GLOWING, false) == false || npc.getOrAddTrait(ScoreboardTrait.class).getColor() != color) return false;
-                        }else{
-                            if (npc.data().get(NPC.Metadata.GLOWING, true) == true || npc.getOrAddTrait(ScoreboardTrait.class).getColor() == color) return false;
-                        }
-                    }else {
-                        if (pattern == 0){
-                            if (npc.data().get(NPC.Metadata.GLOWING, false) == false) return false;
-                        }else{
-                            if (npc.data().get(NPC.Metadata.GLOWING, true) == true) return false;
-                        }
+                    if (pattern == 0){
+                        if (npc.data().get(NPC.Metadata.GLOWING, false) == false) return false;
+                    }else{
+                        if (npc.data().get(NPC.Metadata.GLOWING, true) == true) return false;
                     }
                 }
             }
@@ -56,7 +46,6 @@ public class CondCitizenIsGlowing extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         this.npcExpr = (Expression<NPC>) exprs[0];
-        this.colorExpr = (Expression<ChatColor>) exprs[1];
         this.pattern = matchedPattern;
         return true;
     }
