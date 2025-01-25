@@ -41,7 +41,7 @@ public class Types {
         Classes.registerClass(new ClassInfo<>(ChatColor.class, "chatcolor")
                 .user("chat ?colou?rs?")
                 .name("Chat Color")
-                .description("Represents a Chat Color, different from Skript's Color class.")
+                .description("Represents a Chat Color, different from Skript's Color class.", "Although not a Citizens type, the only current use is in the Citizen Glow effect.")
                 .usage(CHAT_COLOR_ENUM.getAllNames())
                 .examples("dark gray")
                 .since("1.2.2")

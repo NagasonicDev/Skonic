@@ -1,0 +1,31 @@
+test "citizen is glowing":
+    spawn citizen named "test1" at spawn of world "world"
+    set {_npc::1} to last spawned citizen
+    make {_npc::1} start glowing
+    assert {_npc::1} is glowing with "was wrong"
+    spawn citizen named "test2" at spawn of world "world"
+    set {_npc::2} to last spawned citizen
+    make {_npc::2} start glowing
+    assert {_npc::1} and {_npc::2} are glowing with "was wrong"
+    make {_npc::1} stop glowing
+    assert {_npc::1} and {_npc::2} are glowing to fail with "was wrong"
+    assert {_npc::1} and {_npc::2} aren't glowing to fail with "was wrong"
+    make {_npc::2} stop glowing
+    assert {_npc::1} and {_npc::2} are not glowing with "was wrong"
+    delete all citizens
+
+test "citizen is glowing color":
+    spawn citizen named "test1" at spawn of world "world"
+    set {_npc::1} to last spawned citizen
+    make {_npc::1} start glowing red
+    assert {_npc::1} is glowing red with "was wrong"
+    spawn citizen named "test2" at spawn of world "world"
+    set {_npc::2} to last spawned citizen
+    make {_npc::2} start glowing red
+    assert {_npc::1} and {_npc::2} are glowing red with "was wrong"
+    make {_npc::1} stop glowing
+    assert {_npc::1} and {_npc::2} are glowing red to fail with "was wrong"
+    assert {_npc::1} and {_npc::2} aren't glowing red to fail with "was wrong"
+    make {_npc::2} stop glowing
+    assert {_npc::1} and {_npc::2} are not glowing red with "was wrong"
+    delete all citizens
