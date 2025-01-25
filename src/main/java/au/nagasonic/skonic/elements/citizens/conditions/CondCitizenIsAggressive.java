@@ -31,10 +31,10 @@ public class CondCitizenIsAggressive extends Condition {
         for (NPC npc : npcs){
             if (npc != null){
                 if (pattern == 0){
-                    if (npc.data().has(NPC.Metadata.AGGRESSIVE) == false) return false;
+                    if (npc.data().get(NPC.Metadata.AGGRESSIVE, false) == false) return false;
                     return true;
                 }else{
-                    if (npc.data().has(NPC.Metadata.AGGRESSIVE) == true) return false;
+                    if (npc.data().get(NPC.Metadata.AGGRESSIVE, true) == true) return false;
                     return true;
                 }
             }
