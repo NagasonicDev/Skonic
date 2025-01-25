@@ -35,13 +35,12 @@ public class CondCitizenIsPaused extends Condition {
                     for (NPC npc : npcs) {
                         if (npc.getNavigator().isPaused() ==  false) return false;
                     }
-                    return true;
                 }else{
                     for (NPC npc : npcs) {
                         if (npc.getNavigator().isPaused() ==  true) return false;
                     }
-                    return true;
                 }
+                return true;
             }else Skonic.log(Level.SEVERE, "No npcs were specified.");
         }else Skonic.log(Level.SEVERE, "No npcs were specified.");
         return false;

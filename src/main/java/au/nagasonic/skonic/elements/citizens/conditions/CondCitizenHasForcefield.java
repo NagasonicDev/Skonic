@@ -32,13 +32,12 @@ public class CondCitizenHasForcefield extends Condition {
                 if (npc != null){
                     if (pattern == 0){
                         if (npc.hasTrait(ForcefieldTrait.class) == false) return false;
-                        return true;
                     }else{
                         if (npc.hasTrait(ForcefieldTrait.class) == true) return false;
-                        return true;
                     }
                 }
             }
+            return true;
         }
         return false;
     }

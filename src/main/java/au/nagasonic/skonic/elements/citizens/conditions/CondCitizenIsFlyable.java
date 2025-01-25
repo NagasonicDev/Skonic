@@ -31,13 +31,12 @@ public class CondCitizenIsFlyable extends Condition {
                 if (npc != null){
                     if (pattern == 0){
                         if (npc.isFlyable() == false) return false;
-                        return true;
                     }else{
                         if (npc.isFlyable() == true) return false;
-                        return true;
                     }
                 }
             }
+            return true;
         }
         return false;
     }

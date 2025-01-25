@@ -25,13 +25,12 @@ public class CondCitizenIsGlowing extends Condition {
                 if (npc != null){
                     if (pattern == 0){
                         if (npc.data().has(NPC.Metadata.GLOWING) == false) return false;
-                        return true;
                     }else{
                         if (npc.data().has(NPC.Metadata.GLOWING) == true) return false;
-                        return true;
                     }
                 }
             }
+            return true;
         }
         return false;
     }

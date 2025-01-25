@@ -27,16 +27,17 @@ public class CondCitizenIsNavigating extends Condition {
     @Override
     public boolean check(Event e) {
         NPC[] npcs = npcExpr.getArray(e);
-        for (NPC npc : npcs){
-            if (npc != null){
-                if (pattern == 0){
-                    if (npc.getNavigator().isNavigating() == false) return false;
-                    return true;
-                }else{
-                    if (npc.getNavigator().isNavigating() == true) return false;
-                    return true;
+        if (npcs != null) {
+            for (NPC npc : npcs) {
+                if (npc != null) {
+                    if (pattern == 0) {
+                        if (npc.getNavigator().isNavigating() == false) return false;
+                    } else {
+                        if (npc.getNavigator().isNavigating() == true) return false;
+                    }
                 }
             }
+            return true;
         }
         return false;
     }

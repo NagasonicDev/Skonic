@@ -34,13 +34,20 @@ public class CondCitizenIsTargetable extends Condition {
             Skonic.log(Level.SEVERE, "NPC is null");
             return false;
         }
-        NPC npc = npcExpr.getSingle(event);
-        if (npc == null) {
-            Skonic.log(Level.SEVERE, "NPC is null");
-            return false;
+        NPC[] npcs = npcExpr.getArray(event);
+        if (npcs != null) {
+            for (NPC npc : npcs) {
+                if (npc != null){
+                    if (pattern == 0) {
+                        if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == false) return false;
+                    } else {
+                        if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true) return false;
+                    }
+                }
+            }
+            return true;
         }
-        boolean targetable = npc.getOrAddTrait(TargetableTrait.class).isTargetable();
-        return targetable;
+        return false;
     }
 
     @Override

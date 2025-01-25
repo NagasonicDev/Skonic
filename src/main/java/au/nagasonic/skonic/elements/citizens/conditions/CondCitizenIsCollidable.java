@@ -34,13 +34,11 @@ public class CondCitizenIsCollidable extends Condition {
             Metadata metadata = f == true ? Metadata.FLUID_PUSHABLE: Metadata.COLLIDABLE;
             if (pattern == 0){
                 if (npc.data().has(metadata) == false) return false;
-                return true;
             }else{
                 if (npc.data().has(metadata) == true) return false;
-                return true;
             }
         }
-        return false;
+        return true;
     }
 
     @Override

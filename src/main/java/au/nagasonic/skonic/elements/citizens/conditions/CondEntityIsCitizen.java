@@ -43,13 +43,12 @@ public class CondEntityIsCitizen extends Condition {
             for (LivingEntity entity : entities) {
                 if (entity.hasMetadata("NPC") == false) return false;
             }
-            return true;
         }else{
             for (LivingEntity entity : entities) {
                 if (entity.hasMetadata("NPC") == true) return false;
             }
-            return true;
         }
+        return true;
     }
 
     @Override
