@@ -10,6 +10,6 @@ test "citizen is paused":
     make npc {_npc::1} pathfind to the location 20 blocks north of {_npc::1}
     assert {_npc::1} and {_npc::2} are paused to fail with "was wrong"
     assert {_npc::1} and {_npc::2} aren't paused to fail with "was wrong"
-    make npc {_npc::1} pathfind to the location 20 blocks north of {_npc::2}
+    make npc {_npc::2} pathfind to the location 20 blocks north of {_npc::2}
     assert {_npc::1} and {_npc::2} are not paused with "was wrong"
     delete all citizens

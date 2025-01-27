@@ -11,5 +11,5 @@ test "citizen is targetable":
     assert {_npc::1} and {_npc::2} are targetable to fail with "was wrong"
     assert {_npc::1} and {_npc::2} aren't targetable to fail with "was wrong"
     make {_npc::2} not targetable
-    assert {_npc::1} and {_npc::2} aren't targetable with "was wrong"
+    assert {_npc::1} and {_npc::2} are not targetable with "was wrong"
     delete all citizens
