@@ -28,7 +28,7 @@ import java.util.logging.Level;
 public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
-                "make (citizen|npc) %npcs% pathfind to[wards] %direction% %location% [s:in [a] straight line]");
+                "make (citizen|npc) %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;
@@ -55,8 +55,7 @@ public class EffCitizenPathfind extends Effect {
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
-        locExpr = Direction.combine((Expression<? extends Direction>) exprs[1],
-                (Expression<? extends Location>) exprs[2]);
+        locExpr = (Expression<Location>) exprs[1];
         this.s = parseResult.hasTag("s");
         return true;
     }

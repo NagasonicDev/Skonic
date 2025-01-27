@@ -18,20 +18,25 @@ import org.jetbrains.annotations.Nullable;
 public class EffCitizenVulnerable extends Effect {
     static {
         Skript.registerEffect(EffCitizenVulnerable.class,
-                "make %npcs% [not:in]vulnerable",
-                "make %npcs% [not:un]protected");
+                "make (citizen|npc) %npcs% [not:in]vulnerable",
+                "make (citizen|npc) %npcs% [not:un]protected");
     }
     private Expression<NPC> npcsExpr;
     private int pattern;
-    private ParseResult parseResult;
-    private boolean protect;
+    private boolean not;
     @Override
     protected void execute(Event event) {
         if (npcsExpr != null){
             NPC[] npcs = npcsExpr.getArray(event);
             if (npcs != null){
                 for (NPC npc : npcs){
-                    npc.setProtected(protect);
+                    if (npc != null){
+                        if (pattern == 0){
+                            npc.setProtected(not);
+                        }else{
+                            npc.setProtected(!not);
+                        }
+                    }
                 }
             }
         }
@@ -40,10 +45,10 @@ public class EffCitizenVulnerable extends Effect {
     @Override
     public String toString(@Nullable Event event, boolean debug) {
         if (pattern == 0){
-            return "make "+ npcsExpr.toString(event, debug) + (protect ? " invulnerable" : " vulnerable");
+            return "make "+ npcsExpr.toString(event, debug) + (not ? " invulnerable" : " vulnerable");
 
         }else{
-            return "make "+ npcsExpr.toString(event, debug) + (protect ? " protected" : " unprotected");
+            return "make "+ npcsExpr.toString(event, debug) + (not ? " protected" : " unprotected");
         }
     }
 
@@ -51,8 +56,7 @@ public class EffCitizenVulnerable extends Effect {
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
         npcsExpr = (Expression<NPC>) exprs[0];
         pattern = matchedPattern;
-        this.parseResult = parseResult;
-        protect = matchedPattern == 0 ^ parseResult.hasTag("not");
+        not = parseResult.hasTag("not");
         return true;
     }
 }
