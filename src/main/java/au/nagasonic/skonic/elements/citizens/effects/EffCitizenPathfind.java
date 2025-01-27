@@ -23,7 +23,7 @@ import java.util.logging.Level;
 @Description("Makes the citizen attempt to pathfind to the given location." +
         "If that location is linked to an entity, it will not move with the entity.")
 @RequiredPlugins("Citizens")
-@Since("1.0.7")
+@Since("1.0.7, 1.2.2-b1 (straight line)")
 @Examples("make all npcs pathfind to player")
 public class EffCitizenPathfind extends Effect {
     static {
