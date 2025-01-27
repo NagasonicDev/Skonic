@@ -25,8 +25,8 @@ import java.util.logging.Level;
 public class EffCitizenTargetable extends Effect {
     static {
         Skript.registerEffect(EffCitizenTargetable.class,
-                "make %npc% [[able to] be] target(ed|able) [t:temporarily]",
-                "make %npc% not [[able to] be] target(ed|able) [t:temporarily]");
+                "make (citizen|npc) %npc% [[able to] be] target(ed|able) [t:temporarily]",
+                "make (citizen|npc) %npc% not [[able to] be] target(ed|able) [t:temporarily]");
     }
     private int pattern;
     private Expression<NPC> npcExpr;
