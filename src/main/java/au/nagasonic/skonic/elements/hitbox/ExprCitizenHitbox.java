@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.hitbox;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import net.citizensnpcs.api.npc.NPC;
@@ -8,7 +9,15 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Hitbox")
+@Description("The hitbox of a Citizens NPC")
+@Examples("set {_box} to hitbox of npc with id 3")
+@Since("1.2.2-b1")
+@RequiredPlugins("Citizens")
 public class ExprCitizenHitbox extends SimplePropertyExpression<NPC, NPCHitbox> {
+    static {
+        register(ExprCitizenHitbox.class, NPCHitbox.class, "(citizen|npc) hitbox", "npc");
+    }
     @Override
     public @Nullable NPCHitbox convert(NPC npc) {
         return NPCHitbox.fromNPC(npc);

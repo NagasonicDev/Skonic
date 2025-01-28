@@ -44,7 +44,7 @@ public class Types {
                 .description("Represents a Chat Color, different from Skript's Color class.", "Although not a Citizens type, the only current use is in the Citizen Glow effect.")
                 .usage(CHAT_COLOR_ENUM.getAllNames())
                 .examples("dark gray")
-                .since("1.2.2")
+                .since("1.2.2-b1")
                 .parser(new Parser<ChatColor>() {
                     @SuppressWarnings("NullableProblems")
                     @Override

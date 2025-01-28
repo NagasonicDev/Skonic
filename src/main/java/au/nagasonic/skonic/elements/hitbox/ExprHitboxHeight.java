@@ -1,12 +1,18 @@
 package au.nagasonic.skonic.elements.hitbox;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Hitbox Height")
+@Description("The height of a Citizen hitbox.")
+@Examples("set hitbox height of {_box} to 3")
+@Since("1.2.2-b1")
+@RequiredPlugins("Citizens")
 public class ExprHitboxHeight extends SimplePropertyExpression<NPCHitbox, Number> {
     static {
         registerDefault(ExprHitboxHeight.class, Number.class, "hitbox height", "npchitbox");

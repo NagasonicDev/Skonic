@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Glow Color")
 @Description("The glow color of a Citizens NPC, in the Chat Color class.")
-@Since("1.2.2")
+@Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
 @Examples("set the npc glow colour of all citizens to red")
 public class ExprCitizenGlowColor extends SimplePropertyExpression<NPC, ChatColor> {

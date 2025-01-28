@@ -1,12 +1,18 @@
 package au.nagasonic.skonic.elements.hitbox;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Hitbox Width")
+@Description("The width of a Citizen Hitbox.")
+@Since("1.2.2-b1")
+@Examples("set hitbox width of {_hitbox} to 5")
+@RequiredPlugins("Citizens")
 public class ExprHitboxWidth extends SimplePropertyExpression<NPCHitbox, Number> {
     static {
         registerDefault(ExprHitboxWidth.class, Number.class, "hitbox width", "npchitbox");

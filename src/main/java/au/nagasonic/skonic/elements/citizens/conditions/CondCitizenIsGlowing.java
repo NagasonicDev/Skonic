@@ -1,16 +1,20 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.ScoreboardTrait;
-import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Is Glowing")
+@Description("Checks whether a Citizens NPC is glowing.")
+@Since("1.2.2-b1")
+@Examples({"if {_npc} is glowing:", "\tbroadcast npc glow colour of {_npc}"})
+@RequiredPlugins("Citizens")
 public class CondCitizenIsGlowing extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsGlowing.class,

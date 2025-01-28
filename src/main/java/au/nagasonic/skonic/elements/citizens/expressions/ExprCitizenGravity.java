@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Citizen Gravity")
 @Description("Whether the Citizens NPC is affected by gravity")
 @RequiredPlugins("Citizens")
-@Since("1.2.2")
+@Since("1.2.2-b1")
 @Examples("set the npc gravity of all npcs to true")
 public class ExprCitizenGravity extends SimplePropertyExpression<NPC, Boolean> {
     static {

@@ -15,7 +15,7 @@ public class HitboxType {
                 .description("Represesnts a Citizens Hitbox")
                 .examples("set {_force} to hitbox with scale 4 with height 2 with width 1")
                 .requiredPlugins("Citizens")
-                .since("1.2.2")
+                .since("1.2.2-b1")
                 .defaultExpression(new EventValueExpression<>(NPCHitbox.class))
                 .parser(new Parser<NPCHitbox>() {
                     @SuppressWarnings("NullableProblems")

@@ -4,6 +4,7 @@ import au.nagasonic.skonic.elements.forcefield.ExprForcefield;
 import au.nagasonic.skonic.elements.forcefield.NPCForcefield;
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SectionExpression;
 import ch.njol.skript.lang.*;
 import ch.njol.skript.registrations.EventValues;
@@ -14,10 +15,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@Name("Hitbox With")
+@Description({"A Citizen Hitbox with the given components.", "Scale is a multiplier for the hitbox. For example, if the width was 1 and the height was 2, then if the scale was 2, the hitbox's effective dimenstions would be 2 width and 4 height.", "Default values are:", "- Scale: 1", "- Width: 1", "- Height: 2"})
+@Since("1.2.2-b1")
+@Examples({"set {_hitbox} to a hitbox with scale 1, width 2 and height 4", "", "set {_box} to a hitbox:", "\tset hitbox scale to 1", "\tset hitbox width to 1", "\tset hitbox height to 2"})
+@RequiredPlugins("Citizens")
 public class ExprHitbox extends SectionExpression<NPCHitbox> {
     static {
         Skript.registerExpression(ExprForcefield.class, NPCForcefield.class, ExpressionType.COMBINED,
-                "[a] hitbox [with scale %number%] [with width %number%] [with height %number%]");
+                "[a] hitbox [with scale %number%[,| and]] [[with] width %number%[,| and]] [[with] height %number%]");
         EventValues.registerEventValue(CitizenHitboxCreateEvent.class, NPCHitbox.class, CitizenHitboxCreateEvent::getHitbox);
     }
     private Trigger trigger;
@@ -41,9 +47,9 @@ public class ExprHitbox extends SectionExpression<NPCHitbox> {
     @Override
     protected NPCHitbox @Nullable [] get(Event event) {
         NPCHitbox hitbox = new NPCHitbox(
-                this.scaleExpr.getSingle(event).floatValue(),
-                this.widthExpr.getSingle(event).floatValue(),
-                this.heightExpr.getSingle(event).floatValue()
+                this.scaleExpr.getSingle(event) == null ? 1 : this.scaleExpr.getSingle(event).floatValue(),
+                this.widthExpr.getSingle(event) == null ? 1 : this.widthExpr.getSingle(event).floatValue(),
+                this.heightExpr.getSingle(event) == null ? 2 : this.heightExpr.getSingle(event).floatValue()
         );
         if (trigger != null){
             CitizenHitboxCreateEvent createEvent = new CitizenHitboxCreateEvent(hitbox);

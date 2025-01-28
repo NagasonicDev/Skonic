@@ -20,7 +20,7 @@ import java.util.logging.Level;
 @Name("Make Citizen Targetable")
 @Description({"Make a citizen targetable to other mobs.", "Or you can stop this process."})
 @Examples({"make npc with id 2 targetable", "make npc with id 3 not targetable"})
-@Since("1.2, INSERT VERSION (temporary)")
+@Since("1.2, 1.2.2-b1 (temporary)")
 @RequiredPlugins("Citizens")
 public class EffCitizenTargetable extends Effect {
     static {

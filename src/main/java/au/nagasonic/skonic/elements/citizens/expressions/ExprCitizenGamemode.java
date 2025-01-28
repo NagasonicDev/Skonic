@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Gamemode")
 @Description("The gamemode of a Citizens NPC. Only applicable if the Citizen's entity type is a Player.")
-@Since("1.2.2")
+@Since("1.2.2-b1")
 @Examples("set gamemode of npc with id 3 to creative")
 @RequiredPlugins("Citizens")
 public class ExprCitizenGamemode extends SimplePropertyExpression<NPC, GameMode> {

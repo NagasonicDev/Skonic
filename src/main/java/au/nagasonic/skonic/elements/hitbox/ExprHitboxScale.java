@@ -1,12 +1,18 @@
 package au.nagasonic.skonic.elements.hitbox;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Citizen Hitbox Scale")
+@Description("The scale/multiplier of a Citizen Hitbox.")
+@Since("1.2.2-b1")
+@Examples({"set {_box} to a hitbox:", "\tset hitbox width to 1", "\tset hitbox height to 2", "set hitbox scale of {_box} to 2   #Effective size becomes width: 2, height: 4"})
+@RequiredPlugins("Citizens")
 public class ExprHitboxScale extends SimplePropertyExpression<NPCHitbox, Number> {
     static {
         registerDefault(ExprHitboxScale.class, Number.class, "hitbox scale", "npchitbox");

@@ -15,7 +15,7 @@ import java.util.logging.Level;
 
 @Name("Delete Citizen")
 @Description("Destroy a citizen by id.")
-@Since("1.0.0, 1.2.2 (Multiple)")
+@Since("1.0.0, 1.2.2-b1 (multiple)")
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
 public class EffDeleteCitizen extends Effect {

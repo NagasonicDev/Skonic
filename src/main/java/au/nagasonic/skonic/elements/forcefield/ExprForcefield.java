@@ -2,10 +2,7 @@ package au.nagasonic.skonic.elements.forcefield;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
-import ch.njol.skript.doc.Description;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.doc.RequiredPlugins;
-import ch.njol.skript.doc.Since;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SectionExpression;
 import ch.njol.skript.lang.*;
 import ch.njol.skript.registrations.EventValues;
@@ -20,11 +17,12 @@ import java.util.List;
 @Name("Forcefield - Create")
 @Description("Expression to create a Citizens Forcefield. Default values are 1.")
 @Since("1.2.1-b1")
+@Examples({"set {_force} to forcefield:", "\tset forcefield width to 3", "\tset forcefield height to 4", "\tset forcefield strength to 1", "\tset forcefield vertical strength to 2", "", "set {_field} to a forcefield with width 2"})
 @RequiredPlugins("Citizens")
 public class ExprForcefield extends SectionExpression<NPCForcefield> {
     static {
         Skript.registerExpression(ExprForcefield.class, NPCForcefield.class, ExpressionType.COMBINED,
-                "[a] forcefield [w:with width %number%] [h:with height %number%] [s:with strength %number%] [v:with vertical strength %number%]");
+                "[a] forcefield [with width %number%[,| and]] [[with] height %number%[,| and]] [[with] strength %number%[,| and]] [[with] vertical strength %number%]");
         EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, NPCForcefield.class, CitizenForcefieldCreateEvent::getForcefield);
     }
     private Trigger trigger;
@@ -48,10 +46,10 @@ public class ExprForcefield extends SectionExpression<NPCForcefield> {
     @Override
     protected NPCForcefield @Nullable [] get(Event event) {
         NPCForcefield forcefield = new NPCForcefield(
-                this.widthExpr.getSingle(event).doubleValue(),
-                this.heightExpr.getSingle(event).doubleValue(),
-                this.strengthExpr.getSingle(event).doubleValue(),
-                this.vertStrengthExpr.getSingle(event).doubleValue()
+                this.widthExpr.getSingle(event) == null ? 1 : this.widthExpr.getSingle(event).doubleValue(),
+                this.heightExpr.getSingle(event) == null ? 1 : this.heightExpr.getSingle(event).doubleValue(),
+                this.strengthExpr.getSingle(event) == null ? 1 : this.strengthExpr.getSingle(event).doubleValue(),
+                this.vertStrengthExpr.getSingle(event) == null ? 1 : this.vertStrengthExpr.getSingle(event).doubleValue()
         );
         if (trigger != null){
             CitizenForcefieldCreateEvent createEvent = new CitizenForcefieldCreateEvent(forcefield);
