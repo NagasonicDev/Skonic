@@ -28,7 +28,7 @@ public class Types {
                     }
                     @Override
                     public String toString(Skin skin, int flags) {
-                        return "skin with value " + skin.value + " and signature " + skin.signature;
+                        return "skin with value " + skin.getTexture() + " and signature " + skin.getSignature();
                     }
 
                     @Override

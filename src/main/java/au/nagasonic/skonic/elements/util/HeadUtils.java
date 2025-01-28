@@ -43,7 +43,7 @@ public class HeadUtils {
             JsonObject object = new Gson().fromJson(reader, JsonObject.class);
             String id = object.get("id").getAsString();
             Skin skin = Skin.fromURL("https://sessionserver.mojang.com/session/minecraft/profile/" + id + "?unsigned=false");
-            return headFromBase64(skin.value);
+            return headFromBase64(skin.getTexture());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -62,7 +62,7 @@ public class HeadUtils {
         notNull(id, "id");
 
         Skin skin = Skin.fromURL("https://sessionserver.mojang.com/session/minecraft/profile/" + id + "?unsigned=false");
-        return headFromBase64(skin.value);
+        return headFromBase64(skin.getTexture());
     }
 
     public static ItemStack headFromUrl(String url) {
