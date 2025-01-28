@@ -1,0 +1,21 @@
+test "make citizen collidable":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    make {_npc} collidable
+    assert {_npc} is collidable with "was wrong"
+    assert {_npc} is not collidable to fail with "was wrong"
+    make {_npc} not collidable
+    assert {_npc} is not collidable with "was wrong"
+    assert {_npc} is collidable to fail with "was wrong"
+    delete all citizens
+
+test "make citizen collidable by fluids":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    make {_npc} collidable by fluids
+    assert {_npc} is collidable by fluids with "was wrong"
+    assert {_npc} is not collidable by fluids to fail with "was wrong"
+    make {_npc} not collidable by fluids
+    assert {_npc} is not collidable by fluids with "was wrong"
+    assert {_npc} is collidable by fluids to fail with "was wrong"
+    delete all citizens

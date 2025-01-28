@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsCollidable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsCollidable.class,
-                "%npcs% (is|are) (collidable|pushable) [f:by fluids]",
-                "%npcs% (are(n't| not)|is(n't| not)) (collidable|pushable) [f:by fluids]");
+                "%npcs% (is|are) (collidable|pushable) [f:(with|by) fluids]",
+                "%npcs% (are(n't| not)|is(n't| not)) (collidable|pushable) [f:(with|by) fluids]");
     }
     private Expression<NPC> npcExpr;
     private boolean f;
