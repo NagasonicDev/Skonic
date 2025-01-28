@@ -40,12 +40,8 @@ public class CondCitizenIsTargetable extends Condition {
                 if (npc != null){
                     if (pattern == 0) {
                         if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == false) return false;
-                        String msg = npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true ? "is" : "not";
-                        Skonic.info(msg);
                     } else {
                         if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true) return false;
-                        String msg = npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true ? "is" : "not";
-                        Skonic.info(msg);
                     }
                 }
             }
