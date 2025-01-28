@@ -8,12 +8,8 @@ test "citizen is targetable":
     make npc {_npc::2} targetable
     assert {_npc::1} and {_npc::2} are targetable with "was wrong"
     make npc {_npc::1} not targetable
-    broadcast true if {_npc::1} is targetable
-    broadcast false if {_npc::1} is not targetable
     assert {_npc::1} and {_npc::2} are targetable to fail with "was wrong"
     assert {_npc::1} and {_npc::2} aren't targetable to fail with "was wrong"
     make npc {_npc::2} not targetable
-    broadcast true if {_npc::2} is targetable
-    broadcast false if {_npc::2} is not targetable
     assert {_npc::1} and {_npc::2} are not targetable with "was wrong"
     delete all citizens

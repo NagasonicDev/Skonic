@@ -40,8 +40,12 @@ public class CondCitizenIsTargetable extends Condition {
                 if (npc != null){
                     if (pattern == 0) {
                         if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == false) return false;
+                        String msg = npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true ? "is" : "not";
+                        Skonic.info(msg);
                     } else {
                         if (npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true) return false;
+                        String msg = npc.getOrAddTrait(TargetableTrait.class).isTargetable() == true ? "is" : "not";
+                        Skonic.info(msg);
                     }
                 }
             }
@@ -58,6 +62,7 @@ public class CondCitizenIsTargetable extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
+        pattern = i;
         return true;
     }
 }
