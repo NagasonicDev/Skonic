@@ -3,9 +3,5 @@ test "change citizen skin from skin":
     set {_npc} to last created citizen
     set {_skin} to skin from url "https://textures.minecraft.net/texture/e4af165698f313809f5e01bdf8863bc19e94aa8b863b936f8d33b59cdc9c57fb"
     change skin of {_npc} to {_skin}
-    assert npc skin of {_npc} is {_skin with "skin was not changed"
-    wait a tick
-    set {_notch} to skin from url "https://textures.minecraft.net/texture/2ff6d970b1b6243fe5a44c5ac540c320506987a5c55ba99a90f758b00d3e05a1"
-    change skin of {_npc} to {_skin}
     assert npc skin of {_npc} is {_skin} with "skin was not changed"
     delete all citizens

@@ -1,7 +1,5 @@
 package au.nagasonic.skonic.elements.hitbox;
 
-import au.nagasonic.skonic.elements.forcefield.ExprForcefield;
-import au.nagasonic.skonic.elements.forcefield.NPCForcefield;
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
 import ch.njol.skript.doc.*;
@@ -22,7 +20,7 @@ import java.util.List;
 @RequiredPlugins("Citizens")
 public class ExprHitbox extends SectionExpression<NPCHitbox> {
     static {
-        Skript.registerExpression(ExprForcefield.class, NPCForcefield.class, ExpressionType.COMBINED,
+        Skript.registerExpression(ExprHitbox.class, NPCHitbox.class, ExpressionType.COMBINED,
                 "[a] hitbox [with scale %number%[,| and]] [[with] width %number%[,| and]] [[with] height %number%]");
         EventValues.registerEventValue(CitizenHitboxCreateEvent.class, NPCHitbox.class, CitizenHitboxCreateEvent::getHitbox);
     }

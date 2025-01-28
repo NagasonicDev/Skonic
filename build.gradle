@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'au.nagasonic'
-version = "1.2.2"
+version = "1.2.2-b1"
 
 def latestJava = 21
 def oldestJava = 17

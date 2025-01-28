@@ -13,7 +13,7 @@ public class HitboxType {
                 .user("npc ?hitboxes?")
                 .name("Citizen Hitbox")
                 .description("Represesnts a Citizens Hitbox")
-                .examples("set {_force} to hitbox with scale 4 with height 2 with width 1")
+                .examples("set {_box} to hitbox with scale 4 with height 2 with width 1")
                 .requiredPlugins("Citizens")
                 .since("1.2.2-b1")
                 .defaultExpression(new EventValueExpression<>(NPCHitbox.class))
