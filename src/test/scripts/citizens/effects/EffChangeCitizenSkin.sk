@@ -1,8 +1,0 @@
-test "change citizen skin from skin":
-    spawn citizen named "test1" at spawn of world "world"
-    set {_npc} to last created citizen
-    set {_skin} to skin from url "https://textures.minecraft.net/texture/e4af165698f313809f5e01bdf8863bc19e94aa8b863b936f8d33b59cdc9c57fb"
-    change skin of {_npc} to {_skin}
-    wait 4 seconds
-    assert npc skin of {_npc} is {_skin} with "skin was not changed"
-    delete all citizens

@@ -1,0 +1,12 @@
+test "make citizen aggressive":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    assert {_npc} is not aggressive with "was wrong"
+    assert {_npc} is aggressive to fail with "was wrong"
+    make {_npc} aggressive
+    assert {_npc} is aggressive with "was wrong"
+    assert {_npc} is not aggressive to fail with "was wrong"
+    make {_npc} not aggressive
+    assert {_npc} is not aggressive with "was wrong"
+    assert {_npc} is aggressive to fail with "was wrong"
+    delete all citizens
