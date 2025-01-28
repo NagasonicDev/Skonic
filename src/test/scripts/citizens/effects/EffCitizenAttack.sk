@@ -1,0 +1,9 @@
+test "citizen attack":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    spawn villager at spawn of world "world"
+    set {_v} to last spawned entity
+    make npc {_npc} attack {_v}
+    assert npc target of {_npc} is {_v} with "was wrong"
+    delete {_npc}
+    kill {_v}
