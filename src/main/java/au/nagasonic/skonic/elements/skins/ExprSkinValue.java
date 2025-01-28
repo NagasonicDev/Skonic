@@ -21,7 +21,7 @@ public class ExprSkinValue extends SimplePropertyExpression<Skin, String> {
     @Override
     public @Nullable String convert(Skin skin) {
         if (skin != null){
-            return skin.value;
+            return skin.getTexture();
         }
         return null;
     }

@@ -36,7 +36,7 @@ public class EffDownloadPlayerSkin extends Effect {
             Skonic.log(Level.SEVERE, "The given skin is null, please retry.");
             return;
         }
-        String value = skin.value;
+        String value = skin.getTexture();
         if (value == null) {
             Skonic.log(Level.SEVERE, "The skin does not have a value, please check if the skin entered is correct.");
             return;

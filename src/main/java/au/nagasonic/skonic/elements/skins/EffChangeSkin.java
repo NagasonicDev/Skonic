@@ -34,7 +34,7 @@ public class EffChangeSkin extends Effect {
             if (player != null && skin != null){
                 PlayerProfile profile = player.getPlayerProfile();
                 Set<ProfileProperty> properties = profile.getProperties();
-                properties.add(new ProfileProperty("textures", skin.value, skin.signature));;
+                properties.add(new ProfileProperty("textures", skin.getTexture(), skin.getSignature()));;
                 player.setPlayerProfile(profile);
             }
         }

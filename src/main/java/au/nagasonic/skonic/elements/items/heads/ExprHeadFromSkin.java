@@ -34,7 +34,7 @@ public class ExprHeadFromSkin extends SimpleExpression<ItemStack> {
     protected @Nullable ItemStack[] get(Event e) {
         Skin skin = skinExpr.getSingle(e);
         if (skin != null){
-            String value = skin.value;
+            String value = skin.getTexture();
             if (value != null){
                 ItemStack item = HeadUtils.headFromBase64(value);
                 if (item != null){

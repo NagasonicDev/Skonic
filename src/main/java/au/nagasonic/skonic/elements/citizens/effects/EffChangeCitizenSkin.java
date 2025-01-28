@@ -45,11 +45,11 @@ public class EffChangeCitizenSkin extends Effect {
             }
             Skin skin = skinExpr.getSingle(e);
             if (skin != null){
-                String value = skin.value;
+                String value = skin.getTexture();
                 if (value == null) Skript.error("Specified skin's value is null");
-                String uuid = String.valueOf(skin.uuid);
+                String uuid = String.valueOf(skin.getUUID());
                 if (uuid == null) Skript.error("Specified skin's uuid is null");
-                String signature = skin.signature;
+                String signature = skin.getSignature();
                 if (signature == null) Skript.error("Specified skin's signature is null");
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
