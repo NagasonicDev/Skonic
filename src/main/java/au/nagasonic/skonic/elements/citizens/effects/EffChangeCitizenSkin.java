@@ -3,10 +3,10 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
@@ -22,7 +22,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples({"set skin of last spawned npc to player's skin", "change npc with id 2's skin to player's skin"})
-public class EffChangeCitizenSkin extends Effect {
+public class EffChangeCitizenSkin extends AsyncEffect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkin.class,

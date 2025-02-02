@@ -4,10 +4,10 @@ import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.util.SkinUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import com.google.gson.JsonObject;
 import net.citizensnpcs.api.CitizensAPI;
@@ -27,7 +27,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
-public class EffChangeCitizenSkinURL extends Effect {
+public class EffChangeCitizenSkinURL extends AsyncEffect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkinURL.class,
