@@ -1,0 +1,10 @@
+#Skonic Configuration
+
+settings:
+  # Enable this if you want more detailed error reports.
+  debug: false
+  # Enable this to automatically check for Skonic updates
+  # Disable this if you do not want to check for updates, or causes issues while checking.
+  update-checker:
+      # Whether or not to check for updates
+      enabled: true

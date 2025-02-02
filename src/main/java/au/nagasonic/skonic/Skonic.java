@@ -1,13 +1,16 @@
 package au.nagasonic.skonic;
 
+import au.nagasonic.skonic.elements.util.Config;
 import au.nagasonic.skonic.elements.util.UpdateChecker;
 import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
 import org.bukkit.Bukkit;
+import org.bukkit.WorldCreator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.intellij.lang.annotations.Language;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +21,7 @@ public final class Skonic extends JavaPlugin {
     static final int[] EARLIEST_VERSION = new int[]{1, 19, 4};
     private static Skonic instance;
     private static Logger logger;
+    private Config config;
     public static String path;
     private AddonLoader addonLoader = null;
 
@@ -27,6 +31,7 @@ public final class Skonic extends JavaPlugin {
         instance = this;
         logger = getLogger();
         path = this.getDataFolder().getPath();
+        this.config = new Config(this);
         PluginManager pm = Bukkit.getPluginManager();
 
         this.addonLoader = new AddonLoader(this);
@@ -61,6 +66,8 @@ public final class Skonic extends JavaPlugin {
         // Plugin shutdown logic
         Util.logLoading("&eDisabled Skonic v%s", getDescription().getVersion());
     }
+
+    public Config getPluginConfig() { return this.config; }
 
     public static Skonic getInstance(){ return instance; }
 

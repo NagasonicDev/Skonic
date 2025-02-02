@@ -26,8 +26,13 @@ public class UpdateChecker implements Listener {
     public UpdateChecker(Skonic plugin) {
         this.plugin = plugin;
         this.pluginVersion = new Version(plugin.getDescription().getVersion());
+        Config config = plugin.getPluginConfig();
+        if (config.SETTINGS_UPDATE_CHECKER_ENABLED) {
             setupJoinListener();
-            checkUpdate(true);
+            checkUpdate(false);
+        } else {
+            Util.log("&3Update checker disabled!");
+        }
     }
 
     private void setupJoinListener() {
@@ -104,8 +109,11 @@ public class UpdateChecker implements Listener {
             String tag_name = jsonObject.get("version_number").getAsString();
             return new Version(tag_name);
         } catch (IOException e) {
-            e.printStackTrace();
-            Util.logLoading("&cChecking for update failed!");
+            if (this.plugin.getPluginConfig().SETTINGS_DEBUG) {
+                e.printStackTrace();
+            }else {
+                Util.logLoading("&cChecking for update failed!");
+            }
         }
         return null;
     }

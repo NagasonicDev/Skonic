@@ -9,6 +9,9 @@ import ch.njol.skript.util.EnumUtils;
 import net.citizensnpcs.api.event.SpawnReason;
 import net.citizensnpcs.trait.EntityPoseTrait;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings({"unused", "deprecation"})
@@ -61,6 +64,5 @@ public class Types {
                         return "chat color: " + toString(o, 0);
                     }
                 }));
-
     }
 }

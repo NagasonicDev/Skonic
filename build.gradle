@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'au.nagasonic'
-version = "1.2.2-b1"
+version = "1.2.2"
 
 def latestJava = 21
 def oldestJava = 17
@@ -37,7 +37,7 @@ dependencies {
     //Citizens
     implementation "net.citizensnpcs:citizens-main:2.0.37-SNAPSHOT"
     //Skript
-    implementation "com.github.SkriptLang:Skript:2.10.0"
+    compileOnly "com.github.SkriptLang:Skript:2.10.0"
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO
