@@ -153,7 +153,6 @@ public class CitizenTypes {
                     }
                 })
                 .serializer(new EnumSerializer<>(EntityPoseTrait.EntityPose.class)));
-
         // CONVERTERS
         // Enables any Skript effect/expression that works for entities
         Converters.registerConverter(NPC.class, Entity.class, NPC::getEntity);

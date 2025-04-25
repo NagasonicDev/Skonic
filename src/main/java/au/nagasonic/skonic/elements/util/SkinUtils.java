@@ -1,7 +1,6 @@
 package au.nagasonic.skonic.elements.util;
 
 import au.nagasonic.skonic.Skonic;
-import au.nagasonic.skonic.elements.skins.Skin;
 import com.google.common.io.CharStreams;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -17,10 +16,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import net.citizensnpcs.api.util.Messaging;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.profile.PlayerProfile;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class SkinUtils {
     public static JsonObject generateFromURL(String url, boolean slim) throws InterruptedException, ExecutionException {
@@ -48,10 +45,6 @@ public class SkinUtils {
                 out.close();
                 reader = new InputStreamReader(con.getInputStream());
                 String str = CharStreams.toString(reader);
-                if (Messaging.isDebugging())
-                    Messaging.debug(new Object[] { str });
-                if (con.getResponseCode() != 200)
-                    return null;
                 JsonObject output = (new JsonParser()).parse(str).getAsJsonObject();
                 JsonObject data = output.get("data").getAsJsonObject();
                 con.disconnect();
