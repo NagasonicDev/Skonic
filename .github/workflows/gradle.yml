@@ -35,7 +35,7 @@ jobs:
             path: extra-plugins/
             merge-multiple: true
         - name: Download Citizens Artifact
-          run: wget https://ci.citizensnpcs.co/job/Citizens2/lastSuccessfulBuild/artifact/*zip*/archive.zip -P extra-plugins/
+          run: wget https://ci.citizensnpcs.co/job/Citizens2/3821/artifact/*zip*/archive.zip -P extra-plugins/
         - name: Extract Citizens Artifact
           run: unzip extra-plugins/archive.zip archive/dist/target/*.jar -d extra-plugins/
         - name: Move Citizens Artifact
