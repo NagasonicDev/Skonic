@@ -8,6 +8,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
+import org.bukkit.scoreboard.DisplaySlot;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Citizen Is Flyable")
