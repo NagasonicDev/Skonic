@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
 @Examples("make npc with id 4 able to load chunks")
-public class EffCitizenLoadChunks extends Effect {
+public class EffCitizenLoadChunks extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenLoadChunks.class,
                 "make %npc% [not:un]able to load chunks [t:temporarily]");

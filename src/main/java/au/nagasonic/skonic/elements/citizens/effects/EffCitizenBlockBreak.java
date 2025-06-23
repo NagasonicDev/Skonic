@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.ai.tree.StatusMapper;
 import net.citizensnpcs.api.npc.BlockBreaker;
@@ -26,7 +27,7 @@ import java.util.Collection;
 @Since("1.2")
 @RequiredPlugins("Citizens")
 @Examples("make citizen with id 2 break {_block} with radius 3")
-public class EffCitizenBlockBreak extends Effect {
+public class EffCitizenBlockBreak extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenBlockBreak.class,
                 "make %npc% break %block% [with radius %number%]");

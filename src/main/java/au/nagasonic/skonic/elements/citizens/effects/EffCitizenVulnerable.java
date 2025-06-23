@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"on citizen damage:", "\tmake event-npc invulnerable", "\twait 5 seconds", "\tmake event-npc protected"})
 @Since("1.2")
 @RequiredPlugins("Citizens")
-public class EffCitizenVulnerable extends Effect {
+public class EffCitizenVulnerable extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenVulnerable.class,
                 "make (citizen|npc) %npcs% [not:in]vulnerable",

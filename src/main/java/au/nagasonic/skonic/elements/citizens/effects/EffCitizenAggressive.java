@@ -6,6 +6,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.util.NMS;
@@ -19,7 +20,7 @@ import java.util.logging.Level;
 @Since("1.1")
 @RequiredPlugins("Citizens")
 @Examples("make npc with id 1 aggressive")
-public class EffCitizenAggressive extends Effect {
+public class EffCitizenAggressive extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenAggressive.class,
                 "make %npc% aggressive",

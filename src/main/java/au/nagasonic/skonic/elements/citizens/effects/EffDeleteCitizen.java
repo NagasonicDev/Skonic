@@ -6,6 +6,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -18,7 +19,7 @@ import java.util.logging.Level;
 @Since("1.0.0, 1.2.2-b1 (multiple)")
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
-public class EffDeleteCitizen extends Effect {
+public class EffDeleteCitizen extends AsyncEffect {
     static {
         Skript.registerEffect(EffDeleteCitizen.class,
                 "delete %npcs%");

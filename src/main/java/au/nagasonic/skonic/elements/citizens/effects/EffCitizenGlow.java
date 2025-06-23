@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.ScoreboardTrait;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
 @Examples("make all npcs start glowing with color red")
-public class EffCitizenGlow extends Effect {
+public class EffCitizenGlow extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenGlow.class,
                 "make %npcs% (start|:stop) glowing [c:with colo[u]r %-chatcolor%]",

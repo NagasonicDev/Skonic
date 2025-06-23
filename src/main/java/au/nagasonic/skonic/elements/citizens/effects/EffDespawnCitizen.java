@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.skript.util.Direction;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.event.DespawnReason;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples({"despawn all npcs", "wait 2 seconds", "respawn all npcs at player"})
-public class EffDespawnCitizen extends Effect {
+public class EffDespawnCitizen extends AsyncEffect {
     static {
         Skript.registerEffect(EffDespawnCitizen.class,
                 "[citizens|npc] despawn %npcs%",

@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"make npc with id 3 flyable",
 "wait 4 seconds",
 "make npc with id 3 unflyable"})
-public class EffCitizenFlyable extends Effect {
+public class EffCitizenFlyable extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenFlyable.class,
                 "make %npc% [not:not |not:un]flyable");

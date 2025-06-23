@@ -6,6 +6,7 @@ import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.PluginManager;
@@ -45,7 +46,6 @@ public final class Skonic extends JavaPlugin {
             Util.log("&ehttps://github.com/NagasonicDev/Skonic/issues");
         }
         new UpdateChecker(this);
-
         Metrics metrics = new Metrics(this, 20479);
         metrics.addCustomChart(new Metrics.DrilldownPie("skript_version", () -> {
             Map<String, Map<String, Integer>> map = new HashMap<>();

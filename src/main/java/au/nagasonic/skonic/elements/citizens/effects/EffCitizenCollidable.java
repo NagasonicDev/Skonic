@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
 @Examples("make npc with id 3 not pushable by fluids")
-public class EffCitizenCollidable extends Effect {
+public class EffCitizenCollidable extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenCollidable.class,
                 "make %npc% [not:not] (collidable|pushable) [f:(with|by) fluids]");

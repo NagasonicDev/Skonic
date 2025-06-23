@@ -5,6 +5,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2")
 @Examples({"if all citizens are paused:", "\tunpause all citizens"})
 @RequiredPlugins("Citizens")
-public class EffCitizenPause extends Effect {
+public class EffCitizenPause extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenPause.class,
                 "[not:un]pause [the] [[citizen|npc] navigation] [of] %npcs%");

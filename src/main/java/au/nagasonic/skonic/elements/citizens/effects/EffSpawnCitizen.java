@@ -8,6 +8,7 @@ import ch.njol.skript.entity.EntityData;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.skript.util.Direction;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
@@ -30,7 +31,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples("spawn a zombie citizen named \"Undead\" at spawn")
 @Since("1.0.0")
-public class EffSpawnCitizen extends Effect {
+public class EffSpawnCitizen extends AsyncEffect {
 
     public static NPC lastSpawnedNPC;
 

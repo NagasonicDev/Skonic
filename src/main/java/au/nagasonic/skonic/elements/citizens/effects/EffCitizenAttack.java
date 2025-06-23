@@ -7,6 +7,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.Entity;
@@ -21,7 +22,7 @@ import java.util.logging.Level;
 @Since("1.0.0")
 @Examples({"make npc all citizens attack player", "wait 5 seconds", "stop all citizens from attacking player"})
 @RequiredPlugins("Citizens")
-public class EffCitizenAttack extends Effect {
+public class EffCitizenAttack extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenAttack.class,
                 "make (npc|citizen) %npcs% (attack|fight) %entity%",

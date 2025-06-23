@@ -6,6 +6,7 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.trait.trait.MobType;
@@ -22,7 +23,7 @@ import java.util.logging.Level;
 @Examples({"make npc with id 2 targetable", "make npc with id 3 not targetable"})
 @Since("1.2, 1.2.2-b1 (temporary)")
 @RequiredPlugins("Citizens")
-public class EffCitizenTargetable extends Effect {
+public class EffCitizenTargetable extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenTargetable.class,
                 "make (citizen|npc) %npc% [[able to] be] target(ed|able) [t:temporarily]",
