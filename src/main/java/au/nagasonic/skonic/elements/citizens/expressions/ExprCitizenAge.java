@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"set {_age} to npc age of last created citizen", "# BABY", "set npc age of npc with id 2 to -24000"})
 public class ExprCitizenAge extends SimplePropertyExpression<NPC, Number> {
     static {
-        register(ExprActivationRange.class, Number.class, "(citizen|npc) age", "npcs");
+        register(ExprCitizenAge.class, Number.class, "(citizen|npc) age", "npcs");
     }
     @Override
     public @Nullable Number convert(NPC npc) {
