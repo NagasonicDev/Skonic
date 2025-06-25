@@ -10,6 +10,6 @@ test "citizen is vulnerable":
     make {_npc::1} not use normal AI
     assert {_npc::1} and {_npc::2} is using minecraft ai to fail with "was wrong"
     assert {_npc::1} and {_npc::2} don't use minecraft ai to fail with "was wrong"
-    make {_npc::2} use minecraft ai
+    make {_npc::2} use normal ai
     assert {_npc::1} and {_npc::2} are using normal ai with "was wrong"
     delete all citizens
