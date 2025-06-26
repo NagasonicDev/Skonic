@@ -1,11 +1,17 @@
 test "citizen is navigating":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
-    make npc {_npc::1} pathfind to location 20 blocks north of {_npc::1}
+    set {_loc::1} to location 20 blocks north of {_npc::1}
+    make npc {_npc::1} pathfind to {_loc::1}
     assert {_npc::1} is navigating with "was wrong"
+    assert {_npc::1} is navigating to {_loc::1} with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
     set {_npc::2} to last spawned citizen
-    make npc {_npc::2} pathfind to location 20 blocks north of {_npc::2}
+    set {_loc::2} to location 20 blocks north of {_npc::2}
+    make npc {_npc::2} pathfind to {_loc::2}
+    assert {_npc::2} is navigating to {_loc::2} with "was wrong"
+    assert {_npc::1} is navigating to {_loc::2} to fail with "was wrong"
+    assert {_npc::2} is navigating to {_loc::1} to fail with "was wrong"
     assert {_npc::1} and {_npc::2} are navigating with "was wrong"
     pause {_npc::1}
     assert {_npc::1} and {_npc::2} are navigating to fail with "was wrong"

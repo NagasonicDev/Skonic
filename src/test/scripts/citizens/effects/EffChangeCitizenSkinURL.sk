@@ -1,4 +1,4 @@
-test "change citizen skin":
+test "change citizen skin by url":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
     change skin of {_npc} to url "https://www.minecraftskins.com/uploads/skins/2025/06/24/incognitoddm-23356583.png?v856"

@@ -7,6 +7,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,15 +16,17 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples({"if npc with id 1 is navigating:",
         "\tmake citizen npc with id 1 attack player"})
-@Since("1.0.7")
+@Since({"1.0.7", "1.2.3(location)"})
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,
-                "%npcs% (is|are) navigating",
-                "%npcs% (is(n't| not)|are(n't| not)) navigating");
+                "%npcs% (is|are) navigating [l:to %location%]",
+                "%npcs% (is(n't| not)|are(n't| not)) navigating [l:to %location%]");
     }
     private Expression<NPC> npcExpr;
+    private Expression<Location> locExpr;
     private int pattern;
+    private boolean l;
     @Override
     public boolean check(Event e) {
         NPC[] npcs = npcExpr.getArray(e);
@@ -31,9 +34,23 @@ public class CondCitizenIsNavigating extends Condition {
             for (NPC npc : npcs) {
                 if (npc != null) {
                     if (pattern == 0) {
-                        if (npc.getNavigator().isNavigating() == false) return false;
+                        if (l){
+                            Location loc = locExpr.getSingle(e);
+                            if (loc != null){
+                                if (npc.getNavigator().getTargetAsLocation() == loc) return false;
+                            }
+                        }else{
+                            if (npc.getNavigator().isNavigating() == false) return false;
+                        }
                     } else {
-                        if (npc.getNavigator().isNavigating() == true) return false;
+                        if (l){
+                            Location loc = locExpr.getSingle(e);
+                            if (loc != null){
+                                if (npc.getNavigator().getTargetAsLocation() != loc) return false;
+                            }
+                        }else{
+                            if (npc.getNavigator().isNavigating() == true) return false;
+                        }
                     }
                 }
             }
@@ -50,6 +67,8 @@ public class CondCitizenIsNavigating extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
+        locExpr = (Expression<Location>) exprs[1];
+        this.l = parseResult.hasTag("l");
         this.pattern = pattern;
         return true;
     }

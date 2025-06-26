@@ -1,4 +1,4 @@
-test "citizen is vulnerable":
+test "citizen is using minecraft ai":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
     make {_npc::1} use minecraft ai
