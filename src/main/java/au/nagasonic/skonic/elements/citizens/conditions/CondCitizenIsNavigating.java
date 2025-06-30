@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples({"if npc with id 1 is navigating:",
         "\tmake citizen npc with id 1 attack player"})
-@Since({"1.0.7", "1.2.3(location)"})
+@Since({"1.0.7, 1.2.3(location)"})
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,
