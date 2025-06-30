@@ -20,8 +20,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsGlowing extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsGlowing.class,
-                "%npcs% (is|are) glowing [c:%chatcolor%]",
-                "%npcs% (is(n't| not)|are(n't| not)) glowing [c:%chatcolor%]");
+                "%npcs% (is|are) glowing [c:%-chatcolor%]",
+                "%npcs% (is(n't| not)|are(n't| not)) glowing [c:%-chatcolor%]");
     }
     private Expression<NPC> npcExpr;
     private Expression<ChatColor> colorExpr;
