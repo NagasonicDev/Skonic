@@ -18,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenCanLoadChunks extends Condition {
     static {
         Skript.registerCondition(CondCitizenCanLoadChunks.class,
-                "%npcs% can load chunk[s]",
-                "%npcs% can('t|not| not) load chunk[s]");
+                "%npcs% (can|is able to) load chunk[s]",
+                "%npcs% (can('t|not| not)|is('nt| not) able to|is unable to) load chunk[s]");
     }
     private Expression<NPC> npcExpr;
     private int pattern;
