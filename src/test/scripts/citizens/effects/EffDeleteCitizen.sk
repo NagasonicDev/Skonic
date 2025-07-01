@@ -3,6 +3,6 @@ test "delete citizen":
     set {npc::1} to last created citizen
     set {npc::1::id} to id of {npc::1}
     delete {npc::1}
-    assert npc with id {npc::1::id} is null with "was wrong"
-    assert npc with id {npc::1::id} is not null to fail with "was wrong"
+    assert npc with id {npc::1::id} is set with "was wrong"
+    assert npc with id {npc::1::id} is not set to fail with "was wrong"
     delete all citizens
