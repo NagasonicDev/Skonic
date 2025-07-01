@@ -1,0 +1,10 @@
+test "make citizen load chunks":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    make {_npc} able to load chunks
+    assert {_npc} is able to load chunks with "was wrong"
+    assert {_npc} is unable to load chunks to fail with "was wrong"
+    make {_npc} unable to load chunks
+    assert {_npc} is not able to load chunks with "was wrong"
+    assert {_npc} can load chunks to fail with "was wrong"
+    delete all citizens
