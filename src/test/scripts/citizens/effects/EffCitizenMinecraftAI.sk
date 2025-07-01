@@ -1,0 +1,10 @@
+test "make citizen use minecraft ai":
+    spawn citizen named "test" at spawn of world "world"
+    set {_npc} to last spawned npc
+    make {_npc} use normal ai
+    assert {_npc} uses minecraft ai with "was wrong"
+    assert {_npc} is not using minecraft ai to fail with "was wrong"
+    set {_npc} to not use normal ai
+    assert {_npc} is not using normal AI with "was wrong"
+    assert {_npc} is using normal ai to fail with "was wrong"
+    delete all citizens
