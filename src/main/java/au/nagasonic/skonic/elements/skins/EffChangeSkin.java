@@ -2,9 +2,9 @@ package au.nagasonic.skonic.elements.skins;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
@@ -18,7 +18,7 @@ import java.util.Set;
 @Description("Changes the skin of a player.")
 @Since("1.2")
 @Examples("change player's skin to skin from url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
-public class EffChangeSkin extends Effect {
+public class EffChangeSkin extends AsyncEffect {
     static {
         Skript.registerEffect(EffChangeSkin.class,
                 "(change|set) %player%['s] skin to %skin%",
