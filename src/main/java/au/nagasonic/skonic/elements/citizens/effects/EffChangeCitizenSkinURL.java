@@ -77,7 +77,7 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
                 String signature = texture.get("signature").getAsString();
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTask(CitizensAPI.getPlugin(), () -> {
+                    Bukkit.getScheduler().runTaskAsynchronously(CitizensAPI.getPlugin(), () -> {
                         try {
                             trait.setSkinPersistent(uuid, signature, textureEncoded);
                             Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);

@@ -53,7 +53,7 @@ public class EffChangeCitizenSkin extends AsyncEffect {
                 if (signature == null) Skript.error("Specified skin's signature is null");
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTask(CitizensAPI.getPlugin(), () -> {
+                    Bukkit.getScheduler().runTaskAsynchronously(CitizensAPI.getPlugin(), () -> {
                         try {
                             trait.setSkinPersistent(uuid, signature, value);
                         } catch (IllegalArgumentException err) {
