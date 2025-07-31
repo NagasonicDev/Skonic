@@ -19,7 +19,7 @@ import java.util.logging.Level;
 @Since("1.0.0, 1.2.2-b1 (multiple)")
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
-public class EffDeleteCitizen extends AsyncEffect {
+public class EffDeleteCitizen extends Effect {
     static {
         Skript.registerEffect(EffDeleteCitizen.class,
                 "delete %npcs%");

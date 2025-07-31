@@ -26,7 +26,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7, 1.2.2-b1 (straight line)")
 @Examples("make all npcs pathfind to player")
-public class EffCitizenPathfind extends AsyncEffect {
+public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
                 "make (citizen|npc) %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
