@@ -8,13 +8,10 @@ import ch.njol.skript.entity.EntityData;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.util.AsyncEffect;
 import ch.njol.skript.util.Direction;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.trait.DropsTrait;
-import net.citizensnpcs.trait.EntityPoseTrait;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
@@ -31,7 +28,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples("spawn a zombie citizen named \"Undead\" at spawn")
 @Since("1.0.0")
-public class EffSpawnCitizen extends AsyncEffect {
+public class EffSpawnCitizen extends Effect {
 
     public static NPC lastSpawnedNPC;
 

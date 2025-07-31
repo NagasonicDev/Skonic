@@ -2,10 +2,11 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'java'
+    id 'com.gradleup.shadow' version '9.0.0-rc1'
 }
 
 group = 'au.nagasonic'
-version = "1.2.3"
+version = "1.2.4"
 
 def latestJava = 21
 def oldestJava = 17
@@ -35,7 +36,9 @@ repositories {
 
 dependencies {
     //Citizens
-    compileOnly "net.citizensnpcs:citizens-main:2.0.37-SNAPSHOT"
+    implementation('net.citizensnpcs:citizens-main:2.0.39-SNAPSHOT') {
+        exclude group: '*', module: '*'
+    }
     //Skript
     compileOnly "com.github.SkriptLang:Skript:2.11.2"
     //JetBrains Annotations
