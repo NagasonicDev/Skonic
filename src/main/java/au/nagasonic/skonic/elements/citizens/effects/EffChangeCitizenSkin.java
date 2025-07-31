@@ -3,6 +3,7 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
@@ -22,7 +23,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples({"set skin of last spawned npc to player's skin", "change npc with id 2's skin to player's skin"})
-public class EffChangeCitizenSkin extends AsyncEffect {
+public class EffChangeCitizenSkin extends Effect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkin.class,
@@ -53,7 +54,7 @@ public class EffChangeCitizenSkin extends AsyncEffect {
                 if (signature == null) Skript.error("Specified skin's signature is null");
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTaskAsynchronously(CitizensAPI.getPlugin(), () -> {
+                    Bukkit.getScheduler().runTask(CitizensAPI.getPlugin(), () -> {
                         try {
                             trait.setSkinPersistent(uuid, signature, value);
                         } catch (IllegalArgumentException err) {

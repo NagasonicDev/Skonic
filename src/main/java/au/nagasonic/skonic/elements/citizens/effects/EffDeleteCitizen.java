@@ -22,7 +22,7 @@ import java.util.logging.Level;
 public class EffDeleteCitizen extends Effect {
     static {
         Skript.registerEffect(EffDeleteCitizen.class,
-                "delete %npcs%");
+                "delete (citizen|npc)[s] %npcs%");
     }
 
     private Expression<NPC> npcExpr;

@@ -4,6 +4,7 @@ import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.util.SkinUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
@@ -27,7 +28,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
-public class EffChangeCitizenSkinURL extends AsyncEffect {
+public class EffChangeCitizenSkinURL extends Effect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkinURL.class,
@@ -77,7 +78,7 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
                 String signature = texture.get("signature").getAsString();
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTaskAsynchronously(CitizensAPI.getPlugin(), () -> {
+                    Bukkit.getScheduler().runTask(CitizensAPI.getPlugin(), () -> {
                         try {
                             trait.setSkinPersistent(uuid, signature, textureEncoded);
                             Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);

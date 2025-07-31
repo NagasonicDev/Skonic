@@ -3,6 +3,7 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.util.AsyncEffect;
@@ -20,7 +21,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to \"Nagasonic\"")
-public class EffChangeCitizenSkinName extends AsyncEffect {
+public class EffChangeCitizenSkinName extends Effect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,
                 "(set|change) %npcs%['s] skin to %string%",
