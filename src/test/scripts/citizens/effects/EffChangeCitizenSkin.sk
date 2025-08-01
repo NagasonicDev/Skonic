@@ -1,7 +1,7 @@
 test "change citizen skin":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
-    change skin of {_npc} to skin from url "https://www.minecraftskins.com/uploads/skins/2025/06/24/incognitoddm-23356583.png?v856"
-    assert skin of {_npc} is skin from url "https://www.minecraftskins.com/uploads/skins/2025/06/24/incognitoddm-23356583.png?v856" with "was wrong"
-    assert skin of {_npc} is skin from url "https://www.minecraftskins.com/uploads/skins/2025/06/20/glass-duck-23349737.png?v856" to fail with "was wrong"
+    change skin of {_npc} to skin from url "https://www.minecraftskins.com/uploads/skins/2025/07/31/duck-became-sans-23438694.png?v896"
+    assert skin of {_npc} is skin from url "https://www.minecraftskins.com/uploads/skins/2025/07/31/duck-became-sans-23438694.png?v896" with "was wrong"
+    assert skin of {_npc} is skin from url "https://www.minecraftskins.com/uploads/skins/2025/07/31/duck-became-sans-23438694.png?v896" to fail with "was wrong"
     delete all citizens
