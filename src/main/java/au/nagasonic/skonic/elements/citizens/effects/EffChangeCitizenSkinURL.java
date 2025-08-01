@@ -28,7 +28,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
-public class EffChangeCitizenSkinURL extends Effect {
+public class EffChangeCitizenSkinURL extends AsyncEffect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkinURL.class,
