@@ -2,6 +2,6 @@ test "change citizen skin by name":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
     change skin of npc {_npc} to "Nagasonic"
-    assert skin of {_npc} is skin of "Nagasonic" parsed as player with "was wrong"
-    assert skin of {_npc} is skin of "asd" parsed as player to fail with "was wrong"
+    assert npc skin of {_npc} is skin of "Nagasonic" parsed as player with "was wrong"
+    assert npc skin of {_npc} is skin of "asd" parsed as player to fail with "was wrong"
     delete all citizens
