@@ -24,8 +24,8 @@ import java.util.logging.Level;
 public class EffChangeCitizenSkinName extends Effect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,
-                "(set|change) %npcs%['s] skin to %string%",
-                "(set|change) skin of %npcs% to %string%");
+                "(set|change) (citizen|npc) %npcs%['s] skin to %string%",
+                "(set|change) skin of (citizen|npc) %npcs% to %string%");
     }
 
     private Expression<NPC> npcExpr;
