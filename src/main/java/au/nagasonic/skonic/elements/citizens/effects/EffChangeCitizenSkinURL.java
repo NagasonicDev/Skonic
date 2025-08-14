@@ -32,8 +32,8 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkinURL.class,
-                "(change|set) %npcs%['s] skin to url %string%",
-                "(change|set) skin of %npcs% to url %string%");
+                "(change|set) (npc|citizen)[s] %npcs%['s] skin to url %string%",
+                "(change|set) skin of (npc|citizen)[s] %npcs% to url %string%");
     }
 
     private Expression<NPC> npcExpr;
