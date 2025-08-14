@@ -27,8 +27,8 @@ public class EffChangeCitizenSkin extends Effect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkin.class,
-                "(change|set) %npcs%['s] skin to %skin%",
-                "(change|set) skin of %npcs% to %skin%");
+                "(change|set) (npc|citizen)[s] %npcs%['s] skin to %skin%",
+                "(change|set) skin of (npc|citizen)[s] %npcs% to %skin%");
     }
 
     private Expression<NPC> npcExpr;
