@@ -9,6 +9,7 @@ test "make citizen glow":
     assert {_npc} is glowing to fail with "was wrong"
     delete all citizens
 
+
 test "make citizen glow with color":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
