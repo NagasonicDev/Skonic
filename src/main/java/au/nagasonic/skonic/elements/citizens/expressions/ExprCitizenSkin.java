@@ -19,6 +19,9 @@ public class ExprCitizenSkin extends SimplePropertyExpression<NPC, Skin> {
     @Override
     public @Nullable Skin convert(NPC npc) {
         SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+        if (trait.getTexture() == null || trait.getSignature() == null){
+            return null;
+        }
         return new Skin(trait.getTexture(), trait.getSignature());
     }
 
