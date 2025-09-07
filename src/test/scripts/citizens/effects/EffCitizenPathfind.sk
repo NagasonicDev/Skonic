@@ -9,6 +9,7 @@ test "make citizen pathfind":
     set {_npc::2} to last spawned citizen
     set {_loc::2} to location 20 blocks north of {_npc::2}
     make npc {_npc::2} pathfind to {_loc::2}
+    make npc {_npc::1} pathfind to {_loc::1}
     assert {_npc::2} is navigating to {_loc::2} with "was wrong"
     assert {_npc::1} is navigating to {_loc::2} to fail with "was wrong"
     assert {_npc::2} is navigating to {_loc::1} to fail with "was wrong"
