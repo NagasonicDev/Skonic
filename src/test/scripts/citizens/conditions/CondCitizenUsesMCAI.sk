@@ -2,14 +2,14 @@ test "citizen is using minecraft ai":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
     make {_npc::1} use minecraft ai
-    assert {_npc::1} uses minecraft ai with "was wrong"
+    assert npc {_npc::1} uses minecraft ai with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
     set {_npc::2} to last spawned citizen
     set {_npc::2} to not use minecraft AI
-    assert {_npc::1} and {_npc::2} are using normal ai with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are using normal ai with "was wrong"
     make {_npc::1} not use normal AI
-    assert {_npc::1} and {_npc::2} is using minecraft ai to fail with "was wrong"
-    assert {_npc::1} and {_npc::2} don't use minecraft ai to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} is using minecraft ai to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} don't use minecraft ai to fail with "was wrong"
     make {_npc::2} use normal ai
-    assert {_npc::1} and {_npc::2} are using normal ai with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are using normal ai with "was wrong"
     delete all citizens

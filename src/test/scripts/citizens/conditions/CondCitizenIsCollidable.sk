@@ -2,30 +2,30 @@ test "citizen is collidable":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
     make {_npc::1} collidable
-    assert {_npc::1} is collidable with "was wrong"
+    assert npc {_npc::1} is collidable with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
     set {_npc::2} to last spawned citizen
     make {_npc::2} pushable
-    assert {_npc::1} and {_npc::2} are pushable with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are pushable with "was wrong"
     make {_npc::1} not collidable
-    assert {_npc::1} and {_npc::2} are collidable to fail with "was wrong"
-    assert {_npc::1} and {_npc::2} aren't pushable to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are collidable to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} aren't pushable to fail with "was wrong"
     make {_npc::2} not pushable
-    assert {_npc::1} and {_npc::2} are not pushable with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are not pushable with "was wrong"
     delete all citizens
 
 test "citizen is collidable by fluids":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
     make {_npc::1} collidable by fluids
-    assert {_npc::1} is collidable by fluids with "was wrong"
+    assert npc {_npc::1} is collidable by fluids with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
     set {_npc::2} to last spawned citizen
     make {_npc::2} pushable by fluids
-    assert {_npc::1} and {_npc::2} are pushable by fluids with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are pushable by fluids with "was wrong"
     make {_npc::1} not collidable by fluids
-    assert {_npc::1} and {_npc::2} are collidable by fluids to fail with "was wrong"
-    assert {_npc::1} and {_npc::2} aren't pushable by fluids to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are collidable by fluids to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} aren't pushable by fluids to fail with "was wrong"
     make {_npc::2} not pushable by fluids
-    assert {_npc::1} and {_npc::2} are not pushable by fluids with "was wrong"
+    assert npc {_npc::1} and {_npc::2} are not pushable by fluids with "was wrong"
     delete all citizens

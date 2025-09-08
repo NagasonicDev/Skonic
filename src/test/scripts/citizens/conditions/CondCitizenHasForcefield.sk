@@ -7,14 +7,14 @@ test "citizen has forcefield":
         set forcefield strength to 1
         set forcefield vertical strength to 1
     make {_npc::1} have {_force}
-    assert {_npc::1} has forcefield with "was wrong"
+    assert npc {_npc::1} has forcefield with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
     set {_npc::2} to last spawned citizen
     make {_npc::2} have {_force}
-    assert {_npc::1} and {_npc::2} have forcefield with "was wrong"
+    assert npc {_npc::1} and {_npc::2} have forcefield with "was wrong"
     remove forcefield of {_npc::1}
-    assert {_npc::1} and {_npc::2} have forcefield to fail with "was wrong"
-    assert {_npc::1} and {_npc::2} don't have forcefield to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} have forcefield to fail with "was wrong"
+    assert npc {_npc::1} and {_npc::2} don't have forcefield to fail with "was wrong"
     remove forcefield of {_npc::2}
-    assert {_npc::1} and {_npc::2} don't have forcefield with "was wrong"
+    assert npc {_npc::1} and {_npc::2} don't have forcefield with "was wrong"
     delete all citizens
