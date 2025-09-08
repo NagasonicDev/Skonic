@@ -24,8 +24,8 @@ import java.util.logging.Level;
 public class CondCitizenIsVulnerable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsVulnerable.class,
-                "%npcs% (is|are) vulnerable",
-                "%npcs% (is|are) protected");
+                "(citizen|npc)[s] %npcs% (is|are) vulnerable",
+                "(citizen|npc)[s] %npcs% (is|are) protected");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

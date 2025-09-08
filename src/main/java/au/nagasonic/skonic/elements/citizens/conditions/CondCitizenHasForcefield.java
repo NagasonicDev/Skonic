@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenHasForcefield extends Condition {
     static {
         Skript.registerCondition(CondCitizenHasForcefield.class,
-                "%npcs% (has|have) [a] forcefield",
-                "%npcs% (do(n't| not|esn't|es not)) (has|have) [a] forcefield");
+                "(citizen|npc)[s] %npcs% (has|have) [a] forcefield",
+                "(citizen|npc)[s] %npcs% (do(n't| not|esn't|es not)) (has|have) [a] forcefield");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

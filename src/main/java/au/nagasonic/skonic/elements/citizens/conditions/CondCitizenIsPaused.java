@@ -21,8 +21,8 @@ import java.util.logging.Level;
 public class CondCitizenIsPaused extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsPaused.class,
-                "%npcs% (is|are) paused",
-                "%npcs% (isn't|is not|aren't|are not) paused");
+                "(citizen|npc)[s] %npcs% (is|are) paused",
+                "(citizen|npc)[s] %npcs% (isn't|is not|aren't|are not) paused");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

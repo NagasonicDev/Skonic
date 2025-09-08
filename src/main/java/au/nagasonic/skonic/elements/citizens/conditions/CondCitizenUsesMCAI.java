@@ -21,8 +21,8 @@ import java.util.logging.Level;
 public class CondCitizenUsesMCAI extends Condition {
     static {
         Skript.registerCondition(CondCitizenUsesMCAI.class,
-                "%npcs% (use[s]|(is|are) using) (minecraft|normal) (ai|AI)",
-                "%npcs% (is(n't| not) using|are(n't| not) using|do(n't| not) use) (minecraft|normal) (ai|AI)");
+                "(citizen|npc)[s] %npcs% (use[s]|(is|are) using) (minecraft|normal) (ai|AI)",
+                "(citizen|npc)[s] %npcs% (is(n't| not) using|are(n't| not) using|do(n't| not) use) (minecraft|normal) (ai|AI)");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsFlyable extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsFlyable.class,
-                "%npcs% (is|are|can) fly[able]",
-                "%npcs% (is(n't| not)|are(n't| not)|can('t|not| not)) fly[able]");
+                "(citizen|npc)[s] %npcs% (is|are|can) fly[able]",
+                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)|can('t|not| not)) fly[able]");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

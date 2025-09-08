@@ -20,8 +20,8 @@ import org.jetbrains.annotations.Nullable;
 public class CondCitizenIsNavigating extends Condition {
     static {
         Skript.registerCondition(CondCitizenIsNavigating.class,
-                "%npcs% (is|are) navigating [l:to %location%]",
-                "%npcs% (is(n't| not)|are(n't| not)) navigating [l:to %location%]");
+                "(citizen|npc)[s] %npcs% (is|are) navigating [l:to %location%]",
+                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)) navigating [l:to %location%]");
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;
