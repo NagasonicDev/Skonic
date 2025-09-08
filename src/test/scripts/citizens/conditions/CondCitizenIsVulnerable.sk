@@ -4,7 +4,7 @@ test "citizen is vulnerable":
     make npc {_npc::1} vulnerable
     assert npc {_npc::1} is vulnerable with "was wrong"
     spawn citizen named "test2" at spawn of world "world"
-    set npc {_npc::2} to last spawned citizen
+    set {_npc::2} to last spawned citizen
     make npc {_npc::2} unprotected
     assert npc {_npc::1} and {_npc::2} are vulnerable with "was wrong"
     make npc {_npc::1} invulnerable

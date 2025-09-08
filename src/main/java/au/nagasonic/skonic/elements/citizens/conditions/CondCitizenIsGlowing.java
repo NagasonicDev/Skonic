@@ -41,7 +41,7 @@ public class CondCitizenIsGlowing extends Condition {
                             if (npc.getOrAddTrait(ScoreboardTrait.class).getColor() != color) return false;
                         }
                     }else{
-                        if (npc.data().get(NPC.Metadata.GLOWING, true) == true) return false;
+                        if (npc.data().get(NPC.Metadata.GLOWING, true) == false) return false;
                         else if (c && npc.data().get(NPC.Metadata.GLOWING, true) == true){
                             ChatColor color = colorExpr.getSingle(event);
                             if (color == null) return false;
