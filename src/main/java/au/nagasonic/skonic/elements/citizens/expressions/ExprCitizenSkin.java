@@ -22,7 +22,7 @@ public class ExprCitizenSkin extends SimplePropertyExpression<NPC, Skin> {
         if (trait.getTexture() == null || trait.getSignature() == null){
             return null;
         }
-        return new Skin(trait.getTexture(), trait.getSignature());
+        return new Skin(trait.getTexture(), trait.getSignature(), npc.getUniqueId());
     }
 
     @Override

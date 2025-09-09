@@ -10,6 +10,8 @@ import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 @Name("Skin With")
 @Description("Used to create a skin.")
 @Since("1.0.4")
@@ -28,7 +30,7 @@ public class ExprSkinWith extends SimpleExpression<Skin> {
         String value = valueExpr.getSingle(e);
         String signature = signatureExpr.getSingle(e);
         if (value == null || signature == null) return null;
-        return new Skin[]{new Skin(value, signature)};
+        return new Skin[]{new Skin(value, signature, UUID.randomUUID())};
     }
 
 
