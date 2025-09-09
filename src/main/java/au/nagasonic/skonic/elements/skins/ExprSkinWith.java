@@ -30,7 +30,7 @@ public class ExprSkinWith extends SimpleExpression<Skin> {
         String value = valueExpr.getSingle(e);
         String signature = signatureExpr.getSingle(e);
         if (value == null || signature == null) return null;
-        return new Skin[]{new Skin(value, signature, UUID.randomUUID())};
+        return new Skin[]{new Skin(value, signature)};
     }
 
 

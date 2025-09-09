@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.expressions;
 
 import au.nagasonic.skonic.elements.skins.Skin;
+import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import net.citizensnpcs.api.npc.NPC;
@@ -20,9 +21,10 @@ public class ExprCitizenSkin extends SimplePropertyExpression<NPC, Skin> {
     public @Nullable Skin convert(NPC npc) {
         SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
         if (trait.getTexture() == null || trait.getSignature() == null){
+            Util.log("Skin is empty");
             return null;
         }
-        return new Skin(trait.getTexture(), trait.getSignature(), npc.getUniqueId());
+        return new Skin(trait.getTexture(), trait.getSignature());
     }
 
     @Override
