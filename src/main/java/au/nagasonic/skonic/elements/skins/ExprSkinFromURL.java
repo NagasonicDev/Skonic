@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
@@ -39,10 +40,11 @@ public class ExprSkinFromURL extends SimpleExpression<Skin> {
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+            UUID uuid = UUID.fromString(data.get("uuid").getAsString());
             JsonObject texture = data.get("texture").getAsJsonObject();
             String value = texture.get("value").getAsString();
             String signature = texture.get("signature").getAsString();
-            return new Skin[]{new Skin(value, signature)};
+            return new Skin[]{new Skin(value, signature, uuid)};
         }else{
             Skonic.log(Level.SEVERE, "URL is null.");
             return null;

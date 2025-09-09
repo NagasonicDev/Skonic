@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
+import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
@@ -54,7 +55,7 @@ public class EffChangeCitizenSkin extends Effect {
                 if (signature == null) Skript.error("Specified skin's signature is null");
                 for (NPC npc : npcs){
                     SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTask(CitizensAPI.getPlugin(), () -> {
+                    Bukkit.getScheduler().runTask(Skonic.getInstance(), () -> {
                         try {
                             trait.setSkinPersistent(uuid, signature, value);
                         } catch (IllegalArgumentException err) {
