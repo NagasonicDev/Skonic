@@ -44,7 +44,7 @@ public class ExprSkinFromURL extends SimpleExpression<Skin> {
             JsonObject texture = data.get("texture").getAsJsonObject();
             String value = texture.get("value").getAsString();
             String signature = texture.get("signature").getAsString();
-            return new Skin[]{new Skin(value, signature, uuid)};
+            return new Skin[]{new Skin(value, signature)};
         }else{
             Skonic.log(Level.SEVERE, "URL is null.");
             return null;
