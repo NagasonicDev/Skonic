@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
 @Examples("make all npcs start glowing with color red")
-public class EffCitizenGlow extends Effect {
+public class EffCitizenGlow extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenGlow.class,
                 "make %npcs% (start|:stop) glowing [c:[with colo[u]r] %-chatcolor%]",

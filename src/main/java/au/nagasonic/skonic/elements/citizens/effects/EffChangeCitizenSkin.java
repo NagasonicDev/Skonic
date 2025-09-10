@@ -24,7 +24,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7")
 @Examples({"set skin of last spawned npc to player's skin", "change npc with id 2's skin to player's skin"})
-public class EffChangeCitizenSkin extends Effect {
+public class EffChangeCitizenSkin extends AsyncEffect {
 
     static {
         Skript.registerEffect(EffChangeCitizenSkin.class,

@@ -21,7 +21,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
 @Examples("set skin of last spawned npc to \"Nagasonic\"")
-public class EffChangeCitizenSkinName extends Effect {
+public class EffChangeCitizenSkinName extends AsyncEffect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,
                 "(set|change) (citizen|npc)[s] %npcs%['s] skin to %string%",
