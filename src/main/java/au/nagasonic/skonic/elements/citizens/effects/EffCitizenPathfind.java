@@ -6,16 +6,10 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.util.AsyncEffect;
-import ch.njol.skript.util.Direction;
 import ch.njol.util.Kleenean;
-import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
-import org.bukkit.event.world.LootGenerateEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Level;
@@ -26,7 +20,7 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Since("1.0.7, 1.2.2-b1 (straight line)")
 @Examples("make all npcs pathfind to player")
-public class EffCitizenPathfind extends AsyncEffect {
+public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
                 "make (citizen|npc) %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
