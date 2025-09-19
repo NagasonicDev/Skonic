@@ -87,7 +87,7 @@ public class HeadUtils {
     }
     public static ItemStack headWithUrl(ItemStack item, String url) {
         PlayerProfile profile = getProfile(url);
-        Skonic.info(profile.getTextures().getSkin().toString());
+//        Skonic.info(profile.getTextures().getSkin().toString()); // ERROR : SPAM
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setOwnerProfile(profile); // Set the owning player of the head to the player profile
         item.setItemMeta(meta);
