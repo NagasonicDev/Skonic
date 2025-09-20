@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -36,10 +37,21 @@ public class ExprSkinFromURL extends SimpleExpression<Skin> {
             try {
                 data = SkinUtils.generateFromURL(url, false);
             } catch (ExecutionException ex) {
+                if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("400")) {
+                    Skonic.log(Level.WARNING, "MineSkin API returned error 400 for URL: " + url +
+                            ". This may be due to MineSkin API v2 requiring authentication or the URL being invalid.");
+                    return null;
+                }
                 throw new RuntimeException(ex);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+            
+            if (data == null) {
+                Skonic.log(Level.SEVERE, "Failed to generate skin data from URL: " + url);
+                return null;
+            }
+            
             UUID uuid = UUID.fromString(data.get("uuid").getAsString());
             JsonObject texture = data.get("texture").getAsJsonObject();
             String value = texture.get("value").getAsString();
