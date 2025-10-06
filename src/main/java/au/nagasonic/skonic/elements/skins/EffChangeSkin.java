@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.elements.skins;
 
+import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
@@ -8,11 +9,11 @@ import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Set;
 
 @Name("Change Skin")
 @Description("Changes the skin of a player.")
@@ -26,6 +27,7 @@ public class EffChangeSkin extends AsyncEffect {
     }
     private Expression<Player> playerExpr;
     private Expression<Skin> skinExpr;
+
     @Override
     protected void execute(Event event) {
         if (playerExpr != null && skinExpr != null){
@@ -33,9 +35,23 @@ public class EffChangeSkin extends AsyncEffect {
             Skin skin = skinExpr.getSingle(event);
             if (player != null && skin != null){
                 PlayerProfile profile = player.getPlayerProfile();
-                Set<ProfileProperty> properties = profile.getProperties();
-                properties.add(new ProfileProperty("textures", skin.getTexture(), skin.getSignature()));;
-                player.setPlayerProfile(profile);
+                profile.getProperties().removeIf(property -> property.getName().equals("textures"));
+                profile.getProperties().add(
+                        new ProfileProperty(
+                                "textures",
+                                skin.getTexture(),
+                                skin.getSignature()
+                        )
+                );
+
+                Bukkit.getScheduler().runTask(
+                        Skonic.getInstance(),
+                        () -> {
+                            if (player.isOnline()) {
+                                player.setPlayerProfile(profile);
+                            }
+                        }
+                );
             }
         }
     }
@@ -46,6 +62,7 @@ public class EffChangeSkin extends AsyncEffect {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         playerExpr = (Expression<Player>) exprs[0];
         skinExpr = (Expression<Skin>) exprs[1];
