@@ -51,6 +51,10 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
             return;
         }
 
+        if (!Skonic.getInstance().isEnabled()) {
+            return;
+        }
+
         JsonObject data;
         try {
             URL urlObject = new URL(url);
@@ -103,6 +107,10 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
         Bukkit.getScheduler().runTask(
             Skonic.getInstance(),
             () -> {
+                if (!Skonic.getInstance().isEnabled()) {
+                    return;
+                }
+
                 for (NPC npc : npcs) {
                     if (npc == null) {
                         Skonic.log(
