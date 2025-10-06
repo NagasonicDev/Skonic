@@ -51,107 +51,102 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
             return;
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(
+        if (!Skonic.getInstance().isEnabled()) {
+            return;
+        }
+
+        JsonObject data;
+        try {
+            URL urlObject = new URL(url);
+            String urlString = urlObject.toString();
+
+            if (!urlString.contains("https://www.minecraftskins.com") && !urlString.contains("http://textures.minecraft.net")){
+                Skript.error(
+                        "Specified URL is not a valid URL. Please use a url from "
+                                + "\"https://www.minecraftskins.com\" or \"http://textures.minecraft.net\"",
+                        ErrorQuality.SEMANTIC_ERROR
+                );
+                return;
+            }
+
+            data = SkinUtils.generateFromURL(url, false);
+
+        } catch (MalformedURLException ex) {
+            Skonic.log(
+                    Level.SEVERE,
+                    "Specified URL is not a valid URL format: ('"
+                            + url
+                            + "'). Error details:\n"
+                            + ex
+            );
+            Skript.error("Specified 'URL' is not a valid URL format.");
+            return;
+        } catch (InterruptedException | ExecutionException ex) {
+            Skonic.log(
+                    Level.SEVERE,
+                    "Error retrieving skin from URL: ('"
+                            + url
+                            + "'). Error details:\n"
+                            + ex
+            );
+            Skript.error("There was an error in retrieving the skin from " + url, ErrorQuality.SEMANTIC_ERROR);
+            return;
+        }
+
+        if (data == null) {
+            Skonic.log(Level.SEVERE, "Skin retrieval returned null data for URL: " + url);
+            Skript.error("Skin retrieval failed to get data.", ErrorQuality.SEMANTIC_ERROR);
+            return;
+        }
+
+        String uuid = data.get("uuid").getAsString();
+        JsonObject texture = data.get("texture").getAsJsonObject();
+        String textureEncoded = texture.get("value").getAsString();
+        String signature = texture.get("signature").getAsString();
+
+        Bukkit.getScheduler().runTask(
                 Skonic.getInstance(),
                 () -> {
                     if (!Skonic.getInstance().isEnabled()) {
                         return;
                     }
 
-                    JsonObject data;
-                    try {
-                        URL urlObject = new URL(url);
-                        String urlString = urlObject.toString();
-
-                        if (!urlString.contains("https://www.minecraftskins.com") && !urlString.contains("http://textures.minecraft.net")){
-                            Skript.error(
-                                    "Specified URL is not a valid URL. Please use a url from "
-                                            + "\"https://www.minecraftskins.com\" or \"http://textures.minecraft.net\"",
-                                    ErrorQuality.SEMANTIC_ERROR
+                    for (NPC npc : npcs) {
+                        if (npc == null) {
+                            Skonic.log(
+                                    Level.WARNING,
+                                    "Skipping NPC: NPC object is null."
                             );
-                            return;
+                            continue;
                         }
 
-                        data = SkinUtils.generateFromURL(url, false);
+                        if (!npc.isSpawned()) {
+                            Skonic.log(
+                                    Level.WARNING,
+                                    "Skipping NPC ('"
+                                            + npc.getId()
+                                            + "'): NPC object exists but is not spawned."
+                            );
+                            continue;
+                        }
 
-                    } catch (MalformedURLException ex) {
-                        Skonic.log(
-                                Level.SEVERE,
-                                "Specified URL is not a valid URL format: ('"
-                                        + url
-                                        + "'). Error details:\n"
-                                        + ex
-                        );
-                        Skript.error("Specified 'URL' is not a valid URL format.");
-                        return;
-                    } catch (InterruptedException | ExecutionException ex) {
-                        Skonic.log(
-                                Level.SEVERE,
-                                "Error retrieving skin from URL: ('"
-                                        + url
-                                        + "'). Error details:\n"
-                                        + ex
-                        );
-                        Skript.error("There was an error in retrieving the skin from " + url, ErrorQuality.SEMANTIC_ERROR);
-                        return;
+                        try {
+                            SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                            trait.setSkinPersistent(uuid, signature, textureEncoded);
+
+                            Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);
+                        } catch (Exception ex) {
+                            Skonic.log(
+                                    Level.SEVERE,
+                                    "Failed to set skin for NPC ('"
+                                            + npc.getId()
+                                            + "') to ('"
+                                            + url
+                                            + "'). Error details:\n"
+                                            + ex.getMessage()
+                            );
+                        }
                     }
-
-                    if (data == null) {
-                        Skonic.log(Level.SEVERE, "Skin retrieval returned null data for URL: " + url);
-                        Skript.error("Skin retrieval failed to get data.", ErrorQuality.SEMANTIC_ERROR);
-                        return;
-                    }
-
-                    String uuid = data.get("uuid").getAsString();
-                    JsonObject texture = data.get("texture").getAsJsonObject();
-                    String textureEncoded = texture.get("value").getAsString();
-                    String signature = texture.get("signature").getAsString();
-
-                    Bukkit.getScheduler().runTask(
-                            Skonic.getInstance(),
-                            () -> {
-                                if (!Skonic.getInstance().isEnabled()) {
-                                    return;
-                                }
-
-                                for (NPC npc : npcs) {
-                                    if (npc == null) {
-                                        Skonic.log(
-                                                Level.WARNING,
-                                                "Skipping NPC: NPC object is null."
-                                        );
-                                        continue;
-                                    }
-
-                                    if (!npc.isSpawned()) {
-                                        Skonic.log(
-                                                Level.WARNING,
-                                                "Skipping NPC ('"
-                                                        + npc.getId()
-                                                        + "'): NPC object exists but is not spawned."
-                                        );
-                                        continue;
-                                    }
-
-                                    try {
-                                        SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                                        trait.setSkinPersistent(uuid, signature, textureEncoded);
-
-                                        Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);
-                                    } catch (Exception ex) {
-                                        Skonic.log(
-                                                Level.SEVERE,
-                                                "Failed to set skin for NPC ('"
-                                                        + npc.getId()
-                                                        + "') to ('"
-                                                        + url
-                                                        + "'). Error details:\n"
-                                                        + ex.getMessage()
-                                        );
-                                    }
-                                }
-                            }
-                    );
                 }
         );
     }
