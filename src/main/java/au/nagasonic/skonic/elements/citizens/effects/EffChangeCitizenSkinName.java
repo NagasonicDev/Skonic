@@ -77,7 +77,7 @@ public class EffChangeCitizenSkinName extends AsyncEffect {
                                     "Failed to set skin for NPC ('"
                                             + npc.getId()
                                             + "'). Error details:\n"
-                                            + ex
+                                            + ex.getMessage()
                             );
                         }
                     }

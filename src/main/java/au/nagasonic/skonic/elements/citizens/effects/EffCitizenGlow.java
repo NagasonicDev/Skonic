@@ -85,7 +85,7 @@ public class EffCitizenGlow extends AsyncEffect {
                                     "Failed to set glow/color for NPC ('"
                                             + npc.getId()
                                             + "'). Error details:\n"
-                                            + ex
+                                            + ex.getMessage()
                             );
                         }
                     }

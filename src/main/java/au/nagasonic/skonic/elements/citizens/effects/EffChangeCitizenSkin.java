@@ -4,13 +4,10 @@ import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.log.ErrorQuality;
 import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
-import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.Bukkit;
@@ -37,38 +34,63 @@ public class EffChangeCitizenSkin extends AsyncEffect {
 
     @Override
     protected void execute(Event e) {
-        //Check if ID is null
-        NPC[] npcs = npcExpr.getArray(e);
-        //Check if there is a citizen with the ID
-        if (npcs != null){
-            //Check if the URL is Null
-            for (NPC npc : npcs){
-                if (npc == null) { Skript.error("NPC " + npc.toString() + " is null"); }
-            }
-            Skin skin = skinExpr.getSingle(e);
-            if (skin != null){
-                String value = skin.getTexture();
-                if (value == null) Skript.error("Specified skin's value is null");
-                String uuid = String.valueOf(skin.getUUID());
-                if (uuid == null) Skript.error("Specified skin's uuid is null");
-                String signature = skin.getSignature();
-                if (signature == null) Skript.error("Specified skin's signature is null");
-                for (NPC npc : npcs){
-                    SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    Bukkit.getScheduler().runTask(Skonic.getInstance(), () -> {
-                        try {
-                            trait.setSkinPersistent(uuid, signature, value);
-                        } catch (IllegalArgumentException err) {
-                            Bukkit.getLogger().log(Level.SEVERE, "There was an error setting the skin of citizen with id " + npc.getId() + err.getMessage());
-                        }
-                    });
-                }
-            }else {
-                    Skript.error("Specified skin is null");
-            }
-        }else {
-            Skript.error("There are no citizens to change the skin of.", ErrorQuality.SEMANTIC_ERROR);
+        final NPC[] npcs = npcExpr.getArray(e);
+        final Skin skin = skinExpr.getSingle(e);
+
+        if (npcs == null || npcs.length == 0) {
+            Skonic.log(Level.INFO, "No NPCs were specified for the skin change.");
+            return;
         }
+        if (skin == null) {
+            Skonic.log(Level.SEVERE, "The specified skin is null, cannot apply skin.");
+            return;
+        }
+
+        final String value = skin.getTexture();
+        if (value == null) Skript.error("Specified skin's value is null");
+        final String uuid = String.valueOf(skin.getUUID());
+        if (uuid == null) Skript.error("Specified skin's uuid is null");
+        final String signature = skin.getSignature();
+        if (signature == null) Skript.error("Specified skin's signature is null");
+
+        Bukkit.getScheduler().runTask(
+                Skonic.getInstance(),
+                () -> {
+                    for (NPC npc : npcs) {
+                        if (npc == null) {
+                            Skonic.log(
+                                    Level.WARNING,
+                                    "Skipping NPC: NPC object is null."
+                            );
+                            continue;
+                        }
+
+                        if (!npc.isSpawned()) {
+                            Skonic.log(
+                                    Level.WARNING,
+                                    "Skipping NPC ('"
+                                            + npc.getId()
+                                            + "'): NPC object exists but is not spawned."
+                            );
+                            continue;
+                        }
+
+                        try {
+                            SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                            trait.setSkinPersistent(uuid, signature, value);
+                        } catch (Exception ex) {
+                            Skonic.log(
+                                    Level.SEVERE,
+                                    "Failed to set skin for NPC ('"
+                                            + npc.getId()
+                                            + "'). Error details:\n"
+                                            + ex.getMessage()
+                            );
+                        }
+                    }
+                }
+        );
+
     }
 
     @Override
@@ -77,6 +99,7 @@ public class EffChangeCitizenSkin extends AsyncEffect {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
         skinExpr = (Expression<Skin>) exprs[1];
