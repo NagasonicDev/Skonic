@@ -1,22 +1,30 @@
 test "citizen is navigating":
     spawn citizen named "test1" at spawn of world "world"
-    set {_npc::1} to last spawned citizen
-    set {_loc::1} to location 20 blocks north of {_npc::1}
-    make npc {_npc::1} pathfind to {_loc::1}
-    assert npc {_npc::1} is navigating with "was wrong (1)"
-    assert npc {_npc::1} is navigating to {_loc::1} with "was wrong (2)"
+    set {_npc1} to last spawned citizen
+    set {_loc1} to location 20 blocks north of {_npc1}
+
     spawn citizen named "test2" at spawn of world "world"
-    set {_npc::2} to last spawned citizen
-    set {_loc::2} to location 20 blocks south of {_npc::2}
-    make npc {_npc::2} pathfind to {_loc::2}
-    make npc {_npc::1} pathfind to {_loc::1}
-    assert npc {_npc::2} is navigating to {_loc::2} with "was wrong (3)"
-    assert npc {_npc::1} is navigating to {_loc::2} to fail with "was wrong (4)"
-    assert npc {_npc::2} is navigating to {_loc::1} to fail with "was wrong (5)"
-    assert npc {_npc::1} and {_npc::2} are navigating with "was wrong (6)"
-    pause {_npc::1}
-    assert npc {_npc::1} and {_npc::2} are navigating to fail with "was wrong (7)"
-    assert npc {_npc::1} and {_npc::2} aren't navigating to fail with "was wrong (8)"
-    pause {_npc::2}
-    assert npc {_npc::1} and {_npc::2} are not navigating with "was wrong (9)"
+    set {_npc2} to last spawned citizen
+    set {_loc2} to location 20 blocks south of {_npc2}
+
+    make npc {_npc1} pathfind to {_loc1}
+    assert npc {_npc1} is navigating with "Error (1): NPC 1 should be navigating after pathfind command."
+    assert npc {_npc1} is navigating to {_loc1} with "Error (2): NPC 1 should be navigating to the specified location."
+
+    make npc {_npc2} pathfind to {_loc2}
+    make npc {_npc1} pathfind to {_loc2}
+    
+    assert npc {_npc1} is navigating to {_loc1} to fail with "Error (3): NPC 1 should NOT be navigating to the old location ({_loc1}) anymore."
+    assert npc {_npc1} is navigating to {_loc2} with "Error (4): NPC 1 failed to redirect to the new location ({_loc2})."
+
+    assert npc {_npc1} and {_npc2} are navigating with "Error (5): Both NPC 1 and NPC 2 should be actively navigating."
+    assert npc {_npc1} and {_npc2} are navigating to {_loc2} to fail with "Error (6): They are not both navigating to the same location."
+
+    pause {_npc1}
+    assert npc {_npc1} is not navigating with "Error (7): NPC 1 should be stopped after 'pause'."
+    assert npc {_npc1} and {_npc2} are navigating to fail with "Error (8): The group assertion should fail as NPC 1 is paused."
+
+    pause {_npc2}
+    assert npc {_npc1} and {_npc2} are not navigating with "Error (9): Both NPCs should be stopped after individual pauses."
+
     delete all citizens
