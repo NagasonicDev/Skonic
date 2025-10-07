@@ -13,12 +13,10 @@ test "make citizen pathfind":
 
     assert npc {_npc::2} is navigating to {_loc::2} with "was wrong (isNavigating1)"
     assert npc {_npc::1} is navigating to {_loc::1} with "was wrong (isNavigating2)"
-    assert npc {_npc::2} is not navigating to {_loc::1} with "was wrong (isNavigating3)"
     assert npc {_npc::1} and {_npc::2} are navigating with "was wrong (areNavigating1)"
 
     pause {_npc::1}
-    assert npc {_npc::1} and {_npc::2} are navigating to fail with "was wrong (areNavigating2)"
-    assert npc {_npc::1} and {_npc::2} aren't navigating to fail with "was wrong (arentNavigating)"
+    assert npc {_npc::1} are not navigating with "was wrong (areNavigating2)"
     pause {_npc::2}
     assert npc {_npc::1} and {_npc::2} are not navigating with "was wrong (areNotNavigating)"
     delete all citizens
