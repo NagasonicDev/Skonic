@@ -61,16 +61,6 @@ public class EffCitizenGlow extends AsyncEffect {
                             continue;
                         }
 
-                        if (!npc.isSpawned()) {
-                            Skonic.log(
-                                    Level.WARNING,
-                                    "Skipping NPC ('"
-                                            + npc.getId()
-                                            + "'): NPC object exists but is not spawned."
-                            );
-                            continue;
-                        }
-
                         try {
                             npc.data().setPersistent(NPC.Metadata.GLOWING, not);
 

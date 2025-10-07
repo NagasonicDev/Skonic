@@ -57,16 +57,6 @@ public class EffChangeCitizenSkinName extends AsyncEffect {
                             continue;
                         }
 
-                        if (!npc.isSpawned()) {
-                            Skonic.log(
-                                    Level.WARNING,
-                                    "Skipping NPC ('"
-                                            + npc.getId()
-                                            + "'): NPC object exists but is not spawned."
-                            );
-                            continue;
-                        }
-
                         try {
                             SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
                             trait.setShouldUpdateSkins(true);
