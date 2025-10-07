@@ -1,7 +1,7 @@
 test "change citizen skin by url":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
+    set {_expected_texture_url} to "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936"
     change skin of npc {_npc} to url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936"
-    assert value of npc skin of {_npc} is value of skin from url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936" with "was wrong"
-    assert value of npc skin of {_npc} is value of skin from url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936" to fail with "was wrong"
+    assert texture url of npc skin of {_npc} is {_expected_texture_url} with "The actual texture URL does not match the expected Minecraft texture URL. Skin retrieval failed."
     delete all citizens
