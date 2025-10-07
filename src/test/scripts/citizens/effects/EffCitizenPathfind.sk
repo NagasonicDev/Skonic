@@ -11,11 +11,9 @@ test "make citizen pathfind":
     make npc {_npc::2} pathfind to {_loc::2}
     make npc {_npc::1} pathfind to {_loc::1}
 
-    wait 1 tick
-
     assert npc {_npc::2} is navigating to {_loc::2} with "was wrong (isNavigating1)"
-    assert npc {_npc::1} is navigating to {_loc::2} to fail with "was wrong (isNavigating2)"
-    assert npc {_npc::2} is navigating to {_loc::1} to fail with "was wrong (isNavigating3)"
+    assert npc {_npc::1} is navigating to {_loc::1} with "was wrong (isNavigating2)"
+    assert npc {_npc::2} is not navigating to {_loc::1} with "was wrong (isNavigating3)"
     assert npc {_npc::1} and {_npc::2} are navigating with "was wrong (areNavigating1)"
 
     pause {_npc::1}

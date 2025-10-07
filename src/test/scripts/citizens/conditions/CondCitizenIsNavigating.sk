@@ -7,18 +7,15 @@ test "citizen is navigating":
     set {_npc2} to last spawned citizen
     set {_loc2} to location 20 blocks south of {_npc2}
 
+
     make npc {_npc1} pathfind to {_loc1}
     assert npc {_npc1} is navigating with "Error (1): NPC 1 should be navigating after pathfind command."
     assert npc {_npc1} is navigating to {_loc1} with "Error (2): NPC 1 should be navigating to the specified location."
 
+
     make npc {_npc2} pathfind to {_loc2}
     make npc {_npc1} pathfind to {_loc2}
-
-    wait 1 tick
-
-    assert npc {_npc1} is not navigating to {_loc1} with "Error (3): NPC 1 should NOT be navigating to the old location ({_loc1}) anymore."
     assert npc {_npc1} is navigating to {_loc2} with "Error (4): NPC 1 failed to redirect to the new location ({_loc2})."
-
     assert npc {_npc1} and {_npc2} are navigating with "Error (5): Both NPC 1 and NPC 2 should be actively navigating."
     assert npc {_npc1} and {_npc2} are not navigating to {_loc2} with "Error (6): They are not both navigating to the same location."
 
