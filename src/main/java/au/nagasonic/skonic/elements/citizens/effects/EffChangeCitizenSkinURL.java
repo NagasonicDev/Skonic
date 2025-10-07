@@ -111,47 +111,31 @@ public class EffChangeCitizenSkinURL extends Effect {
         String textureEncoded = texture.get("value").getAsString();
         String signature = texture.get("signature").getAsString();
 
+        for (NPC npc : npcs) {
+            if (npc == null) {
+                Skonic.log(
+                        Level.WARNING,
+                        "Skipping NPC: NPC object is null."
+                );
+                continue;
+            }
 
-        if (!Skonic.getInstance().isEnabled()) {
-            Skonic.log(
-                    Level.WARNING,
-                    "Plugin is disabled. Skipping citizen skin change task for URL: ('"
-                            + url
-                            + "')."
-            );
-            return;
+            try {
+                SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                trait.setSkinPersistent(uuid, signature, textureEncoded);
+                Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);
+            } catch (Exception ex) {
+                Skonic.log(
+                        Level.SEVERE,
+                        "Failed to set skin for NPC ('"
+                                + npc.getId()
+                                + "') to ('"
+                                + url
+                                + "'). Error details:\n"
+                                + ex.getMessage()
+                );
+            }
         }
-
-        Bukkit.getScheduler().runTask(
-                Skonic.getInstance(),
-                () -> {
-                    for (NPC npc : npcs) {
-                        if (npc == null) {
-                            Skonic.log(
-                                    Level.WARNING,
-                                    "Skipping NPC: NPC object is null."
-                            );
-                            continue;
-                        }
-
-                        try {
-                            SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                            trait.setSkinPersistent(uuid, signature, textureEncoded);
-                            Skonic.log(Level.INFO, "Set skin of citizen with id " + npc.getId() + " to " + url);
-                        } catch (Exception ex) {
-                            Skonic.log(
-                                    Level.SEVERE,
-                                    "Failed to set skin for NPC ('"
-                                            + npc.getId()
-                                            + "') to ('"
-                                            + url
-                                            + "'). Error details:\n"
-                                            + ex.getMessage()
-                            );
-                        }
-                    }
-                }
-        );
     }
 
     @Override

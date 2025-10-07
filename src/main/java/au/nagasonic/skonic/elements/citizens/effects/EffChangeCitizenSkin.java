@@ -53,41 +53,28 @@ public class EffChangeCitizenSkin extends Effect {
         final String signature = skin.getSignature();
         if (signature == null) Skript.error("Specified skin's signature is null");
 
-        if (!Skonic.getInstance().isEnabled()) {
-            Skonic.log(
-                    Level.WARNING,
-                    "Plugin is disabled. Skipping citizen skin change task."
-            );
-            return;
+        for (NPC npc : npcs) {
+            if (npc == null) {
+                Skonic.log(
+                        Level.WARNING,
+                        "Skipping NPC: NPC object is null."
+                );
+                continue;
+            }
+
+            try {
+                SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                trait.setSkinPersistent(uuid, signature, value);
+            } catch (Exception ex) {
+                Skonic.log(
+                        Level.SEVERE,
+                        "Failed to set skin for NPC ('"
+                                + npc.getId()
+                                + "'). Error details:\n"
+                                + ex.getMessage()
+                );
+            }
         }
-
-        Bukkit.getScheduler().runTask(
-                Skonic.getInstance(),
-                () -> {
-                    for (NPC npc : npcs) {
-                        if (npc == null) {
-                            Skonic.log(
-                                    Level.WARNING,
-                                    "Skipping NPC: NPC object is null."
-                            );
-                            continue;
-                        }
-
-                        try {
-                            SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                            trait.setSkinPersistent(uuid, signature, value);
-                        } catch (Exception ex) {
-                            Skonic.log(
-                                    Level.SEVERE,
-                                    "Failed to set skin for NPC ('"
-                                            + npc.getId()
-                                            + "'). Error details:\n"
-                                            + ex.getMessage()
-                            );
-                        }
-                    }
-                }
-        );
 
     }
 
