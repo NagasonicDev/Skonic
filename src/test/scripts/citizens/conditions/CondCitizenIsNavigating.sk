@@ -14,6 +14,8 @@ test "citizen is navigating":
     make npc {_npc2} pathfind to {_loc2}
     make npc {_npc1} pathfind to {_loc2}
 
+    wait 1 tick
+
     assert npc {_npc1} is not navigating to {_loc1} with "Error (3): NPC 1 should NOT be navigating to the old location ({_loc1}) anymore."
     assert npc {_npc1} is navigating to {_loc2} with "Error (4): NPC 1 failed to redirect to the new location ({_loc2})."
 
