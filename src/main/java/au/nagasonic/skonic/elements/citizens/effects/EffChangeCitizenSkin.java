@@ -53,6 +53,14 @@ public class EffChangeCitizenSkin extends AsyncEffect {
         final String signature = skin.getSignature();
         if (signature == null) Skript.error("Specified skin's signature is null");
 
+        if (!Skonic.getInstance().isEnabled()) {
+            Skonic.log(
+                    Level.WARNING,
+                    "Plugin is disabled. Skipping citizen skin change task."
+            );
+            return;
+        }
+
         Bukkit.getScheduler().runTask(
                 Skonic.getInstance(),
                 () -> {

@@ -100,6 +100,18 @@ public class EffChangeCitizenSkinURL extends AsyncEffect {
         String textureEncoded = texture.get("value").getAsString();
         String signature = texture.get("signature").getAsString();
 
+
+        if (!Skonic.getInstance().isEnabled()) {
+            Skonic.log(
+                    Level.WARNING,
+                    "Plugin is disabled. Skipping citizen skin change task for URL: ('"
+                            + url
+                            + "')."
+            );
+            return;
+        }
+
+
         Bukkit.getScheduler().runTask(
                 Skonic.getInstance(),
                 () -> {
