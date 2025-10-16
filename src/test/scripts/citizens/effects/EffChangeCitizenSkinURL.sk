@@ -3,5 +3,5 @@ test "change citizen skin by url":
     set {_npc} to last spawned npc
     set {_texture_url} to "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936"
     change skin of npc {_npc} to url {_texture_url}
-    assert "%value of npc skin of {_npc}%" is "%value of skin from url {_texture_url}%" with "was wrong"
+    assert (value of npc skin of {_npc}) is (value of skin from url {_texture_url}) with "was wrong"
     delete all citizens
