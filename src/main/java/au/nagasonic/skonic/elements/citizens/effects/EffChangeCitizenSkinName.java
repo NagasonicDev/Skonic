@@ -3,13 +3,13 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
-import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.util.AsyncEffect;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,21 +33,46 @@ public class EffChangeCitizenSkinName extends AsyncEffect {
 
     @Override
     protected void execute(Event e) {
-        //Check if the ID is null
-        NPC[] npcs = npcExpr.getArray(e);
-        if (npcs != null) {
-            //Check if there is a citizen with the ID
-            for (NPC npc : npcs){
-                if (npc != null){
-                    SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
-                    trait.setShouldUpdateSkins(true);
-                    //Check if the name is null
-                    if (name.getSingle(e) != null){
-                        trait.setSkinName(name.getSingle(e));
-                    }else Skonic.log(Level.SEVERE, "The specified name is null.");
-                }else Skonic.log(Level.SEVERE, "There is no citizen " + npc.toString());
-            }
-        }else Skonic.log(Level.SEVERE, "Specified NPCs are null");
+        final NPC[] npcs = npcExpr.getArray(e);
+        final String skinName = name.getSingle(e);
+
+        if (npcs == null || npcs.length == 0) {
+            Skonic.log(Level.INFO, "No NPCs were specified for the skin change.");
+            return;
+        }
+        if (skinName == null) {
+            Skonic.log(Level.SEVERE, "The specified skin name is null, cannot apply skin.");
+            return;
+        }
+
+        Bukkit.getScheduler().runTask(
+                Skonic.getInstance(),
+                () -> {
+                    for (NPC npc : npcs) {
+                        if (npc == null) {
+                            Skonic.log(
+                                    Level.WARNING,
+                                    "Skipping NPC: NPC object is null."
+                            );
+                            continue;
+                        }
+
+                        try {
+                            SkinTrait trait = npc.getOrAddTrait(SkinTrait.class);
+                            trait.setShouldUpdateSkins(true);
+                            trait.setSkinName(skinName);
+                        } catch (Exception ex) {
+                            Skonic.log(
+                                    Level.SEVERE,
+                                    "Failed to set skin for NPC ('"
+                                            + npc.getId()
+                                            + "'). Error details:\n"
+                                            + ex.getMessage()
+                            );
+                        }
+                    }
+                }
+        );
     }
 
     @Override
@@ -56,6 +81,7 @@ public class EffChangeCitizenSkinName extends AsyncEffect {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
         name = (Expression<String>) exprs[1];
