@@ -41,6 +41,10 @@ public class ExprSkinFromURL extends SimpleExpression<Skin> {
                     Skonic.log(Level.WARNING, "MineSkin API returned error 400 for URL: " + url +
                             ". This may be due to MineSkin API v2 requiring authentication or the URL being invalid.");
                     return null;
+                }else if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("429")){
+                    Skonic.log(Level.WARNING, "MineSkin API returned response code 429 for URL: " + url +
+                            ". This is due to the server receiving too many requests, so it is recommended that you slow down in your application of the expression.");
+                    return null;
                 }
                 throw new RuntimeException(ex);
             } catch (InterruptedException ex) {
