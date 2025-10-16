@@ -31,7 +31,7 @@ public final class Skonic extends JavaPlugin {
     /** The primary logger used by the plugin for console output. */
     private static Logger logger;
     /** The absolute path to the plugin's data folder. */
-    public static String dataDirectory;
+    private static String dataDirectory;
     /** The Bukkit {@link PluginManager} instance. */
     private PluginManager pm;
 
