@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
 
 public class Config {
 
@@ -15,11 +16,15 @@ public class Config {
     private File configFile;
 
     // Config things
-    public boolean SETTINGS_DEBUG;
-    public boolean SETTINGS_UPDATE_CHECKER_ENABLED;
+    private boolean SETTINGS_DEBUG;
+    private boolean SETTINGS_UPDATE_CHECKER_ENABLED;
 
     public Config(Skonic plugin) {
         this.plugin = plugin;
+        loadConfigFile();
+    }
+
+    public void reload() {
         loadConfigFile();
     }
 
@@ -58,7 +63,7 @@ public class Config {
             if (hasUpdated)
                 config.save(configFile);
         } catch (Exception e) {
-            e.printStackTrace();
+            Skonic.logger().log(Level.SEVERE, "Error matching config", e);
         }
     }
 
@@ -69,5 +74,13 @@ public class Config {
     private void loadConfigs() {
         this.SETTINGS_DEBUG = getSetting("debug");
         this.SETTINGS_UPDATE_CHECKER_ENABLED = getSetting("update-checker.enabled");
+    }
+
+    public boolean isDebugEnabled() {
+        return SETTINGS_DEBUG;
+    }
+
+    public boolean isUpdateCheckerEnabled() {
+        return SETTINGS_UPDATE_CHECKER_ENABLED;
     }
 }

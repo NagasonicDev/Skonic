@@ -1,6 +1,7 @@
 package au.nagasonic.skonic;
 
 import au.nagasonic.skonic.elements.util.Config;
+import au.nagasonic.skonic.elements.util.SkonicLogger;
 import au.nagasonic.skonic.elements.util.UpdateChecker;
 import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
@@ -30,6 +31,7 @@ public final class Skonic extends JavaPlugin {
     private static Skonic instance;
     /** The primary logger used by the plugin for console output. */
     private static Logger logger;
+    private static SkonicLogger skonicLogger;
     /** The absolute path to the plugin's data folder. */
     private static String dataDirectory;
     /** The Bukkit {@link PluginManager} instance. */
@@ -56,13 +58,6 @@ public final class Skonic extends JavaPlugin {
     private String version;
 
 
-    /**
-     * Called when the plugin is enabled.
-     * <p>
-     * Initializes the plugin.
-     *
-     * @since 1.0.0
-     */
     @Override
     public void onEnable() {
         long start = System.currentTimeMillis();
@@ -92,11 +87,6 @@ public final class Skonic extends JavaPlugin {
         );
     }
 
-    /**
-     * Called when the plugin is disabled (shut down).
-     *
-     * @since 1.0.0
-     */
     @Override
     @SuppressWarnings("deprecation")
     public void onDisable() {
@@ -114,6 +104,7 @@ public final class Skonic extends JavaPlugin {
     private void initializeStatics() {
         instance = this;
         logger = getLogger();
+        skonicLogger = new SkonicLogger(this);
         dataDirectory = this.getDataFolder().getPath();
         pm = Bukkit.getPluginManager();
     }
@@ -180,9 +171,9 @@ public final class Skonic extends JavaPlugin {
     /**
      * Adds the Skript version chart to the metrics.
      *
-     * @param metrics The {@link Metrics} instance to add the chart to.
+     * @param metrics   the {@link Metrics} instance to add the chart to.
      *
-     * @since 1.2.5
+     * @since           1.2.5
      */
     private void addSkriptVersionChart(@NotNull Metrics metrics) {
         metrics.addCustomChart(new Metrics.DrilldownPie("skript_version", () -> {
@@ -200,13 +191,12 @@ public final class Skonic extends JavaPlugin {
 
 
     // Getters
-
     /**
      * Returns the instance of the {@link Skonic} plugin.
      *
-     * @return The plugin instance.
+     * @return  the plugin instance.
      *
-     * @since 1.2.5
+     * @since   1.2.5
      */
     public static Skonic getInstance() {
         return instance;
@@ -215,9 +205,9 @@ public final class Skonic extends JavaPlugin {
     /**
      * Returns the absolute path to the plugin's data directory.
      *
-     * @return The absolute path to the plugin's data directory as a {@link String}.
+     * @return  the absolute path to the plugin's data directory as a {@link String}.
      *
-     * @since 1.0.0
+     * @since   1.0.0
      */
     public static String getDataDirectory(){
         return dataDirectory;
@@ -226,9 +216,9 @@ public final class Skonic extends JavaPlugin {
     /**
      * Returns the plugin's {@link Config} object.
      *
-     * @return The plugin's {@link Config} object.
+     * @return  the plugin's {@link Config} object.
      *
-     * @since 1.2.5
+     * @since   1.2.5
      */
     public Config getPluginConfig() {
         return this.config;
@@ -237,9 +227,9 @@ public final class Skonic extends JavaPlugin {
     /**
      * Returns the Skript {@link AddonLoader} instance responsible for registering elements.
      *
-     * @return The {@link AddonLoader} used by this plugin.
+     * @return  the {@link AddonLoader} used by this plugin.
      *
-     * @since 1.2.5
+     * @since   1.2.5
      */
     @SuppressWarnings("unused")
     public AddonLoader getAddonLoader() {
@@ -249,9 +239,9 @@ public final class Skonic extends JavaPlugin {
     /**
      * Returns the current version {@link String} of the plugin.
      *
-     * @return The plugin version {@link String}.
+     * @return  the plugin version {@link String}.
      *
-     * @since 1.2.5
+     * @since   1.2.5
      */
     @SuppressWarnings("unused")
     public String getVersion() {
@@ -260,13 +250,12 @@ public final class Skonic extends JavaPlugin {
 
 
     // Booleans
-
     /**
      * Check if Citizens is installed and enabled.
      *
      * @return {@code true} if Citizens is active, {@code false} otherwise.
      *
-     * @since 1.2.5
+     * @since  1.2.5
      */
     @SuppressWarnings("unused")
     public boolean isCitizensEnabled() {
@@ -275,32 +264,64 @@ public final class Skonic extends JavaPlugin {
 
 
     // Utils Methods
-
     /**
      * Logs an informational message to the console using the plugin's logger.
      * <p>
      * This is a shorthand for {@code getLogger().info(message)}.
+     * Get the logger with {@link #logger()}
      *
-     * @deprecated As of release 1.2.5, replaced by {@link #log(Level, String)}. Use it with {@link Level#INFO} instead.
+     * @deprecated As of release 1.2.5, replaced by {@link SkonicLogger#info(String)}.
+     * Get the logger with {@link #logger()}
      *
-     * @see       #log(Level, String)
-     * @since     1.0.0
+     * @since      1.0.0
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static void info(String message){
         logger.info(message);
     }
 
     /**
      * Logs a message at a specified logging level (e.g., {@link Level#WARNING}, {@link Level#SEVERE}).
+     * 
+     * @deprecated As of release 1.2.5, replaced by {@link SkonicLogger#log(Level, String)}.
+     * Get the logger with {@link #logger()}
      *
-     * @param level The severity level of the log message
-     * @param message The message to log
+     * @param level     the severity level of the log message
+     * @param message   the message to log
      *
-     * @since     1.0.0
+     * @since           1.0.0
      */
+    @Deprecated(forRemoval = true)
     public static void log(Level level, String message) {
         logger.log(level, message);
+    }
+
+    /**
+     * Logs a message with an exception at a specified logging level (e.g., {@link Level#WARNING}, {@link Level#SEVERE}).
+     * 
+     * @deprecated As of release 1.2.5, replaced by {@link SkonicLogger#log(Level, String, Throwable)}.
+     * Get the logger with {@link #logger()}
+     *
+     * @param level     the severity level of the log message
+     * @param message   the message to log
+     * @param throwable the exception/error to log with its stack trace
+     *
+     * @since           1.2.5
+     */
+    @Deprecated(forRemoval = true)
+    public static void log(Level level, String message, Throwable throwable) {
+        logger.log(level, message, throwable);
+    }
+
+    /**
+     * Returns the plugin's logger instance.
+     *
+     * @return  the {@link SkonicLogger} instance
+     *
+     * @since   1.2.5
+     */
+    public static SkonicLogger logger() {
+        return skonicLogger;
     }
 
 }
