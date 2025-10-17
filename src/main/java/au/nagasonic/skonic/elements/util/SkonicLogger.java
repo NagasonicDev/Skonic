@@ -12,6 +12,7 @@ import java.util.logging.Logger;
  *
  * @since   1.2.5
  */
+@SuppressWarnings("unused")
 public class SkonicLogger {
 
     /** The main plugin instance. */
