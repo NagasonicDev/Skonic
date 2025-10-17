@@ -273,6 +273,8 @@ public final class Skonic extends JavaPlugin {
      * @deprecated As of release 1.2.5, replaced by {@link SkonicLogger#info(String)}.
      * Get the logger with {@link #logger()}
      *
+     * @param message   the message to log
+     *
      * @since      1.0.0
      */
     @Deprecated(forRemoval = true)
