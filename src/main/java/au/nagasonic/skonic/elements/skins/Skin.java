@@ -114,7 +114,7 @@ public class Skin {
     }
 
     /**
-     * Creates a {@link Skin} object by fetching and parsing texture data from an URL.
+     * Creates a {@link Skin} object by fetching and parsing texture data from a URL.
      * <p>
      *
      * @param urlString                 the URL pointing to the JSON texture data.
