@@ -60,6 +60,8 @@ public final class Skonic extends JavaPlugin {
      * Called when the plugin is enabled.
      * <p>
      * Initializes the plugin.
+     *
+     * @since 1.0.0
      */
     @Override
     public void onEnable() {
@@ -92,6 +94,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Called when the plugin is disabled (shut down).
+     *
+     * @since 1.0.0
      */
     @Override
     @SuppressWarnings("deprecation")
@@ -104,6 +108,8 @@ public final class Skonic extends JavaPlugin {
     // Private Setup Methods
     /**
      * Initializes all static fields ({@link #instance}, {@link #logger}, {@link #dataDirectory}, {@link #pm}).
+     *
+     * @since 1.2.5
      */
     private void initializeStatics() {
         instance = this;
@@ -114,6 +120,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Initializes the plugin's {@link Config} file.
+     *
+     * @since 1.2.5
      */
     private void setupConfiguration() {
         config = new Config(this);
@@ -121,6 +129,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Checks for dependencies (Citizens), sets the associated boolean flag, and sends a log message to the console.
+     *
+     * @since 1.2.5
      */
     private void checkDependenciesAndAlert() {
         Plugin citizensPlugin = pm.getPlugin(CITIZENS_PLUGIN_NAME);
@@ -136,6 +146,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Initializes the Skript {@link AddonLoader}.
+     *
+     * @since 1.2.5
      */
     private void setupAddonLoader() {
         addonLoader = new AddonLoader(this);
@@ -143,6 +155,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Checks if the current plugin version is a beta build and alerts the console if it is.
+     *
+     * @since 1.2.5
      */
     @SuppressWarnings("deprecation")
     private void checkVersionAndAlert() {
@@ -155,6 +169,8 @@ public final class Skonic extends JavaPlugin {
 
     /**
      * Initializes metrics collection.
+     *
+     * @since 1.2.5
      */
     private void setupMetrics() {
         Metrics metrics = new Metrics(this, 20479);
