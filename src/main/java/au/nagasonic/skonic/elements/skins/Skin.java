@@ -45,7 +45,7 @@ public class Skin {
     /**
      * Constructs a new {@link Skin} object with the specified value and signature.
      *
-     * @param value     the texture value data.
+     * @param value     the value data.
      * @param signature the signature data.
      *
      * @since           1.0.0
@@ -151,7 +151,6 @@ public class Skin {
             throw new RuntimeException("Failed to parse JSON structure from URL: " + urlString, e);
         }
     }
-
 
     // Getters
     /**

@@ -43,12 +43,12 @@ public class SkonicLogger {
      * Logs an informational message with an exception.
      *
      * @param message   the message to log
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      *
      * @since           1.2.5
      */
-    public void info(String message, Throwable throwable) {
-        logger.log(Level.INFO, message, throwable);
+    public void info(String message, Throwable cause) {
+        logger.log(Level.INFO, message, cause);
     }
 
     /**
@@ -66,14 +66,14 @@ public class SkonicLogger {
     /**
      * Logs a formatted informational message with arguments and an exception.
      *
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      * @param format    the message format (using {@link String#format})
      * @param args      the arguments for the format
      *
      * @since           1.2.5
      */
-    public void info(Throwable throwable, String format, Object... args) {
-        logger.log(Level.INFO, String.format(format, args), throwable);
+    public void info(Throwable cause, String format, Object... args) {
+        logger.log(Level.INFO, String.format(format, args), cause);
     }
 
 
@@ -93,12 +93,12 @@ public class SkonicLogger {
      * Logs a warning message with an exception.
      *
      * @param message   the message to log
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      *
      * @since           1.2.5
      */
-    public void warn(String message, Throwable throwable) {
-        logger.log(Level.WARNING, message, throwable);
+    public void warn(String message, Throwable cause) {
+        logger.log(Level.WARNING, message, cause);
     }
 
     /**
@@ -116,14 +116,14 @@ public class SkonicLogger {
     /**
      * Logs a formatted warning message with arguments and an exception.
      *
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      * @param format    the message format (using {@link String#format})
      * @param args      the arguments for the format
      *
      * @since           1.2.5
      */
-    public void warn(Throwable throwable, String format, Object... args) {
-        logger.log(Level.WARNING, String.format(format, args), throwable);
+    public void warn(Throwable cause, String format, Object... args) {
+        logger.log(Level.WARNING, String.format(format, args), cause);
     }
 
 
@@ -143,12 +143,12 @@ public class SkonicLogger {
      * Logs a severe error message with an exception.
      *
      * @param message   the message to log
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      *
      * @since           1.2.5
      */
-    public void severe(String message, Throwable throwable) {
-        logger.log(Level.SEVERE, message, throwable);
+    public void severe(String message, Throwable cause) {
+        logger.log(Level.SEVERE, message, cause);
     }
 
     /**
@@ -166,14 +166,14 @@ public class SkonicLogger {
     /**
      * Logs a formatted severe error message with arguments and an exception.
      *
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      * @param format    the message format (using {@link String#format})
      * @param args      the arguments for the format
      *
      * @since           1.2.5
      */
-    public void severe(Throwable throwable, String format, Object... args) {
-        logger.log(Level.SEVERE, String.format(format, args), throwable);
+    public void severe(Throwable cause, String format, Object... args) {
+        logger.log(Level.SEVERE, String.format(format, args), cause);
     }
 
 
@@ -195,13 +195,13 @@ public class SkonicLogger {
      * Logs a debug message with an exception (only if debug mode is enabled in config).
      *
      * @param message   the message to log
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      *
      * @since           1.2.5
      */
-    public void debug(String message, Throwable throwable) {
+    public void debug(String message, Throwable cause) {
         if (plugin.getPluginConfig().isDebugEnabled()) {
-            logger.log(Level.INFO, "[DEBUG] " + message, throwable);
+            logger.log(Level.INFO, "[DEBUG] " + message, cause);
         }
     }
 
@@ -222,16 +222,16 @@ public class SkonicLogger {
     /**
      * Logs a debug message with arguments and an exception (only if debug mode is enabled in config).
      *
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      * @param format    the message format (using {@link String#format})
      * @param args      the arguments for the format
      *
      * @since           1.2.5
      */
-    public void debug(Throwable throwable, String format, Object... args) {
-        logger.log(Level.SEVERE, String.format(format, args), throwable);
+    public void debug(Throwable cause, String format, Object... args) {
+        logger.log(Level.SEVERE, String.format(format, args), cause);
         if (plugin.getPluginConfig().isDebugEnabled()) {
-            logger.log(Level.INFO, "[DEBUG] " + String.format(format, args), throwable);
+            logger.log(Level.INFO, "[DEBUG] " + String.format(format, args), cause);
         }
     }
 
@@ -254,12 +254,12 @@ public class SkonicLogger {
      *
      * @param level     the severity level
      * @param message   the message to log
-     * @param throwable the exception to log
+     * @param cause the exception to log
      *
      * @since           1.2.5
      */
-    public void log(Level level, String message, Throwable throwable) {
-        logger.log(level, message, throwable);
+    public void log(Level level, String message, Throwable cause) {
+        logger.log(level, message, cause);
     }
 
     /**
@@ -279,14 +279,14 @@ public class SkonicLogger {
      * Logs a formatted message with arguments and an exception.
      *
      * @param level     the severity level
-     * @param throwable the exception to log with its stack trace
+     * @param cause the exception to log with its stack trace
      * @param format    the message format (using {@link String#format})
      * @param args      the arguments for the format
      *
      * @since           1.2.5
      */
-    public void log(Level level, Throwable throwable, String format, Object... args) {
-        logger.log(level, String.format(format, args), throwable);
+    public void log(Level level, Throwable cause, String format, Object... args) {
+        logger.log(level, String.format(format, args), cause);
     }
 
 }
