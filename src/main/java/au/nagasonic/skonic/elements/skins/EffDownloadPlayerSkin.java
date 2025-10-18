@@ -51,7 +51,7 @@ public class EffDownloadPlayerSkin extends Effect {
             Skonic.log(Level.SEVERE, "The skin does not have a skin url. Aborting...");
             return;
         }
-        File file = new File(Skonic.getPath() + "/skins/"  + Util.fromDate(Util.getDate()).replaceAll(" ", "") + ".png");
+        File file = new File(Skonic.getDataDirectory() + "/skins/"  + Util.fromDate(Util.getDate()).replaceAll(" ", "") + ".png");
         try {
             FileUtils.copyURLToFile(url, file);
         } catch (IOException ex) {

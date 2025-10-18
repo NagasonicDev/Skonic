@@ -27,9 +27,9 @@ public class UpdateChecker implements Listener {
         this.plugin = plugin;
         this.pluginVersion = new Version(plugin.getDescription().getVersion());
         Config config = plugin.getPluginConfig();
-        if (config.SETTINGS_UPDATE_CHECKER_ENABLED) {
+        if (config.isUpdateCheckerEnabled()) {
             setupJoinListener();
-            checkUpdate(false);
+            checkUpdate();
         } else {
             Util.log("&3Update checker disabled!");
         }
@@ -51,6 +51,22 @@ public class UpdateChecker implements Listener {
         }, this.plugin);
     }
 
+    /**
+     * Checks for plugin updates synchronously.
+     *
+     * @since 1.2.5
+     */
+    private void checkUpdate() {
+        checkUpdate(false);
+    }
+
+    /**
+     * Checks for plugin updates.
+     *
+     * @param async whether to check asynchronously (default: false)
+     *
+     * @since       1.2.5
+     */
     private void checkUpdate(boolean async) {
         Util.log("Checking for update...");
         getUpdateVersion(async).thenApply(version -> {
@@ -109,7 +125,7 @@ public class UpdateChecker implements Listener {
             String tag_name = jsonObject.get("version_number").getAsString();
             return new Version(tag_name);
         } catch (IOException e) {
-            if (this.plugin.getPluginConfig().SETTINGS_DEBUG) {
+            if (this.plugin.getPluginConfig().isDebugEnabled()) {
                 e.printStackTrace();
             }else {
                 Util.logLoading("&cChecking for update failed!");

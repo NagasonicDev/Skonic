@@ -2,6 +2,7 @@ package au.nagasonic.skonic.elements.skins;
 
 import au.nagasonic.skonic.elements.util.SkinUtils;
 import au.nagasonic.skonic.Skonic;
+import au.nagasonic.skonic.exceptions.SkinGenerationException;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
@@ -32,40 +33,57 @@ public class ExprSkinFromURL extends SimpleExpression<Skin> {
     @Override
     protected @Nullable Skin[] get(Event e) {
         String url = urlExpr.getSingle(e);
-        if (url != null){
-            JsonObject data = null;
-            try {
-                data = SkinUtils.generateFromURL(url, false);
-            } catch (ExecutionException ex) {
-                if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("400")) {
-                    Skonic.log(Level.WARNING, "MineSkin API returned error 400 for URL: " + url +
-                            ". This may be due to MineSkin API v2 requiring authentication or the URL being invalid.");
-                    return null;
-                }else if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("429")){
-                    Skonic.log(Level.WARNING, "MineSkin API returned response code 429 for URL: " + url +
-                            ". This is due to the server receiving too many requests, so it is recommended that you slow down in your application of the expression.");
-                    return null;
-                }
-                throw new RuntimeException(ex);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-            
-            if (data == null) {
-                Skonic.log(Level.SEVERE, "Failed to generate skin data from URL: " + url);
-                return null;
-            }
-            
-            UUID uuid = UUID.fromString(data.get("uuid").getAsString());
-            JsonObject texture = data.get("texture").getAsJsonObject();
-            String value = texture.get("value").getAsString();
-            String signature = texture.get("signature").getAsString();
-            return new Skin[]{new Skin(value, signature)};
-        }else{
-            Skonic.log(Level.SEVERE, "URL is null.");
+
+        if (url == null) {
+            Skonic.logger().warn("(skin from url) : The provided URL returned null.");
+            return null;
+        }
+
+        try {
+            Skin skin = SkinUtils.getSkinFromMineskinUrl(url, false);
+            return new Skin[]{skin};
+        } catch (SkinGenerationException exception) {
+            Skonic.logger().severe("(skin from url) : Failed to retrieve skin for URL: " + url, exception);
             return null;
         }
     }
+//    @Override
+//    protected @Nullable Skin[] get(Event e) {
+//        String url = urlExpr.getSingle(e);
+//        if (url != null){
+//            JsonObject data = null;
+//            try {
+//                data = SkinUtils.generateFromURL(url, false);
+//            } catch (ExecutionException ex) {
+//                if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("400")) {
+//                    Skonic.log(Level.WARNING, "MineSkin API returned error 400 for URL: " + url +
+//                            ". This may be due to MineSkin API v2 requiring authentication or the URL being invalid.");
+//                    return null;
+//                }else if (ex.getCause() instanceof IOException && ex.getCause().getMessage().contains("429")){
+//                    Skonic.log(Level.WARNING, "MineSkin API returned response code 429 for URL: " + url +
+//                            ". This is due to the server receiving too many requests, so it is recommended that you slow down in your application of the expression.");
+//                    return null;
+//                }
+//                throw new RuntimeException(ex);
+//            } catch (InterruptedException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//
+//            if (data == null) {
+//                Skonic.log(Level.SEVERE, "Failed to generate skin data from URL: " + url);
+//                return null;
+//            }
+//
+//            UUID uuid = UUID.fromString(data.get("uuid").getAsString());
+//            JsonObject texture = data.get("texture").getAsJsonObject();
+//            String value = texture.get("value").getAsString();
+//            String signature = texture.get("signature").getAsString();
+//            return new Skin[]{new Skin(value, signature)};
+//        }else{
+//            Skonic.log(Level.SEVERE, "URL is null.");
+//            return null;
+//        }
+//    }
 
     @Override
     public boolean isSingle() {

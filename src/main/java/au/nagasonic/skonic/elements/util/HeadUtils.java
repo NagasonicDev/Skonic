@@ -2,13 +2,12 @@ package au.nagasonic.skonic.elements.util;
 
 import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
+import au.nagasonic.skonic.exceptions.SkinGenerationException;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.profile.PlayerProfile;
@@ -144,6 +143,7 @@ public class HeadUtils {
         }
     }
 
+    @Deprecated (forRemoval = true)
     public static String getValue(ItemStack head){
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         PlayerProfile profile = meta.getOwnerProfile();
@@ -158,6 +158,41 @@ public class HeadUtils {
         }
         JsonObject texture = data.get("texture").getAsJsonObject();
         String value = texture.get("value").getAsString();
+        return value;
+    }
+
+    /**
+     * Attempts to retrieve the texture value of a player head via Mineskin.
+     *
+     * @param headItem  the ItemStack representing the player head.
+     *
+     * @return          the texture value string, or {@code null}.
+     *
+     * @since           1.2.5
+     */
+    @SuppressWarnings("deprecation")
+    public static String getHeadSkinValue(ItemStack headItem) {
+        if (headItem == null || !(headItem.getItemMeta() instanceof SkullMeta skullMeta)) {
+            throw new IllegalArgumentException("ItemStack must be a player head with SkullMeta.");
+        }
+
+        PlayerProfile playerProfile = skullMeta.getOwnerProfile();
+
+        if (playerProfile == null || playerProfile.getTextures().getSkin() == null) {
+            return null;
+        }
+
+        String url = playerProfile.getTextures().getSkin().toString();
+
+        String value;
+        try {
+            Skin skin = SkinUtils.getSkinFromMineskinUrl(url, false);
+            value = skin.getTexture();
+        } catch (SkinGenerationException e) {
+            Skonic.logger().severe("Failed to retrieve skin value from external API for head URL: " + url, e);
+            return null;
+        }
+
         return value;
     }
 
