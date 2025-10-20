@@ -30,7 +30,7 @@ public class SkinCacheManager {
     public SkinCacheManager(Skonic plugin, File dataFolder) {
         this.cacheFile = new File(dataFolder, "skin_cache.yml");
         if (!this.cacheFile.exists()) {
-            plugin.saveResource(dataFolder + "skin_cache.yml", true);
+            plugin.saveResource(dataFolder + "/skin_cache.yml", true);
         }
         this.load();
     }
