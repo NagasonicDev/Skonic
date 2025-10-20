@@ -33,7 +33,7 @@ public class SkinUtils {
 
 
     /**
-     * Returns a {@link Skin} object from a Mineskin URL.
+     * Returns a {@link Skin} object from a Mineskin URL, if in-memory storage doesn't contain url and skin.
      *
      * @param url                       the public URL of the skin image to be processed by Mineskin.
      * @param slim                      {@code true} to request the 'slim' model; {@code false} for the standard model.
@@ -46,11 +46,21 @@ public class SkinUtils {
         JsonObject mineskinData;
 
         try {
-            mineskinData = getMineskinData(url, slim);
-            JsonObject skinTexture = mineskinData.get("texture").getAsJsonObject();
-            String skinValue = skinTexture.get("value").getAsString();
-            String skinSignature = skinTexture.get("signature").getAsString();
-            return new Skin(skinValue, skinSignature);
+
+            Skin cachedSkin = Skonic.getSkinCacheManager().get(url);
+            if (cachedSkin != null) {
+                return cachedSkin;
+            } else {
+                mineskinData = getMineskinData(url, slim);
+                JsonObject skinTexture = mineskinData.get("texture").getAsJsonObject();
+                String skinValue = skinTexture.get("value").getAsString();
+                String skinSignature = skinTexture.get("signature").getAsString();
+
+                Skin urlSkin = new Skin(skinValue, skinSignature);
+                Skonic.getSkinCacheManager().set(url, urlSkin);
+
+                return urlSkin;
+            }
         } catch (Exception e) {
             throw new SkinGenerationException("An unexpected error occurred during skin retrieval for URL: " + url, e);
         }

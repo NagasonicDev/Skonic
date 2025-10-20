@@ -1,9 +1,6 @@
 package au.nagasonic.skonic;
 
-import au.nagasonic.skonic.elements.util.Config;
-import au.nagasonic.skonic.elements.util.SkonicLogger;
-import au.nagasonic.skonic.elements.util.UpdateChecker;
-import au.nagasonic.skonic.elements.util.Util;
+import au.nagasonic.skonic.elements.util.*;
 import ch.njol.skript.Skript;
 import ch.njol.skript.util.Version;
 import org.bukkit.Bukkit;
@@ -40,6 +37,8 @@ public final class Skonic extends JavaPlugin {
     // -- Config
     /** The plugin's {@link Config}. */
     private Config config;
+    /** The plugin's {@link SkinCacheManager} */
+    private static SkinCacheManager skinCacheManager;
 
     // -- Dependencies
     // --- Earliest Minecraft Version
@@ -91,6 +90,7 @@ public final class Skonic extends JavaPlugin {
     @SuppressWarnings("deprecation")
     public void onDisable() {
         // Plugin shutdown logic
+        skinCacheManager.save();
         Util.logLoading("&eDisabled Skonic v%s", getDescription().getVersion());
     }
 
@@ -116,6 +116,7 @@ public final class Skonic extends JavaPlugin {
      */
     private void setupConfiguration() {
         config = new Config(this);
+        skinCacheManager = new SkinCacheManager(this, getDataFolder());
     }
 
     /**
@@ -222,6 +223,17 @@ public final class Skonic extends JavaPlugin {
      */
     public Config getPluginConfig() {
         return this.config;
+    }
+
+    /**
+     * Returns the plugin's {@link SkinCacheManager}.
+     *
+     * @return  the plugin's {@link SkinCacheManager}.
+     *
+     * @since   1.2.5
+     */
+    public static SkinCacheManager getSkinCacheManager() {
+        return skinCacheManager;
     }
 
     /**
