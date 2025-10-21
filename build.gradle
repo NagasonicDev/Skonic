@@ -40,7 +40,7 @@ dependencies {
         exclude group: '*', module: '*'
     }
     //Skript
-    compileOnly "com.github.SkriptLang:Skript:2.11.2"
+    compileOnly "com.github.SkriptLang:Skript:2.13.0"
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO
