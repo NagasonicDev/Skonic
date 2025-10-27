@@ -177,17 +177,7 @@ public final class Skonic extends JavaPlugin {
      * @since           1.2.5
      */
     private void addSkriptVersionChart(@NotNull Metrics metrics) {
-        metrics.addCustomChart(new Metrics.DrilldownPie("skript_version", () -> {
-            Map<String, Map<String, Integer>> map = new HashMap<>();
-
-            Version skriptVersion = Skript.getVersion();
-            Map<String, Integer> entry = new HashMap<>();
-            entry.put(skriptVersion.toString(), 1);
-
-            map.put(skriptVersion.getMajor()+"."+skriptVersion.getMinor()+"."+skriptVersion.getRevision(), entry);
-
-            return map;
-        }));
+        metrics.addCustomChart(new Metrics.SimplePie("skript_version", () -> Skript.getVersion().toString()));
     }
 
 
