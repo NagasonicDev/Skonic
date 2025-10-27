@@ -31,6 +31,8 @@ public class Config {
     private boolean SETTINGS_DEBUG;
     /** Boolean indicating whether the automatic update checker feature is enabled. */
     private boolean SETTINGS_UPDATE_CHECKER_ENABLED;
+    /** The maximum pathfinding range for NPCs. */
+    private int SETTINGS_CITIZENS_PATHFINDING_MAXIMUM_RANGE;
 
     public Config(Skonic plugin) {
         this.plugin = plugin;
@@ -164,4 +166,16 @@ public class Config {
     public boolean isUpdateCheckerEnabled() {
         return SETTINGS_UPDATE_CHECKER_ENABLED;
     }
+
+    /**
+     * Returns the maximum pathfinding range for NPCs.
+     *
+     * @return  the maximum pathfinding range for NPCs.
+     *
+     * @since   1.2.5
+     */
+    public int getCitizensPathfindingMaximumRange() {
+        return SETTINGS_CITIZENS_PATHFINDING_MAXIMUM_RANGE;
+    }
+
 }

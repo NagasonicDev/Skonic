@@ -32,14 +32,15 @@ public class EffCitizenPathfind extends Effect {
     protected void execute(Event e) {
         Location loc = locExpr.getSingle(e);
         NPC[] npcs = npcExpr.getArray(e);
-        if (loc != null && npcs != null){
-            for (NPC npc : npcs){
-                if (npc != null){
+        if (loc != null && npcs != null) {
+            for (NPC npc : npcs) {
+                if (npc != null) {
+                    npc.getNavigator().getLocalParameters().range(Skonic.getInstance().getPluginConfig().getCitizensPathfindingMaximumRange());
                     if (this.s == true) npc.getNavigator().setStraightLineTarget(loc);
                     else npc.getNavigator().setTarget(loc);
-                }else Skonic.log(Level.SEVERE, "NPC cannot be null");
+                } else Skonic.logger().severe("NPC cannot be null");
             }
-        }else Skonic.log(Level.SEVERE, "Location or NPCS cannot be null.");
+        } else Skonic.logger().severe( "Location or NPCS cannot be null.");
     }
 
     @Override
