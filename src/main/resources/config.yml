@@ -8,3 +8,9 @@ settings:
   update-checker:
       # Whether or not to check for updates
       enabled: true
+  # Citizens configuration
+  citizens:
+      # Citizens pathfinding configuration
+      pathfinding:
+          # The range within which NPCs can move
+          maximum-range: 75
