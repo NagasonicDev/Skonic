@@ -166,8 +166,32 @@ public final class Skonic extends JavaPlugin {
      */
     private void setupMetrics() {
         Metrics metrics = new Metrics(this, 20479);
-        metrics.addCustomChart(new Metrics.SimplePie("skript_version", () -> Skript.getVersion().toString()));
+        addSkriptVersionChart(metrics)
         Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
+    }
+
+    /**
+     * Adds the Skript version chart to the metrics.
+     *
+     * @param metrics   the {@link Metrics} instance to add the chart to.
+     *
+     * @since           1.2.5
+     */
+    private void addSkriptVersionChart(@NotNull Metrics metrics) {
+        metrics.addCustomChart(new Metrics.SimplePie("skript_version", () -> Skript.getVersion().toString()));
+    }
+
+
+    // Getters
+    /**
+     * Returns the instance of the {@link Skonic} plugin.
+     *
+     * @return  the plugin instance.
+     *
+     * @since   1.2.5
+     */
+    public static Skonic getInstance() {
+        return instance;
     }
 
     /**
