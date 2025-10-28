@@ -194,30 +194,6 @@ public final class Skonic extends JavaPlugin {
     }
 
     /**
-     * Adds the Skript version chart to the metrics.
-     *
-     * @param metrics   the {@link Metrics} instance to add the chart to.
-     *
-     * @since           1.2.5
-     */
-    private void addSkriptVersionChart(@NotNull Metrics metrics) {
-        metrics.addCustomChart(new Metrics.SimplePie("skript_version", () -> Skript.getVersion().toString()));
-    }
-
-
-    // Getters
-    /**
-     * Returns the instance of the {@link Skonic} plugin.
-     *
-     * @return  the plugin instance.
-     *
-     * @since   1.2.5
-     */
-    public static Skonic getInstance() {
-        return instance;
-    }
-
-    /**
      * Returns the absolute path to the plugin's data directory.
      *
      * @return  the absolute path to the plugin's data directory as a {@link String}.
