@@ -167,7 +167,6 @@ public final class Skonic extends JavaPlugin {
     private void setupMetrics() {
         Metrics metrics = new Metrics(this, 20479);
         addSkriptVersionChart(metrics);
-        Util.log("&aSuccessfully enabled v%s&7 in &b%.2f seconds", version, (float) (System.currentTimeMillis() - start) / 1000);
     }
 
     /**
