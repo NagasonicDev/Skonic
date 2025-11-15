@@ -153,6 +153,34 @@ public class CitizenTypes {
                     }
                 })
                 .serializer(new EnumSerializer<>(EntityPoseTrait.EntityPose.class)));
+        EnumUtils<NPC.Metadata> NPC_METADATA_ENUM = new EnumUtils<>(NPC.Metadata.class, "npcmetadatas");
+        Classes.registerClass(new ClassInfo<>(NPC.Metadata.class, "npcmetadata")
+                .user("npc ?metadata")
+                .name("Citizen Metadata")
+                .description("Represents the different Metadata keys of a Citizens")
+                .usage(NPC_METADATA_ENUM.getAllNames())
+                .examples("activation_range")
+                .requiredPlugins("Citizens")
+                .since("1.2.5")
+                .parser(new Parser<NPC.Metadata>() {
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public @Nullable NPC.Metadata parse(String s, ParseContext context) {
+                        return NPC_METADATA_ENUM.parse(s);
+                    }
+                    @Override
+                    @NotNull
+                    public String toString(NPC.Metadata o, int flags) {
+                        return NPC_METADATA_ENUM.toString(o, flags);
+                    }
+
+                    @Override
+                    @NotNull
+                    public String toVariableNameString(NPC.Metadata o) {
+                        return "npcmetadata:" + toString(o, 0);
+                    }
+                })
+                .serializer(new EnumSerializer<>(NPC.Metadata.class)));
         // CONVERTERS
         // Enables any Skript effect/expression that works for entities
         Converters.registerConverter(NPC.class, Entity.class, NPC::getEntity);
