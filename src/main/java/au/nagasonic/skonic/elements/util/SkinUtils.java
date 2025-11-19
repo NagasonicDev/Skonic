@@ -3,15 +3,19 @@ package au.nagasonic.skonic.elements.util;
 import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
 import au.nagasonic.skonic.exceptions.SkinGenerationException;
+import ch.njol.skript.Skript;
 import com.google.common.io.CharStreams;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,7 +51,7 @@ public class SkinUtils {
 
         try {
 
-            Skin cachedSkin = Skonic.getSkinCacheManager().get(url);
+            Skin cachedSkin = Skonic.getSkinCacheManager().getURL(url);
             if (cachedSkin != null) {
                 return cachedSkin;
             } else {
@@ -57,7 +61,7 @@ public class SkinUtils {
                 String skinSignature = skinTexture.get("signature").getAsString();
 
                 Skin urlSkin = new Skin(skinValue, skinSignature);
-                Skonic.getSkinCacheManager().set(url, urlSkin);
+                Skonic.getSkinCacheManager().setURL(url, urlSkin);
 
                 return urlSkin;
             }
@@ -181,4 +185,92 @@ public class SkinUtils {
         }).get();
     }
 
+    public static Skin getSkinFromMineskinFile(String file , boolean slim) throws SkinGenerationException {
+        JsonObject mineskinData;
+
+        try {
+            Skin cachedSkin = Skonic.getSkinCacheManager().getFile(file);
+            if (cachedSkin != null) {
+                return cachedSkin;
+            } else {
+                File skinsFolder = new File(Skonic.getDataDirectory(), "skins");
+                File skinFile = new File(skinsFolder, file);
+                if (!skinFile.exists() || !skinFile.isFile() || skinFile.isHidden()) {
+                    Skript.error("Couldn't retrieve file, does it exist? File name: " + file);
+                    return null;
+                }
+                mineskinData = generateFromPNG(Files.readAllBytes(skinFile.toPath()), slim);
+                JsonObject skinTexture = mineskinData.get("texture").getAsJsonObject();
+                String skinValue = skinTexture.get("value").getAsString();
+                String skinSignature = skinTexture.get("signature").getAsString();
+
+                Skin urlSkin = new Skin(skinValue, skinSignature);
+                Skonic.getSkinCacheManager().setFile(file, urlSkin);
+
+                return urlSkin;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SkinGenerationException("An unexpected error occurred during skin retrieval for File: " + file, e);
+        }
+    }
+
+
+    public static JsonObject generateFromPNG(final byte[] png, boolean slim)
+            throws InterruptedException, ExecutionException {
+        return EXECUTOR.submit(() -> {
+            DataOutputStream out = null;
+            InputStreamReader reader = null;
+            try {
+                URL target = new URI("https://api.mineskin.org/generate/upload" + (slim ? "?model=slim" : "")).toURL();
+                HttpURLConnection con = (HttpURLConnection) target.openConnection();
+                con.setRequestMethod("POST");
+                con.setDoOutput(true);
+                con.setRequestProperty("User-Agent", "Citizens/2.0");
+                con.setRequestProperty("Cache-Control", "no-cache");
+                con.setRequestProperty("Content-Type", "multipart/form-data;boundary=*****");
+                con.setConnectTimeout(2000);
+                con.setReadTimeout(30000);
+                out = new DataOutputStream(con.getOutputStream());
+                out.writeBytes("--*****\r\n");
+                out.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"skin.png\"\r\n");
+                out.writeBytes("Content-Type: image/png\r\n\r\n");
+                out.write(png);
+                out.writeBytes("\r\n");
+                out.writeBytes("--*****\r\n");
+                out.writeBytes("Content-Disposition: form-data; name=\"name\";\r\n\r\n\r\n");
+                if (slim) {
+                    out.writeBytes("--*****\r\n");
+                    out.writeBytes("Content-Disposition: form-data; name=\"variant\";\r\n\r\n");
+                    out.writeBytes("slim\r\n");
+                }
+                out.writeBytes("--*****--\r\n");
+                out.flush();
+                out.close();
+                reader = new InputStreamReader(con.getInputStream());
+                String str = CharStreams.toString(reader);
+
+                if (con.getResponseCode() != 200)
+                    return null;
+
+                JsonObject output = (JsonObject) new JsonParser().parse(str);
+                JsonObject data = (JsonObject) output.get("data");
+                con.disconnect();
+                return data;
+            } finally {
+                if (out != null) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                    }
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        }).get();
+    }
 }
