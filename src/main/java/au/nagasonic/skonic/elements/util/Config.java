@@ -141,6 +141,7 @@ public class Config {
         // Settings section
         SETTINGS_DEBUG = getSetting("debug");
         SETTINGS_UPDATE_CHECKER_ENABLED = getSetting("update-checker.enabled");
+        SETTINGS_CITIZENS_PATHFINDING_MAXIMUM_RANGE = configData.getInt("settings.citizens.pathfinding.maximum-range");
     }
 
 
