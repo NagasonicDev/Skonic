@@ -226,7 +226,7 @@ public class SkinUtils {
                 HttpURLConnection con = (HttpURLConnection) target.openConnection();
                 con.setRequestMethod("POST");
                 con.setDoOutput(true);
-                con.setRequestProperty("User-Agent", "Citizens/2.0");
+                con.setRequestProperty("User-Agent", "Skonic");
                 con.setRequestProperty("Cache-Control", "no-cache");
                 con.setRequestProperty("Content-Type", "multipart/form-data;boundary=*****");
                 con.setConnectTimeout(2000);

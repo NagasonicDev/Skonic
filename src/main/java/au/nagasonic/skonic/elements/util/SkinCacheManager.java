@@ -34,7 +34,6 @@ public class SkinCacheManager {
     public SkinCacheManager(Skonic plugin, File dataFolder) {
         this.UrlCacheFile = new File(dataFolder, "skin_cache_url.yml");
         this.FileCacheFile = new File(dataFolder, "skin_cache_file.yml");
-        this.load();
     }
 
     /**
@@ -138,7 +137,7 @@ public class SkinCacheManager {
      */
     public void setFile(String file, Skin skin) {
         if (file != null && skin != null) {
-            FileMemoryCache.put(file, skin);
+            FileMemoryCache.put(file.replaceAll(".", "_"), skin);
         }
     }
 

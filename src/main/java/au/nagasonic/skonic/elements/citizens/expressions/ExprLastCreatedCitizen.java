@@ -8,8 +8,11 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import net.citizensnpcs.api.event.NPCCreateEvent;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Last Created Citizen")
@@ -18,13 +21,15 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples({"spawn a zombie citizen named \"Undead\" at spawn", "set {_e} to last created npc"})
-public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
+public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Listener {
     static {
         Skript.registerExpression(ExprLastCreatedCitizen.class,
                 NPC.class,
                 ExpressionType.SIMPLE,
                 "last (spawned|created) (citizen|npc)");
     }
+
+    private NPC lastSpawnedNPC;
 
     @SuppressWarnings("NullableProblems")
     @Override
@@ -35,8 +40,8 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     @SuppressWarnings("NullableProblems")
     @Override
     protected @Nullable NPC[] get(Event event) {
-        if (EffSpawnCitizen.lastSpawnedNPC != null){
-            return new NPC[]{EffSpawnCitizen.lastSpawnedNPC};
+        if (lastSpawnedNPC != null){
+            return new NPC[]{lastSpawnedNPC};
         }else return null;
     }
 
@@ -55,5 +60,10 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> {
     @Override
     public String toString(@Nullable Event e, boolean debug) {
         return "last spawned citizen";
+    }
+
+    @EventHandler
+    private void onNPCCreate(NPCCreateEvent e){
+        lastSpawnedNPC = e.getNPC();
     }
 }

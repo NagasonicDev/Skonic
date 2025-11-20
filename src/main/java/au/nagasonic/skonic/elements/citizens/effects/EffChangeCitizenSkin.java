@@ -45,7 +45,6 @@ public class EffChangeCitizenSkin extends Effect {
             Skonic.log(Level.SEVERE, "The specified skin is null, cannot apply skin.");
             return;
         }
-
         final String value = skin.getTexture();
         if (value == null) Skript.error("Specified skin's value is null");
         final String uuid = String.valueOf(skin.getUUID());

@@ -118,6 +118,7 @@ public final class Skonic extends JavaPlugin {
     private void setupConfiguration() {
         config = new Config(this);
         skinCacheManager = new SkinCacheManager(this, getDataFolder());
+        skinCacheManager.load();
         File skinsFolder = new File(getDataFolder(), "skins");
         if (!skinsFolder.exists()){
             if (skinsFolder.mkdir()){

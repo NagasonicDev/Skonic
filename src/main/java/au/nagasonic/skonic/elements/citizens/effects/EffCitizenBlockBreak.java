@@ -76,6 +76,7 @@ public class EffCitizenBlockBreak extends AsyncEffect {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];
