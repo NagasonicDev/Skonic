@@ -86,7 +86,6 @@ public class AddonLoader {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-            pluginManager.registerEvents(new ExprLastCreatedCitizen(), Skonic.getInstance());
             loadOtherCitizenClasses();
             loadForcefieldElements();
             loadHitboxElements();

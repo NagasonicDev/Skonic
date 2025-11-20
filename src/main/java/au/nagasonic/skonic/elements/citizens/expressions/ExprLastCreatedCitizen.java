@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.elements.citizens.expressions;
 
+import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.citizens.effects.EffSpawnCitizen;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
@@ -28,6 +29,7 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
                 NPC.class,
                 ExpressionType.SIMPLE,
                 "last (spawned|created) (citizen|npc)");
+        Skonic.getPluginManager().registerEvents(new ExprLastCreatedCitizen(), Skonic.getInstance());
     }
 
     private NPC lastSpawnedNPC;
@@ -72,4 +74,5 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
     private void onNPCClone(NPCCloneEvent e){
         lastSpawnedNPC = e.getClone();
     }
+
 }

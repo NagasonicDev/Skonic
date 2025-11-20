@@ -33,7 +33,7 @@ public final class Skonic extends JavaPlugin {
     /** The absolute path to the plugin's data folder. */
     private static String dataDirectory;
     /** The Bukkit {@link PluginManager} instance. */
-    private PluginManager pm;
+    private static PluginManager pm;
 
     // -- Config
     /** The plugin's {@link Config}. */
@@ -336,6 +336,10 @@ public final class Skonic extends JavaPlugin {
      */
     public static SkonicLogger logger() {
         return skonicLogger;
+    }
+
+    public static PluginManager getPluginManager() {
+        return pm;
     }
 
 }
