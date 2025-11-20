@@ -8,6 +8,7 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import net.citizensnpcs.api.event.NPCCloneEvent;
 import net.citizensnpcs.api.event.NPCCreateEvent;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
@@ -65,5 +66,10 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
     @EventHandler
     private void onNPCCreate(NPCCreateEvent e){
         lastSpawnedNPC = e.getNPC();
+    }
+
+    @EventHandler
+    private void onNPCClone(NPCCloneEvent e){
+        lastSpawnedNPC = e.getClone();
     }
 }

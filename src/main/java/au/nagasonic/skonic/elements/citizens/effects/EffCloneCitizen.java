@@ -51,7 +51,6 @@ public class EffCloneCitizen extends Effect {
             copy.teleport(loc, PlayerTeleportEvent.TeleportCause.PLUGIN);
             copy.getOrAddTrait(CurrentLocation.class).setLocation(loc);
         }
-        EffSpawnCitizen.setLastSpawnedNPC(copy);
     }
 
     @Override
