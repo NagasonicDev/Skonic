@@ -32,7 +32,7 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
         Skonic.getPluginManager().registerEvents(new ExprLastCreatedCitizen(), Skonic.getInstance());
     }
 
-    private NPC lastSpawnedNPC;
+    private static NPC lastSpawnedNPC;
 
     @SuppressWarnings("NullableProblems")
     @Override
@@ -75,4 +75,11 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
         lastSpawnedNPC = e.getClone();
     }
 
+    public static NPC getLastSpawnedNPC() {
+        return lastSpawnedNPC;
+    }
+
+    public static void setLastSpawnedNPC(NPC lastSpawnedNPC) {
+        ExprLastCreatedCitizen.lastSpawnedNPC = lastSpawnedNPC;
+    }
 }

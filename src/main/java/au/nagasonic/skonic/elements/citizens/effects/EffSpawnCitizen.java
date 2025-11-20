@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
+import au.nagasonic.skonic.elements.citizens.expressions.ExprLastCreatedCitizen;
 import ch.njol.skript.Skript;
 import ch.njol.skript.bukkitutil.EntityUtils;
 import ch.njol.skript.doc.*;
@@ -70,6 +71,7 @@ public class EffSpawnCitizen extends Effect {
         }
         String citizenName = (this.name != null && this.name.getSingle(evt) != null) ? this.name.getSingle(evt) : "";
         Location location = this.location.getSingle(evt);
-        CitizensAPI.getNPCRegistry().createNPC(CitizenType, citizenName, location);
+        NPC npc = CitizensAPI.getNPCRegistry().createNPC(CitizenType, citizenName, location);
+        ExprLastCreatedCitizen.setLastSpawnedNPC(npc);
     }
 }
