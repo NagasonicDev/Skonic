@@ -15,13 +15,13 @@ import org.jetbrains.annotations.Nullable;
 @Description({"Makes a Citizens NPC flyable.", "Some entity types are always flyable (e.g bat), therefore will always be flyable."})
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Examples({"make npc with id 3 flyable",
+@Examples({"make citizen npc with id 3 flyable",
 "wait 4 seconds",
-"make npc with id 3 unflyable"})
+"make npc npc with id 3 unflyable"})
 public class EffCitizenFlyable extends Effect {
     static {
         Skript.registerEffect(EffCitizenFlyable.class,
-                "make %npc% [not:not |not:un]flyable");
+                "make (npc|citizen) %npc% [not:not |not:un]flyable");
     }
     private Expression<NPC> npcExpr;
     private boolean not;

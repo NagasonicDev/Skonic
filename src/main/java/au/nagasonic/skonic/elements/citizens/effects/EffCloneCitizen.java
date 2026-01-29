@@ -1,12 +1,17 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.RequiredPlugins;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.trait.Inventory;
 import net.citizensnpcs.api.trait.trait.Spawned;
 import net.citizensnpcs.trait.CurrentLocation;
 import org.bukkit.Location;
@@ -15,6 +20,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Clone Citizen")
+@Description("Clones a citizen and spawns a copy at the given location.")
+@Since("1.2.5")
+@RequiredPlugins("Citizens")
 public class EffCloneCitizen extends Effect {
     static {
         Skript.registerEffect(EffCloneCitizen.class,

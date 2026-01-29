@@ -15,11 +15,11 @@ import org.jetbrains.annotations.Nullable;
 @Description({"Changes whether a citizen will load chunks.", "Temporarily means that it won't continue after server is restarted."})
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
-@Examples("make npc with id 4 able to load chunks")
+@Examples("make citizen npc with id 4 able to load chunks")
 public class EffCitizenLoadChunks extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenLoadChunks.class,
-                "make %npc% [not:un]able to load chunks [t:temporarily]");
+                "make (npc|citizen) %npc% [not:un]able to load chunks [t:temporarily]");
     }
     private Expression<NPC> npcExpr;
     private boolean not;

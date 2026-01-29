@@ -20,11 +20,11 @@ import java.util.logging.Level;
         "If that location is linked to an entity, it will not move with the entity.")
 @RequiredPlugins("Citizens")
 @Since("1.0.7, 1.2.2-b1 (straight line)")
-@Examples("make all npcs pathfind to player")
+@Examples("make citizens all npcs pathfind to player")
 public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
-                "make (citizen|npc) %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
+                "make (citizen|npc)[s] %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;

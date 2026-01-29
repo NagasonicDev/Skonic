@@ -26,11 +26,11 @@ import java.util.Collection;
 @Description({"Make a Citizens NPC break a block in a radius.", "Radius is how close the npc has to be to break the block."})
 @Since("1.2")
 @RequiredPlugins("Citizens")
-@Examples("make citizen with id 2 break {_block} with radius 3")
+@Examples("make npc citizen with id 2 break {_block} with radius 3")
 public class EffCitizenBlockBreak extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenBlockBreak.class,
-                "make %npc% break %block% [with radius %number%]");
+                "make (npc|citizen) %npc% break %block% [with radius %number%]");
     }
     private Expression<NPC> npcExpr;
     private Expression<Block> blockExpr;
