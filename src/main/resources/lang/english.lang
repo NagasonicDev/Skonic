@@ -9,6 +9,7 @@ types:
     npcforcefield: npc forcefield¦s @an
     chatcolor: chat color, chat colour, chat colours, chat colors
     npcmetadata: npc metadata¦s @an
+    npchitbox: npc hitbox[es] @an
 
 npcspawnreasons:
     chunk_load: chunk load
