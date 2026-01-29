@@ -58,7 +58,7 @@ public class EffCitizenMetadataModify extends AsyncEffect {
                 }
             }
         }else{
-            Skonic.logger().severe("Metadata %metadata% does not accept %value% as a possible value.", metadata.toString(), value.getClass());
+            Skonic.logger().severe("Metadata " + metadata.getKey() + " does not accept " + value.getClass() + " as a possible value.");
         }
     }
 
