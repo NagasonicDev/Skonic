@@ -29,7 +29,7 @@ public class SkinCacheSerializer {
      *
      * @since               1.2.5
      */
-    public static Map<String, Skin> read(File file) throws IOException {
+    public static Map<String, Skin> readURL(File file) throws IOException {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
         ConcurrentHashMap<String, Skin> memoryCache = new ConcurrentHashMap<>();
@@ -65,7 +65,72 @@ public class SkinCacheSerializer {
      *
      * @since               1.2.5
      */
-    public static void write(File file, Map<String, Skin> data) throws IOException {
+    public static void writeURL(File file, Map<String, Skin> data) throws IOException {
+        YamlConfiguration config = new YamlConfiguration();
+
+        for (Map.Entry<String, Skin> entry : data.entrySet()) {
+            String urlKey = entry.getKey();
+            Skin skin = entry.getValue();
+
+            config.set(urlKey + ".value", skin.getTexture());
+            config.set(urlKey + ".signature", skin.getSignature());
+        }
+
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            Skonic.logger().severe("Could not save skin cache to file: " + file.getName(), e);
+        }
+    }
+
+    /**
+     * Reads and deserializes the skin cache data from a YAML file.
+     *
+     * @param file          the file.
+     *
+     * @return              a {@code Map} containing the deserialized skins, keyed by their File Name.
+     *
+     * @throws IOException  if an input/output error occurs during file loading.
+     *
+     * @since               1.2.5
+     */
+    public static Map<String, Skin> readFile(File file) throws IOException {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+
+        ConcurrentHashMap<String, Skin> memoryCache = new ConcurrentHashMap<>();
+
+        for (String fileKey : config.getKeys(false)) {
+            String valuePath = fileKey + ".value";
+            String signaturePath = fileKey + ".signature";
+
+            if (config.isString(valuePath) && config.isString(signaturePath)) {
+                String value = config.getString(valuePath);
+                String signature = config.getString(signaturePath);
+
+                if (value != null && signature != null) {
+                    Skin skin = new Skin(value, signature);
+                    memoryCache.put(fileKey, skin);
+                }
+            } else {
+                Skonic.logger().warn("Skipping malformed skin cache entry for File: " + fileKey);
+            }
+        }
+
+        return memoryCache;
+    }
+
+    /**
+     * Serializes the in-memory skin cache data into a YAML configuration file on disk.
+     *
+     * @param file          the file.
+     *
+     * @param data          the {@code Map} of File Name to Skin objects to be serialized.
+     *
+     * @throws IOException  if an input/output error occurs during file saving.
+     *
+     * @since               1.2.5
+     */
+    public static void writeFile(File file, Map<String, Skin> data) throws IOException {
         YamlConfiguration config = new YamlConfiguration();
 
         for (Map.Entry<String, Skin> entry : data.entrySet()) {

@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ public final class Skonic extends JavaPlugin {
     /** The absolute path to the plugin's data folder. */
     private static String dataDirectory;
     /** The Bukkit {@link PluginManager} instance. */
-    private PluginManager pm;
+    private static PluginManager pm;
 
     // -- Config
     /** The plugin's {@link Config}. */
@@ -117,6 +118,15 @@ public final class Skonic extends JavaPlugin {
     private void setupConfiguration() {
         config = new Config(this);
         skinCacheManager = new SkinCacheManager(this, getDataFolder());
+        skinCacheManager.load();
+        File skinsFolder = new File(getDataFolder(), "skins");
+        if (!skinsFolder.exists()){
+            if (skinsFolder.mkdir()){
+                Util.log("&aCreated Empty skins/ Folder");
+            }else{
+                Util.log("&cFailed to create skins/ Folder. Please manually create one.");
+            }
+        }
     }
 
     /**
@@ -326,6 +336,10 @@ public final class Skonic extends JavaPlugin {
      */
     public static SkonicLogger logger() {
         return skonicLogger;
+    }
+
+    public static PluginManager getPluginManager() {
+        return pm;
     }
 
 }

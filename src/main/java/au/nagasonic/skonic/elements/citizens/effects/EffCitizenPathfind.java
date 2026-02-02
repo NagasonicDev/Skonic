@@ -8,6 +8,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.util.NMS;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -19,11 +20,11 @@ import java.util.logging.Level;
         "If that location is linked to an entity, it will not move with the entity.")
 @RequiredPlugins("Citizens")
 @Since("1.0.7, 1.2.2-b1 (straight line)")
-@Examples("make all npcs pathfind to player")
+@Examples("make citizens all npcs pathfind to player")
 public class EffCitizenPathfind extends Effect {
     static {
         Skript.registerEffect(EffCitizenPathfind.class,
-                "make (citizen|npc) %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
+                "make (citizen|npc)[s] %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;
@@ -35,8 +36,9 @@ public class EffCitizenPathfind extends Effect {
         if (loc != null && npcs != null) {
             for (NPC npc : npcs) {
                 if (npc != null) {
-                    npc.getNavigator().getLocalParameters().range(Skonic.getInstance().getPluginConfig().getCitizensPathfindingMaximumRange());
-                    if (this.s == true) npc.getNavigator().setStraightLineTarget(loc);
+                    Skonic.logger().warn(Skonic.getInstance().getPluginConfig().getCitizensPathfindingMaximumRange() + "");
+                    npc.getNavigator().getDefaultParameters().range(Skonic.getInstance().getPluginConfig().getCitizensPathfindingMaximumRange());
+                    if (this.s) npc.getNavigator().setStraightLineTarget(loc);
                     else npc.getNavigator().setTarget(loc);
                 } else Skonic.logger().severe("NPC cannot be null");
             }
@@ -48,6 +50,7 @@ public class EffCitizenPathfind extends Effect {
         return "make citizens " + npcExpr.toString(e, b) + " pathfind to " + locExpr.toString(e, b);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] exprs, int pattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         npcExpr = (Expression<NPC>) exprs[0];

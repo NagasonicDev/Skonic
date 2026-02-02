@@ -8,6 +8,8 @@ types:
     npcentitypose: npc entity pose¦s @an
     npcforcefield: npc forcefield¦s @an
     chatcolor: chat color, chat colour, chat colours, chat colors
+    npcmetadata: npc metadata¦s @an
+    npchitbox: npc hitbox[es] @an
 
 npcspawnreasons:
     chunk_load: chunk load
@@ -62,3 +64,52 @@ chatcolors:
     light_purple: light purple
     red: red
     white: white
+
+npcmetadatas:
+    item_data: item data
+    villager_block_trades: villager block trades
+    npc_spawning_in_progress: npc spawning in progress
+    hologram_renderer: hologram renderer
+    scoreboard_fake_team_name: scoreboard fake team name
+    always_use_name_hologram: always use name hologram
+    knockback: knockback
+    text_display_component: text display component
+    using_offhand_item: using offhand item
+    silent: silent
+    collidable: collidable
+    should_save: should save
+    swim: swim
+    drops_items: drops items
+    remove_from_playerlist: remove from playerlist
+    flyable: flyable
+    glowing: glowing
+    fluid_pushable: fluid pushable
+    aggressive: aggressive
+    disable_default_stuck_action: disable default stuck action
+    pickup_items: pickup items
+    using_held_item: using held item
+    damage_others: damage others
+    respawn_delay: respawn delay
+    default_protected: default protected
+    death_sound: death sound
+    force_packet_update: force packet update
+    keep_chunk_loaded: keep chunk loaded
+    bounding_box_function: bounding box function
+    hurt_sound: hurt sound
+    item_amount: item amount
+    ambient_sound: ambient sound
+    use_minecraft_ai: use minecraft ai
+    activation_range: activation range
+    packet_update_delay: packet update delay
+    pathfinder_open_doors: pathfinder open doors
+    reset_pitch_on_tick: reset pitch on tick
+    nameplate_visible: nameplate visible
+    tracking_range: tracking range
+    jump_power_supplier: jump power supplier
+    leash_protected: leash protected
+    item_id: item id
+    minecart_offset: minecart offset
+    reset_yaw_on_spawn: reset yaw on spawn
+    spawn_nodamage_ticks: spawn nodamage ticks
+    remove_from_tablist: remove from tablist
+    water_speed_modifier: water speed modifier

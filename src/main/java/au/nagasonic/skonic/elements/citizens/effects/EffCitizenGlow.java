@@ -20,14 +20,14 @@ import java.util.logging.Level;
 @Description("Makes a Citizens NPC start or stop glowing, with color.")
 @Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
-@Examples("make all npcs start glowing with color red")
+@Examples("make citizens all npcs start glowing with color red")
 @SuppressWarnings("deprecation")
 // ChatColor is deprecated, but Citizen's API still hasn't updated its ScoreboardTrait.setColor() method.
 public class EffCitizenGlow extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenGlow.class,
-                "make %npcs% (start|:stop) glowing [c:[with colo[u]r] %-chatcolor%]",
-                "(start|:stop) %npcs% [from] glowing [c:[with colo[u]r] %-chatcolor%]");
+                "make (npc|citizen)[s] %npcs% (start|:stop) glowing [c:[with colo[u]r] %-chatcolor%]",
+                "(start|:stop) (npc|citizen)[s] %npcs% [from] glowing [c:[with colo[u]r] %-chatcolor%]");
     }
 
     private Expression<NPC> npcsExpr;

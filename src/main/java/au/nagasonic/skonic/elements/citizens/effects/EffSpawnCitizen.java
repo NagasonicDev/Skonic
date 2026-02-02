@@ -1,6 +1,7 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
+import au.nagasonic.skonic.elements.citizens.expressions.ExprLastCreatedCitizen;
 import ch.njol.skript.Skript;
 import ch.njol.skript.bukkitutil.EntityUtils;
 import ch.njol.skript.doc.*;
@@ -29,8 +30,6 @@ import java.util.logging.Level;
 @Examples("spawn a zombie citizen named \"Undead\" at spawn")
 @Since("1.0.0")
 public class EffSpawnCitizen extends Effect {
-
-    public static NPC lastSpawnedNPC;
 
     static {
         Skript.registerEffect(EffSpawnCitizen.class,
@@ -73,8 +72,6 @@ public class EffSpawnCitizen extends Effect {
         String citizenName = (this.name != null && this.name.getSingle(evt) != null) ? this.name.getSingle(evt) : "";
         Location location = this.location.getSingle(evt);
         NPC npc = CitizensAPI.getNPCRegistry().createNPC(CitizenType, citizenName, location);
-        lastSpawnedNPC = npc;
+        ExprLastCreatedCitizen.setLastSpawnedNPC(npc);
     }
-
-
 }

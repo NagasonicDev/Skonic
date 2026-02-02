@@ -14,12 +14,12 @@ import org.jetbrains.annotations.Nullable;
 @Description("Changes whether a Citizens NPC uses Minecraft's built-in AI or Citizens AI.")
 @RequiredPlugins("Citizens")
 @Since("1.2.3")
-@Examples("")
+@Examples("make npcs all citizens use minecraft AI")
 public class EffCitizenMinecraftAI extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenMinecraftAI.class,
-                "(make|set) %npcs% [to] use (minecraft|normal) (ai|AI)",
-                "(make|set) %npcs% [to] not use (minecraft|normal) (ai|AI)");
+                "(make|set) (npc|citizen)[s] %npcs% [to] use (minecraft|normal) (ai|AI)",
+                "(make|set) (npc|citizen)[s] %npcs% [to] not use (minecraft|normal) (ai|AI)");
     }
     private Expression<NPC> npcsExpr;
     private int pattern;

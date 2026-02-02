@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'au.nagasonic'
-version = "1.2.4"
+version = "1.2.6"
 
 def latestJava = 21
 def oldestJava = 17
@@ -40,7 +40,7 @@ dependencies {
         exclude group: '*', module: '*'
     }
     //Skript
-    compileOnly "com.github.SkriptLang:Skript:2.13.0"
+    compileOnly "com.github.SkriptLang:Skript:2.14.1"
     //JetBrains Annotations
     implementation group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
     //Commons IO

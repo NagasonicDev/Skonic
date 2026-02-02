@@ -19,12 +19,12 @@ import java.util.logging.Level;
 @Description("Make a Citizens NPC aggressive.")
 @Since("1.1")
 @RequiredPlugins("Citizens")
-@Examples("make npc with id 1 aggressive")
+@Examples("make citizen npc with id 1 aggressive")
 public class EffCitizenAggressive extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenAggressive.class,
-                "make %npc% aggressive",
-                "make %npc% passive");
+                "make (citizen|npc) %npc% aggressive",
+                "make (citizen|npc) %npc% passive");
     }
     private Expression<NPC> npcExpr;
     private int pattern;

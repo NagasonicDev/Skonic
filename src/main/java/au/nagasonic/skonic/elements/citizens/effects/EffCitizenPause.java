@@ -14,12 +14,12 @@ import org.jetbrains.annotations.Nullable;
 @Name("Pause Citizen")
 @Description("Pauses or unpauses the citizens if they are navigating.")
 @Since("1.2")
-@Examples({"if all citizens are paused:", "\tunpause all citizens"})
+@Examples({"if all citizens are paused:", "\tunpause npcs all citizens"})
 @RequiredPlugins("Citizens")
 public class EffCitizenPause extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenPause.class,
-                "[not:un]pause [the] [[citizen|npc] navigation] [of] %npcs%");
+                "[not:un]pause [the] [[citizen|npc] navigation] [of] (npc|citizen)[s] %npcs%");
     }
     private Expression<NPC> npcExpr;
     private boolean pause;

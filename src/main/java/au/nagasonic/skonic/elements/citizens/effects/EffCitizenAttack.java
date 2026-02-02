@@ -20,13 +20,13 @@ import java.util.logging.Level;
 @Description("Make a citizen attack an entity" +
         "Will also stop any pathfinding.")
 @Since("1.0.0")
-@Examples({"make npc all citizens attack player", "wait 5 seconds", "stop all citizens from attacking player"})
+@Examples({"make npcs all citizens attack player", "wait 5 seconds", "stop citizens all citizens from attacking player"})
 @RequiredPlugins("Citizens")
 public class EffCitizenAttack extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenAttack.class,
-                "make (npc|citizen) %npcs% (attack|fight) %entity%",
-                "stop %npcs% from (attacking|fighting) %entity%");
+                "make (npc|citizen)[s] %npcs% (attack|fight) %entity%",
+                "stop (npc|citizen)[s] %npcs% from (attacking|fighting) %entity%");
     }
 
     private int patterns;

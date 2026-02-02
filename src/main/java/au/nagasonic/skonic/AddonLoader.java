@@ -1,9 +1,11 @@
 package au.nagasonic.skonic;
 
+import au.nagasonic.skonic.elements.citizens.expressions.ExprLastCreatedCitizen;
 import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 

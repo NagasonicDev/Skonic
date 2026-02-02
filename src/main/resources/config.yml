@@ -12,5 +12,6 @@ settings:
   citizens:
       # Citizens pathfinding configuration
       pathfinding:
-          # The range within which NPCs can move
+          # The range within which NPCs can move. Calculated by how many blocks it will use to pathfind to the location.
+          # May not be the actual distance between the npc and the location.
           maximum-range: 75

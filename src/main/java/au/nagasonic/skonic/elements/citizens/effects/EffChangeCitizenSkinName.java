@@ -20,7 +20,7 @@ import java.util.logging.Level;
         "Only works if citizen is a player.")
 @RequiredPlugins("Citizens")
 @Since("1.0.0")
-@Examples("set skin of last spawned npc to \"Nagasonic\"")
+@Examples("set skin of citizen last spawned npc to \"Nagasonic\"")
 public class EffChangeCitizenSkinName extends AsyncEffect {
     static {
         Skript.registerEffect(EffChangeCitizenSkinName.class,
