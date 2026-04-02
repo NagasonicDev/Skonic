@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples({"despawn all npcs", "wait 2 seconds", "respawn all npcs at player"})
-public class EffDespawnCitizen extends AsyncEffect {
+public class EffDespawnCitizen extends Effect {
     static {
         Skript.registerEffect(EffDespawnCitizen.class,
                 "[citizens|npc] despawn %npcs%",
