@@ -62,7 +62,7 @@ public class EffCitizenBlockBreak extends AsyncEffect {
                     });
                 }
                 BlockBreaker breaker = npc.getBlockBreaker(block, cfg);
-                npc.getDefaultGoalController().addBehavior(StatusMapper.singleUse(breaker), 1);
+                npc.getDefaultBehaviorController().addBehavior(StatusMapper.singleUse(breaker));
             }
         }
 

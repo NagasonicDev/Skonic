@@ -2,6 +2,10 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.RequiredPlugins;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.util.AsyncEffect;
@@ -11,6 +15,10 @@ import org.bukkit.event.Event;
 import net.citizensnpcs.api.npc.NPC.Metadata;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Modify Citizen Metadata")
+@Description("Modify the metadata of a Citizens NPC")
+@RequiredPlugins("Citizens")
+@Since("1.2.7")
 public class EffCitizenMetadataModify extends AsyncEffect {
     static {
         Skript.registerEffect(EffCitizenMetadataModify.class,

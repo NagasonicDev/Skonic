@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Citizen Metadata")
 @Description("The value of a Citizen's metadata.")
 @RequiredPlugins("Citizens")
-@Since("1.2.6")
+@Since("1.2.7")
 public class ExprCitizenMetadata extends SimpleExpression<Object> {
     static {
         Skript.registerExpression(ExprCitizenMetadata.class, Object.class, ExpressionType.COMBINED,

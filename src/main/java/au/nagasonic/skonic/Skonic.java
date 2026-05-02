@@ -53,7 +53,7 @@ public final class Skonic extends JavaPlugin {
 
     // -- Addon Information
     /** The Skript {@link AddonLoader} responsible for registering all elements. */
-    private AddonLoader addonLoader;
+    private static AddonLoader addonLoader;
     /** The current version {@link String} of the plugin. */
     private String version;
 
@@ -244,7 +244,7 @@ public final class Skonic extends JavaPlugin {
      * @since   1.2.5
      */
     @SuppressWarnings("unused")
-    public AddonLoader getAddonLoader() {
+    public static AddonLoader getAddonLoader() {
         return addonLoader;
     }
 
