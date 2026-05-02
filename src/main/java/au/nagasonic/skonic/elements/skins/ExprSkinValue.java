@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 @Examples("broadcast value of player's skin")
 public class ExprSkinValue extends SimplePropertyExpression<Skin, String> {
     static {
-        register(ExprSkinValue.class, String.class, "[skin] value", "skin");
+        register(ExprSkinValue.class, String.class, "texture value", "skin");
     }
 
     @Override

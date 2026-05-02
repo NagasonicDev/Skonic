@@ -64,6 +64,13 @@ chatcolors:
     light_purple: light purple
     red: red
     white: white
+    yellow: yellow
+    magic: magic
+    bold: bold
+    strikethrough: strikethrough
+    underline: underline
+    italic: italic
+    reset: reset
 
 npcmetadatas:
     item_data: item data

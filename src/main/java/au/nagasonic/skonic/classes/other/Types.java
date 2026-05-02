@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.classes.other;
 
+import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
@@ -12,7 +13,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.lang.properties.Property;
+import org.skriptlang.skript.lang.properties.handlers.TypedValueHandler;
 
 @SuppressWarnings({"unused", "deprecation"})
 public class Types {
@@ -38,8 +42,23 @@ public class Types {
                     public String toVariableNameString(Skin skin) {
                         return "skin: " + skin.toString();
                     }
-                }));
+                })
+                .property(Property.TYPED_VALUE,
+                        "The skin value of the skin.",
+                        Skonic.getAddonLoader().getAddon(),
+                        new TypedValueHandler<Skin, String>() {
+                            @Override
+                            public @Nullable String convert(Skin propertyHolder) {
+                                if (propertyHolder != null)
+                                    return propertyHolder.getTexture();
+                                return null;
+                            }
 
+                            @Override
+                            public @NotNull Class<String> returnType() {
+                                return String.class;
+                            }
+                        }));
         EnumUtils<ChatColor> CHAT_COLOR_ENUM = new EnumUtils<>(ChatColor.class, "chatcolors");
         Classes.registerClass(new ClassInfo<>(ChatColor.class, "chatcolor")
                 .user("chat ?colou?rs?")

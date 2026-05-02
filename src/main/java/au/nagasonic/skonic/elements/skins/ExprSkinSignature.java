@@ -1,5 +1,6 @@
 package au.nagasonic.skonic.elements.skins;
 
+import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.jetbrains.annotations.Nullable;

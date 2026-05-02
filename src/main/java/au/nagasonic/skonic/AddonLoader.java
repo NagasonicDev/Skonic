@@ -191,4 +191,8 @@ public class AddonLoader {
             throw new RuntimeException(e);
         }
     }
+
+    public SkriptAddon getAddon() {
+        return addon;
+    }
 }
