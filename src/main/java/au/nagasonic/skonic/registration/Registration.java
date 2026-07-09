@@ -18,7 +18,7 @@ public class Registration {
 
     public Registration(@NotNull SkriptAddon addon) {
         this.addon = addon;
-        this.syntaxRegistry = Skript.instance().syntaxRegistry();
+        this.syntaxRegistry = addon.syntaxRegistry();
     }
 
     @NotNull
