@@ -1,7 +1,7 @@
 package au.nagasonic.skonic.classes.other;
 
 import au.nagasonic.skonic.Skonic;
-import au.nagasonic.skonic.elements.skins.Skin;
+import au.nagasonic.skonic.modules.skins.elements.Skin;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;

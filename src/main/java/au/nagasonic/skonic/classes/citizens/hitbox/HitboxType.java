@@ -1,6 +1,6 @@
 package au.nagasonic.skonic.classes.citizens.hitbox;
 
-import au.nagasonic.skonic.elements.hitbox.NPCHitbox;
+import au.nagasonic.skonic.modules.citizens.hitbox.elements.NPCHitbox;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.expressions.base.EventValueExpression;

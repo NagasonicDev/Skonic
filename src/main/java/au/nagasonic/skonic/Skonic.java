@@ -1,8 +1,7 @@
 package au.nagasonic.skonic;
 
-import au.nagasonic.skonic.elements.util.*;
+import au.nagasonic.skonic.util.*;
 import ch.njol.skript.Skript;
-import ch.njol.skript.util.Version;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -10,8 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

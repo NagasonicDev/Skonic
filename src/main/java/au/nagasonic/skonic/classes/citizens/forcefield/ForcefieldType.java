@@ -1,6 +1,6 @@
 package au.nagasonic.skonic.classes.citizens.forcefield;
 
-import au.nagasonic.skonic.elements.forcefield.NPCForcefield;
+import au.nagasonic.skonic.modules.citizens.forcefield.elements.NPCForcefield;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.expressions.base.EventValueExpression;

@@ -1,14 +1,12 @@
 package au.nagasonic.skonic;
 
-import au.nagasonic.skonic.elements.util.Util;
-import au.nagasonic.skonic.registration.Registration;
-import au.nagasonic.skonic.registration.modules.*;
+import au.nagasonic.skonic.modules.Modules;
+import au.nagasonic.skonic.util.Util;
 import ch.njol.skript.Skript;
-import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.util.Version;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.skriptlang.skript.addon.SkriptAddon;
 
 /**
  * @hidden
@@ -50,33 +48,11 @@ public class AddonLoader {
     }
 
     private void loadSkriptElements() {
-        this.addon = Skript.registerAddon(this.plugin);
-        this.addon.setLanguageFileDirectory("lang");
-
-        Registration registration = new Registration(addon);
+        this.addon = Skript.instance().registerAddon(Skonic.class, "Skonic");
 
         int[] elementCountBefore = Util.getElementCount();
 
-        boolean citizensEnabled = pluginManager.isPluginEnabled("Citizens");
-
-        registration.register(
-                new SkinsModule(),
-                new HeadsModule(),
-                new OtherItemsModule(),
-                new OtherTypesModule(),
-                new SchedulerModule()
-        );
-
-        if (citizensEnabled) {
-            registration.register(
-                    new CitizensModule(),
-                    new ForcefieldModule(),
-                    new HitboxModule()
-            );
-            Util.logLoading("&6Citizen elements &ahave successfully loaded");
-        } else {
-            Util.logLoading("&6Citizen elements have been disabled: &cMissing Citizen Plugin");
-        }
+        addon.loadModules(new Modules());
 
         int[] elementCountAfter = Util.getElementCount();
         int[] finish = new int[elementCountBefore.length];

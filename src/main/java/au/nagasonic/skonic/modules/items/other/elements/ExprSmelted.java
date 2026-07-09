@@ -1,0 +1,70 @@
+package au.nagasonic.skonic.modules.items.other.elements;
+
+import ch.njol.skript.aliases.ItemType;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
+import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+
+import java.util.Iterator;
+
+@Name("Smelted Form")
+@Description({"Returns the smelted form of an itemtype.", "If it cannot be smelted, it will return the same itemtype."})
+@Since("1.2.1")
+@Examples("give player the smelted form of raw iron")
+public class ExprSmelted extends SimplePropertyExpression<ItemType, ItemType> {
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprSmelted.class, ItemType.class)
+                .addPatterns(
+                    "[the] smelt[ed] [(result|form) of] %itemtypes%",
+                    "%itemtypes%'[s] smelted [(result|form)]",
+                    "%itemtypes% smelted"
+                )
+                .build()
+        );
+    }
+
+    @SuppressWarnings("deprecation")
+    private ItemStack smelted(ItemStack item) {
+        Material type = item.getType();
+        for (@NotNull Iterator<Recipe> it = Bukkit.recipeIterator(); it.hasNext(); ) {
+            if (it.next() instanceof FurnaceRecipe recipe){
+                Material ingredient = recipe.getInput().getType();
+                if (type == ingredient){
+                    ItemStack result = item.clone();
+                    result.setType(recipe.getResult().getType());
+                    return result;
+                }
+            }
+        }
+        return item;
+    }
+
+    @Override
+    public @NotNull Class<? extends ItemType> getReturnType() {
+        return ItemType.class;
+    }
+
+    @Override
+    protected @NotNull String getPropertyName() {
+        return "smelted form";
+    }
+
+    @Nullable
+    @Override
+    public ItemType convert(ItemType itemType) {
+        return new ItemType(smelted(itemType.getRandom()));
+    }
+}
