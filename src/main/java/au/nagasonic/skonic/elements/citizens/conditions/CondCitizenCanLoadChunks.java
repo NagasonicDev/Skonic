@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -16,10 +18,17 @@ import org.jetbrains.annotations.Nullable;
 @Examples("")
 @RequiredPlugins("Citizens")
 public class CondCitizenCanLoadChunks extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenCanLoadChunks.class,
-                "(citizen|npc)[s] %npcs% (can|is able to) load chunk[s]",
-                "(citizen|npc)[s] %npcs% (can('t|not| not)|is('nt| not) able to|is unable to) load chunk[s]");
+
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenCanLoadChunks.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (can|is able to) load chunk[s]",
+                    "(citizen|npc)[s] %npcs% (can('t|not| not)|is('nt| not) able to|is unable to) load chunk[s]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

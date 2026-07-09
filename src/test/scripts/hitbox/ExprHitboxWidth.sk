@@ -1,0 +1,5 @@
+test "hitbox width":
+    set {_h} to hitbox with scale 1, width 4 and height 2
+    assert hitbox width of {_h} is 4 with "was wrong"
+    set hitbox width of {_h} to 7
+    assert hitbox width of {_h} is 7 with "was wrong"

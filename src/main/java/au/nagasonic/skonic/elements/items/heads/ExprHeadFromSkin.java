@@ -6,13 +6,14 @@ import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.util.logging.Level;
 
@@ -21,11 +22,15 @@ import java.util.logging.Level;
 @Since("1.0.7")
 @Examples("set helmet of player to head from player's skin")
 public class ExprHeadFromSkin extends SimpleExpression<ItemStack> {
-    static {
-        Skript.registerExpression(ExprHeadFromSkin.class,
-                ItemStack.class,
-                ExpressionType.COMBINED,
-                "(head|skull) from %skin%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprHeadFromSkin.class, ItemStack.class)
+                .addPatterns(
+                    "(head|skull) from %skin%"
+                )
+                .build()
+        );
     }
 
     private Expression<Skin> skinExpr;

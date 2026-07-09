@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -17,10 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.3-b1")
 @Examples({"lock all npcs age", "unlock the age of all citizens"})
 public class EffLockAge extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffLockAge.class,
-                "[n:un]lock %npcs%['s] age",
-                "[n:un]lock [the] age of %npcs%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffLockAge.class)
+                .addPatterns(
+                    "[n:un]lock %npcs%['s] age",
+                    "[n:un]lock [the] age of %npcs%"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcsExpr;
     private boolean un;

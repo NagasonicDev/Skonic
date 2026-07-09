@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -28,9 +30,15 @@ import java.util.Collection;
 @RequiredPlugins("Citizens")
 @Examples("make npc citizen with id 2 break {_block} with radius 3")
 public class EffCitizenBlockBreak extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenBlockBreak.class,
-                "make (npc|citizen) %npc% break %block% [with radius %number%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenBlockBreak.class)
+                .addPatterns(
+                    "make (npc|citizen) %npc% break %block% [with radius %number%]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private Expression<Block> blockExpr;

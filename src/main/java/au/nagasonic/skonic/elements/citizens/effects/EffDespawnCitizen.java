@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -21,10 +23,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.5")
 @Examples({"despawn all npcs", "wait 2 seconds", "respawn all npcs at player"})
 public class EffDespawnCitizen extends Effect {
-    static {
-        Skript.registerEffect(EffDespawnCitizen.class,
-                "[citizens|npc] despawn %npcs%",
-                "[citizens|npc] respawn %npcs% %direction% %location%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffDespawnCitizen.class)
+                .addPatterns(
+                    "[citizens|npc] despawn %npcs%",
+                    "[citizens|npc] respawn %npcs% %direction% %location%"
+                )
+                .build()
+        );
     }
 
     private int pattern;

@@ -1,0 +1,13 @@
+test "citizen face location":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    make npc {npc::1} face spawn of world "world"
+    assert true with "was wrong"
+    delete all citizens
+
+test "citizen face entity":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    make npc {npc::1} face player
+    assert true with "was wrong"
+    delete all citizens

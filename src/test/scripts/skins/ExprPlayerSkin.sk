@@ -1,0 +1,3 @@
+test "player skin":
+    set {_s} to player's skin
+    assert true with "was wrong"

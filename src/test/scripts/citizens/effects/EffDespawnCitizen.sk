@@ -1,0 +1,14 @@
+test "despawn citizen":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    npc despawn {npc::1}
+    assert true with "was wrong"
+    delete all citizens
+
+test "respawn citizen":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    npc despawn {npc::1}
+    citizens respawn {npc::1} at spawn of world "world"
+    assert true with "was wrong"
+    delete all citizens

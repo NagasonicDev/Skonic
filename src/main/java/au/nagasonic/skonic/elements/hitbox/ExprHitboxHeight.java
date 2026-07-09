@@ -7,6 +7,9 @@ import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Citizen Hitbox Height")
 @Description("The height of a Citizen hitbox.")
@@ -14,8 +17,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
 public class ExprHitboxHeight extends SimplePropertyExpression<NPCHitbox, Number> {
-    static {
-        registerDefault(ExprHitboxHeight.class, Number.class, "hitbox height", "npchitbox");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprHitboxHeight.class, Number.class)
+                        .addPatterns("hitbox height", "npchitbox")
+                        .build()
+        );
     }
     @Override
     public @Nullable Number convert(NPCHitbox hitbox) {

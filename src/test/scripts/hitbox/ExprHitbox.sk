@@ -1,0 +1,16 @@
+test "hitbox create inline":
+    set {_h} to hitbox with scale 1, width 2 and height 4
+    assert {_h} is set with "was wrong"
+    assert hitbox scale of {_h} is 1 with "was wrong"
+    assert hitbox width of {_h} is 2 with "was wrong"
+    assert hitbox height of {_h} is 4 with "was wrong"
+
+test "hitbox create section":
+    set {_h} to a hitbox:
+        set hitbox scale to 2
+        set hitbox width to 3
+        set hitbox height to 5
+    assert {_h} is set with "was wrong"
+    assert hitbox scale of {_h} is 2 with "was wrong"
+    assert hitbox width of {_h} is 3 with "was wrong"
+    assert hitbox height of {_h} is 5 with "was wrong"

@@ -1,0 +1,4 @@
+test "skin signature":
+    set {_s} to skin with value "abc" and signature "def"
+    set {_sig} to skin signature of {_s}
+    assert {_sig} is "def" with "was wrong"

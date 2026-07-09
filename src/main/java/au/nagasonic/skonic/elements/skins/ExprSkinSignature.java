@@ -4,14 +4,22 @@ import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Skin Signature")
 @Description("Gets the signature of a skin.")
 @Since("1.0.7")
 @Examples("broadcast signature of {_skin}")
 public class ExprSkinSignature extends SimplePropertyExpression<Skin, String> {
-    static {
-        register(ExprSkinSignature.class, String.class, "[skin] signature", "skin");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprSkinSignature.class, String.class)
+                        .addPatterns("[skin] signature", "skin")
+                        .build()
+        );
     }
 
     @Override

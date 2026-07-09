@@ -4,7 +4,6 @@ import au.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
@@ -12,18 +11,24 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Head from Player")
 @Description("Gets a head by player")
 @Since("1.0.4")
 @Examples("set helmet of player to head from player")
 public class ExprHeadFromPlayer extends SimpleExpression<ItemStack> {
-    static {
-        Skript.registerExpression(ExprHeadFromPlayer.class,
-                ItemStack.class,
-                ExpressionType.COMBINED,
-                "(head|skull) from %player%",
-                "%player%['s] (head|skull)");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprHeadFromPlayer.class, ItemStack.class)
+                .addPatterns(
+                    "(head|skull) from %player%",
+                    "%player%['s] (head|skull)"
+                )
+                .build()
+        );
     }
 
     private Expression<Player> player;

@@ -1,0 +1,6 @@
+test "citizen anchors":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    add spawn of world "world" to npc {npc::1}'s anchors
+    assert true with "was wrong"
+    delete all citizens

@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -18,10 +20,16 @@ import org.jetbrains.annotations.Nullable;
         "\tmake citizen npc with id 1 attack player"})
 @Since({"1.0.7, 1.2.3(location)"})
 public class CondCitizenIsNavigating extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsNavigating.class,
-                "(citizen|npc)[s] %npcs% (is|are) navigating [l:to %location%]",
-                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)) navigating [l:to %location%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsNavigating.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are) navigating [l:to %location%]",
+                    "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)) navigating [l:to %location%]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;

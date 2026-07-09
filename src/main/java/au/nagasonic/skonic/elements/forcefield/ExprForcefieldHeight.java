@@ -7,6 +7,9 @@ import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Citizen Forcefield Height")
 @Description("The height of a forcefield.")
@@ -14,8 +17,13 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("set npc with id 2's npc forcefield height to 3")
 public class ExprForcefieldHeight extends SimplePropertyExpression<NPCForcefield, Number> {
-    static {
-        registerDefault(ExprForcefieldHeight.class, Number.class, "forcefield height", "npcforcefield");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprForcefieldHeight.class, Number.class)
+                        .addPatterns("forcefield height", "npcforcefield")
+                        .build()
+        );
     }
     @Override
     public @Nullable Number convert(NPCForcefield forcefield) {

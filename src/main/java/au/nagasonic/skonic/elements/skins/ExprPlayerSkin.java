@@ -4,6 +4,9 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Player's Skin")
 @Description("Gets the player's skin." +
@@ -11,11 +14,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.4")
 @Examples({"on join:", "\tset {skins::%player's uuid%} to player's skin"})
 public class ExprPlayerSkin extends SimplePropertyExpression<Player, Skin> {
-    static {
-        register(ExprPlayerSkin.class,
-                Skin.class,
-                "skin",
-                "player");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprPlayerSkin.class, Skin.class)
+                        .addPatterns("skin", "player")
+                        .build()
+        );
     }
 
     @Override

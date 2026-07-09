@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -17,11 +19,17 @@ import org.jetbrains.annotations.Nullable;
         "\tbroadcast \"Npc is Aggressive\""})
 @Since("1.2")
 public class CondCitizenIsAggressive extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsAggressive.class,
-                "(citizen|npc)[s] %npcs% (is|are) aggressive",
-                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)) aggressive",
-                "(citizen|npc)[s] %npcs% (is|are) passive");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsAggressive.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are) aggressive",
+                    "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)) aggressive",
+                    "(citizen|npc)[s] %npcs% (is|are) passive"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

@@ -9,6 +9,8 @@ import net.citizensnpcs.trait.Age;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Age")
 @Description({"The age of a citizen.", "- Ordered between -24000 and 0. Any negative integer being a baby, and 0 being an adult."})
@@ -16,8 +18,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.3-b1")
 @Examples({"set {_age} to npc age of last created citizen", "# BABY", "set npc age of npc with id 2 to -24000"})
 public class ExprCitizenAge extends SimplePropertyExpression<NPC, Number> {
-    static {
-        register(ExprCitizenAge.class, Number.class, "(citizen|npc) age", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenAge.class, Number.class)
+                .addPatterns(
+                    "(citizen|npc) age of %npcs%",
+                    "%npcs%'[s] (citizen|npc) age"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable Number convert(NPC npc) {

@@ -1,0 +1,6 @@
+test "citizen speed":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set speed of npc {npc::1} to 1.5
+    assert speed of npc {npc::1} is 1.5 with "was wrong"
+    delete all citizens

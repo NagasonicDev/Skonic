@@ -1,0 +1,3 @@
+test "enchanted book with enchantments":
+    set {_b} to book with sharpness 5
+    assert {_b} is set with "was wrong"

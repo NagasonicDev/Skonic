@@ -1,0 +1,6 @@
+test "citizen stored location":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set {_l} to stored location of npc {npc::1}
+    assert {_l} is set with "was wrong"
+    delete all citizens

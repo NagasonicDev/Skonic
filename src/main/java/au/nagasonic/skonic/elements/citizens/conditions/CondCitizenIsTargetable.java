@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.conditions;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -21,10 +23,16 @@ import java.util.logging.Level;
 @Examples({"if last created npc can be targeted:",
         "\tmake last created npc not targetable"})
 public class CondCitizenIsTargetable extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsTargetable.class,
-                "(citizen|npc)[s] %npcs% (is|can be|are) target(able|ed)",
-                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)|can('t|not be)) target(able|ed)");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsTargetable.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|can be|are) target(able|ed)",
+                    "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)|can('t|not be)) target(able|ed)"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

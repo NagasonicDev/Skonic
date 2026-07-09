@@ -1,0 +1,6 @@
+test "citizen id":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set {_id} to id of npc {npc::1}
+    assert {_id} > 0 with "was wrong"
+    delete all citizens

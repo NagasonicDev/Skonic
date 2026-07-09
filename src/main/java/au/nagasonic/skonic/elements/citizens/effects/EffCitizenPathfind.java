@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -22,9 +24,15 @@ import java.util.logging.Level;
 @Since("1.0.7, 1.2.2-b1 (straight line)")
 @Examples("make citizens all npcs pathfind to player")
 public class EffCitizenPathfind extends Effect {
-    static {
-        Skript.registerEffect(EffCitizenPathfind.class,
-                "make (citizen|npc)[s] %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenPathfind.class)
+                .addPatterns(
+                    "make (citizen|npc)[s] %npcs% (pathfind|move|walk) to[wards] %location% [s:in [a] [straight] line]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private Expression<Location> locExpr;

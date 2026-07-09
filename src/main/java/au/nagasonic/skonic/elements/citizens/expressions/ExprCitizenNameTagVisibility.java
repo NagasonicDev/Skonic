@@ -8,6 +8,8 @@ import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Nametag Visibility")
 @Description("Whether a Citizens NPC's nameplate is visible.")
@@ -15,8 +17,16 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("set npc nameplate visibility of all npcs to false")
 public class ExprCitizenNameTagVisibility extends SimplePropertyExpression<NPC, Boolean> {
-    static {
-        register(ExprCitizenNameTagVisibility.class, Boolean.class, "(citizen|npc) name[ ][tag|plate] visibility", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenNameTagVisibility.class, Boolean.class)
+                .addPatterns(
+                    "(citizen|npc) name[ ][tag|plate] visibility of %npcs%",
+                    "%npcs%'[s] (citizen|npc) name[ ][tag|plate] visibility"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable Boolean convert(NPC npc) {

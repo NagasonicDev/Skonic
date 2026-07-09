@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -17,10 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.1-b1")
 @RequiredPlugins("Citizens")
 public class CondCitizenIsCollidable extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsCollidable.class,
-                "(citizen|npc)[s] %npcs% (is|are) (collidable|pushable) [f:(with|by) fluids]",
-                "(citizen|npc)[s] %npcs% (are(n't| not)|is(n't| not)) (collidable|pushable) [f:(with|by) fluids]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsCollidable.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are) (collidable|pushable) [f:(with|by) fluids]",
+                    "(citizen|npc)[s] %npcs% (are(n't| not)|is(n't| not)) (collidable|pushable) [f:(with|by) fluids]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private boolean f;

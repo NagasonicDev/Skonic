@@ -3,6 +3,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.citizens.expressions.ExprLastCreatedCitizen;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.bukkitutil.EntityUtils;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.entity.EntityData;
@@ -31,9 +33,15 @@ import java.util.logging.Level;
 @Since("1.0.0")
 public class EffSpawnCitizen extends Effect {
 
-    static {
-        Skript.registerEffect(EffSpawnCitizen.class,
-                "spawn [a[n]] [%-entitydata%] (citizen|npc) [named %string%] %direction% %location%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffSpawnCitizen.class)
+                .addPatterns(
+                    "spawn [a[n]] [%-entitydata%] (citizen|npc) [named %string%] %direction% %location%"
+                )
+                .build()
+        );
     }
 
     private Expression<String> name;

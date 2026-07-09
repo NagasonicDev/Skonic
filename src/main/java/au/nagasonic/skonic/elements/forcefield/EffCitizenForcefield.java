@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.forcefield;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -19,11 +21,17 @@ import org.jetbrains.annotations.Nullable;
 "wait 1 minute",
 "remove forcefield of all npcs"})
 public class EffCitizenForcefield extends Effect {
-    static {
-        Skript.registerEffect(EffCitizenForcefield.class,
-                "make %npcs% have %npcforcefield%",
-                "remove forcefield of %npcs%",
-                "remove %npcs%['s] forcefield");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenForcefield.class)
+                .addPatterns(
+                    "make %npcs% have %npcforcefield%",
+                    "remove forcefield of %npcs%",
+                    "remove %npcs%['s] forcefield"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private Expression<NPCForcefield> forcefieldExpr;

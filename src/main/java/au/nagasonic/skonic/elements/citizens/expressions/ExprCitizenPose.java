@@ -10,14 +10,25 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+
 @Name("Citizen Pose")
 @Description("The pose of a Citizens NPC")
 @Since("1.2.1")
 @RequiredPlugins("Citizens")
 @Examples("set npc entity pose of last spawned citizen to crouching")
 public class ExprCitizenPose extends SimplePropertyExpression<NPC, EntityPoseTrait.EntityPose> {
-    static {
-        register(ExprCitizenPose.class, EntityPoseTrait.EntityPose.class, "(citizen|npc) [entity] pose", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenPose.class, EntityPoseTrait.EntityPose.class)
+                .addPatterns(
+                    "(citizen|npc) [entity] pose of %npcs%",
+                    "%npcs%'[s] (citizen|npc) [entity] pose"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable EntityPoseTrait.EntityPose convert(NPC npc) {

@@ -10,6 +10,8 @@ import net.citizensnpcs.trait.Gravity;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Gravity")
 @Description("Whether the Citizens NPC is affected by gravity")
@@ -17,8 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.2-b1")
 @Examples("set the npc gravity of all npcs to true")
 public class ExprCitizenGravity extends SimplePropertyExpression<NPC, Boolean> {
-    static {
-        register(ExprCitizenGravity.class, Boolean.class, "(citizen|npc) gravity", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenGravity.class, Boolean.class)
+                .addPatterns(
+                    "(citizen|npc) gravity of %npcs%",
+                    "%npcs%'[s] (citizen|npc) gravity"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable Boolean convert(NPC npc) {

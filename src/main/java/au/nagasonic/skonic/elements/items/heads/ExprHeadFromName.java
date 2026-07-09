@@ -4,7 +4,6 @@ import au.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
@@ -12,17 +11,23 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Head from Name")
 @Description("Gets a head by player name")
 @Since("1.0.4")
 @Examples("set helmet of player to head from name \"%player's name%\"")
 public class ExprHeadFromName extends SimpleExpression<ItemStack> {
-    static {
-        Skript.registerExpression(ExprHeadFromName.class,
-                ItemStack.class,
-                ExpressionType.COMBINED,
-                "(head|skull) from name %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprHeadFromName.class, ItemStack.class)
+                .addPatterns(
+                    "(head|skull) from name %string%"
+                )
+                .build()
+        );
     }
     private Expression<String> name;
 

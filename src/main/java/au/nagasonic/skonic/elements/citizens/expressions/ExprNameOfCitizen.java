@@ -10,14 +10,25 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 @Name("Citizen Name")
 @Description("Get the name of a citizen")
 @RequiredPlugins("Citizens")
 @Since("1.0.5")
 @Examples("set citizen name of last created npc to \"Nagasonic\"")
 public class ExprNameOfCitizen extends SimplePropertyExpression<NPC, String> {
-    static {
-        register(ExprNameOfCitizen.class, String.class, "(citizen|npc) name", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprNameOfCitizen.class, String.class)
+                .addPatterns(
+                    "(citizen|npc) name of %npcs%",
+                    "%npcs%'[s] (citizen|npc) name"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable String convert(NPC npc) {

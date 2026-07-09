@@ -1,0 +1,6 @@
+test "citizen skin":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set {_s} to skin of npc {npc::1}
+    assert true with "was wrong"
+    delete all citizens

@@ -4,8 +4,9 @@ import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
@@ -21,9 +22,13 @@ import java.util.logging.Level;
 @Since("1.0.7")
 @RequiredPlugins("Citizens")
 public class ExprCitizenWith extends SimpleExpression<NPC> {
-    static {
-        Skript.registerExpression(ExprCitizenWith.class, NPC.class, ExpressionType.COMBINED,
-                "(citizen|npc) with id %number%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenWith.class, NPC.class)
+                .addPatterns("(citizen|npc) with id %number%")
+                .build()
+        );
     }
     private Expression<Number> idExpr;
     @Override

@@ -5,6 +5,8 @@ import au.nagasonic.skonic.elements.skins.Skin;
 import au.nagasonic.skonic.elements.util.SkinUtils;
 import au.nagasonic.skonic.exceptions.SkinGenerationException;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -24,10 +26,16 @@ import org.jetbrains.annotations.Nullable;
 @Examples("set skin of npc last spawned npc to url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
 public class EffChangeCitizenSkinURL extends Effect {
 
-    static {
-        Skript.registerEffect(EffChangeCitizenSkinURL.class,
-                "(change|set) (npc|citizen)[s] %npcs%['s] skin to url %string%",
-                "(change|set) skin of (npc|citizen)[s] %npcs% to url %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffChangeCitizenSkinURL.class)
+                .addPatterns(
+                    "(change|set) (npc|citizen)[s] %npcs%['s] skin to url %string%",
+                    "(change|set) skin of (npc|citizen)[s] %npcs% to url %string%"
+                )
+                .build()
+        );
     }
 
     private Expression<NPC> npcExpr;

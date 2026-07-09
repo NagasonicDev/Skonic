@@ -1,0 +1,18 @@
+test "forcefield create inline":
+    set {_f} to forcefield with width 3, height 4, strength 1 and vertical strength 2
+    assert {_f} is set with "was wrong"
+    assert forcefield width of {_f} is 3 with "was wrong"
+    assert forcefield height of {_f} is 4 with "was wrong"
+    assert forcefield strength of {_f} is 1 with "was wrong"
+    assert forcefield vertical strength of {_f} is 2 with "was wrong"
+
+test "forcefield create section":
+    set {_f} to a forcefield:
+        set forcefield width to 5
+        set forcefield height to 6
+        set forcefield strength to 2
+        set forcefield vertical strength to 3
+    assert {_f} is set with "was wrong"
+    assert forcefield width of {_f} is 5 with "was wrong"
+    assert forcefield height of {_f} is 6 with "was wrong"
+    assert forcefield strength of {_f} is 2 with "was wrong"

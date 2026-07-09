@@ -1,0 +1,3 @@
+test "head from name":
+    set {_h} to head from name "Steve"
+    assert {_h} is set with "was wrong"

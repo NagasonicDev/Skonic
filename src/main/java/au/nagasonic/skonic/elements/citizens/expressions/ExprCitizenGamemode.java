@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Gamemode")
 @Description("The gamemode of a Citizens NPC. Only applicable if the Citizen's entity type is a Player.")
@@ -18,8 +20,16 @@ import org.jetbrains.annotations.Nullable;
 @Examples("set gamemode of npc with id 3 to creative")
 @RequiredPlugins("Citizens")
 public class ExprCitizenGamemode extends SimplePropertyExpression<NPC, GameMode> {
-    static {
-        register(ExprCitizenGamemode.class, GameMode.class, "(citizen|npc) game[ ]mode", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenGamemode.class, GameMode.class)
+                .addPatterns(
+                    "(citizen|npc) game[ ]mode of %npcs%",
+                    "%npcs%'[s] (citizen|npc) game[ ]mode"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable GameMode convert(NPC npc) {

@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.conditions;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.RequiredPlugins;
@@ -21,10 +23,16 @@ import java.util.logging.Level;
 @Since("1.2.1-b2")
 @RequiredPlugins("Citizens")
 public class CondEntityIsCitizen extends Condition {
-    static {
-        Skript.registerCondition(CondEntityIsCitizen.class,
-                "%livingentities% (is|are) [a[n]] (citizen|npc)[s]",
-                "%livingentities% (is(n't| not)|are(n't|not)) [a[n]] (citizen|npc)[s]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondEntityIsCitizen.class)
+                .addPatterns(
+                    "%livingentities% (is|are) [a[n]] (citizen|npc)[s]",
+                    "%livingentities% (is(n't| not)|are(n't|not)) [a[n]] (citizen|npc)[s]"
+                )
+                .build()
+        );
     }
     private Expression<LivingEntity> entitiesExpr;
     private int pattern;

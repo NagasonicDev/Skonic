@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.RequiredPlugins;
@@ -20,10 +22,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.8")
 @RequiredPlugins("Citizens")
 public class CondCitizenIsOwnedBy extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsOwnedBy.class,
-                "(citizen|npc)[s] %npcs% is owned by %player%",
-                "(citizen|npc)[s] %npcs% (is(n't| not)) owned by %player%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsOwnedBy.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% is owned by %player%",
+                    "(citizen|npc)[s] %npcs% (is(n't| not)) owned by %player%"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private Expression<Player> playerExpr;

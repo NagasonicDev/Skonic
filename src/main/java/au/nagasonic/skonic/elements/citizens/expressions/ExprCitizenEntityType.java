@@ -9,6 +9,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Entity Type")
 @Description({"Get the entity type of a citizen", "For most entitytypes, you have to put \'minecraft:\' in front of it for it to work."})
@@ -16,8 +18,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.4, 1.0.5 (setting)")
 @Examples("set citizen entity type of last spawned entity to villager")
 public class ExprCitizenEntityType extends SimplePropertyExpression<NPC, EntityType> {
-    static {
-        register(ExprCitizenEntityType.class, EntityType.class, "(citizen|npc) entity type", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenEntityType.class, EntityType.class)
+                .addPatterns(
+                    "(citizen|npc) entity type of %npcs%",
+                    "%npcs%'[s] (citizen|npc) entity type"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable EntityType convert(NPC npc) {

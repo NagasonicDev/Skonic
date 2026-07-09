@@ -9,13 +9,14 @@ import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.io.File;
 
@@ -24,9 +25,15 @@ import java.io.File;
 @Since("1.2.5")
 @Examples("set {skin} to skin from file \"skin.png\"")
 public class ExprSkinFromFile extends SimpleExpression<Skin> {
-    static {
-        Skript.registerExpression(ExprSkinFromFile.class, Skin.class, ExpressionType.COMBINED,
-                "[s:slim] skin from file %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprSkinFromFile.class, Skin.class)
+                .addPatterns(
+                    "[s:slim] skin from file %string%"
+                )
+                .build()
+        );
     }
     private Expression<String> fileExpr;
     private boolean s;

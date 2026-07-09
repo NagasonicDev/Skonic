@@ -10,6 +10,8 @@ import ch.njol.skript.variables.Variables;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.util.List;
 
@@ -19,9 +21,13 @@ import java.util.List;
 @Examples({"set {_hitbox} to a hitbox with scale 1, width 2 and height 4", "", "set {_box} to a hitbox:", "\tset hitbox scale to 1", "\tset hitbox width to 1", "\tset hitbox height to 2"})
 @RequiredPlugins("Citizens")
 public class ExprHitbox extends SectionExpression<NPCHitbox> {
-    static {
-        Skript.registerExpression(ExprHitbox.class, NPCHitbox.class, ExpressionType.COMBINED,
-                "[a] hitbox [with scale %number%[,| and]] [[with] width %number%[,| and]] [[with] height %number%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprHitbox.class, NPCHitbox.class)
+                        .addPatterns("[a] hitbox [with scale %number%[,| and]] [[with] width %number%[,| and]] [[with] height %number%]")
+                        .build()
+        );
         EventValues.registerEventValue(CitizenHitboxCreateEvent.class, NPCHitbox.class, CitizenHitboxCreateEvent::getHitbox);
     }
     private Trigger trigger;

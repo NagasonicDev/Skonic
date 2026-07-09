@@ -1,0 +1,5 @@
+test "forcefield vertical strength":
+    set {_f} to forcefield with width 3, height 4, strength 2 and vertical strength 8
+    assert forcefield vertical strength of {_f} is 8 with "was wrong"
+    set forcefield vertical strength of {_f} to 15
+    assert forcefield vertical strength of {_f} is 15 with "was wrong"

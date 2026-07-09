@@ -6,9 +6,10 @@ import ch.njol.skript.classes.Parser;
 import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 public class ForcefieldType {
-    static {
+    public static void register(SyntaxRegistry syntaxRegistry) {
         Classes.registerClass(new ClassInfo<>(NPCForcefield.class, "npcforcefield")
                 .user("npc ?forcefields?")
                 .name("Citizen Forcefield")

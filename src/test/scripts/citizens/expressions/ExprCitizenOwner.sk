@@ -1,0 +1,6 @@
+test "citizen owner":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set owner of npc {npc::1} to player's uuid
+    assert owner of npc {npc::1} is player's uuid with "was wrong"
+    delete all citizens

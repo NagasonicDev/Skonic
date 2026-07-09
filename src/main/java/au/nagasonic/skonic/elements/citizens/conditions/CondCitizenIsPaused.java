@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.conditions;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -19,10 +21,16 @@ import java.util.logging.Level;
 @Examples({"if all citizens are paused:", "\tunpause all citizens"})
 @RequiredPlugins("Citizens")
 public class CondCitizenIsPaused extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsPaused.class,
-                "(citizen|npc)[s] %npcs% (is|are) paused",
-                "(citizen|npc)[s] %npcs% (isn't|is not|aren't|are not) paused");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsPaused.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are) paused",
+                    "(citizen|npc)[s] %npcs% (isn't|is not|aren't|are not) paused"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

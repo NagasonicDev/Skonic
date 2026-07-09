@@ -4,7 +4,6 @@ import au.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
@@ -12,17 +11,23 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Head from URL")
 @Description("Gets a head by URL")
 @Since("1.0.4")
 @Examples("set {_melon} to head from url \"http://textures.minecraft.net/texture/9636dee806ba47a2c40e95b57a12f37de6c2e677f2160132a07e24eeffa6\"")
 public class ExprHeadFromURL extends SimpleExpression<ItemStack> {
-    static {
-        Skript.registerExpression(ExprHeadFromURL.class,
-                ItemStack.class,
-                ExpressionType.COMBINED,
-                "(head|skull) from url %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprHeadFromURL.class, ItemStack.class)
+                .addPatterns(
+                    "(head|skull) from url %string%"
+                )
+                .build()
+        );
     }
     private Expression<String> url;
 

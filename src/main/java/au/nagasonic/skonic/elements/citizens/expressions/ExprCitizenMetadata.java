@@ -4,8 +4,9 @@ import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.npc.NPC;
@@ -17,10 +18,16 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Since("1.2.7")
 public class ExprCitizenMetadata extends SimpleExpression<Object> {
-    static {
-        Skript.registerExpression(ExprCitizenMetadata.class, Object.class, ExpressionType.COMBINED,
-                "%npcmetadata% (citizen|npc) ([meta]data) of %npc%",
-                "(citizen|npc) ([meta]data) %npcmetadata% of %npc%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenMetadata.class, Object.class)
+                .addPatterns(
+                    "%npcmetadata% (citizen|npc) ([meta]data) of %npc%",
+                    "(citizen|npc) ([meta]data) %npcmetadata% of %npc%"
+                )
+                .build()
+        );
     }
     private Expression<NPC.Metadata> metadataExpr;
     private Expression<NPC> npcExpr;

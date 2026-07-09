@@ -1,0 +1,7 @@
+test "citizen should take knockback":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    assert npc {npc::1} should take knockback with "was wrong"
+    set citizen knockback of npc {npc::1} to false
+    assert npc {npc::1} should not take knockback with "was wrong"
+    delete all citizens

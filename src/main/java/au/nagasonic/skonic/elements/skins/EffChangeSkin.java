@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.skins;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -20,10 +22,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2")
 @Examples("change player's skin to skin from url \"https://www.minecraftskins.com/uploads/skins/2024/12/12/--*ginger-bread-man*----tcer3--22929673.png?v695\"")
 public class EffChangeSkin extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffChangeSkin.class,
-                "(change|set) %player%['s] skin to %skin%",
-                "(change|set) skin of %player% to %skin%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffChangeSkin.class)
+                .addPatterns(
+                    "(change|set) %player%['s] skin to %skin%",
+                    "(change|set) skin of %player% to %skin%"
+                )
+                .build()
+        );
     }
     private Expression<Player> playerExpr;
     private Expression<Skin> skinExpr;

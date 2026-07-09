@@ -5,8 +5,9 @@ import au.nagasonic.skonic.elements.citizens.effects.EffSpawnCitizen;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.event.NPCCloneEvent;
@@ -24,11 +25,14 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.5")
 @Examples({"spawn a zombie citizen named \"Undead\" at spawn", "set {_e} to last created npc"})
 public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Listener {
-    static {
-        Skript.registerExpression(ExprLastCreatedCitizen.class,
-                NPC.class,
-                ExpressionType.SIMPLE,
-                "last (spawned|created) (citizen|npc)");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprLastCreatedCitizen.class, NPC.class)
+                .addPatterns("last (spawned|created) (citizen|npc)")
+                .build()
+        );
+        Skonic.getPluginManager().registerEvents(new ExprLastCreatedCitizen(), Skonic.getInstance());
         Skonic.getPluginManager().registerEvents(new ExprLastCreatedCitizen(), Skonic.getInstance());
     }
 
@@ -73,10 +77,6 @@ public class ExprLastCreatedCitizen extends SimpleExpression<NPC> implements Lis
     @EventHandler
     private void onNPCClone(NPCCloneEvent e){
         lastSpawnedNPC = e.getClone();
-    }
-
-    public static NPC getLastSpawnedNPC() {
-        return lastSpawnedNPC;
     }
 
     public static void setLastSpawnedNPC(NPC lastSpawnedNPC) {

@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -17,9 +19,15 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("make citizen npc with id 3 not pushable by fluids")
 public class EffCitizenCollidable extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenCollidable.class,
-                "make (npc|citizen) %npc% [not:not] (collidable|pushable) [f:(with|by) fluids]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenCollidable.class)
+                .addPatterns(
+                    "make (npc|citizen) %npc% [not:not] (collidable|pushable) [f:(with|by) fluids]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private boolean not;

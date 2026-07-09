@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.RequiredPlugins;
@@ -25,9 +27,15 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.5")
 @RequiredPlugins("Citizens")
 public class EffCloneCitizen extends Effect {
-    static {
-        Skript.registerEffect(EffCloneCitizen.class,
-                "(copy|clone) (npc|citizen) %npc% (to|at) %location% [n:[with] new name %-string%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCloneCitizen.class)
+                .addPatterns(
+                    "(copy|clone) (npc|citizen) %npc% (to|at) %location% [n:[with] new name %-string%]"
+                )
+                .build()
+        );
     }
 
     private Expression<NPC> npcExpr;

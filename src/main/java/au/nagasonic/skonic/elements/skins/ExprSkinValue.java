@@ -3,14 +3,22 @@ package au.nagasonic.skonic.elements.skins;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Skin Value")
 @Description("Gets the texture value of a skin")
 @Since("1.0.7")
 @Examples("broadcast value of player's skin")
 public class ExprSkinValue extends SimplePropertyExpression<Skin, String> {
-    static {
-        register(ExprSkinValue.class, String.class, "texture value", "skin");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprSkinValue.class, String.class)
+                        .addPatterns("texture value", "skin")
+                        .build()
+        );
     }
 
     @Override

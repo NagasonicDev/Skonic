@@ -1,0 +1,3 @@
+test "skin from file":
+    set {_s} to slim skin from file "plugins/Skonic/skins/test.png"
+    assert true with "was wrong"

@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.conditions;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -17,10 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @Examples("")
 @RequiredPlugins("Citizens")
 public class CondCitizenIsFlyable extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsFlyable.class,
-                "(citizen|npc)[s] %npcs% (is|are|can) fly[able]",
-                "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)|can('t|not| not)) fly[able]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsFlyable.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are|can) fly[able]",
+                    "(citizen|npc)[s] %npcs% (is(n't| not)|are(n't| not)|can('t|not| not)) fly[able]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

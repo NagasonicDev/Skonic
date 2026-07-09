@@ -4,6 +4,8 @@ import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import net.citizensnpcs.api.npc.NPC;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen ID")
 @Description("Get the ID of a citizen")
@@ -11,10 +13,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.5")
 @Examples({"broadcast all citizens", "loop all citizens:", "\tbroadcast id of loop-value"})
 public class ExprCitizenID extends SimplePropertyExpression<NPC, Number> {
-    static {
-        register(ExprCitizenID.class, Number.class,
-                "id",
-                "npc");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenID.class, Number.class)
+                .addPatterns(
+                    "id of %npc%",
+                    "%npc%'[s] id"
+                )
+                .build()
+        );
     }
     @Override
     protected String getPropertyName() {

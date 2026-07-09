@@ -1,0 +1,68 @@
+test "citizen click event":
+    assert true with "was wrong"
+
+on citizen click:
+    broadcast "%event-npc% was clicked by %event-player%"
+
+on citizen left click:
+    broadcast "%event-npc% was left clicked by %event-player%"
+
+on citizen right click:
+    broadcast "%event-npc% was right clicked by %event-player%"
+
+on citizen create:
+    broadcast "%event-npc% was created"
+
+on citizen create by a player:
+    broadcast "%event-npc% was created by %event-player%"
+
+on citizen spawn:
+    broadcast "%event-npc% spawned at %event-location%"
+
+on citizen despawn:
+    broadcast "%event-npc% despawned"
+
+on citizen damage:
+    broadcast "%event-npc% took %event-number% damage"
+
+on citizen damage by an entity:
+    broadcast "%event-npc% was damaged by %event-entity%"
+
+on citizen damage by a block:
+    broadcast "%event-npc% was damaged by %event-block%"
+
+on citizen death:
+    broadcast "%event-npc% died"
+
+on citizen target:
+    broadcast "%event-npc% targeted someone"
+
+on citizen teleport:
+    broadcast "%event-npc% teleported"
+
+on citizen push:
+    broadcast "%event-npc% was pushed"
+
+on citizen toggle type:
+    broadcast "%event-npc% changed type"
+
+on citizen remove:
+    broadcast "%event-npc% was removed"
+
+on citizen clone:
+    broadcast "%event-npc% was cloned"
+
+on citizen combust:
+    broadcast "%event-npc% caught fire"
+
+on citizen knockback:
+    broadcast "%event-npc% was knocked back"
+
+on citizen seen by a player:
+    broadcast "%event-npc% was seen by %event-player%"
+
+on citizen open a door:
+    broadcast "%event-npc% opened a door"
+
+on citizen rename:
+    broadcast "%event-npc% was renamed from %event-string%"

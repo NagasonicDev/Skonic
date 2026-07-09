@@ -4,12 +4,13 @@ import au.nagasonic.skonic.elements.util.HeadUtils;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,9 +21,15 @@ import java.net.URL;
 @Examples("set {_skinurl} to skin url within value \"value of player's skin\"")
 
 public class ExprURLInValue extends SimpleExpression<String> {
-    static {
-        Skript.registerExpression(ExprURLInValue.class, String.class, ExpressionType.COMBINED,
-                "[skin] url within value %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprURLInValue.class, String.class)
+                .addPatterns(
+                    "[skin] url within value %string%"
+                )
+                .build()
+        );
     }
     private Expression<String> stringExpr;
     @Override

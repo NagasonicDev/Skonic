@@ -1,0 +1,4 @@
+test "skin texture value":
+    set {_s} to skin with value "abc" and signature "def"
+    set {_v} to texture value of {_s}
+    assert {_v} is "abc" with "was wrong"

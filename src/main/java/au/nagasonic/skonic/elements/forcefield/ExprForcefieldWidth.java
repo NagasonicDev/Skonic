@@ -7,6 +7,9 @@ import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Citizen Forcefield Width")
 @Description("The width of a Citizen NPC's forcefield.")
@@ -14,8 +17,13 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("broadcast npc forcefield width of npc with id 3")
 public class ExprForcefieldWidth extends SimplePropertyExpression<NPCForcefield, Number> {
-    static {
-        registerDefault(ExprForcefieldWidth.class, Number.class, "forcefield width", "npcforcefield");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprForcefieldWidth.class, Number.class)
+                        .addPatterns("forcefield width", "npcforcefield")
+                        .build()
+        );
     }
     @Override
     public @Nullable Number convert(NPCForcefield forcefield) {

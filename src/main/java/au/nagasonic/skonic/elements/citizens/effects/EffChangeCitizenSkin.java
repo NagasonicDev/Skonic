@@ -3,7 +3,10 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.skins.Skin;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
+
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -23,10 +26,16 @@ import java.util.logging.Level;
 @Examples({"set skin of npc last spawned npc to player's skin", "change citizen npc with id 2's skin to player's skin"})
 public class EffChangeCitizenSkin extends Effect {
 
-    static {
-        Skript.registerEffect(EffChangeCitizenSkin.class,
-                "(change|set) (npc|citizen)[s] %npcs%['s] skin to %skin%",
-                "(change|set) skin of (npc|citizen)[s] %npcs% to %skin%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffChangeCitizenSkin.class)
+                .addPatterns(
+                    "(change|set) (npc|citizen)[s] %npcs%['s] skin to %skin%",
+                    "(change|set) skin of (npc|citizen)[s] %npcs% to %skin%"
+                )
+                .build()
+        );
     }
 
     private Expression<NPC> npcExpr;

@@ -6,13 +6,14 @@ import au.nagasonic.skonic.exceptions.SkinGenerationException;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.google.gson.JsonObject;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -25,9 +26,15 @@ import java.util.logging.Level;
 @Since("1.0.3")
 @Examples("set {_cacti} to skin from url \"http://textures.minecraft.net/texture/2f585b41ca5a1b4ac26f556760ed11307c94f8f8a1ade615bd12ce074f4793\"")
 public class ExprSkinFromURL extends SimpleExpression<Skin> {
-    static {
-        Skript.registerExpression(ExprSkinFromURL.class, Skin.class, ExpressionType.COMBINED,
-                "skin from url %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprSkinFromURL.class, Skin.class)
+                .addPatterns(
+                    "skin from url %string%"
+                )
+                .build()
+        );
     }
     Expression<String> urlExpr;
     @Override

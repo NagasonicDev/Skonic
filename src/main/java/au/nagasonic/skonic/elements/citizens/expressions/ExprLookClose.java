@@ -13,14 +13,25 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 @Name("Citizen Look Close")
 @Description({"The look close trait of the citizen.", "Whether the citizen should or should not look at the closest player."})
 @Examples("set look close trait of {_npc} to true")
 @Since("1.1")
 @RequiredPlugins("Citizens")
 public class ExprLookClose extends SimplePropertyExpression<NPC, Boolean> {
-    static {
-        register(ExprLookClose.class, Boolean.class, "look close [trait]", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprLookClose.class, Boolean.class)
+                .addPatterns(
+                    "look close [trait] of %npcs%",
+                    "%npcs%'[s] look close [trait]"
+                )
+                .build()
+        );
     }
     @SuppressWarnings("NullableProblems")
     @Override

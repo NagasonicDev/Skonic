@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -17,9 +19,15 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("make citizen npc with id 4 able to load chunks")
 public class EffCitizenLoadChunks extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenLoadChunks.class,
-                "make (npc|citizen) %npc% [not:un]able to load chunks [t:temporarily]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenLoadChunks.class)
+                .addPatterns(
+                    "make (npc|citizen) %npc% [not:un]able to load chunks [t:temporarily]"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private boolean not;

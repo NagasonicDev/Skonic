@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.conditions;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -22,10 +24,16 @@ import java.util.logging.Level;
 @Since("1.1")
 @RequiredPlugins("Citizens")
 public class CondCitizenIsVulnerable extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenIsVulnerable.class,
-                "(citizen|npc)[s] %npcs% (is|are) vulnerable",
-                "(citizen|npc)[s] %npcs% (is|are) protected");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenIsVulnerable.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (is|are) vulnerable",
+                    "(citizen|npc)[s] %npcs% (is|are) protected"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -20,9 +22,15 @@ import java.util.logging.Level;
 @Examples("delete all npcs")
 @RequiredPlugins("Citizens")
 public class EffDeleteCitizen extends Effect {
-    static {
-        Skript.registerEffect(EffDeleteCitizen.class,
-                "delete (citizen|npc)[s] %npcs%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffDeleteCitizen.class)
+                .addPatterns(
+                    "delete (citizen|npc)[s] %npcs%"
+                )
+                .build()
+        );
     }
 
     private Expression<NPC> npcExpr;

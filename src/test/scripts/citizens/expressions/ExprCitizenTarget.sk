@@ -1,0 +1,7 @@
+test "citizen target":
+    spawn zombie citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    make npc {npc::1} attack player
+    set {_t} to target of npc {npc::1}
+    assert true with "was wrong"
+    delete all citizens

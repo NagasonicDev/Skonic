@@ -1,0 +1,6 @@
+test "citizen packet delay":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set packet delay of npc {npc::1} to 30
+    assert packet delay of npc {npc::1} is 30 with "was wrong"
+    delete all citizens

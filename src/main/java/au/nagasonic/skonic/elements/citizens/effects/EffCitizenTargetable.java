@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -24,10 +26,16 @@ import java.util.logging.Level;
 @Since("1.2, 1.2.2-b1 (temporary)")
 @RequiredPlugins("Citizens")
 public class EffCitizenTargetable extends Effect {
-    static {
-        Skript.registerEffect(EffCitizenTargetable.class,
-                "make (citizen|npc) %npc% [[able to] be] target(ed|able) [t:temporarily]",
-                "make (citizen|npc) %npc% not [[able to] be] target(ed|able) [t:temporarily]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenTargetable.class)
+                .addPatterns(
+                    "make (citizen|npc) %npc% [[able to] be] target(ed|able) [t:temporarily]",
+                    "make (citizen|npc) %npc% not [[able to] be] target(ed|able) [t:temporarily]"
+                )
+                .build()
+        );
     }
     private int pattern;
     private Expression<NPC> npcExpr;

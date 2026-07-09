@@ -6,7 +6,6 @@ import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.util.EnchantmentType;
@@ -16,15 +15,23 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.checkerframework.checker.signature.qual.SignatureBottom;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Enchanted Book With Enchantments")
 @Description("Returns an enchanted book with the given enchantments.")
 @Since("1.2.1")
 @Examples("set {_sharpbook} to enchanted book with sharpness 5")
 public class ExprEnchBookWith extends SimpleExpression<ItemStack> {
-    static {
-        Skript.registerExpression(ExprEnchBookWith.class, ItemStack.class, ExpressionType.COMBINED,
-                "%itemstack% (with|containing) %enchantmenttypes%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprEnchBookWith.class, ItemStack.class)
+                .addPatterns(
+                    "%itemstack% (with|containing) %enchantmenttypes%"
+                )
+                .build()
+        );
     }
     Expression<ItemStack> bookExpr;
     Expression<EnchantmentType> enchantsExpr;

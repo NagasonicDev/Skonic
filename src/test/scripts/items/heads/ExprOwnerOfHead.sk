@@ -1,0 +1,4 @@
+test "owner of head":
+    set {_h} to head from name "Steve"
+    set {_o} to owner of {_h}
+    assert {_o} is set with "was wrong"

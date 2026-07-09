@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.RequiredPlugins;
@@ -22,10 +24,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.8")
 @RequiredPlugins("Citizens")
 public class EffCitizenMirror extends Effect {
-    static {
-        Skript.registerEffect(EffCitizenMirror.class,
-                "enable (npc|citizen)[s] %npcs% mirror [n:with name] [e:[and] with equipment]",
-                "disable (npc|citizen)[s] %npcs% mirror");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenMirror.class)
+                .addPatterns(
+                    "enable (npc|citizen)[s] %npcs% mirror [n:with name] [e:[and] with equipment]",
+                    "disable (npc|citizen)[s] %npcs% mirror"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcsExpr;
     private int pattern;

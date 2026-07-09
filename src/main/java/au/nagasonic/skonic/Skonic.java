@@ -79,6 +79,7 @@ public final class Skonic extends JavaPlugin {
         new UpdateChecker(this);
         setupMetrics();
 
+
         // Final Log
         Util.log(
                 "&aSuccessfully enabled v%s&7 in &b%.2f seconds",
@@ -341,5 +342,4 @@ public final class Skonic extends JavaPlugin {
     public static PluginManager getPluginManager() {
         return pm;
     }
-
 }

@@ -1,6 +1,8 @@
 package au.nagasonic.skonic.elements.citizens.effects;
 
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -17,10 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2")
 @RequiredPlugins("Citizens")
 public class EffCitizenVulnerable extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenVulnerable.class,
-                "make (citizen|npc) %npcs% [not:in]vulnerable",
-                "make (citizen|npc) %npcs% [not:un]protected");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenVulnerable.class)
+                .addPatterns(
+                    "make (citizen|npc) %npcs% [not:in]vulnerable",
+                    "make (citizen|npc) %npcs% [not:un]protected"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcsExpr;
     private int pattern;

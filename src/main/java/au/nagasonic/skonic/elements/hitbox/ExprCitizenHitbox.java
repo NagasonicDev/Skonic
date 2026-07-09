@@ -8,6 +8,9 @@ import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Citizen Hitbox")
 @Description("The hitbox of a Citizens NPC")
@@ -15,8 +18,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.2.2-b1")
 @RequiredPlugins("Citizens")
 public class ExprCitizenHitbox extends SimplePropertyExpression<NPC, NPCHitbox> {
-    static {
-        register(ExprCitizenHitbox.class, NPCHitbox.class, "(citizen|npc) hitbox", "npc");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprCitizenHitbox.class, NPCHitbox.class)
+                        .addPatterns("(citizen|npc) hitbox", "npc")
+                        .build()
+        );
     }
     @Override
     public @Nullable NPCHitbox convert(NPC npc) {

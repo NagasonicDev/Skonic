@@ -1,0 +1,5 @@
+test "smelted form":
+    set {_s} to smelted form of raw iron
+    assert {_s} is iron ingot with "was wrong"
+    set {_s2} to smelted form of oak log
+    assert {_s2} is set with "was wrong"

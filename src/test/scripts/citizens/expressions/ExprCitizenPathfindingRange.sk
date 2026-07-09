@@ -1,0 +1,6 @@
+test "citizen pathfinding range":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set pathfinding range of npc {npc::1} to 50
+    assert pathfinding range of npc {npc::1} is 50 with "was wrong"
+    delete all citizens

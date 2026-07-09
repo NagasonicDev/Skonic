@@ -7,20 +7,16 @@ import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.util.EnumUtils;
-import net.citizensnpcs.api.event.SpawnReason;
-import net.citizensnpcs.trait.EntityPoseTrait;
 import org.bukkit.ChatColor;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.skriptlang.skript.lang.properties.Property;
 import org.skriptlang.skript.lang.properties.handlers.TypedValueHandler;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @SuppressWarnings({"unused", "deprecation"})
 public class Types {
-    static {
+    public static void register(SyntaxRegistry syntaxRegistry) {
         Classes.registerClass(new ClassInfo<>(Skin.class, "skin")
                 .user("skin?")
                 .name("Skin")

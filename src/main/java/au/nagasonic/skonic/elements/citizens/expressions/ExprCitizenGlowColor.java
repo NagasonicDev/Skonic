@@ -10,6 +10,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 
 @Name("Citizen Glow Color")
 @Description("The glow color of a Citizens NPC, in the Chat Color class.")
@@ -17,8 +19,16 @@ import org.jetbrains.annotations.Nullable;
 @RequiredPlugins("Citizens")
 @Examples("set the npc glow colour of all citizens to red")
 public class ExprCitizenGlowColor extends SimplePropertyExpression<NPC, ChatColor> {
-    static {
-        register(ExprCitizenGlowColor.class, ChatColor.class, "(citizen|npc) glow colo[u]r", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenGlowColor.class, ChatColor.class)
+                .addPatterns(
+                    "(citizen|npc) glow colo[u]r of %npcs%",
+                    "%npcs%'[s] (citizen|npc) glow colo[u]r"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable ChatColor convert(NPC npc) {

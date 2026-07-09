@@ -1,0 +1,11 @@
+test "spawn citizen":
+    spawn citizen named "SpawnTest" at spawn of world "world"
+    set {npc::1} to last created citizen
+    assert {npc::1} is set with "was wrong"
+    delete all citizens
+
+test "spawn citizen with entity type":
+    spawn zombie citizen named "Zombie" at spawn of world "world"
+    set {npc::1} to last created citizen
+    assert name of npc {npc::1} is "Zombie" with "was wrong"
+    delete all citizens

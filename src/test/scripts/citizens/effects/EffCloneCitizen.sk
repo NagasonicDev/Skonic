@@ -1,0 +1,13 @@
+test "clone citizen":
+    spawn citizen named "Original" at spawn of world "world"
+    set {npc::1} to last created citizen
+    clone npc {npc::1} at spawn of world "world"
+    assert true with "was wrong"
+    delete all citizens
+
+test "clone citizen with new name":
+    spawn citizen named "Original" at spawn of world "world"
+    set {npc::1} to last created citizen
+    clone npc {npc::1} at spawn of world "world" with new name "Clone"
+    assert true with "was wrong"
+    delete all citizens

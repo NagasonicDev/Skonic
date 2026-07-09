@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.conditions;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
@@ -19,10 +21,16 @@ import java.util.logging.Level;
 @RequiredPlugins("Citizens")
 @Examples("")
 public class CondCitizenUsesMCAI extends Condition {
-    static {
-        Skript.registerCondition(CondCitizenUsesMCAI.class,
-                "(citizen|npc)[s] %npcs% (use[s]|(is|are) using) (minecraft|normal) (ai|AI)",
-                "(citizen|npc)[s] %npcs% (is(n't| not) using|are(n't| not) using|do(n't| not) use) (minecraft|normal) (ai|AI)");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.CONDITION,
+            SyntaxInfo.builder(CondCitizenUsesMCAI.class)
+                .addPatterns(
+                    "(citizen|npc)[s] %npcs% (use[s]|(is|are) using) (minecraft|normal) (ai|AI)",
+                    "(citizen|npc)[s] %npcs% (is(n't| not) using|are(n't| not) using|do(n't| not) use) (minecraft|normal) (ai|AI)"
+                )
+                .build()
+        );
     }
     private Expression<NPC> npcExpr;
     private int pattern;

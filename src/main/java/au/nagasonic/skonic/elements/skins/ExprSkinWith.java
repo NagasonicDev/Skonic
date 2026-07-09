@@ -3,12 +3,13 @@ package au.nagasonic.skonic.elements.skins;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.util.UUID;
 
@@ -17,9 +18,15 @@ import java.util.UUID;
 @Since("1.0.4")
 @Examples("set {_skin} to skin with value {_value} and signature {_sig}")
 public class ExprSkinWith extends SimpleExpression<Skin> {
-    static {
-        Skript.registerExpression(ExprSkinWith.class, Skin.class, ExpressionType.COMBINED,
-                "skin with value %string% and signature %string%");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprSkinWith.class, Skin.class)
+                .addPatterns(
+                    "skin with value %string% and signature %string%"
+                )
+                .build()
+        );
     }
 
     private Expression<String> valueExpr;

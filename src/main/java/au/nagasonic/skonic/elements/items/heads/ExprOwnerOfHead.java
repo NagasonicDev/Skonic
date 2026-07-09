@@ -14,6 +14,8 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Owner of Head")
 @Description("Gets the owner of a player head." +
@@ -21,10 +23,13 @@ import org.jetbrains.annotations.Nullable;
 @Since("1.0.4")
 @Examples("broadcast owner of player's tool")
 public class ExprOwnerOfHead extends SimplePropertyExpression<ItemStack, Player> {
-    static {
-        register(ExprOwnerOfHead.class, Player.class,
-                "owner",
-                "itemstack");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprOwnerOfHead.class, Player.class)
+                        .addPatterns("owner", "itemstack")
+                        .build()
+        );
     }
     @Override
     public @Nullable Player convert(ItemStack from) {

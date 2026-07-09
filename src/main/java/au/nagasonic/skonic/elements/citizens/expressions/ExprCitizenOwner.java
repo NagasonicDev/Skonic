@@ -12,13 +12,24 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+
 @Name("Citizen Owner (UUID)")
 @Description("The 'owner' of a Citizens NPC, if null, then it is owned by the server, else a player.")
 @Since("1.2.8")
 @RequiredPlugins("Citizens")
 public class ExprCitizenOwner extends SimplePropertyExpression<NPC, UUID> {
-    static {
-        register(ExprCitizenOwner.class, UUID.class, "(citizen|npc) owner [uuid]", "npcs");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprCitizenOwner.class, UUID.class)
+                .addPatterns(
+                    "(citizen|npc) owner [uuid] of %npcs%",
+                    "%npcs%'[s] (citizen|npc) owner [uuid]"
+                )
+                .build()
+        );
     }
     @Override
     public @Nullable UUID convert(NPC npc) {

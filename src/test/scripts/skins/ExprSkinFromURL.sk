@@ -1,0 +1,3 @@
+test "skin from url":
+    set {_s} to skin from url "http://textures.minecraft.net/texture/abc"
+    assert true with "was wrong"

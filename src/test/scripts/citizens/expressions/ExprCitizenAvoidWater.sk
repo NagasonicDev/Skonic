@@ -1,0 +1,8 @@
+test "citizen avoid water":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set citizen avoid water of npc {npc::1} to true
+    assert citizen avoid water of npc {npc::1} is true with "was wrong"
+    set citizen avoid water of npc {npc::1} to false
+    assert citizen avoid water of npc {npc::1} is false with "was wrong"
+    delete all citizens

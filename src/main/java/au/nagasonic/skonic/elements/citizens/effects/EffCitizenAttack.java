@@ -3,6 +3,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 import au.nagasonic.skonic.Skonic;
 import au.nagasonic.skonic.elements.util.Util;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -22,11 +24,17 @@ import java.util.logging.Level;
 @Since("1.0.0")
 @Examples({"make npcs all citizens attack player", "wait 5 seconds", "stop citizens all citizens from attacking player"})
 @RequiredPlugins("Citizens")
-public class EffCitizenAttack extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenAttack.class,
-                "make (npc|citizen)[s] %npcs% (attack|fight) %entity%",
-                "stop (npc|citizen)[s] %npcs% from (attacking|fighting) %entity%");
+public class EffCitizenAttack extends Effect {
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenAttack.class)
+                .addPatterns(
+                    "make (npc|citizen)[s] %npcs% (attack|fight) %entity%",
+                    "stop (npc|citizen)[s] %npcs% from (attacking|fighting) %entity%"
+                )
+                .build()
+        );
     }
 
     private int patterns;

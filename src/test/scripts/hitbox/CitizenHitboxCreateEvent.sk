@@ -1,0 +1,4 @@
+test "hitbox create event":
+    set {_h} to a hitbox:
+        broadcast "Creating hitbox: %event-hitbox%"
+    assert {_h} is set with "was wrong"

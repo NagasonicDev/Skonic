@@ -1,0 +1,6 @@
+test "citizen swim":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set citizen swim of npc {npc::1} to true
+    assert citizen swim of npc {npc::1} is true with "was wrong"
+    delete all citizens

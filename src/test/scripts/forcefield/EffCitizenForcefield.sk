@@ -1,0 +1,16 @@
+test "apply forcefield to citizen":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set {_f} to forcefield with width 3, height 4, strength 2 and vertical strength 1
+    make npc {npc::1} have {_f}
+    assert true with "was wrong"
+    delete all citizens
+
+test "remove forcefield from citizen":
+    spawn citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    set {_f} to forcefield with width 3, height 4, strength 2 and vertical strength 1
+    make npc {npc::1} have {_f}
+    remove forcefield of npc {npc::1}
+    assert true with "was wrong"
+    delete all citizens

@@ -2,6 +2,8 @@ package au.nagasonic.skonic.elements.citizens.effects;
 
 import au.nagasonic.skonic.Skonic;
 import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.SyntaxRegistry;
+import org.skriptlang.skript.registration.SyntaxInfo;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -24,10 +26,16 @@ import java.util.logging.Level;
 @SuppressWarnings("deprecation")
 // ChatColor is deprecated, but Citizen's API still hasn't updated its ScoreboardTrait.setColor() method.
 public class EffCitizenGlow extends AsyncEffect {
-    static {
-        Skript.registerEffect(EffCitizenGlow.class,
-                "make (npc|citizen)[s] %npcs% (start|:stop) glowing [c:[with colo[u]r] %-chatcolor%]",
-                "(start|:stop) (npc|citizen)[s] %npcs% [from] glowing [c:[with colo[u]r] %-chatcolor%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EFFECT,
+            SyntaxInfo.builder(EffCitizenGlow.class)
+                .addPatterns(
+                    "make (npc|citizen)[s] %npcs% (start|:stop) glowing [c:[with colo[u]r] %-chatcolor%]",
+                    "(start|:stop) (npc|citizen)[s] %npcs% [from] glowing [c:[with colo[u]r] %-chatcolor%]"
+                )
+                .build()
+        );
     }
 
     private Expression<NPC> npcsExpr;

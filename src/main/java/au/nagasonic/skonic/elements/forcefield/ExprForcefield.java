@@ -10,6 +10,8 @@ import ch.njol.skript.variables.Variables;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 
 import java.util.List;
@@ -20,9 +22,13 @@ import java.util.List;
 @Examples({"set {_force} to forcefield:", "\tset forcefield width to 3", "\tset forcefield height to 4", "\tset forcefield strength to 1", "\tset forcefield vertical strength to 2", "", "set {_field} to a forcefield with width 2"})
 @RequiredPlugins("Citizens")
 public class ExprForcefield extends SectionExpression<NPCForcefield> {
-    static {
-        Skript.registerExpression(ExprForcefield.class, NPCForcefield.class, ExpressionType.COMBINED,
-                "[a] forcefield [with width %number%[,| and]] [[with] height %number%[,| and]] [[with] strength %number%[,| and]] [[with] vertical strength %number%]");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprForcefield.class, NPCForcefield.class)
+                        .addPatterns("[a] forcefield [with width %number%[,| and]] [[with] height %number%[,| and]] [[with] strength %number%[,| and]] [[with] vertical strength %number%]")
+                        .build()
+        );
         EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, NPCForcefield.class, CitizenForcefieldCreateEvent::getForcefield);
     }
     private Trigger trigger;

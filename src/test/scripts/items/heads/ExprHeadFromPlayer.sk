@@ -1,0 +1,3 @@
+test "head from player":
+    set {_h} to player's head
+    assert {_h} is set with "was wrong"

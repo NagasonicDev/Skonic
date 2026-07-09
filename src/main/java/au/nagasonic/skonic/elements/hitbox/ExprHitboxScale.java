@@ -7,6 +7,9 @@ import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ch.njol.skript.Skript;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 @Name("Citizen Hitbox Scale")
 @Description("The scale/multiplier of a Citizen Hitbox.")
@@ -14,8 +17,13 @@ import org.jetbrains.annotations.Nullable;
 @Examples({"set {_box} to a hitbox:", "\tset hitbox width to 1", "\tset hitbox height to 2", "set hitbox scale of {_box} to 2   #Effective size becomes width: 2, height: 4"})
 @RequiredPlugins("Citizens")
 public class ExprHitboxScale extends SimplePropertyExpression<NPCHitbox, Number> {
-    static {
-        registerDefault(ExprHitboxScale.class, Number.class, "hitbox scale", "npchitbox");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+                SyntaxRegistry.EXPRESSION,
+                DefaultSyntaxInfos.Expression.builder(ExprHitboxScale.class, Number.class)
+                        .addPatterns("hitbox scale", "npchitbox")
+                        .build()
+        );
     }
     @Override
     public @Nullable Number convert(NPCHitbox hitbox) {

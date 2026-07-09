@@ -1,0 +1,7 @@
+test "lock citizen age":
+    spawn zombie citizen named "test" at spawn of world "world"
+    set {npc::1} to last created citizen
+    lock npc {npc::1}'s age
+    assert true with "was wrong"
+    unlock age of npc {npc::1}
+    delete all citizens

@@ -8,7 +8,6 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
@@ -20,6 +19,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 import java.util.Iterator;
 
@@ -28,11 +29,17 @@ import java.util.Iterator;
 @Since("1.2.1")
 @Examples("give player the smelted form of raw iron")
 public class ExprSmelted extends SimplePropertyExpression<ItemType, ItemType> {
-    static {
-        Skript.registerExpression(ExprSmelted.class, ItemType.class, ExpressionType.PROPERTY,
-                "[the] smelt[ed] [(result|form) of] %itemtypes%",
-                "%itemtypes%'[s] smelted [(result|form)]",
-                "%itemtypes% smelted");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprSmelted.class, ItemType.class)
+                .addPatterns(
+                    "[the] smelt[ed] [(result|form) of] %itemtypes%",
+                    "%itemtypes%'[s] smelted [(result|form)]",
+                    "%itemtypes% smelted"
+                )
+                .build()
+        );
     }
 
     @SuppressWarnings("deprecation")

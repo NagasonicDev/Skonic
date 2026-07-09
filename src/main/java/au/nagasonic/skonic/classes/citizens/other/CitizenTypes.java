@@ -16,9 +16,10 @@ import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.skriptlang.skript.lang.converter.Converters;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 
 public class CitizenTypes {
-    static {
+    public static void register(SyntaxRegistry syntaxRegistry) {
         Classes.registerClass(new ClassInfo<>(NPC.class, "npc")
                 .user("npcs?")
                 .name("Citizens NPC")

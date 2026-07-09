@@ -1,10 +1,10 @@
 package au.nagasonic.skonic.elements.citizens.expressions;
 
-import ch.njol.skript.Skript;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
+import org.skriptlang.skript.registration.DefaultSyntaxInfos;
+import org.skriptlang.skript.registration.SyntaxRegistry;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import net.citizensnpcs.api.CitizensAPI;
@@ -22,9 +22,13 @@ import java.util.List;
 @Since("1.0.7")
 @Examples({"broadcast all citizens", "loop all citizens:", "\tbroadcast id of loop-value"})
 public class ExprAllCitizens extends SimpleExpression<NPC> {
-    static {
-        Skript.registerExpression(ExprAllCitizens.class, NPC.class, ExpressionType.SIMPLE,
-                "all (citizens|npcs)");
+    public static void register(SyntaxRegistry syntaxRegistry) {
+        syntaxRegistry.register(
+            SyntaxRegistry.EXPRESSION,
+            DefaultSyntaxInfos.Expression.builder(ExprAllCitizens.class, NPC.class)
+                .addPatterns("all (citizens|npcs)")
+                .build()
+        );
     }
     @Override
     protected @Nullable NPC[] get(Event event) {
