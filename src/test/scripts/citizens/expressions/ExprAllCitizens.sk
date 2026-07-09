@@ -1,4 +1,4 @@
 test "all citizens":
     spawn citizen named "test" at spawn of world "world"
-    set all citizens are set with "was wrong"
-    delete all citizens
+    assert all citizens is set with "was wrong"
+    delete all npcs

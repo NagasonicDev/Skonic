@@ -1,5 +1,5 @@
 test "last created citizen":
     spawn citizen named "LastTest" at spawn of world "world"
     set {_last} to last created citizen
-    assert name of {_last} is "LastTest" with "was wrong"
-    delete all citizens
+    assert citizen name of {_last} is "LastTest" with "was wrong"
+    delete all npcs

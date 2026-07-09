@@ -1,6 +1,6 @@
 test "citizen scaled max health":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set scaled max health of npc {npc::1} to 40
-    assert scaled max health of npc {npc::1} is 40 with "was wrong"
-    delete all citizens
+    set citizen scaled max health of {npc::1} to 40
+    assert citizen scaled max health of {npc::1} is 40 with "was wrong"
+    delete all npcs

@@ -26,4 +26,4 @@ test "citizen is navigating":
     pause npc {_npc2}
     assert npc {_npc1} and {_npc2} are not navigating with "Error (9): Both NPCs should be stopped after individual pauses."
 
-    delete all citizens
+    delete all npcs

@@ -1,4 +1,4 @@
 test "download skin":
     set {_s} to skin with value "abc" and signature "def"
     download {_s}
-    assert true with "was wrong"
+    assert true is true with "was wrong"

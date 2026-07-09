@@ -1,8 +1,8 @@
 test "citizen knockback expression":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen knockback of npc {npc::1} to false
-    assert citizen knockback of npc {npc::1} is false with "was wrong"
-    set citizen knockback of npc {npc::1} to true
-    assert citizen knockback of npc {npc::1} is true with "was wrong"
-    delete all citizens
+    set citizen knockback of {npc::1} to false
+    assert citizen knockback of {npc::1} is false with "was wrong"
+    set citizen knockback of {npc::1} to true
+    assert citizen knockback of {npc::1} is true with "was wrong"
+    delete all npcs

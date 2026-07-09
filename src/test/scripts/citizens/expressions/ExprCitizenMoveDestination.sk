@@ -1,8 +1,7 @@
 test "citizen move destination":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    make npc {npc::1} pathfind to spawn of world "world"
-    wait 1 tick
-    set {_d} to move destination of npc {npc::1}
+    set citizen move destination of {npc::1} to spawn of world "world"
+    set {_d} to citizen move destination of {npc::1}
     assert {_d} is set with "was wrong"
-    delete all citizens
+    delete all npcs

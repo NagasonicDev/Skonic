@@ -1,6 +1,6 @@
 test "citizen skin layers":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set skin layers of npc {npc::1} to true
-    assert skin layers of npc {npc::1} is true with "was wrong"
-    delete all citizens
+    set citizen skin layers of {npc::1} to true
+    assert citizen skin layers of {npc::1} is true with "was wrong"
+    delete all npcs

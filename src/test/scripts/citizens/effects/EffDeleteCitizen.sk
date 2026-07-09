@@ -5,4 +5,4 @@ test "delete citizen":
     delete {npc::1}
     assert npc with id {npc::1::id} is set with "was wrong"
     assert npc with id {npc::1::id} is not set to fail with "was wrong"
-    delete all citizens
+    delete all npcs

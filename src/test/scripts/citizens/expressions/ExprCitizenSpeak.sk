@@ -1,6 +1,6 @@
 test "citizen speech trait":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set speech trait of npc {npc::1} to true
-    assert speech of npc {npc::1} is true with "was wrong"
-    delete all citizens
+    set citizen speech trait of {npc::1} to true
+    assert citizen speech of {npc::1} is true with "was wrong"
+    delete all npcs

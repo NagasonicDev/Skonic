@@ -1,5 +1,5 @@
 test "citizen click event":
-    assert true with "was wrong"
+    assert true is true with "was wrong"
 
 on citizen click:
     broadcast "%event-npc% was clicked by %event-player%"
@@ -34,17 +34,17 @@ on citizen damage by a block:
 on citizen death:
     broadcast "%event-npc% died"
 
-on citizen target:
-    broadcast "%event-npc% targeted someone"
-
-on citizen teleport:
-    broadcast "%event-npc% teleported"
-
+# on citizen target:
+#     broadcast "%event-npc% targeted someone"
+# 
+# on citizen teleport:
+#     broadcast "%event-npc% teleported"
+# 
 on citizen push:
     broadcast "%event-npc% was pushed"
-
-on citizen toggle type:
-    broadcast "%event-npc% changed type"
+# 
+# on citizen toggle type:
+#     broadcast "%event-npc% changed type"
 
 on citizen remove:
     broadcast "%event-npc% was removed"

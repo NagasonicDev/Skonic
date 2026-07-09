@@ -1,8 +1,8 @@
 test "citizen uuid":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set {_uuid} to citizen uuid of npc {npc::1}
+    set {_uuid} to citizen uuid of {npc::1}
     assert {_uuid} is set with "was wrong"
-    set {_e_uuid} to entity uuid of npc {npc::1}
+    set {_e_uuid} to citizen entity uuid of {npc::1}
     assert {_e_uuid} is set with "was wrong"
-    delete all citizens
+    delete all npcs

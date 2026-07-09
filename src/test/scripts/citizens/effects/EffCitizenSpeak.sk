@@ -2,5 +2,5 @@ test "citizen speak":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
     make npc {npc::1} say "Hello"
-    assert true with "was wrong"
-    delete all citizens
+    assert true is true with "was wrong"
+    delete all npcs

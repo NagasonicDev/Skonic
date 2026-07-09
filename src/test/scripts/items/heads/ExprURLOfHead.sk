@@ -1,4 +1,4 @@
 test "url of head":
     set {_h} to head from url "http://textures.minecraft.net/texture/abc"
     set {_url} to url of {_h}
-    assert true with "was wrong"
+    assert true is true with "was wrong"

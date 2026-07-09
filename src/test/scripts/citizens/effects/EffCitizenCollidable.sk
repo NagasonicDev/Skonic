@@ -7,7 +7,7 @@ test "make citizen collidable":
     make npc {_npc} not collidable
     assert npc {_npc} is not collidable with "was wrong"
     assert npc {_npc} is collidable to fail with "was wrong"
-    delete all citizens
+    delete all npcs
 
 test "make citizen collidable by fluids":
     spawn citizen named "test" at spawn of world "world"
@@ -18,4 +18,4 @@ test "make citizen collidable by fluids":
     make npc {_npc} not collidable by fluids
     assert npc {_npc} is not collidable by fluids with "was wrong"
     assert npc {_npc} is collidable by fluids to fail with "was wrong"
-    delete all citizens
+    delete all npcs

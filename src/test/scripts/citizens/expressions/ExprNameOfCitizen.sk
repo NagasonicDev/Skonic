@@ -1,7 +1,7 @@
 test "citizen name":
     spawn citizen named "NameTest" at spawn of world "world"
     set {npc::1} to last created citizen
-    assert name of npc {npc::1} is "NameTest" with "was wrong"
-    set name of npc {npc::1} to "Renamed"
-    assert name of npc {npc::1} is "Renamed" with "was wrong"
-    delete all citizens
+    assert citizen name of {npc::1} is "NameTest" with "was wrong"
+    set citizen name of {npc::1} to "Renamed"
+    assert citizen name of {npc::1} is "Renamed" with "was wrong"
+    delete all npcs

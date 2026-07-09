@@ -7,4 +7,4 @@ test "make citizen use minecraft ai":
     set npc {_npc} to not use normal ai
     assert npc {_npc} is not using normal AI with "was wrong"
     assert npc {_npc} is using normal ai to fail with "was wrong"
-    delete all citizens
+    delete all npcs

@@ -1,6 +1,6 @@
 test "citizen inventory":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set {_inv} to inventory of npc {npc::1}
+    set {_inv} to citizen inventory of {npc::1}
     assert {_inv} is set with "was wrong"
-    delete all citizens
+    delete all npcs

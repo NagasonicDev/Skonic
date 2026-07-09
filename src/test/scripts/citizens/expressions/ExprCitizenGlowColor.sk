@@ -1,6 +1,6 @@
 test "citizen glow color":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set glow color of npc {npc::1} to red
-    assert glow color of npc {npc::1} is red with "was wrong"
-    delete all citizens
+    set citizen glow color of {npc::1} to red
+    assert citizen glow color of {npc::1} is red with "was wrong"
+    delete all npcs

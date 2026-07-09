@@ -1,8 +1,8 @@
 test "citizen hitbox":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set {_h} to hitbox of npc {npc::1}
+    set {_h} to citizen hitbox of {npc::1}
     set {_newbox} to hitbox with scale 2, width 3 and height 4
-    set hitbox of npc {npc::1} to {_newbox}
-    assert true with "was wrong"
-    delete all citizens
+    set citizen hitbox of {npc::1} to {_newbox}
+    assert true is true with "was wrong"
+    delete all npcs

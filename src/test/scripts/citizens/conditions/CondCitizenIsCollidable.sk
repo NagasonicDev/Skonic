@@ -12,7 +12,7 @@ test "citizen is collidable":
     assert npc {_npc::1} and {_npc::2} aren't pushable to fail with "was wrong"
     make npc {_npc::2} not pushable
     assert npc {_npc::1} and {_npc::2} are not pushable with "was wrong"
-    delete all citizens
+    delete all npcs
 
 test "citizen is collidable by fluids":
     spawn citizen named "test1" at spawn of world "world"
@@ -28,4 +28,4 @@ test "citizen is collidable by fluids":
     assert npc {_npc::1} and {_npc::2} aren't pushable by fluids to fail with "was wrong"
     make npc {_npc::2} not pushable by fluids
     assert npc {_npc::1} and {_npc::2} are not pushable by fluids with "was wrong"
-    delete all citizens
+    delete all npcs

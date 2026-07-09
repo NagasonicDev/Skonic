@@ -1,8 +1,8 @@
 test "citizen should jump":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen should jump of npc {npc::1} to true
+    set citizen should jump of {npc::1} to true
     assert npc {npc::1} should jump with "was wrong"
-    set citizen should jump of npc {npc::1} to false
+    set citizen should jump of {npc::1} to false
     assert npc {npc::1} should not jump with "was wrong"
-    delete all citizens
+    delete all npcs

@@ -2,5 +2,5 @@ test "change citizen skin by url":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
     change skin of npc {_npc} to url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936"
-    assert value of npc skin of {_npc} is value of skin from url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936" with "was wrong"
-    delete all citizens
+    assert value of citizen skin of {_npc} is value of skin from url "https://www.minecraftskins.com/uploads/skins/2025/10/04/technoblade-23562916.png?v936" with "was wrong"
+    delete all npcs

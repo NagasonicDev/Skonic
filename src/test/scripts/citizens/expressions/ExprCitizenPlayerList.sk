@@ -1,6 +1,6 @@
 test "citizen player list":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set player list visibility of npc {npc::1} to false
-    assert player list visibility of npc {npc::1} is false with "was wrong"
-    delete all citizens
+    set citizen player list visibility of {npc::1} to false
+    assert citizen player list visibility of {npc::1} is false with "was wrong"
+    delete all npcs

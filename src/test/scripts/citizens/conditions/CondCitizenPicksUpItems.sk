@@ -1,8 +1,8 @@
 test "citizen picks up items":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen picks up items of npc {npc::1} to true
+    set citizen picks up items of {npc::1} to true
     assert npc {npc::1} picks up items with "was wrong"
-    set citizen picks up items of npc {npc::1} to false
+    set citizen picks up items of {npc::1} to false
     assert npc {npc::1} does not pick up items with "was wrong"
-    delete all citizens
+    delete all npcs

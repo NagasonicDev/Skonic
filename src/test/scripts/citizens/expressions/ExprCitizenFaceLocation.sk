@@ -1,6 +1,6 @@
 test "citizen face location":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set face location of npc {npc::1} to spawn of world "world"
-    assert face location of npc {npc::1} is set with "was wrong"
-    delete all citizens
+    set citizen face location of {npc::1} to spawn of world "world"
+    assert citizen face location of {npc::1} is set with "was wrong"
+    delete all npcs

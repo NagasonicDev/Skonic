@@ -1,6 +1,6 @@
 test "citizen tracking range":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set tracking range of npc {npc::1} to 32
-    assert tracking range of npc {npc::1} is 32 with "was wrong"
-    delete all citizens
+    set citizen tracking range of {npc::1} to 32
+    assert citizen tracking range of {npc::1} is 32 with "was wrong"
+    delete all npcs

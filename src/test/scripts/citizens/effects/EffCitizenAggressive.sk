@@ -7,4 +7,4 @@ test "make citizen aggressive":
     make npc {_npc} passive
     assert npc {_npc} is not aggressive with "was wrong"
     assert npc {_npc} is aggressive to fail with "was wrong"
-    delete all citizens
+    delete all npcs

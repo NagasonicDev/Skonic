@@ -2,6 +2,6 @@ test "enable citizen mirror":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
     enable npc {npc::1} mirror
-    assert true with "was wrong"
+    assert true is true with "was wrong"
     disable npc {npc::1} mirror
-    delete all citizens
+    delete all npcs

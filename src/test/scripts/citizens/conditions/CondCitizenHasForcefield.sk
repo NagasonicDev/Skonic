@@ -17,4 +17,4 @@ test "citizen has forcefield":
     assert npc {_npc::1} and {_npc::2} don't have forcefield to fail with "was wrong"
     remove forcefield of {_npc::2}
     assert npc {_npc::1} and {_npc::2} don't have forcefield with "was wrong"
-    delete all citizens
+    delete all npcs

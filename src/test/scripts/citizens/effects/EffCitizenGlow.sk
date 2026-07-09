@@ -7,7 +7,7 @@ test "make citizen glow":
     make npc {_npc} stop glowing
     assert npc {_npc} is not glowing with "was wrong"
     assert npc {_npc} is glowing to fail with "was wrong"
-    delete all citizens
+    delete all npcs
 
 
 test "make citizen glow with color":
@@ -19,4 +19,4 @@ test "make citizen glow with color":
     make npc {_npc} start glowing blue
     assert npc {_npc} is not glowing red with "was wrong"
     assert npc {_npc} is glowing red to fail with "was wrong"
-    delete all citizens
+    delete all npcs

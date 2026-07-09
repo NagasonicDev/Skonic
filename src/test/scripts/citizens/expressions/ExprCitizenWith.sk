@@ -1,7 +1,7 @@
 test "citizen with id":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set {_id} to id of npc {npc::1}
+    set {_id} to id of {npc::1}
     set {_found} to citizen with id {_id}
     assert {_found} is {npc::1} with "was wrong"
-    delete all citizens
+    delete all npcs

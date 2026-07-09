@@ -1,6 +1,6 @@
 test "citizen attributes":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set {_a::*} to attributes of npc {npc::1}
+    set {_a::*} to citizen attributes of {npc::1}
     assert {_a::*} is set with "was wrong"
-    delete all citizens
+    delete all npcs

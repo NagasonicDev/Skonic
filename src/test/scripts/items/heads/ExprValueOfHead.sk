@@ -1,4 +1,4 @@
 test "value of head":
     set {_h} to head from value "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWJjIn19fQ=="
     set {_v} to value of {_h}
-    assert true with "was wrong"
+    assert true is true with "was wrong"
