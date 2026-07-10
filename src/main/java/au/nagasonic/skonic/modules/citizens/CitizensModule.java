@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.skriptlang.skript.addon.AddonModule;
 import org.skriptlang.skript.addon.HierarchicalAddonModule;
 import org.skriptlang.skript.addon.SkriptAddon;
+import org.skriptlang.skript.bukkit.lang.eventvalue.EventValueRegistry;
 
 import java.util.List;
 
@@ -140,8 +141,8 @@ public class CitizensModule extends HierarchicalAddonModule {
                 ExprCitizenSpeak::register,
                 ExprCitizenSpeed::register,
                 ExprCitizenStoredLocation::register,
-                ExprCitizenSwim::register,
-                CitizenEvents::register
+                ExprCitizenSwim::register
         );
+        CitizenEvents.register(addon.syntaxRegistry(), addon.registry(EventValueRegistry.class));
     }
 }
