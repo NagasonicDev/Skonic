@@ -1,6 +1,6 @@
 test "citizen entity pose":
     spawn zombie citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen entity pose of {npc::1} to crouch
-    assert citizen entity pose of {npc::1} is crouch with "was wrong"
+    set citizen entity pose of {npc::1} to crouching
+    assert citizen entity pose of {npc::1} is crouching with "was wrong"
     delete all npcs

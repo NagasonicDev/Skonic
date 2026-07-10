@@ -12,4 +12,5 @@ test "citizen can load chunks":
     assert npc {_npc::1} and {_npc::2} can't load chunks to fail with "was wrong"
     make npc {_npc::2} unable to load chunks
     assert npc {_npc::1} and {_npc::2} can not load chunks with "was wrong"
-    delete all npcs
+    clear {_npc::1}
+    clear {_npc::2}

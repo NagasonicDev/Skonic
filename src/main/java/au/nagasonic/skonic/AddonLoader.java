@@ -51,9 +51,8 @@ public class AddonLoader {
         this.addon = Skript.instance().registerAddon(Skonic.class, "Skonic");
 
         int[] elementCountBefore = Util.getElementCount();
-
+        addon.localizer().setSourceDirectories("lang", null);
         addon.loadModules(new Modules());
-
         int[] elementCountAfter = Util.getElementCount();
         int[] finish = new int[elementCountBefore.length];
         int total = 0;
