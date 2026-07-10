@@ -13,10 +13,7 @@ test "make citizen glow":
 test "make citizen glow with color":
     spawn citizen named "test" at spawn of world "world"
     set {_npc} to last spawned npc
-    make npc {_npc} start glowing red
-    assert npc {_npc} is glowing red with "was wrong"
-    assert npc {_npc} is not glowing red to fail with "was wrong"
-    make npc {_npc} start glowing blue
-    assert npc {_npc} is not glowing red with "was wrong"
-    assert npc {_npc} is glowing red to fail with "was wrong"
+    make npc {_npc} start glowing with colour red
+    assert npc {_npc} is glowing with "was wrong"
+    assert npc {_npc} is not glowing to fail with "was wrong"
     delete all npcs

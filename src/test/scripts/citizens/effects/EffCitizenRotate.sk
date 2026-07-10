@@ -8,6 +8,8 @@ test "citizen face location":
 test "citizen face entity":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    make npc {npc::1} face player
+    spawn zombie at spawn of world "world"
+    set {_entity} to last spawned entity
+    make npc {npc::1} face {_entity}
     assert true is true with "was wrong"
     delete all npcs

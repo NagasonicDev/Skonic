@@ -18,7 +18,10 @@ public class ExprValueOfHead extends SimplePropertyExpression<ItemStack, String>
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprValueOfHead.class, String.class)
-                        .addPatterns("value", "itemstack")
+                        .addPatterns(
+                                "value of %itemstack%",
+                                "%itemstack%'[s] value"
+                        )
                         .build()
         );
     }

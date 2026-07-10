@@ -15,7 +15,10 @@ public class ExprSkinValue extends SimplePropertyExpression<Skin, String> {
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprSkinValue.class, String.class)
-                        .addPatterns("texture value", "skin")
+                        .addPatterns(
+                                "texture value of %skin%",
+                                "%skin%'[s] texture value"
+                        )
                         .build()
         );
     }

@@ -1,3 +1,2 @@
 test "player skin":
-    set {_s} to player's skin
-    assert true is true with "was wrong"
+    assert skin of player is not set with "was wrong"

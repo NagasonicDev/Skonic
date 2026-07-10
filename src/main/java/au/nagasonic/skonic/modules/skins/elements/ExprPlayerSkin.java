@@ -17,7 +17,10 @@ public class ExprPlayerSkin extends SimplePropertyExpression<Player, Skin> {
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprPlayerSkin.class, Skin.class)
-                        .addPatterns("skin", "player")
+                        .addPatterns(
+                                "skin of %player%",
+                                "%player%'[s] skin"
+                        )
                         .build()
         );
     }

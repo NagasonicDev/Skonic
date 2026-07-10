@@ -1,7 +1,9 @@
 test "citizen mount entity":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    make npc {npc::1} mount player
+    spawn zombie at spawn of world "world"
+    set {_mount} to last spawned entity
+    make npc {npc::1} mount {_mount}
     assert true is true with "was wrong"
     make npc {npc::1} dismount
     delete all npcs

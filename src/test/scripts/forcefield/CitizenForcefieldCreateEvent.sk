@@ -1,4 +1,4 @@
 test "forcefield create event":
     set {_f} to a forcefield:
-        broadcast "Creating forcefield: %event-forcefield%"
+        broadcast "Creating forcefield: %event-npcforcefield%"
     assert {_f} is set with "was wrong"

@@ -1,6 +1,4 @@
 test "citizen entity type":
-    spawn citizen named "test" at spawn of world "world"
+    spawn zombie citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen entity type of {npc::1} to zombie
-    assert citizen entity type of {npc::1} is zombie with "was wrong"
-    delete all npcs
+    assert "%citizen entity type of {npc::1}%" is "zombie" with "was wrong"

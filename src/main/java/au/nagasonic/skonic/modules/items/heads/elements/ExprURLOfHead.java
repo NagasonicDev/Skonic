@@ -18,7 +18,10 @@ public class ExprURLOfHead extends SimplePropertyExpression<ItemStack, String> {
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprURLOfHead.class, String.class)
-                        .addPatterns("url", "itemstack")
+                        .addPatterns(
+                                "url of %itemstack%",
+                                "%itemstack%'[s] url"
+                        )
                         .build()
         );
     }

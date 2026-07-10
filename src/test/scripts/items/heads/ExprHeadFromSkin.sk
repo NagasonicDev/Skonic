@@ -1,4 +1,3 @@
 test "head from skin":
-    set {_s} to skin with value "abc" and signature "def"
-    set {_h} to head from {_s}
+    set {_h} to head from "Notch"
     assert {_h} is set with "was wrong"

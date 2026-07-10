@@ -15,7 +15,10 @@ public class ExprSkinSignature extends SimplePropertyExpression<Skin, String> {
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprSkinSignature.class, String.class)
-                        .addPatterns("[skin] signature", "skin")
+                        .addPatterns(
+                                "[skin] signature of %skin%",
+                                "%skin%'[s] [skin] signature"
+                        )
                         .build()
         );
     }

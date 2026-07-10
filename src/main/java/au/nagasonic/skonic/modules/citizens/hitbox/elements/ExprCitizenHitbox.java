@@ -21,7 +21,7 @@ public class ExprCitizenHitbox extends SimplePropertyExpression<NPC, NPCHitbox> 
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprCitizenHitbox.class, NPCHitbox.class)
-                        .addPatterns("(citizen|npc) hitbox", "npc")
+                        .addPatterns("(citizen|npc) hitbox of %npcs%", "%npcs%'[s] (citizen|npc) hitbox")
                         .build()
         );
     }

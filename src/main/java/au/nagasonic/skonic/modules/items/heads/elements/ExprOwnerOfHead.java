@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 import org.skriptlang.skript.registration.SyntaxRegistry;
@@ -20,7 +21,7 @@ public class ExprOwnerOfHead extends SimplePropertyExpression<ItemStack, Player>
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprOwnerOfHead.class, Player.class)
-                        .addPatterns("owner", "itemstack")
+                        .addPatterns("owner of %itemstacks%", "%itemstacks%'[s] owner")
                         .build()
         );
     }
@@ -38,12 +39,14 @@ public class ExprOwnerOfHead extends SimplePropertyExpression<ItemStack, Player>
     }
 
     @Override
+    @NotNull
     protected String getPropertyName() {
-        return null;
+        return "owner";
     }
 
     @Override
+    @NotNull
     public Class<? extends Player> getReturnType() {
-        return null;
+        return Player.class;
     }
 }
