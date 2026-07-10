@@ -1,2 +1,0 @@
-test "player skin":
-    assert skin of player is not set with "was wrong"

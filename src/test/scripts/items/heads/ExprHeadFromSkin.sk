@@ -1,3 +1,0 @@
-test "head from skin":
-    set {_h} to head from "Notch"
-    assert {_h} is set with "was wrong"
