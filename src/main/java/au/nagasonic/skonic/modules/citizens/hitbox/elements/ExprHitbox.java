@@ -4,7 +4,6 @@ import ch.njol.skript.config.SectionNode;
 import ch.njol.skript.doc.*;
 import ch.njol.skript.expressions.base.SectionExpression;
 import ch.njol.skript.lang.*;
-import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.variables.Variables;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
@@ -27,7 +26,6 @@ public class ExprHitbox extends SectionExpression<NPCHitbox> {
                         .addPatterns("[a] hitbox [with scale %number%[,| and]] [[with] width %number%[,| and]] [[with] height %number%]")
                         .build()
         );
-        EventValues.registerEventValue(CitizenHitboxCreateEvent.class, NPCHitbox.class, CitizenHitboxCreateEvent::getHitbox);
     }
     private Trigger trigger;
     private Expression<Number> scaleExpr;

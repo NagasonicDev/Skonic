@@ -27,8 +27,8 @@ public class ExprLookClose extends SimplePropertyExpression<NPC, Boolean> {
             SyntaxRegistry.EXPRESSION,
             DefaultSyntaxInfos.Expression.builder(ExprLookClose.class, Boolean.class)
                 .addPatterns(
-                    "look close [trait] of %npcs%",
-                    "%npcs%'[s] look close [trait]"
+                    "(citizen|npc) look close [trait] of %npcs%",
+                    "%npcs%'[s] (citizen|npc) look close [trait]"
                 )
                 .build()
         );

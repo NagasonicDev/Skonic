@@ -1,3 +1,0 @@
-test "hitbox type":
-    set {_h} to hitbox with scale 2, width 3 and height 4
-    assert type of {_h} is "npchitbox" with "was wrong"

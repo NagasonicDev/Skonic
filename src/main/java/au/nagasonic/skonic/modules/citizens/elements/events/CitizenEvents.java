@@ -1,8 +1,10 @@
 package au.nagasonic.skonic.modules.citizens.elements.events;
 
+import au.nagasonic.skonic.modules.citizens.forcefield.elements.CitizenForcefieldCreateEvent;
+import au.nagasonic.skonic.modules.citizens.forcefield.elements.NPCForcefield;
+import au.nagasonic.skonic.modules.citizens.hitbox.elements.CitizenHitboxCreateEvent;
+import au.nagasonic.skonic.modules.citizens.hitbox.elements.NPCHitbox;
 import ch.njol.skript.lang.util.SimpleEvent;
-import ch.njol.skript.registrations.EventValues;
-import ch.njol.skript.util.Getter;
 import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Location;
@@ -11,14 +13,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.jetbrains.annotations.Nullable;
+
+import org.skriptlang.skript.bukkit.lang.eventvalue.EventValue;
+import org.skriptlang.skript.bukkit.lang.eventvalue.EventValueRegistry;
 import org.skriptlang.skript.registration.SyntaxRegistry;
 import org.skriptlang.skript.bukkit.registration.BukkitSyntaxInfos;
 
 @SuppressWarnings("unused")
 public class CitizenEvents extends SimpleEvent {
-    public static void register(SyntaxRegistry syntaxRegistry) {
+    public static void register(SyntaxRegistry syntaxRegistry, EventValueRegistry eventValueRegistry) {
         syntaxRegistry.register(
                 BukkitSyntaxInfos.Event.KEY,
                 BukkitSyntaxInfos.Event.builder(CitizenEvents.class, "Citizen Click")
@@ -280,173 +283,108 @@ public class CitizenEvents extends SimpleEvent {
         );
 
         // Event values
-        EventValues.registerEventValue(NPCEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCEvent.class, NPC.class)
+                .getter(NPCEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCClickEvent.class, Player.class, new Getter<>() {
-            @Override
-            public @Nullable Player get(NPCClickEvent event) {
-                return event.getClicker();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCClickEvent.class, Player.class)
+                .getter(NPCClickEvent::getClicker)
+                .build());
 
-        EventValues.registerEventValue(PlayerCreateNPCEvent.class, Player.class, new Getter<>() {
-            @Override
-            public @Nullable Player get(PlayerCreateNPCEvent event) {
-                return event.getCreator();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(PlayerCreateNPCEvent.class, Player.class)
+                .getter(PlayerCreateNPCEvent::getCreator)
+                .build());
 
-        EventValues.registerEventValue(CommandSenderCreateNPCEvent.class, CommandSender.class, new Getter<>() {
-            @Override
-            public @Nullable CommandSender get(CommandSenderCreateNPCEvent event) {
-                return event.getCreator();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(CommandSenderCreateNPCEvent.class, CommandSender.class)
+                .getter(CommandSenderCreateNPCEvent::getCreator)
+                .build());
 
-        EventValues.registerEventValue(NPCSpawnEvent.class, Location.class, new Getter<>() {
-            @Override
-            public @Nullable Location get(NPCSpawnEvent event) {
-                return event.getLocation();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCSpawnEvent.class, Location.class)
+                .getter(NPCSpawnEvent::getLocation)
+                .build());
 
-        EventValues.registerEventValue(NPCSpawnEvent.class, SpawnReason.class, new Getter<>() {
-            @Override
-            public @Nullable SpawnReason get(NPCSpawnEvent event) {
-                return event.getReason();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCSpawnEvent.class, SpawnReason.class)
+                .getter(NPCSpawnEvent::getReason)
+                .build());
 
-        EventValues.registerEventValue(NPCDespawnEvent.class, DespawnReason.class, new Getter<>() {
-            @Override
-            public @Nullable DespawnReason get(NPCDespawnEvent event) {
-                return event.getReason();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDespawnEvent.class, DespawnReason.class)
+                .getter(NPCDespawnEvent::getReason)
+                .build());
 
-        EventValues.registerEventValue(NPCDeathEvent.class, Player.class, new Getter<>() {
-            @Override
-            public @Nullable Player get(NPCDeathEvent event) {
-                return event.getEvent().getEntity().getKiller();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDeathEvent.class, Player.class)
+                .getter(event -> event.getEvent().getEntity().getKiller())
+                .build());
 
-        EventValues.registerEventValue(NPCDeathEvent.class, EntityDamageEvent.DamageCause.class, new Getter<>() {
-            @Override
-            public @Nullable EntityDamageEvent.DamageCause get(NPCDeathEvent event) {
-                EntityDeathEvent devent = event.getEvent();
-                return devent.getEntity().getLastDamageCause().getCause();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDeathEvent.class, EntityDamageEvent.DamageCause.class)
+                .getter(event -> event.getEvent().getEntity().getLastDamageCause().getCause())
+                .build());
 
-        EventValues.registerEventValue(NPCDamageEvent.class, EntityDamageEvent.DamageCause.class, new Getter<>() {
-            @Override
-            public @Nullable EntityDamageEvent.DamageCause get(NPCDamageEvent event) {
-                return event.getCause();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDamageEvent.class, EntityDamageEvent.DamageCause.class)
+                .getter(NPCDamageEvent::getCause)
+                .build());
 
-        EventValues.registerEventValue(NPCDamageEvent.class, Double.class, new Getter<>() {
-            @Override
-            public @Nullable Double get(NPCDamageEvent event) {
-                return event.getDamage();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDamageEvent.class, Double.class)
+                .getter(NPCDamageEvent::getDamage)
+                .build());
 
-        EventValues.registerEventValue(NPCDamageByEntityEvent.class, Entity.class, new Getter<>() {
-            @Override
-            public @Nullable Entity get(NPCDamageByEntityEvent event) {
-                return event.getDamager();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDamageByEntityEvent.class, Entity.class)
+                .getter(NPCDamageByEntityEvent::getDamager)
+                .build());
 
-        EventValues.registerEventValue(NPCDamageByBlockEvent.class, Block.class, new Getter<>() {
-            @Override
-            public @Nullable Block get(NPCDamageByBlockEvent event) {
-                return event.getDamager();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCDamageByBlockEvent.class, Block.class)
+                .getter(NPCDamageByBlockEvent::getDamager)
+                .build());
 
-        EventValues.registerEventValue(NPCCombustEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCCombustEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCCombustEvent.class, NPC.class)
+                .getter(NPCCombustEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCKnockbackEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCKnockbackEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCKnockbackEvent.class, NPC.class)
+                .getter(NPCKnockbackEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCPushEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCPushEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCPushEvent.class, NPC.class)
+                .getter(NPCPushEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCSeenByPlayerEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCSeenByPlayerEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCSeenByPlayerEvent.class, NPC.class)
+                .getter(NPCSeenByPlayerEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCSeenByPlayerEvent.class, Player.class, new Getter<>() {
-            @Override
-            public @Nullable Player get(NPCSeenByPlayerEvent event) {
-                return event.getPlayer();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCSeenByPlayerEvent.class, Player.class)
+                .getter(NPCSeenByPlayerEvent::getPlayer)
+                .build());
 
-        EventValues.registerEventValue(NPCOpenDoorEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCOpenDoorEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCOpenDoorEvent.class, NPC.class)
+                .getter(NPCOpenDoorEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCOpenGateEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCOpenGateEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCOpenGateEvent.class, NPC.class)
+                .getter(NPCOpenGateEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCRenameEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCRenameEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCRenameEvent.class, NPC.class)
+                .getter(NPCRenameEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCRenameEvent.class, String.class, new Getter<>() {
-            @Override
-            public @Nullable String get(NPCRenameEvent event) {
-                return event.getOldName();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCRenameEvent.class, String.class)
+                .getter(NPCRenameEvent::getOldName)
+                .build());
 
-        EventValues.registerEventValue(NPCVehicleDamageEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCVehicleDamageEvent event) {
-                return event.getNPC();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCVehicleDamageEvent.class, NPC.class)
+                .getter(NPCVehicleDamageEvent::getNPC)
+                .build());
 
-        EventValues.registerEventValue(NPCCloneEvent.class, NPC.class, new Getter<>() {
-            @Override
-            public @Nullable NPC get(NPCCloneEvent event) {
-                return event.getClone();
-            }
-        }, 0);
+        eventValueRegistry.register(EventValue.builder(NPCCloneEvent.class, NPC.class)
+                .getter(NPCCloneEvent::getClone)
+                .build());
+
+        eventValueRegistry.register(EventValue.builder(CitizenHitboxCreateEvent.class, NPCHitbox.class)
+                .getter(CitizenHitboxCreateEvent::getHitbox)
+                .build());
+
+        eventValueRegistry.register(EventValue.builder(CitizenForcefieldCreateEvent.class, NPCForcefield.class)
+                .getter(CitizenForcefieldCreateEvent::getForcefield)
+                .build());
     }
 }

@@ -16,6 +16,9 @@ on citizen create:
 on citizen create by a player:
     broadcast "%event-npc% was created by %event-player%"
 
+on citizen create by a command sender:
+    broadcast "%event-npc% was created by %event-commandsender%"
+
 on citizen spawn:
     broadcast "%event-npc% spawned at %event-location%"
 
@@ -64,5 +67,11 @@ on citizen seen by a player:
 on citizen open a door:
     broadcast "%event-npc% opened a door"
 
+on citizen open a gate:
+    broadcast "%event-npc% opened a gate"
+
 on citizen rename:
     broadcast "%event-npc% was renamed from %event-string%"
+
+on citizen vehicle damage:
+    broadcast "%event-npc%'s vehicle was damaged"

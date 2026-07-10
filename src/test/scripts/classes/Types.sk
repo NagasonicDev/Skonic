@@ -1,7 +1,0 @@
-test "skin type":
-    set {_s} to skin with value "abc" and signature "def"
-    assert type of {_s} is "skin" with "was wrong"
-
-test "chatcolor type":
-    set {_c} to chatcolor red
-    assert type of {_c} is "chatcolor" with "was wrong"

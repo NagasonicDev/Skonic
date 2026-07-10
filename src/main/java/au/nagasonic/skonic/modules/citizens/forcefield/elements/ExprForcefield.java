@@ -28,7 +28,6 @@ public class ExprForcefield extends SectionExpression<NPCForcefield> {
                         .addPatterns("[a] forcefield [with width %number%[,| and]] [[with] height %number%[,| and]] [[with] strength %number%[,| and]] [[with] vertical strength %number%]")
                         .build()
         );
-        EventValues.registerEventValue(CitizenForcefieldCreateEvent.class, NPCForcefield.class, CitizenForcefieldCreateEvent::getForcefield);
     }
     private Trigger trigger;
     private Expression<Number> widthExpr;
