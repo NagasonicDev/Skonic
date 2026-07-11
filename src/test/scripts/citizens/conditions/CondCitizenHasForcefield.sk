@@ -1,7 +1,7 @@
 test "citizen has forcefield":
     spawn citizen named "test1" at spawn of world "world"
     set {_npc::1} to last spawned citizen
-    set {_force} to forcefield:
+    set {_force} to a forcefield:
         set forcefield width to 2
         set forcefield height to 2
         set forcefield strength to 1
