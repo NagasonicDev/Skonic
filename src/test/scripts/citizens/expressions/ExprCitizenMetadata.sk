@@ -1,6 +1,6 @@
 test "citizen metadata expression":
     spawn citizen named "test" at spawn of world "world"
     set {npc::1} to last created citizen
-    set citizen activation_range of {npc::1} to 64
+    set citizen activation range metadata of {npc::1} to 64
     assert true is true with "was wrong"
     delete all npcs
