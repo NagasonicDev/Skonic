@@ -43,7 +43,7 @@ public class ExprActivationRange extends SimplePropertyExpression<NPC, Number> {
     public void change(Event event, @Nullable Object[] delta, Changer.ChangeMode mode) {
         if (delta != null && delta[0] instanceof Number range) {
             for (NPC npc : getExpr().getArray(event)) {
-                npc.data().setPersistent(NPC.Metadata.ACTIVATION_RANGE, range);
+                npc.data().setPersistent(NPC.Metadata.ACTIVATION_RANGE, range.intValue());
             }
         }
         if (delta == null){

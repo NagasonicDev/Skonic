@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'au.nagasonic'
-version = "1.2.8"
+version = "1.2.8-b1"
 
 def latestJava = 26
 def oldestJava = 17
@@ -40,7 +40,7 @@ dependencies {
         exclude group: '*', module: '*'
     }
     //Skript
-    compileOnly "com.github.SkriptLang:Skript:2.15.0"
+    compileOnly "com.github.SkriptLang:Skript:2.16.1"
     //Cron4J
     implementation("it.sauronsoftware.cron4j:cron4j:2.2.5")
     //JetBrains Annotations

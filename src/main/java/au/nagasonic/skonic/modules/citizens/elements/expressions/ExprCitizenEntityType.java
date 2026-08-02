@@ -16,15 +16,15 @@ import org.skriptlang.skript.registration.DefaultSyntaxInfos;
 @Description({"Get the entity type of a citizen", "For most entitytypes, you have to put \'minecraft:\' in front of it for it to work."})
 @RequiredPlugins("Citizens")
 @Since("1.0.4, 1.0.5 (setting)")
-@Examples("set citizen entity type of last spawned entity to villager")
+@Examples("set entity type of npc last spawned entity to villager")
 public class ExprCitizenEntityType extends SimplePropertyExpression<NPC, EntityType> {
     public static void register(SyntaxRegistry syntaxRegistry) {
         syntaxRegistry.register(
             SyntaxRegistry.EXPRESSION,
             DefaultSyntaxInfos.Expression.builder(ExprCitizenEntityType.class, EntityType.class)
                 .addPatterns(
-                    "(citizen|npc) entity type of %npcs%",
-                    "%npcs%'[s] (citizen|npc) entity type"
+                    "entity type of (citizen|npc) %npcs%",
+                    "(citizen|npc) %npcs%'[s] entity type"
                 )
                 .build()
         );

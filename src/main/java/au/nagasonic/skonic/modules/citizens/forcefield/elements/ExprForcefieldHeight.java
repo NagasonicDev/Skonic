@@ -2,7 +2,11 @@ package au.nagasonic.skonic.modules.citizens.forcefield.elements;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
@@ -20,9 +24,20 @@ public class ExprForcefieldHeight extends SimplePropertyExpression<NPCForcefield
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprForcefieldHeight.class, Number.class)
-                        .addPatterns("forcefield height", "npcforcefield")
+                        .addPatterns("forcefield height[ of %npcforcefield%]", "%npcforcefield%'[s] forcefield height")
                         .build()
         );
+    }
+    @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
+        if (exprs.length == 0) {
+            EventValueExpression<NPCForcefield> eventValue = new EventValueExpression<>(NPCForcefield.class);
+            if (!eventValue.init()) return false;
+            setExpr(eventValue);
+            return true;
+        }
+        setExpr((Expression<? extends NPCForcefield>) exprs[0]);
+        return true;
     }
     @Override
     public @Nullable Number convert(NPCForcefield forcefield) {

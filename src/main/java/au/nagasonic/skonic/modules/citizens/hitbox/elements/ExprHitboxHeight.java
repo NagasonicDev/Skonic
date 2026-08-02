@@ -2,7 +2,11 @@ package au.nagasonic.skonic.modules.citizens.hitbox.elements;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.*;
+import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
@@ -20,9 +24,20 @@ public class ExprHitboxHeight extends SimplePropertyExpression<NPCHitbox, Number
         syntaxRegistry.register(
                 SyntaxRegistry.EXPRESSION,
                 DefaultSyntaxInfos.Expression.builder(ExprHitboxHeight.class, Number.class)
-                        .addPatterns("hitbox height", "npchitbox")
+                        .addPatterns("hitbox height[ of %npchitbox%]", "%npchitbox%'[s] hitbox height")
                         .build()
         );
+    }
+    @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
+        if (exprs.length == 0) {
+            EventValueExpression<NPCHitbox> eventValue = new EventValueExpression<>(NPCHitbox.class);
+            if (!eventValue.init()) return false;
+            setExpr(eventValue);
+            return true;
+        }
+        setExpr((Expression<? extends NPCHitbox>) exprs[0]);
+        return true;
     }
     @Override
     public @Nullable Number convert(NPCHitbox hitbox) {
